@@ -8,19 +8,19 @@ TIMEZONE = 'Europe/Lisbon'
 
 DEFAULT_LANG = 'en'
 
-M_LINKS_NAVBAR1 = [('Docs', 'https://gamedevtecnico.github.io/cubos', 'docs', [])]
+M_LINKS_NAVBAR1 = [('Docs', 'https://gamedevtecnico.github.io/cubos/docs', 'docs', [])]
 
 M_LINKS_FOOTER1 = [('Cubos', '.'),
-                   ('Getting Started', 'https://gamedevtecnico.github.io/cubos/getting-started.html'),
-                   ('Feature Guide', 'https://gamedevtecnico.github.io/cubos/features.html'),
-                   ('Examples', 'https://gamedevtecnico.github.io/cubos/examples.html'),
-                   ('Contribution Guidelines', 'https://gamedevtecnico.github.io/cubos/contribution.html')]
+                   ('Getting Started', 'https://gamedevtecnico.github.io/cubos/docs/getting-started.html'),
+                   ('Feature Guide', 'https://gamedevtecnico.github.io/cubos/docs/features.html'),
+                   ('Examples', 'https://gamedevtecnico.github.io/cubos/docs/examples.html'),
+                   ('Contribution Guidelines', 'https://gamedevtecnico.github.io/cubos/docs/contribution.html')]
 
-M_LINKS_FOOTER2 = [('Docs', 'https://gamedevtecnico.github.io/cubos'),
-                   ('Pages', 'https://gamedevtecnico.github.io/cubos/pages.html'),
-                   ('Modules', 'https://gamedevtecnico.github.io/cubos/modules.html'),
-                   ('Classes', 'https://gamedevtecnico.github.io/cubos/annotated.html'),
-                   ('Files', 'https://gamedevtecnico.github.io/cubos/files.html')]
+M_LINKS_FOOTER2 = [('Docs', 'https://gamedevtecnico.github.io/cubos/docs'),
+                   ('Pages', 'https://gamedevtecnico.github.io/cubos/docs/pages.html'),
+                   ('Modules', 'https://gamedevtecnico.github.io/cubos/docs/modules.html'),
+                   ('Classes', 'https://gamedevtecnico.github.io/cubos/docs/annotated.html'),
+                   ('Files', 'https://gamedevtecnico.github.io/cubos/docs/files.html')]
 
 M_LINKS_FOOTER3 = [('Contact Us', 'mailto:cubos@gamedev.tecnico.ulisboa.pt'),
                    ('Blog Feed', 'feeds/all.atom.xml'),
