@@ -3,7 +3,7 @@
 </summary><content type="html">&lt;p&gt;Hello everyone, and welcome to the very first post of the CUBOS. engine blog. This is where we'll be posting updates and information about CUBOS.
 Let's start today by talking about what CUBOS. is!&lt;/p&gt;
 &lt;p&gt;CUBOS. is an open-source game engine with two core features: everything is made out of voxels, and the engine is built on an entity component system.
-You can find the &lt;cite&gt;source right here &amp;lt;https://github.com/GameDevTecnico/cubos&amp;gt;&lt;/cite&gt;.
+You can find the &lt;a href="https://github.com/GameDevTecnico/cubos"&gt;source right here&lt;/a&gt;.
 Up to this point, our work has built a powerful core and an array of plugins that give CUBOS. a lot of the necessary functionalities to make a complete game.
 We have also been working on a suite of tools called Tesseratos that you can plug into any game you're making with CUBOS. to help with development.
 It provides, among other things, editors for scenes, entities, palette.&lt;/p&gt;
