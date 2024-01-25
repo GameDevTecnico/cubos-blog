@@ -17,6 +17,7 @@
             doxygen
             (python3.withPackages (ps: [
               ps.pelican
+              ps.pygments
             ]))
           ];
         };

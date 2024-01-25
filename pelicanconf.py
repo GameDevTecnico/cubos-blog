@@ -44,4 +44,4 @@ M_CSS_FILES = ['https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i
 M_THEME_COLOR = '#22272e'
 
 PLUGIN_PATHS = ['m.css/plugins']
-PLUGINS = ['m.htmlsanity']
+PLUGINS = ['m.htmlsanity', 'm.code']
