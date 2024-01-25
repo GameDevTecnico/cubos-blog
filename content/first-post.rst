@@ -20,6 +20,6 @@ Right now, our current goal is to have an engine that can feasibly be used in ga
 This means building some important engine plugins that we are missing, such as the physics plugin, and to create more tools to allow swift development, like a transform gizmo so you can move objects around with your mouse.
 
 Thank you for your interest in our engine.
-Come with us, as we keep you updated on the devlopments, adventures and trials CUBOS goes through.
+Come with us, as we keep you updated on the developments, adventures and trials CUBOS goes through.
 
 See you soon!
