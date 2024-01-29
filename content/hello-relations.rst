@@ -1,7 +1,7 @@
 Hello Relations
 ###############
 
-:date: 2024-01-25 16:30:00
+:date: 2024-01-31 16:30:00
 :tags: Core, ECS
 :category: Features
 :summary: Adding entity relations to our ECS
