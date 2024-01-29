@@ -133,17 +133,40 @@ An archetype is the set of all entities which have exactly the same set of compo
 To query entities with a given set of components, we just need to find the archetypes which contain those components, and then iterate over all entities in those archetypes.
 The operation of finding the archetypes may be slow, but it can be cached.
 
-Flecs handles relations by creating different archetypes for each relation target. For example, if we have the following entities:
+Flecs handles relations by creating different archetypes for each relation target. For example, with four entities with some data we would get, in this case, three archetypes:
 
-1. A, ChildOf(4)
-2. A, ChildOf(4)
-3. B, ChildOf(4)
-4. B, ChildOf(5)
+.. table:: Archetype A
+    :class: m-table m-frame
 
-It would create three archetypes: one for entities 1 and 2, another for entity 3, and a third for entity 4.
-Notice that although 3 and 4 share the same data types, they are stored in different archetypes because they have different relation targets.
+    +--------+--------+--------+------------+
+    | Entity | Health | Player | ChildOf(4) |
+    +========+========+========+============+
+    | 1      | 100    | ()     | ()         |
+    +--------+--------+--------+------------+
+    | 2      | 50     | ()     | ()         |
+    +--------+--------+--------+------------+
 
-While this allows for very fast queries, it also means that data will be heavily fragmented in memory for relations with many different targets.
+.. table:: Archetype B
+    :class: m-table m-frame
+
+    +--------+--------+------------+
+    | Entity | Health | ChildOf(4) |
+    +========+========+============+
+    | 3      | 75     | ()         |
+    +--------+--------+------------+
+
+.. table:: Archetype C
+    :class: m-table m-frame
+
+    +--------+--------+------------+
+    | Entity | Health | ChildOf(5) |
+    +========+========+============+
+    | 4      | 80     | ()         |
+    +--------+--------+------------+
+
+Where ``Health`` and ``Player`` are components, and ``ChildOf`` is a relation type. As you may have noticed, although entities 3 and 4 have the same data types, since they have different parents, they end up in different archetypes.
+
+While this allows for very fast queries for children of the same entity, it also means that data will be heavily fragmented in memory for relations with many different targets.
 It also means that adding a new relation to an entity will require moving it to another archetype, which can get expensive.
 This makes this approach unsuitable for our use case, as we want to be able to add and remove relations very frequently (e.g., collision pairs).
 
@@ -154,8 +177,53 @@ Instead of touching the archetypes, we store relations in separate tables, which
 Each sparse relation table stores all relations of a given type whose entities belong to a given pair of archetypes
 
 We store relations in separate tables. For each pair of archetypes and relation type, we create a table which stores all relations of that type between entities in those archetypes.
-With the entities of the previous example, we would get two archetypes: one for entities 1 and 2, and another for entities 3 and 4.
+With the entities of the previous example, we would get only two archetypes:
+
+.. table:: Archetype A
+    :class: m-table m-frame
+
+    +--------+--------+--------+
+    | Entity | Health | Player |
+    +========+========+========+
+    | 1      | 100    | ()     |
+    +--------+--------+--------+
+    | 2      | 50     | ()     |
+    +--------+--------+--------+
+
+.. table:: Archetype B
+    :class: m-table m-frame
+
+    +--------+--------+
+    | Entity | Health |
+    +========+========+
+    | 3      | 75     |
+    +--------+--------+
+    | 4      | 80     |
+    +--------+--------+
+
 The relations would be stored in two separate tables: one for relations between archetype A and archetype B, and another for relations between archetype B and B.
+
+.. table:: A to B
+    :class: m-table m-frame
+
+    +------+----+---------+
+    | From | To | ChildOf |
+    +======+====+=========+
+    | 1    | 4  | ()      |
+    +------+----+---------+
+    | 2    | 4  | ()      |
+    +------+----+---------+
+
+.. table:: B to B
+    :class: m-table m-frame
+
+    +------+----+---------+
+    | From | To | ChildOf |
+    +======+====+=========+
+    | 3    | 4  | ()      |
+    +------+----+---------+
+    | 4    | 5  | ()      |
+    +------+----+---------+
 
 This means that to query over a given relation, we just need to find all sparse relation tables for that relation type, and whose archetypes match the query filters.
 This result, once again, can be cached. Feel free to take a look at the code on *GitHub* if you're interested in the details!
