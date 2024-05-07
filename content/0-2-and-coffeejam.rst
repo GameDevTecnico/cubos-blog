@@ -1,12 +1,12 @@
-Coffe'n Jam and... 0.2!
+Coffee'n Jam and... 0.2!
 ########################
 
 :date: 2024-05-07 19:00:00
 :category: Meta
-:summary: CUBOS. 0.2 Release and Coffe'n Jam!
+:summary: CUBOS. 0.2 Release and Coffee'n Jam!
 
-Coffe'n Jam
-========
+Coffee'n Jam
+============
 
 insert very interesting text here, problems occurred, final result, etc,
 
