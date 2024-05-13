@@ -57,7 +57,15 @@ in a reflective context. With this trait, you can define which types inherit fro
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
 &lt;p&gt;you can check more information on the documentation page: &lt;a class="m-link-wrap" href="https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html"&gt;https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;insert feature text here&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="transform-gizmo-upgrades"&gt;
+&lt;h3&gt;Transform Gizmo Upgrades&lt;/h3&gt;
+&lt;p&gt;The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!&lt;/p&gt;
+&lt;p&gt;We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
+and a new type of gizmo, a &lt;code&gt;Rotated Box&lt;/code&gt;, which, unlike the old boz gizmos, does no need to be axis-alligned.&lt;/p&gt;
+&lt;p&gt;Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
+This should hopefully make it easier to use the tool when moving entities either very far away, or very close.&lt;/p&gt;
+&lt;img src="images/transform_gizmo.gif" /&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="next-steps"&gt;
