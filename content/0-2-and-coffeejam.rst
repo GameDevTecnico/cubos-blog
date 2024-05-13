@@ -78,8 +78,18 @@ or you can also check inheritance:
 you can check more information on the documentation page: https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html.
 
 
-insert feature text here
+Transform Gizmo Upgrades
+-------------------------------------
 
+The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!
+
+We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
+and a new type of gizmo, a ``Rotated Box``, which, unlike the old boz gizmos, does no need to be axis-alligned.
+
+Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
+This should hopefully make it easier to use the tool when moving entities either very far away, or very close.
+
+.. image:: images/transform_gizmo.gif
 
 Next steps
 ==========
