@@ -56,55 +56,10 @@
 <h2>New 0.2 features</h2>
 <section id="introducing-inheritance-in-reflection">
 <h3>Introducing Inheritance in Reflection</h3>
-<p>&gt; Trait for representing inheritance relationships under reflection. (#693, &#64;roby2014).</p>
 <p><code>CUBOS.</code> has a powerful reflection system to examine and interact with a structures and types at runtime.</p>
 <p><code>InheritsTrait</code> is a new feature in <code>CUBOS.</code> that allows you to represent and query inheritance relationships
 in a reflective context. With this trait, you can define which types inherit from others and then check those relationships at runtime.</p>
-<p>You can define inheritance as the following:</p>
-<pre class="m-code"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cubos/core/reflection/traits/inherits.hpp&gt;</span>
-
-<span class="k">using</span><span class="w"> </span><span class="n">cubos</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">reflection</span><span class="o">::</span><span class="n">InheritsTrait</span><span class="p">;</span>
-<span class="k">using</span><span class="w"> </span><span class="n">cubos</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">reflection</span><span class="o">::</span><span class="n">Type</span><span class="p">;</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">GrandParent</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="n">CUBOS_REFLECT</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">Parent</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="n">CUBOS_REFLECT</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">Son</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="n">CUBOS_REFLECT</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="n">CUBOS_REFLECT_IMPL</span><span class="p">(</span><span class="n">GrandParent</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Type</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;GrandParent&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="n">CUBOS_REFLECT_IMPL</span><span class="p">(</span><span class="n">Parent</span><span class="p">)</span>
-<span class="p">{</span><span class="n">r</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Type</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;Parent&quot;</span><span class="p">).</span><span class="n">with</span><span class="p">(</span><span class="n">InheritsTrait</span><span class="o">::</span><span class="n">from</span><span class="o">&lt;</span><span class="n">GrandParent</span><span class="o">&gt;</span><span class="p">());</span>
-<span class="p">}</span>
-
-<span class="n">CUBOS_REFLECT_IMPL</span><span class="p">(</span><span class="n">Son</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Type</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;Son&quot;</span><span class="p">).</span><span class="n">with</span><span class="p">(</span><span class="n">InheritsTrait</span><span class="o">::</span><span class="n">from</span><span class="o">&lt;</span><span class="n">Parent</span><span class="o">&gt;</span><span class="p">());</span>
-<span class="p">}</span></pre>
-<p>or you can also check inheritance:</p>
-<pre class="m-code"><span class="kt">void</span><span class="w"> </span><span class="nf">reflectType</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reflect</span><span class="o">&lt;</span><span class="n">Son</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="p">.</span><span class="n">has</span><span class="o">&lt;</span><span class="n">InheritsTrait</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">type</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">InheritsTrait</span><span class="o">&gt;</span><span class="p">().</span><span class="n">inherits</span><span class="o">&lt;</span><span class="n">Parent</span><span class="o">&gt;</span><span class="p">())</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">type</span><span class="p">.</span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; inherits from Parent</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span></pre>
-<p>you can check more information on the documentation page: <a class="m-link-wrap" href="https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html">https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html</a>.</p>
+<p>Check our documentation pgae for more information: <a class="m-link-wrap" href="https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html">https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html</a>.</p>
 </section>
 <section id="transform-gizmo-upgrades">
 <h3>Transform Gizmo Upgrades</h3>
