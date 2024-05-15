@@ -32,6 +32,21 @@ This should hopefully make it easier to use the tool when moving entities either
 
 .. image:: images/transform_gizmo.gif
 
+Physics Improvements :dim:`(@fallenatlas)`
+------------------------------------------
+
+This update we introduced the ``Solver``, which works to satisfy the physics constraints applied to entities (eg. Spring, Fixed distance between entities, etc.).
+
+This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
+As of now, we have one constraint, internal to the engine, the ``PenetrationConstraint``, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.
+
+With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
+will perform the physics update in multiple smaller steps. This is important to increase the convergence rate of the solver and preservation of energy, by reducing the errors caused by approximations of the simulation.
+
+These changes should lead to more realistic behaviour, as well as better consistency between systems with different performance levels.
+
+.. image:: images/complex_physics_sample.gif
+
 New 0.2 Core Features
 =====================
 
@@ -59,21 +74,6 @@ Introducing Inheritance in Reflection :dim:`(@roby2014)`
 in a reflective context. With this trait, you can define which types inherit from others and then check those relationships at runtime.
 
 Check our documentation page for more information: https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html.
-
-Physics Improvements
---------------------
-
-This update we introduced the ``Solver``, which works to satisfy the physics constraints applied to entities (eg. Spring, Fixed distance between entities, etc.).
-
-This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
-As of now, we have one constraint, internal to the engine, the ``PenetrationConstraint``, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.
-
-With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
-will perform the physics update in multiple smaller steps. This is important to increase the convergence rate of the solver and preservation of energy, by reducing the errors caused by approximations of the simulation.
-
-These changes should lead to more realistic behaviour, as well as better consistency between systems with different performance levels.
-
-.. image:: images/complex_physics_sample.gif
 
 Next steps
 ==========
