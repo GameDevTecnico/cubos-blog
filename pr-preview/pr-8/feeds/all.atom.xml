@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>CUBOS.</title><link href="https://gamedevtecnico.github.io/cubos/" rel="alternate"></link><link href="https://gamedevtecnico.github.io/cubos/feeds/all.atom.xml" rel="self"></link><id>https://gamedevtecnico.github.io/cubos/</id><updated>2024-05-07T19:00:00+01:00</updated><entry><title>Coffee'n Jam and... 0.2!</title><link href="https://gamedevtecnico.github.io/cubos/coffeen-jam-and-02.html" rel="alternate"></link><published>2024-05-07T19:00:00+01:00</published><updated>2024-05-07T19:00:00+01:00</updated><author><name>CUBOS. Team</name></author><id>tag:gamedevtecnico.github.io,2024-05-07:/cubos/coffeen-jam-and-02.html</id><summary type="html">&lt;p&gt;CUBOS. 0.2 Release and Coffee'n Jam!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>CUBOS.</title><link href="https://gamedevtecnico.github.io/cubos/" rel="alternate"></link><link href="https://gamedevtecnico.github.io/cubos/feeds/all.atom.xml" rel="self"></link><id>https://gamedevtecnico.github.io/cubos/</id><updated>2024-05-15T19:00:00+01:00</updated><entry><title>Coffee'n Jam and... 0.2!</title><link href="https://gamedevtecnico.github.io/cubos/coffeen-jam-and-02.html" rel="alternate"></link><published>2024-05-15T19:00:00+01:00</published><updated>2024-05-15T19:00:00+01:00</updated><author><name>CUBOS. Team</name></author><id>tag:gamedevtecnico.github.io,2024-05-15:/cubos/coffeen-jam-and-02.html</id><summary type="html">&lt;p&gt;CUBOS. 0.2 Release and Coffee'n Jam!&lt;/p&gt;
 </summary><content type="html">&lt;section id="coffee-n-jam"&gt;
 &lt;h2&gt;Coffee'n Jam&lt;/h2&gt;
-&lt;p&gt;insert very interesting text here, problems occurred, final result, etc,&lt;/p&gt;
+&lt;p&gt;From 26th of April to 3rd of May, &amp;#64;RiscadoA and &amp;#64;joaomanita participated in the Coffee'n Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;CUBOS&lt;/strong&gt;.
+The goal was to create a game in a week, with the theme &amp;quot;Apocalypse&amp;quot; - and we had a blast!&lt;/p&gt;
+&lt;p&gt;The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
+The game is called &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, and you can download it from its &lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;itch.io page&lt;/a&gt;.
+You can also check out its source code in our &lt;a href="https://github.com/GameDevTecnico/cubos-demo"&gt;demo repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We managed to win the &amp;quot;Best Gameplay&amp;quot; and &amp;quot;People's Choice&amp;quot; awards, which we're very proud of!&lt;/p&gt;
+&lt;img class="m-image" src="images/scraps_vs_zombies.png" /&gt;
+&lt;p&gt;We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
+One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
+We'll be working on fixing these issues in the next release, and we'll also be profiling the engine to find out where the bottlenecks are.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="new-0-2-engine-features"&gt;
 &lt;h2&gt;New 0.2 Engine Features&lt;/h2&gt;
@@ -51,12 +60,13 @@ in a reflective context. With this trait, you can define which types inherit fro
 &lt;/section&gt;
 &lt;section id="next-steps"&gt;
 &lt;h2&gt;Next steps&lt;/h2&gt;
-&lt;p&gt;TODO: talk about
-- UI
-- voxel collisions
-- proper tesseratos-game flow and integration&lt;/p&gt;
+&lt;p&gt;TODO: UI&lt;/p&gt;
+&lt;p&gt;TODO: voxel collisions&lt;/p&gt;
+&lt;p&gt;TODO: proper tesseratos-game flow and integration&lt;/p&gt;
+&lt;p&gt;TODO: friction, new physics features etc&lt;/p&gt;
+&lt;p&gt;TODO: hint at new recruitment coming soon&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Meta"></category></entry><entry><title>Hello Relations</title><link href="https://gamedevtecnico.github.io/cubos/hello-relations.html" rel="alternate"></link><published>2024-01-31T16:30:00+00:00</published><updated>2024-01-31T16:30:00+00:00</updated><author><name>Ricardo Antunes</name></author><id>tag:gamedevtecnico.github.io,2024-01-31:/cubos/hello-relations.html</id><summary type="html">&lt;p&gt;Adding entity relations to our ECS&lt;/p&gt;
+</content><category term="Release"></category></entry><entry><title>Hello Relations</title><link href="https://gamedevtecnico.github.io/cubos/hello-relations.html" rel="alternate"></link><published>2024-01-31T16:30:00+00:00</published><updated>2024-01-31T16:30:00+00:00</updated><author><name>Ricardo Antunes</name></author><id>tag:gamedevtecnico.github.io,2024-01-31:/cubos/hello-relations.html</id><summary type="html">&lt;p&gt;Adding entity relations to our ECS&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Hello! This past month I've been tinkering with the &lt;em&gt;ECS&lt;/em&gt;, which arguably is the core foundation of CUBOS.
 We structure all of our engine code around it. You can learn more about the concept in our &lt;a href="https://gamedevtecnico.github.io/cubos/docs/features-ecs.html"&gt;ECS guide&lt;/a&gt;!&lt;/p&gt;
 &lt;section id="the-problem"&gt;

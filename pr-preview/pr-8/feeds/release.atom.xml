@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>CUBOS. - Release</title><link href="https://gamedevtecnico.github.io/cubos/" rel="alternate"></link><link href="https://gamedevtecnico.github.io/cubos/feeds/release.atom.xml" rel="self"></link><id>https://gamedevtecnico.github.io/cubos/</id><updated>2024-05-15T19:00:00+01:00</updated><entry><title>Coffee'n Jam and... 0.2!</title><link href="https://gamedevtecnico.github.io/cubos/coffeen-jam-and-02.html" rel="alternate"></link><published>2024-05-15T19:00:00+01:00</published><updated>2024-05-15T19:00:00+01:00</updated><author><name>CUBOS. Team</name></author><id>tag:gamedevtecnico.github.io,2024-05-15:/cubos/coffeen-jam-and-02.html</id><summary type="html">&lt;p&gt;CUBOS. 0.2 Release and Coffee'n Jam!&lt;/p&gt;
+</summary><content type="html">&lt;section id="coffee-n-jam"&gt;
+&lt;h2&gt;Coffee'n Jam&lt;/h2&gt;
+&lt;p&gt;From 26th of April to 3rd of May, &amp;#64;RiscadoA and &amp;#64;joaomanita participated in the Coffee'n Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;CUBOS&lt;/strong&gt;.
+The goal was to create a game in a week, with the theme &amp;quot;Apocalypse&amp;quot; - and we had a blast!&lt;/p&gt;
+&lt;p&gt;The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
+The game is called &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, and you can download it from its &lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;itch.io page&lt;/a&gt;.
+You can also check out its source code in our &lt;a href="https://github.com/GameDevTecnico/cubos-demo"&gt;demo repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We managed to win the &amp;quot;Best Gameplay&amp;quot; and &amp;quot;People's Choice&amp;quot; awards, which we're very proud of!&lt;/p&gt;
+&lt;img class="m-image" src="images/scraps_vs_zombies.png" /&gt;
+&lt;p&gt;We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
+One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
+We'll be working on fixing these issues in the next release, and we'll also be profiling the engine to find out where the bottlenecks are.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="new-0-2-engine-features"&gt;
+&lt;h2&gt;New 0.2 Engine Features&lt;/h2&gt;
+&lt;p&gt;Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
+We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;):&lt;/p&gt;
+&lt;section id="transform-gizmo-upgrades-diogomendonc-a"&gt;
+&lt;h3&gt;Transform Gizmo Upgrades &lt;span class="m-text m-dim"&gt;(&amp;#64;DiogoMendonc-a)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!&lt;/p&gt;
+&lt;p&gt;We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
+and a new type of gizmo, a &lt;code&gt;Rotated Box&lt;/code&gt;, which, unlike the old boz gizmos, does no need to be axis-alligned.&lt;/p&gt;
+&lt;p&gt;Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
+This should hopefully make it easier to use the tool when moving entities either very far away, or very close.&lt;/p&gt;
+&lt;img class="m-image" src="images/transform_gizmo.gif" /&gt;
+&lt;/section&gt;
+&lt;section id="physics-improvements-fallenatlas"&gt;
+&lt;h3&gt;Physics Improvements &lt;span class="m-text m-dim"&gt;(&amp;#64;fallenatlas)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;This update we introduced the &lt;code&gt;Solver&lt;/code&gt;, which works to satisfy the physics constraints applied to entities (eg. Spring, Fixed distance between entities, etc.).&lt;/p&gt;
+&lt;p&gt;This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
+As of now, we have one constraint, internal to the engine, the &lt;code&gt;PenetrationConstraint&lt;/code&gt;, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.&lt;/p&gt;
+&lt;p&gt;With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
+will perform the physics update in multiple smaller steps. This is important to increase the convergence rate of the solver and preservation of energy, by reducing the errors caused by approximations of the simulation.&lt;/p&gt;
+&lt;p&gt;These changes should lead to more realistic behaviour, as well as better consistency between systems with different performance levels.&lt;/p&gt;
+&lt;img class="m-image" src="images/complex_physics_sample.gif" /&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="new-0-2-core-features"&gt;
+&lt;h2&gt;New 0.2 Core Features&lt;/h2&gt;
+&lt;p&gt;On this release, we also had to make a lot of changes to the core of the engine.
+Here are some of the most relevant ones:&lt;/p&gt;
+&lt;section id="observers-riscadoa"&gt;
+&lt;h3&gt;Observers &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Very often while working with &lt;strong&gt;CUBOS&lt;/strong&gt;, we find the need to react to the addition and removal of components in entities.
+One use case, for example, is setting up the AABB of an entity when we add a collider to it.
+Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially &lt;code&gt;false&lt;/code&gt;, and having a system initializing all colliders with the flag set to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To solve this problem in a more elegant way, I added a new special kind of system: &lt;em&gt;observers&lt;/em&gt;. Observers are essentially systems which instead of running on a specific schedule, run immediately after a certain change occurs in the ECS (akin to callbacks).&lt;/p&gt;
+&lt;p&gt;We also found another unexpected use for this feature. Complex plugins with lots of components, such as the physics plugin, where previously cumbersome to work with, as all the required components had to be manually added to each entity we wanted physics to apply to.
+With observers, we instead now add a single component &lt;code&gt;PhysicsBundle&lt;/code&gt;. An observer picks up this addition, and immediately replaces this component with all of the required components for the physics plugin to work.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="introducing-inheritance-in-reflection-roby2014"&gt;
+&lt;h3&gt;Introducing Inheritance in Reflection &lt;span class="m-text m-dim"&gt;(&amp;#64;roby2014)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;CUBOS&lt;/strong&gt; has a powerful reflection system to examine and interact with a structures and types at runtime.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;InheritsTrait&lt;/code&gt; is a new feature in &lt;strong&gt;CUBOS&lt;/strong&gt; that allows you to represent and query inheritance relationships
+in a reflective context. With this trait, you can define which types inherit from others and then check those relationships at runtime.&lt;/p&gt;
+&lt;p&gt;Check our documentation page for more information: &lt;a class="m-link-wrap" href="https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html"&gt;https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="next-steps"&gt;
+&lt;h2&gt;Next steps&lt;/h2&gt;
+&lt;p&gt;TODO: UI&lt;/p&gt;
+&lt;p&gt;TODO: voxel collisions&lt;/p&gt;
+&lt;p&gt;TODO: proper tesseratos-game flow and integration&lt;/p&gt;
+&lt;p&gt;TODO: friction, new physics features etc&lt;/p&gt;
+&lt;p&gt;TODO: hint at new recruitment coming soon&lt;/p&gt;
+&lt;/section&gt;
+</content><category term="Release"></category></entry></feed>
