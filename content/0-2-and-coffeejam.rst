@@ -5,6 +5,9 @@ Coffee'n Jam and... 0.2!
 :category: Meta
 :summary: CUBOS. 0.2 Release and Coffee'n Jam!
 
+.. role:: dim
+    :class: m-text m-dim
+
 Coffee'n Jam
 ============
 
@@ -13,20 +16,19 @@ insert very interesting text here, problems occurred, final result, etc,
 New 0.2 features
 ================
 
+Introducing Inheritance in Reflection :dim:`(@roby2014)`
+--------------------------------------------------------
 
-Introducing Inheritance in Reflection
--------------------------------------
+**CUBOS** has a powerful reflection system to examine and interact with a structures and types at runtime.
 
-``CUBOS.`` has a powerful reflection system to examine and interact with a structures and types at runtime.
-
-``InheritsTrait`` is a new feature in ``CUBOS.`` that allows you to represent and query inheritance relationships
+``InheritsTrait`` is a new feature in **CUBOS** that allows you to represent and query inheritance relationships
 in a reflective context. With this trait, you can define which types inherit from others and then check those relationships at runtime.
 
-Check our documentation pgae for more information: https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html.
+Check our documentation page for more information: https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html.
 
 
-Transform Gizmo Upgrades
--------------------------------------
+Transform Gizmo Upgrades :dim:`(@DiogoMendonc-a)`
+-------------------------------------------------
 
 The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!
 
