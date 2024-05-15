@@ -16,6 +16,18 @@ insert very interesting text here, problems occurred, final result, etc,
 New 0.2 features
 ================
 
+Observers :dim:`(@RiscadoA)`
+----------------------------
+
+Very often while working with **CUBOS**, we find the need to react to the addition and removal of components in entities.
+One use case, for example, is setting up the AABB of an entity when we add a collider to it.
+Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially ``false``, and having a system initializing all colliders with the flag set to ``false``.
+
+To solve this problem in a more elegant way, I added a new special kind of system: *observers*. Observers are essentially systems which instead of running on a specific schedule, run immediately after a certain change occurs in the ECS (akin to callbacks).
+
+We also found another unexpected use for this feature. Complex plugins with lots of components, such as the physics plugin, where previously cumbersome to work with, as all the required components had to be manually added to each entity we wanted physics to apply to.
+With observers, we instead now add a single component ``PhysicsBundle``. An observer picks up this addition, and immediately replaces this component with all of the required components for the physics plugin to work.
+
 Introducing Inheritance in Reflection :dim:`(@roby2014)`
 --------------------------------------------------------
 
