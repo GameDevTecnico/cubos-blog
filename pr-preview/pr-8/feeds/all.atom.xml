@@ -17,6 +17,16 @@ and a new type of gizmo, a &lt;code&gt;Rotated Box&lt;/code&gt;, which, unlike t
 This should hopefully make it easier to use the tool when moving entities either very far away, or very close.&lt;/p&gt;
 &lt;img class="m-image" src="images/transform_gizmo.gif" /&gt;
 &lt;/section&gt;
+&lt;section id="physics-improvements-fallenatlas"&gt;
+&lt;h3&gt;Physics Improvements &lt;span class="m-text m-dim"&gt;(&amp;#64;fallenatlas)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;This update we introduced the &lt;code&gt;Solver&lt;/code&gt;, which works to satisfy the physics constraints applied to entities (eg. Spring, Fixed distance between entities, etc.).&lt;/p&gt;
+&lt;p&gt;This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
+As of now, we have one constraint, internal to the engine, the &lt;code&gt;PenetrationConstraint&lt;/code&gt;, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.&lt;/p&gt;
+&lt;p&gt;With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
+will perform the physics update in multiple smaller steps. This is important to increase the convergence rate of the solver and preservation of energy, by reducing the errors caused by approximations of the simulation.&lt;/p&gt;
+&lt;p&gt;These changes should lead to more realistic behaviour, as well as better consistency between systems with different performance levels.&lt;/p&gt;
+&lt;img class="m-image" src="images/complex_physics_sample.gif" /&gt;
+&lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="new-0-2-core-features"&gt;
 &lt;h2&gt;New 0.2 Core Features&lt;/h2&gt;
@@ -37,16 +47,6 @@ With observers, we instead now add a single component &lt;code&gt;PhysicsBundle&
 &lt;p&gt;&lt;code&gt;InheritsTrait&lt;/code&gt; is a new feature in &lt;strong&gt;CUBOS&lt;/strong&gt; that allows you to represent and query inheritance relationships
 in a reflective context. With this trait, you can define which types inherit from others and then check those relationships at runtime.&lt;/p&gt;
 &lt;p&gt;Check our documentation page for more information: &lt;a class="m-link-wrap" href="https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html"&gt;https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html&lt;/a&gt;.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="physics-improvements"&gt;
-&lt;h3&gt;Physics Improvements&lt;/h3&gt;
-&lt;p&gt;This update we introduced the &lt;code&gt;Solver&lt;/code&gt;, which works to satisfy the physics constraints applied to entities (eg. Spring, Fixed distance between entities, etc.).&lt;/p&gt;
-&lt;p&gt;This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
-As of now, we have one constraint, internal to the engine, the &lt;code&gt;PenetrationConstraint&lt;/code&gt;, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.&lt;/p&gt;
-&lt;p&gt;With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
-will perform the physics update in multiple smaller steps. This is important to increase the convergence rate of the solver and preservation of energy, by reducing the errors caused by approximations of the simulation.&lt;/p&gt;
-&lt;p&gt;These changes should lead to more realistic behaviour, as well as better consistency between systems with different performance levels.&lt;/p&gt;
-&lt;img class="m-image" src="images/complex_physics_sample.gif" /&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="next-steps"&gt;
