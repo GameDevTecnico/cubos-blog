@@ -6,15 +6,24 @@
 &lt;/section&gt;
 &lt;section id="new-0-2-features"&gt;
 &lt;h2&gt;New 0.2 features&lt;/h2&gt;
-&lt;section id="introducing-inheritance-in-reflection"&gt;
-&lt;h3&gt;Introducing Inheritance in Reflection&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;CUBOS.&lt;/code&gt; has a powerful reflection system to examine and interact with a structures and types at runtime.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;InheritsTrait&lt;/code&gt; is a new feature in &lt;code&gt;CUBOS.&lt;/code&gt; that allows you to represent and query inheritance relationships
-in a reflective context. With this trait, you can define which types inherit from others and then check those relationships at runtime.&lt;/p&gt;
-&lt;p&gt;Check our documentation pgae for more information: &lt;a class="m-link-wrap" href="https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html"&gt;https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html&lt;/a&gt;.&lt;/p&gt;
+&lt;section id="observers-riscadoa"&gt;
+&lt;h3&gt;Observers &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Very often while working with &lt;strong&gt;CUBOS&lt;/strong&gt;, we find the need to react to the addition and removal of components in entities.
+One use case, for example, is setting up the AABB of an entity when we add a collider to it.
+Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially &lt;code&gt;false&lt;/code&gt;, and having a system initializing all colliders with the flag set to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To solve this problem in a more elegant way, I added a new special kind of system: &lt;em&gt;observers&lt;/em&gt;. Observers are essentially systems which instead of running on a specific schedule, run immediately after a certain change occurs in the ECS (akin to callbacks).&lt;/p&gt;
+&lt;p&gt;We also found another unexpected use for this feature. Complex plugins with lots of components, such as the physics plugin, where previously cumbersome to work with, as all the required components had to be manually added to each entity we wanted physics to apply to.
+With observers, we instead now add a single component &lt;code&gt;PhysicsBundle&lt;/code&gt;. An observer picks up this addition, and immediately replaces this component with all of the required components for the physics plugin to work.&lt;/p&gt;
 &lt;/section&gt;
-&lt;section id="transform-gizmo-upgrades"&gt;
-&lt;h3&gt;Transform Gizmo Upgrades&lt;/h3&gt;
+&lt;section id="introducing-inheritance-in-reflection-roby2014"&gt;
+&lt;h3&gt;Introducing Inheritance in Reflection &lt;span class="m-text m-dim"&gt;(&amp;#64;roby2014)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;CUBOS&lt;/strong&gt; has a powerful reflection system to examine and interact with a structures and types at runtime.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;InheritsTrait&lt;/code&gt; is a new feature in &lt;strong&gt;CUBOS&lt;/strong&gt; that allows you to represent and query inheritance relationships
+in a reflective context. With this trait, you can define which types inherit from others and then check those relationships at runtime.&lt;/p&gt;
+&lt;p&gt;Check our documentation page for more information: &lt;a class="m-link-wrap" href="https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html"&gt;https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="transform-gizmo-upgrades-diogomendonc-a"&gt;
+&lt;h3&gt;Transform Gizmo Upgrades &lt;span class="m-text m-dim"&gt;(&amp;#64;DiogoMendonc-a)&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!&lt;/p&gt;
 &lt;p&gt;We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
 and a new type of gizmo, a &lt;code&gt;Rotated Box&lt;/code&gt;, which, unlike the old boz gizmos, does no need to be axis-alligned.&lt;/p&gt;

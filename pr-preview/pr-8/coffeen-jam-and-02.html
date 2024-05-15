@@ -57,15 +57,24 @@
 </section>
 <section id="new-0-2-features">
 <h2>New 0.2 features</h2>
-<section id="introducing-inheritance-in-reflection">
-<h3>Introducing Inheritance in Reflection</h3>
-<p><code>CUBOS.</code> has a powerful reflection system to examine and interact with a structures and types at runtime.</p>
-<p><code>InheritsTrait</code> is a new feature in <code>CUBOS.</code> that allows you to represent and query inheritance relationships
-in a reflective context. With this trait, you can define which types inherit from others and then check those relationships at runtime.</p>
-<p>Check our documentation pgae for more information: <a class="m-link-wrap" href="https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html">https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html</a>.</p>
+<section id="observers-riscadoa">
+<h3>Observers <span class="m-text m-dim">(&#64;RiscadoA)</span></h3>
+<p>Very often while working with <strong>CUBOS</strong>, we find the need to react to the addition and removal of components in entities.
+One use case, for example, is setting up the AABB of an entity when we add a collider to it.
+Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially <code>false</code>, and having a system initializing all colliders with the flag set to <code>false</code>.</p>
+<p>To solve this problem in a more elegant way, I added a new special kind of system: <em>observers</em>. Observers are essentially systems which instead of running on a specific schedule, run immediately after a certain change occurs in the ECS (akin to callbacks).</p>
+<p>We also found another unexpected use for this feature. Complex plugins with lots of components, such as the physics plugin, where previously cumbersome to work with, as all the required components had to be manually added to each entity we wanted physics to apply to.
+With observers, we instead now add a single component <code>PhysicsBundle</code>. An observer picks up this addition, and immediately replaces this component with all of the required components for the physics plugin to work.</p>
 </section>
-<section id="transform-gizmo-upgrades">
-<h3>Transform Gizmo Upgrades</h3>
+<section id="introducing-inheritance-in-reflection-roby2014">
+<h3>Introducing Inheritance in Reflection <span class="m-text m-dim">(&#64;roby2014)</span></h3>
+<p><strong>CUBOS</strong> has a powerful reflection system to examine and interact with a structures and types at runtime.</p>
+<p><code>InheritsTrait</code> is a new feature in <strong>CUBOS</strong> that allows you to represent and query inheritance relationships
+in a reflective context. With this trait, you can define which types inherit from others and then check those relationships at runtime.</p>
+<p>Check our documentation page for more information: <a class="m-link-wrap" href="https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html">https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html</a>.</p>
+</section>
+<section id="transform-gizmo-upgrades-diogomendonc-a">
+<h3>Transform Gizmo Upgrades <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h3>
 <p>The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!</p>
 <p>We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
 and a new type of gizmo, a <code>Rotated Box</code>, which, unlike the old boz gizmos, does no need to be axis-alligned.</p>
