@@ -13,8 +13,30 @@ Coffee'n Jam
 
 insert very interesting text here, problems occurred, final result, etc,
 
-New 0.2 features
-================
+New 0.2 Engine Features
+=======================
+
+Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
+We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_):
+
+Transform Gizmo Upgrades :dim:`(@DiogoMendonc-a)`
+-------------------------------------------------
+
+The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!
+
+We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
+and a new type of gizmo, a ``Rotated Box``, which, unlike the old boz gizmos, does no need to be axis-alligned.
+
+Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
+This should hopefully make it easier to use the tool when moving entities either very far away, or very close.
+
+.. image:: images/transform_gizmo.gif
+
+New 0.2 Core Features
+=====================
+
+On this release, we also had to make a lot of changes to the core of the engine.
+Here are some of the most relevant ones:
 
 Observers :dim:`(@RiscadoA)`
 ----------------------------
@@ -38,20 +60,10 @@ in a reflective context. With this trait, you can define which types inherit fro
 
 Check our documentation page for more information: https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html.
 
-
-Transform Gizmo Upgrades :dim:`(@DiogoMendonc-a)`
--------------------------------------------------
-
-The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!
-
-We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
-and a new type of gizmo, a ``Rotated Box``, which, unlike the old boz gizmos, does no need to be axis-alligned.
-
-Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
-This should hopefully make it easier to use the tool when moving entities either very far away, or very close.
-
-.. image:: images/transform_gizmo.gif
-
 Next steps
 ==========
 
+TODO: talk about
+- UI
+- voxel collisions
+- proper tesseratos-game flow and integration
