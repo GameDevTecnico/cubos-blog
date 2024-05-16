@@ -90,6 +90,7 @@ Check our documentation page for more information: https://gamedevtecnico.github
 
 Repeating systems and fixed-step updates :dim:`(@joaomanita)`
 ------------------------------------------------------------
+
 Certain plugins, like the physics plugin, required some of their systems to run multiple times per frame so that they could make more accurate
 aproximations. In addition, some of them need to be executed in ordered groups (ex: physics integrate position > update velocities > clear forces > clear impulses).
 To do this I added tags that make systems tagged by them be repeated while a condition is true (cubos.tag(exampleTag).repeatWhile({});).
@@ -101,6 +102,20 @@ And to create subgroups, all you need to do is tag your subgroup tag with a pare
 
  With this it was easy to implement a fixed-step plugin, which adds a tag that forces systems to repeat according to
  the DeltaTime passed, avoiding variance due to different framerates and more/less powerful PCs.
+
+Serialization overhaul :dim:`(@Dacops)`
+---------------------------------------
+
+Serialization is a crucial part of the game engine that allows for the saving of any CUBOS. game components aswell as then loading them in. Due to the new reflections
+system used by CUBOS. serialization needed an overhaul to use these newer tecnologies that allow not only for a more user friendly usage but also to considerably reduce
+the lines of code taken by this component. Previously only primitive types were natively supported for saving/loading, any newer structures implemented by the game
+developers would need to be accompanied with overwrites of the saving/loading methods for the given structure. This, apart from being annoying could easily also amount 
+to an unecessary increase of lines of code written.
+With the new reflections, this is no longer needed, developers just need to "reflect" their structures via a macro that ammounts to a single line, to declare their types.
+The new saving/loading methods will then pick up on these structures and iteratively decompose them into primitive types. The methods for primitive types were also removed 
+for a common method, significantly reducing the space occupied by this feature.
+Furthermore several other parts of the CUBOS. unnecessarely used serialization (such as voxel grids, palettes and input bindings) these were removed and replaced by faster 
+methods contributing to a more efficient engine.
 
 Next steps
 ==========
