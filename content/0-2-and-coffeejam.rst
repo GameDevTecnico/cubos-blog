@@ -88,6 +88,20 @@ in a reflective context. With this trait, you can define which types inherit fro
 
 Check our documentation page for more information: https://gamedevtecnico.github.io/cubos/docs/examples-core-reflection-traits-inherits.html.
 
+Repeating systems and fixed-step updates :dim:`(@joaomanita)`
+------------------------------------------------------------
+Certain plugins, like the physics plugin, required some of their systems to run multiple times per frame so that they could make more accurate
+aproximations. In addition, some of them need to be executed in ordered groups (ex: physics integrate position > update velocities > clear forces > clear impulses).
+To do this I added tags that make systems tagged by them be repeated while a condition is true (cubos.tag(exampleTag).repeatWhile({});).
+And to create subgroups, all you need to do is tag your subgroup tag with a parent tag 
+(cubos.tag(groupTag).repeatWhile({});
+ cubos.tag(subgroupTag).repeatWhile({}).tagged(groupTag); )
+
+ This way the subgroup will repeat n x m times (n-grouptag m-subgrouptag)
+
+ With this it was easy to implement a fixed-step plugin, which adds a tag that forces systems to repeat according to
+ the DeltaTime passed, avoiding variance due to different framerates and more/less powerful PCs.
+
 Next steps
 ==========
 
