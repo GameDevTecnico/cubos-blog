@@ -117,6 +117,19 @@ for a common method, significantly reducing the space occupied by this feature.
 Furthermore several other parts of the CUBOS. unnecessarely used serialization (such as voxel grids, palettes and input bindings) these were removed and replaced by faster 
 methods contributing to a more efficient engine.
 
+Improved graphics renderer :dim:`(@RiscadoA, @tomas7770)`
+---------------------------------------
+
+Before this update, our graphics renderer was very monolithic, with a lot of the code being held in a single file. This posed some problems,
+namely that if we wanted to implement new rendering methods in the future (e.g. raytracing), we would end up with duplicate code.
+It also didn't fit well with our ECS design, since things such as the renderer and its active cameras were just global resources.
+
+To overcome this, we've restructured the renderer, splitting it into several components with their respective plugins. The most important ones
+are perhaps ``RenderTarget``, representing something that can be drawn to, and ``PerspectiveCamera``, which draws to render targets using perspective projection.
+Entities with these components are related using a ``DrawsTo`` relation. There are also components that individually enable various parts of the renderer,
+such as deferred shading, or effects like bloom and SSAO. This separation opens up possibilities for more customizability from the user side,
+and makes the renderer code easier to deal with by engine developers.
+
 Next steps
 ==========
 
