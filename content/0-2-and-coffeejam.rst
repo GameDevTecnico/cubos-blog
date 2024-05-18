@@ -60,6 +60,15 @@ These changes should lead to more realistic behaviour, as well as better consist
 
 .. image:: images/complex_physics_sample.gif
 
+Sub-scene importing in scene editor :dim:`(@teres4)`
+-----------------------------------------------------
+
+One of the improvements we wanted to make in this milestone was on our Scene Editor features in tesseratos.
+
+Using the ``assetSelectionPopup`` for selecting a asset of a certain type, we can now import sub-scenes in a scene!
+
+This ensures that developers save time and avoid re-doing their work, and also allows for better organization and workflow of the project.
+
 New 0.2 Core Features
 =====================
 
