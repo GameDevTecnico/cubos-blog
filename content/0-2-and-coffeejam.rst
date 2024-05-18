@@ -32,19 +32,6 @@ New 0.2 Engine Features
 Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
 We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_):
 
-Transform Gizmo Upgrades :dim:`(@DiogoMendonc-a)`
--------------------------------------------------
-
-The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!
-
-We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
-and a new type of gizmo, a ``Rotated Box``, which, unlike the old boz gizmos, does no need to be axis-alligned.
-
-Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
-This should hopefully make it easier to use the tool when moving entities either very far away, or very close.
-
-.. image:: images/transform_gizmo.gif
-
 Physics Improvements :dim:`(@fallenatlas)`
 ------------------------------------------
 
@@ -138,6 +125,43 @@ are perhaps ``RenderTarget``, representing something that can be drawn to, and `
 Entities with these components are related using a ``DrawsTo`` relation. There are also components that individually enable various parts of the renderer,
 such as deferred shading, or effects like bloom and SSAO. This separation opens up possibilities for more customizability from the user side,
 and makes the renderer code easier to deal with by engine developers.
+
+New 0.2 Tools Features
+======================
+
+Transform Gizmo Upgrades :dim:`(@DiogoMendonc-a)`
+-------------------------------------------------
+
+The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!
+
+We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
+and a new type of gizmo, a ``Rotated Box``, which, unlike the old boz gizmos, does no need to be axis-alligned.
+
+Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
+This should hopefully make it easier to use the tool when moving entities either very far away, or very close.
+
+.. image:: images/transform_gizmo.gif
+
+WorldInspector Overhaul :dim:`(@diogomsmiranda)`
+----------------------------------------------------
+
+The WorldInspector as been on our radar for quite some time now, as a tool that could be improved.
+This release we particularly aimed on making it better by focusing on:
+
+    * Making it easier to find the entities you are looking for.
+
+    * Getting more information about the entities in the scene.
+
+To tackle the first point we added a search bar that allows you to filter the entities in the scene, either by their ``Name.value``, or by their components. i.e:
+
+    * Searching for "player" will show all entities that have "player" in their ``Name.value``.
+
+    * Searching for "Transform" will show all entities that have a ``Transform`` component.
+
+    * Searching for "player, Transform" will show all entities that have a ``Transform`` component and contain "player" in their ``Name.value``.
+
+To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the ``ChildOf`` relation between entities.
+For further visualisation of this hierarchy, we changed our main.cubos scene on ``Tesseratos`` to have a more complex structure, with entities being children of other entities.
 
 Next steps
 ==========
