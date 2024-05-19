@@ -3,7 +3,7 @@ Coffee'n Jam and... 0.2!
 
 :date: 2024-05-15 19:00:00
 :category: Release
-:summary: CUBOS. 0.2 Release and Coffee'n Jam!
+:summary: CUBOS 0.2 Release and Coffee'n Jam!
 
 .. role:: dim
     :class: m-text m-dim
@@ -45,13 +45,13 @@ This should hopefully make it easier to use the tool when moving entities either
 World Inspector Overhaul :dim:`(@diogomsmiranda)`
 -------------------------------------------------
 
-The World inspector as been on our radar for quite some time now, as a tool that could be improved.
+The World inspector has been on our radar for quite some time now, as a tool that could be improved.
 This release we particularly aimed on making it better by focusing on:
 
 * Making it easier to find the entities you are looking for.
-* Getting more information about the entities in the scene.
+* Displaying more information about the entities in the scene.
 
-To tackle the first point I've added a search bar that allows you to filter the entities in the scene, either by their name, or by their components. i.e:
+To tackle the first point we've added a search bar that allows you to filter the entities in the scene, either by their name, or by their components. e.g:
 
 * Searching for "player" will show all entities that have "player" in their name.
 * Searching for "Transform" will show all entities that have a ``Transform`` component.
@@ -75,7 +75,7 @@ We've compiled here some of the most important changes (if you're curious, you c
 Physics Improvements :dim:`(@fallenatlas)`
 ------------------------------------------
 
-This update we introduced the ``Solver``, which works to satisfy the physics constraints applied to entities (eg. Spring, Fixed distance between entities, etc.).
+This update we introduced the ``Solver``, which works to satisfy the physics constraints applied to entities (e.g. Spring, Fixed distance between entities, etc.).
 
 This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
 As of now, we have one constraint, internal to the engine, the ``PenetrationConstraint``, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.
@@ -175,8 +175,8 @@ the ``DeltaTime`` passed, avoiding variance due to different frame rates and mor
 Moving Away from the Old Serialization :dim:`(@Dacops)`
 -------------------------------------------------------
 
-`Serialization <https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html>`_ is a crucial part of the game engine that allows for the saving of any CUBOS. game components as well as then loading them in.
-Previously, serialization was done through a series of functions, both for reading and writing that could be overloaded for each type.
+`Serialization <https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html>`_ is a crucial part of the game engine that allows for the saving of any CUBOS game components as well as then loading them in.
+Previously, serialization was done through a series of functions, both for reading and writing, that could be overloaded for each type.
 On the previous (and first) release, we introduced a reflection system, that allowed for the inspection of types at runtime. This was an essential step to make the inspectors on the editor side work.
 
 But with this new system, we now had two sources of truth for the types, the reflection system and the serialization system.
