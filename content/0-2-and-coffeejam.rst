@@ -74,6 +74,8 @@ Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
 To save time, I've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.
 
+.. image:: images/scene_editor_showcase.gif
+
 On the Engine
 -------------
 
