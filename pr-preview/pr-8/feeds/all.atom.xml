@@ -50,6 +50,7 @@ This release we particularly aimed on making it better by focusing on:&lt;/p&gt;
 &lt;p&gt;Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
 To save time, I've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.&lt;/p&gt;
+&lt;img class="m-image" src="images/scene_editor_showcase.gif" /&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-engine"&gt;
