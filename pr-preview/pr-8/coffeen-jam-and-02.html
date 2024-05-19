@@ -70,7 +70,7 @@ We'll be working on fixing these issues in the next release, and we'll also be p
 <h3>Transform Gizmo Upgrades <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h3>
 <p>The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!</p>
 <p>We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
-and a new type of gizmo, a <code>Rotated Box</code>, which, unlike the old boz gizmos, does no need to be axis-alligned.</p>
+and a new type of gizmo, a <code>Rotated Box</code>, which, unlike the old boz gizmos, does not need to be axis-aligned.</p>
 <p>Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
 This should hopefully make it easier to use the tool when moving entities either very far away, or very close.</p>
 <img class="m-image" src="images/transform_gizmo.gif" />
@@ -109,7 +109,7 @@ We've compiled here some of the most important changes (if you're curious, you c
 As of now, we have one constraint, internal to the engine, the <code>PenetrationConstraint</code>, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.</p>
 <p>With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
 will perform the physics update in multiple smaller steps. This is important to increase the convergence rate of the solver and preservation of energy, by reducing the errors caused by approximations of the simulation.</p>
-<p>These changes should lead to more realistic behaviour, as well as better consistency between systems with different performance levels.</p>
+<p>These changes should lead to more realistic behavior, as well as better consistency between systems with different performance levels.</p>
 <img class="m-image" src="images/complex_physics_sample.gif" />
 </section>
 <section id="modular-renderer-riscadoa-tomas7770">
@@ -172,7 +172,7 @@ aproximations. In addition, some of them need to be executed in ordered groups. 
 <pre class="m-code"><span class="n">cubos</span><span class="p">.</span><span class="n">tag</span><span class="p">(</span><span class="n">subgroupTag</span><span class="p">).</span><span class="n">tagged</span><span class="p">(</span><span class="n">groupTag</span><span class="p">).</span><span class="n">repeatWhile</span><span class="p">(</span><span class="n">myOtherCondition</span><span class="p">);</span></pre>
 <p>This way the subgroup's systems will repeat a total of n x m times, where n is the number of times the parent tag repeats and m is the number of times the subgroup tag repeats.</p>
 <p>With this implemented, it was easy to implement the fixed-step plugin on the engine side. It simply adds a tag that makes systems repeat as needed according to
-the <code>DeltaTime</code> passed, avoiding variance due to different framerates and more/less powerful PCs.</p>
+the <code>DeltaTime</code> passed, avoiding variance due to different frame rates and more/less powerful PCs.</p>
 </section>
 <section id="moving-away-from-the-old-serialization-dacops">
 <h3>Moving Away from the Old Serialization <span class="m-text m-dim">(&#64;Dacops)</span></h3>
