@@ -84,8 +84,6 @@ One side-effect of us changing the color-space is that now the colors in the gam
 &lt;/section&gt;
 &lt;section id="on-the-core"&gt;
 &lt;h3&gt;On the Core&lt;/h3&gt;
-&lt;p&gt;On this release, we also had to make a lot of changes to the core of the engine.
-Here are some of the most relevant ones:&lt;/p&gt;
 &lt;section id="observers-riscadoa"&gt;
 &lt;h4&gt;Observers &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;Very often while working with &lt;strong&gt;CUBOS&lt;/strong&gt;, we find the need to react to the addition and removal of components in entities.
