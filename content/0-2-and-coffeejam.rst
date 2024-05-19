@@ -187,12 +187,23 @@ On this release, I've finally finished this transition, by replacing serializati
 Next Steps
 ==========
 
-TODO: UI
+We're very happy with the progress we've made on this release. The engine is becoming more and more powerful, and we were able to create a full game with it in a week!
 
-TODO: voxel collisions
+For the next release, which should be out in July, we'll be focusing on expanding the engine's capabilities, as it is currently missing some key features, such as:
 
-TODO: proper tesseratos-game flow and integration
+* A **standalone editor application**. Our tools are currently integrated into the games themselves which is not ideal.
+* **Audio support**, as there's no sound at all in the engine right now.
+* An initial **UI plugin**, which can render images, text and handle buttons.
+* Actual **voxel collisions**, as we currently only check the bounding boxes.
+* Basic **rigidbody physics**, with rotation and friction.
+* **Shadows, transparency** and other rendering features.
+* **Raycasting**.
+* **Networking** utilities, to allow for online multiplayer games.
+* **Web-support**, so that games can be played in the browser.
+* **C API**, so that we can use the engine from other languages (scripts!).
+* **Better editor tools**.
 
-TODO: friction, new physics features etc
+You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/26>`_ for the next release.
 
-TODO: hint at new recruitment coming soon
+We're currently a team of 10 people, and **we're looking to expand**! If you're interested in joining us, please fill out this `form <https://forms.gle/A7ChMqC2qN9tHo6j8>`_.
+Feel free to contact us at cubos@gamedev.tecnico.ulisboa.pt!
