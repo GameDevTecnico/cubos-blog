@@ -42,6 +42,7 @@ This release we particularly aimed on making it better by focusing on:&lt;/p&gt;
 &lt;li&gt;Searching for &amp;quot;Transform&amp;quot; will show all entities that have a &lt;code&gt;Transform&lt;/code&gt; component.&lt;/li&gt;
 &lt;li&gt;Searching for &amp;quot;player, Transform&amp;quot; will show all entities that have a &lt;code&gt;Transform&lt;/code&gt; component and contain &amp;quot;player&amp;quot; in their name.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;img class="m-image" src="images/world_inspector_showcase.gif" /&gt;
 &lt;p&gt;To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the &lt;code&gt;ChildOf&lt;/code&gt; relation between entities.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="sub-scene-importing-in-scene-editor-teres4"&gt;
