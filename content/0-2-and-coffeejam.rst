@@ -26,11 +26,17 @@ We found a lot of bugs and missing features during the jam. Additionally, we had
 One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
 We'll be working on fixing these issues in the next release, and we'll also be profiling the engine to find out where the bottlenecks are.
 
-New 0.2 Tools Features
-======================
+New 0.2 Features
+================
+
+Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
+We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_).
+
+On the Editor
+-------------
 
 Transform Gizmo Upgrades :dim:`(@DiogoMendonc-a)`
--------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!
 
@@ -43,7 +49,7 @@ This should hopefully make it easier to use the tool when moving entities either
 .. image:: images/transform_gizmo.gif
 
 World Inspector Overhaul :dim:`(@diogomsmiranda)`
--------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The World inspector has been on our radar for quite some time now, as a tool that could be improved.
 This release we particularly aimed on making it better by focusing on:
@@ -60,20 +66,17 @@ To tackle the first point we've added a search bar that allows you to filter the
 To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the ``ChildOf`` relation between entities.
 
 Sub-scene importing in scene editor :dim:`(@teres4)`
------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
 To save time, I've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.
 
-New 0.2 Engine Features
-=======================
-
-Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
-We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_).
+On the Engine
+-------------
 
 Physics Improvements :dim:`(@fallenatlas)`
-------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This update we introduced the ``Solver``, which works to satisfy the physics constraints applied to entities (e.g. Spring, Fixed distance between entities, etc.).
 
@@ -88,7 +91,7 @@ These changes should lead to more realistic behavior, as well as better consiste
 .. image:: images/complex_physics_sample.gif
 
 Modular Renderer :dim:`(@RiscadoA, @tomas7770)`
------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before this update, our graphics renderer was very monolithic, with a lot of the code being held in a single file. This posed some problems,
 namely that if we wanted to implement new rendering methods in the future (e.g. raytracing), we would end up with tons of duplicate code.
@@ -110,14 +113,11 @@ By using `Pixel Buffers <https://www.khronos.org/opengl/wiki/Pixel_Buffer_Object
 Additionally, we added a tone-mapping pass to the renderer, which makes better use of the HDR color space. It allows us to tune the exposure of the scene, and also to apply effects like bloom and SSAO in a more realistic way.
 One side-effect of us changing the color-space is that now the colors in the game are a bit more washed out. We'll have to go back and tweak the colors in the game to make them look good again.
 
-New 0.2 Core Features
-=====================
-
-On this release, we also had to make a lot of changes to the core of the engine.
-Here are some of the most relevant ones:
+On the Core
+-----------
 
 Observers :dim:`(@RiscadoA)`
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Very often while working with **CUBOS**, we find the need to react to the addition and removal of components in entities.
 One use case, for example, is setting up the AABB of an entity when we add a collider to it.
@@ -131,7 +131,7 @@ With observers, we instead now add a single component ``PhysicsBundle``. An obse
 If you're interested in learning more about this feature and ECS in general on our engine, check out our `ECS feature guide <https://gamedevtecnico.github.io/cubos/docs/features-ecs.html>`_.
 
 Introducing Inheritance in Reflection :dim:`(@roby2014)`
---------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **CUBOS** has a powerful `reflection system <https://gamedevtecnico.github.io/cubos/docs/group__core-reflection.html>`_ to examine and interact with a structures and types at runtime
 It works by attaching metadata to types, which we call *traits*. These traits can be queried at runtime to get information about the type.
@@ -143,7 +143,7 @@ I've added a new trait, ``InheritsTrait``, which allows you to specify that a ty
 This will be particularly useful for serialization, as right now we have to manually add the fields of the base class to the derived class. Now, serializers can check if this trait is present and fallback to the base class if necessary.
 
 Repeating Systems and Fixed-Step Updates :dim:`(@joaomanita)`
--------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Certain plugins, like the physics plugin, required some of their systems to run multiple times per frame so that they could make more accurate
 aproximations. In addition, some of them need to be executed in ordered groups. For example:
@@ -173,7 +173,7 @@ With this implemented, it was easy to implement the fixed-step plugin on the eng
 the ``DeltaTime`` passed, avoiding variance due to different frame rates and more/less powerful PCs.
 
 Moving Away from the Old Serialization :dim:`(@Dacops)`
--------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Serialization <https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html>`_ is a crucial part of the game engine that allows for the saving of any CUBOS game components as well as then loading them in.
 Previously, serialization was done through a series of functions, both for reading and writing, that could be overloaded for each type.
