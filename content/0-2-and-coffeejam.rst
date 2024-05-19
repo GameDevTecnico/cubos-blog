@@ -35,7 +35,7 @@ Transform Gizmo Upgrades :dim:`(@DiogoMendonc-a)`
 The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!
 
 We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
-and a new type of gizmo, a ``Rotated Box``, which, unlike the old boz gizmos, does no need to be axis-alligned.
+and a new type of gizmo, a ``Rotated Box``, which, unlike the old boz gizmos, does not need to be axis-aligned.
 
 Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
 This should hopefully make it easier to use the tool when moving entities either very far away, or very close.
@@ -83,7 +83,7 @@ As of now, we have one constraint, internal to the engine, the ``PenetrationCons
 With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
 will perform the physics update in multiple smaller steps. This is important to increase the convergence rate of the solver and preservation of energy, by reducing the errors caused by approximations of the simulation.
 
-These changes should lead to more realistic behaviour, as well as better consistency between systems with different performance levels.
+These changes should lead to more realistic behavior, as well as better consistency between systems with different performance levels.
 
 .. image:: images/complex_physics_sample.gif
 
@@ -170,7 +170,7 @@ Its also possible to make repeating subgroups by tagging the subgroup with the p
 This way the subgroup's systems will repeat a total of n x m times, where n is the number of times the parent tag repeats and m is the number of times the subgroup tag repeats.
 
 With this implemented, it was easy to implement the fixed-step plugin on the engine side. It simply adds a tag that makes systems repeat as needed according to
-the ``DeltaTime`` passed, avoiding variance due to different framerates and more/less powerful PCs.
+the ``DeltaTime`` passed, avoiding variance due to different frame rates and more/less powerful PCs.
 
 Moving Away from the Old Serialization :dim:`(@Dacops)`
 -------------------------------------------------------
