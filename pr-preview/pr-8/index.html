@@ -44,7 +44,7 @@
             </time>
             Coffee'n Jam and... 0.2!
           </a></h1>
-          <p>CUBOS. 0.2 Release and Coffee'n Jam!</p>
+          <p>CUBOS 0.2 Release and Coffee'n Jam!</p>
         </header>
         <div class="m-clearfix-l"></div>
 <!-- content -->
@@ -74,13 +74,13 @@ This should hopefully make it easier to use the tool when moving entities either
 </section>
 <section id="world-inspector-overhaul-diogomsmiranda">
 <h3>World Inspector Overhaul <span class="m-text m-dim">(&#64;diogomsmiranda)</span></h3>
-<p>The World inspector as been on our radar for quite some time now, as a tool that could be improved.
+<p>The World inspector has been on our radar for quite some time now, as a tool that could be improved.
 This release we particularly aimed on making it better by focusing on:</p>
 <ul>
 <li>Making it easier to find the entities you are looking for.</li>
-<li>Getting more information about the entities in the scene.</li>
+<li>Displaying more information about the entities in the scene.</li>
 </ul>
-<p>To tackle the first point I've added a search bar that allows you to filter the entities in the scene, either by their name, or by their components. i.e:</p>
+<p>To tackle the first point we've added a search bar that allows you to filter the entities in the scene, either by their name, or by their components. e.g:</p>
 <ul>
 <li>Searching for &quot;player&quot; will show all entities that have &quot;player&quot; in their name.</li>
 <li>Searching for &quot;Transform&quot; will show all entities that have a <code>Transform</code> component.</li>
@@ -101,7 +101,7 @@ To save time, I've added a popup that shows all the importable sub-scenes, and a
 We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>).</p>
 <section id="physics-improvements-fallenatlas">
 <h3>Physics Improvements <span class="m-text m-dim">(&#64;fallenatlas)</span></h3>
-<p>This update we introduced the <code>Solver</code>, which works to satisfy the physics constraints applied to entities (eg. Spring, Fixed distance between entities, etc.).</p>
+<p>This update we introduced the <code>Solver</code>, which works to satisfy the physics constraints applied to entities (e.g. Spring, Fixed distance between entities, etc.).</p>
 <p>This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
 As of now, we have one constraint, internal to the engine, the <code>PenetrationConstraint</code>, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.</p>
 <p>With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
@@ -173,8 +173,8 @@ the <code>DeltaTime</code> passed, avoiding variance due to different frame rate
 </section>
 <section id="moving-away-from-the-old-serialization-dacops">
 <h3>Moving Away from the Old Serialization <span class="m-text m-dim">(&#64;Dacops)</span></h3>
-<p><a href="https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html">Serialization</a> is a crucial part of the game engine that allows for the saving of any CUBOS. game components as well as then loading them in.
-Previously, serialization was done through a series of functions, both for reading and writing that could be overloaded for each type.
+<p><a href="https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html">Serialization</a> is a crucial part of the game engine that allows for the saving of any CUBOS game components as well as then loading them in.
+Previously, serialization was done through a series of functions, both for reading and writing, that could be overloaded for each type.
 On the previous (and first) release, we introduced a reflection system, that allowed for the inspection of types at runtime. This was an essential step to make the inspectors on the editor side work.</p>
 <p>But with this new system, we now had two sources of truth for the types, the reflection system and the serialization system.
 To solve this, we decided to change the serialization system to use the reflection system, and thus, not force the developer to write serialization code for each type.</p>
