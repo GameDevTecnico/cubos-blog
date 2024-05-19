@@ -64,10 +64,14 @@ You can also check out its source code in our <a href="https://github.com/GameDe
 One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
 We'll be working on fixing these issues in the next release, and we'll also be profiling the engine to find out where the bottlenecks are.</p>
 </section>
-<section id="new-0-2-tools-features">
-<h2>New 0.2 Tools Features</h2>
+<section id="new-0-2-features">
+<h2>New 0.2 Features</h2>
+<p>Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
+We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>).</p>
+<section id="on-the-editor">
+<h3>On the Editor</h3>
 <section id="transform-gizmo-upgrades-diogomendonc-a">
-<h3>Transform Gizmo Upgrades <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h3>
+<h4>Transform Gizmo Upgrades <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h4>
 <p>The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!</p>
 <p>We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
 and a new type of gizmo, a <code>Rotated Box</code>, which, unlike the old boz gizmos, does not need to be axis-aligned.</p>
@@ -76,7 +80,7 @@ This should hopefully make it easier to use the tool when moving entities either
 <img class="m-image" src="images/transform_gizmo.gif" />
 </section>
 <section id="world-inspector-overhaul-diogomsmiranda">
-<h3>World Inspector Overhaul <span class="m-text m-dim">(&#64;diogomsmiranda)</span></h3>
+<h4>World Inspector Overhaul <span class="m-text m-dim">(&#64;diogomsmiranda)</span></h4>
 <p>The World inspector has been on our radar for quite some time now, as a tool that could be improved.
 This release we particularly aimed on making it better by focusing on:</p>
 <ul>
@@ -92,18 +96,16 @@ This release we particularly aimed on making it better by focusing on:</p>
 <p>To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the <code>ChildOf</code> relation between entities.</p>
 </section>
 <section id="sub-scene-importing-in-scene-editor-teres4">
-<h3>Sub-scene importing in scene editor <span class="m-text m-dim">(&#64;teres4)</span></h3>
+<h4>Sub-scene importing in scene editor <span class="m-text m-dim">(&#64;teres4)</span></h4>
 <p>Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
 To save time, I've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.</p>
 </section>
 </section>
-<section id="new-0-2-engine-features">
-<h2>New 0.2 Engine Features</h2>
-<p>Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
-We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>).</p>
+<section id="on-the-engine">
+<h3>On the Engine</h3>
 <section id="physics-improvements-fallenatlas">
-<h3>Physics Improvements <span class="m-text m-dim">(&#64;fallenatlas)</span></h3>
+<h4>Physics Improvements <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
 <p>This update we introduced the <code>Solver</code>, which works to satisfy the physics constraints applied to entities (e.g. Spring, Fixed distance between entities, etc.).</p>
 <p>This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
 As of now, we have one constraint, internal to the engine, the <code>PenetrationConstraint</code>, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.</p>
@@ -113,7 +115,7 @@ will perform the physics update in multiple smaller steps. This is important to 
 <img class="m-image" src="images/complex_physics_sample.gif" />
 </section>
 <section id="modular-renderer-riscadoa-tomas7770">
-<h3>Modular Renderer <span class="m-text m-dim">(&#64;RiscadoA, &#64;tomas7770)</span></h3>
+<h4>Modular Renderer <span class="m-text m-dim">(&#64;RiscadoA, &#64;tomas7770)</span></h4>
 <p>Before this update, our graphics renderer was very monolithic, with a lot of the code being held in a single file. This posed some problems,
 namely that if we wanted to implement new rendering methods in the future (e.g. raytracing), we would end up with tons of duplicate code.
 It also didn't fit well with our ECS design, since things such as the renderer and its active cameras were just global resources.</p>
@@ -131,12 +133,12 @@ By using <a href="https://www.khronos.org/opengl/wiki/Pixel_Buffer_Object">Pixel
 One side-effect of us changing the color-space is that now the colors in the game are a bit more washed out. We'll have to go back and tweak the colors in the game to make them look good again.</p>
 </section>
 </section>
-<section id="new-0-2-core-features">
-<h2>New 0.2 Core Features</h2>
+<section id="on-the-core">
+<h3>On the Core</h3>
 <p>On this release, we also had to make a lot of changes to the core of the engine.
 Here are some of the most relevant ones:</p>
 <section id="observers-riscadoa">
-<h3>Observers <span class="m-text m-dim">(&#64;RiscadoA)</span></h3>
+<h4>Observers <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
 <p>Very often while working with <strong>CUBOS</strong>, we find the need to react to the addition and removal of components in entities.
 One use case, for example, is setting up the AABB of an entity when we add a collider to it.
 Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially <code>false</code>, and having a system initializing all colliders with the flag set to <code>false</code>.</p>
@@ -146,7 +148,7 @@ With observers, we instead now add a single component <code>PhysicsBundle</code>
 <p>If you're interested in learning more about this feature and ECS in general on our engine, check out our <a href="https://gamedevtecnico.github.io/cubos/docs/features-ecs.html">ECS feature guide</a>.</p>
 </section>
 <section id="introducing-inheritance-in-reflection-roby2014">
-<h3>Introducing Inheritance in Reflection <span class="m-text m-dim">(&#64;roby2014)</span></h3>
+<h4>Introducing Inheritance in Reflection <span class="m-text m-dim">(&#64;roby2014)</span></h4>
 <p><strong>CUBOS</strong> has a powerful <a href="https://gamedevtecnico.github.io/cubos/docs/group__core-reflection.html">reflection system</a> to examine and interact with a structures and types at runtime
 It works by attaching metadata to types, which we call <em>traits</em>. These traits can be queried at runtime to get information about the type.
 For example, we provide a <code>FieldsTrait</code>, which you can add to a type to expose its fields to the reflection system.</p>
@@ -155,7 +157,7 @@ I've added a new trait, <code>InheritsTrait</code>, which allows you to specify 
 <p>This will be particularly useful for serialization, as right now we have to manually add the fields of the base class to the derived class. Now, serializers can check if this trait is present and fallback to the base class if necessary.</p>
 </section>
 <section id="repeating-systems-and-fixed-step-updates-joaomanita">
-<h3>Repeating Systems and Fixed-Step Updates <span class="m-text m-dim">(&#64;joaomanita)</span></h3>
+<h4>Repeating Systems and Fixed-Step Updates <span class="m-text m-dim">(&#64;joaomanita)</span></h4>
 <p>Certain plugins, like the physics plugin, required some of their systems to run multiple times per frame so that they could make more accurate
 aproximations. In addition, some of them need to be executed in ordered groups. For example:</p>
 <ul>
@@ -175,13 +177,14 @@ aproximations. In addition, some of them need to be executed in ordered groups. 
 the <code>DeltaTime</code> passed, avoiding variance due to different frame rates and more/less powerful PCs.</p>
 </section>
 <section id="moving-away-from-the-old-serialization-dacops">
-<h3>Moving Away from the Old Serialization <span class="m-text m-dim">(&#64;Dacops)</span></h3>
+<h4>Moving Away from the Old Serialization <span class="m-text m-dim">(&#64;Dacops)</span></h4>
 <p><a href="https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html">Serialization</a> is a crucial part of the game engine that allows for the saving of any CUBOS game components as well as then loading them in.
 Previously, serialization was done through a series of functions, both for reading and writing, that could be overloaded for each type.
 On the previous (and first) release, we introduced a reflection system, that allowed for the inspection of types at runtime. This was an essential step to make the inspectors on the editor side work.</p>
 <p>But with this new system, we now had two sources of truth for the types, the reflection system and the serialization system.
 To solve this, we decided to change the serialization system to use the reflection system, and thus, not force the developer to write serialization code for each type.</p>
 <p>On this release, I've finally finished this transition, by replacing serialization by direct stream manipulation in places where performance was more of a concern, such as voxel object saving/loading; and by replacing the serialization methods by reflection in other places, such as the input bindings.</p>
+</section>
 </section>
 </section>
 <section id="next-steps">
