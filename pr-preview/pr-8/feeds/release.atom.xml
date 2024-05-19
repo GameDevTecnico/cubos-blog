@@ -135,10 +135,23 @@ To solve this, we decided to change the serialization system to use the reflecti
 &lt;/section&gt;
 &lt;section id="next-steps"&gt;
 &lt;h2&gt;Next Steps&lt;/h2&gt;
-&lt;p&gt;TODO: UI&lt;/p&gt;
-&lt;p&gt;TODO: voxel collisions&lt;/p&gt;
-&lt;p&gt;TODO: proper tesseratos-game flow and integration&lt;/p&gt;
-&lt;p&gt;TODO: friction, new physics features etc&lt;/p&gt;
-&lt;p&gt;TODO: hint at new recruitment coming soon&lt;/p&gt;
+&lt;p&gt;We're very happy with the progress we've made on this release. The engine is becoming more and more powerful, and we were able to create a full game with it in a week!&lt;/p&gt;
+&lt;p&gt;For the next release, which should be out in July, we'll be focusing on expanding the engine's capabilities, as it is currently missing some key features, such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;strong&gt;standalone editor application&lt;/strong&gt;. Our tools are currently integrated into the games themselves which is not ideal.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Audio support&lt;/strong&gt;, as there's no sound at all in the engine right now.&lt;/li&gt;
+&lt;li&gt;An initial &lt;strong&gt;UI plugin&lt;/strong&gt;, which can render images, text and handle buttons.&lt;/li&gt;
+&lt;li&gt;Actual &lt;strong&gt;voxel collisions&lt;/strong&gt;, as we currently only check the bounding boxes.&lt;/li&gt;
+&lt;li&gt;Basic &lt;strong&gt;rigidbody physics&lt;/strong&gt;, with rotation and friction.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shadows, transparency&lt;/strong&gt; and other rendering features.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Raycasting&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Networking&lt;/strong&gt; utilities, to allow for online multiplayer games.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Web-support&lt;/strong&gt;, so that games can be played in the browser.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C API&lt;/strong&gt;, so that we can use the engine from other languages (scripts!).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better editor tools&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/26"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
+&lt;p&gt;We're currently a team of 10 people, and &lt;strong&gt;we're looking to expand&lt;/strong&gt;! If you're interested in joining us, please fill out this &lt;a href="https://forms.gle/A7ChMqC2qN9tHo6j8"&gt;form&lt;/a&gt;.
+Feel free to contact us at &lt;a href="mailto:cubos&amp;#64;gamedev.tecnico.ulisboa.pt"&gt;cubos&amp;#64;gamedev.tecnico.ulisboa.pt&lt;/a&gt;!&lt;/p&gt;
 &lt;/section&gt;
 </content><category term="Release"></category></entry></feed>
