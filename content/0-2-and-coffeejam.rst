@@ -116,6 +116,42 @@ One side-effect of us changing the color-space is that now the colors in the gam
 On the Core
 -----------
 
+Clearer Plugin Dependencies :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+One of the main features of **CUBOS** is its plugin system. We structure all of the engine and editor features as plugins, each with its own set of components, systems, and resources.
+The developer ultimately chooses which plugins to include in their game, and may also create their own plugins.
+
+Plugins may depend on each other. One example is the `physics plugin <https://gamedevtecnico.github.io/cubos/docs/group__physics-plugin.html>`_, which depends on the `collisions plugin <https://gamedevtecnico.github.io/cubos/docs/group__collisions-plugin.html>`_.
+Previously, when a plugin was included, all of its dependencies were automatically included. It was also possible to include a plugin twice - the second time, the plugin would simply be ignored.
+
+While this seems useful, this led to some problems. Since a plugin could be included more than once, there isn't a single place where its safe to make decisions about how a given plugin should behave.
+This was particularly problematic with the new modular renderer plugins.
+
+Imagine a scenario where we have two plugins A and B, which implement different rendering methods.
+A and B are incompatible. Adding both should be an error, as it's impossible to have both rendering methods active at the same time.
+Additionally, A and B both add on a plugin C, and make decisions about how C should behave. If both A and B are included, which one should have the final say?
+How do we specify the dependency between them without coupling their code?
+
+Our solution to this was to distinguish between *depending* and *including* a plugin. When a plugin X depends on a plugin Y, adding X without Y being present leads to an error.
+When a plugin X includes a plugin Y, including X will also include Y. But, if a plugin is included twice, an error occurs.
+This way, we get a clean plugin hierarchy, which is easier to reason about:
+
+.. code-block:: cpp
+
+    void myPlugin(Cubos& cubos)
+    {
+        cubos.depends(renderVoxelsPlugin); // Don't care about internals, just need the plugin
+        
+        cubos.plugin(mySubPlugin); // Include a sub-plugin, which becomes part of my plugin
+
+        // ...
+    }
+
+One issue with this solution is that you would now have to manually include all plugins you need when making a game.
+Of course, this is not ideal, and thus, we've added a new `defaults plugin <https://gamedevtecnico.github.io/cubos/docs/group__defaults-plugin.html>`_ to the engine that includes all the plugins that are necessary for a basic game to run.
+If the developer wants to configure the engine in a different way, they can simply write their own alternative defaults plugin.
+
 Observers :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
