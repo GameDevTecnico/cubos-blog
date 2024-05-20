@@ -63,9 +63,9 @@ To tackle the first point we've added a search bar that allows you to filter the
 * Searching for "Transform" will show all entities that have a ``Transform`` component.
 * Searching for "player, Transform" will show all entities that have a ``Transform`` component and contain "player" in their name.
 
-.. image:: images/world_inspector_showcase.gif
-
 To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the ``ChildOf`` relation between entities.
+
+.. image:: images/world_inspector_showcase.gif
 
 Sub-scene importing in scene editor :dim:`(@teres4)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
