@@ -21,6 +21,7 @@ You can also check out its source code in our `demo repository <https://github.c
 We managed to win the "Best Gameplay" and "People's Choice" awards, which we're very proud of!
 
 .. image:: images/scraps_vs_zombies.png
+    :target: https://riscadoa.itch.io/scraps-vs-zombies
 
 We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
 One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
