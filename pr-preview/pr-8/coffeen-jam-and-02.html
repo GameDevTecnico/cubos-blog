@@ -100,7 +100,7 @@ This release we particularly aimed on making it better by focusing on:</p>
 <h4>Sub-scene importing in scene editor <span class="m-text m-dim">(&#64;teres4)</span></h4>
 <p>Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
-To save time, I've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.</p>
+To save time, we've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.</p>
 <img class="m-image" src="images/scene_editor_showcase.gif" />
 </section>
 </section>
@@ -169,7 +169,7 @@ If the developer wants to configure the engine in a different way, they can simp
 <p>Very often while working with <strong>CUBOS</strong>, we find the need to react to the addition and removal of components in entities.
 One use case, for example, is setting up the AABB of an entity when we add a collider to it.
 Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially <code>false</code>, and having a system initializing all colliders with the flag set to <code>false</code>.</p>
-<p>To solve this problem in a more elegant way, I added a new special kind of system: <em>observers</em>. Observers are essentially systems which instead of running on a specific schedule, run immediately after a certain change occurs in the ECS (akin to callbacks).</p>
+<p>To solve this problem in a more elegant way, we added a new special kind of system: <em>observers</em>. Observers are essentially systems which instead of running on a specific schedule, run immediately after a certain change occurs in the ECS (akin to callbacks).</p>
 <p>We also found another unexpected use for this feature. Complex plugins with lots of components, such as the physics plugin, where previously cumbersome to work with, as all the required components had to be manually added to each entity we wanted physics to apply to.
 With observers, we instead now add a single component <code>PhysicsBundle</code>. An observer picks up this addition, and immediately replaces this component with all of the required components for the physics plugin to work.</p>
 <p>If you're interested in learning more about this feature and ECS in general on our engine, check out our <a href="https://gamedevtecnico.github.io/cubos/docs/features-ecs.html">ECS feature guide</a>.</p>
@@ -180,7 +180,7 @@ With observers, we instead now add a single component <code>PhysicsBundle</code>
 It works by attaching metadata to types, which we call <em>traits</em>. These traits can be queried at runtime to get information about the type.
 For example, we provide a <code>FieldsTrait</code>, which you can add to a type to expose its fields to the reflection system.</p>
 <p>One thing we were missing was information about inheritance relationships between types.
-I've added a new trait, <code>InheritsTrait</code>, which allows you to specify that a type inherits from another type.</p>
+We've added a new trait, <code>InheritsTrait</code>, which allows you to specify that a type inherits from another type.</p>
 <p>This will be particularly useful for serialization, as right now we have to manually add the fields of the base class to the derived class. Now, serializers can check if this trait is present and fallback to the base class if necessary.</p>
 </section>
 <section id="repeating-systems-and-fixed-step-updates-joaomanita">
@@ -192,7 +192,7 @@ aproximations. In addition, some of them need to be executed in ordered groups. 
 <li>The velocity update system needs to run before the force clear system.</li>
 <li>The force clear system needs to run before the impulse clear system.</li>
 </ul>
-<p>To allow repeating groups such as these, I added a new feature to the ECS tags: the repeat while modifier. This makes the systems tagged by it repeat until a certain condition becomes false.</p>
+<p>To allow repeating groups such as these, we added a new feature to the ECS tags: the repeat while modifier. This makes the systems tagged by it repeat until a certain condition becomes false.</p>
 <pre class="m-code"><span class="n">cubos</span><span class="p">.</span><span class="n">tag</span><span class="p">(</span><span class="n">groupTag</span><span class="p">).</span><span class="n">repeatWhile</span><span class="p">(</span><span class="n">myCondition</span><span class="p">);</span>
 <span class="n">cubos</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;integrate physics&quot;</span><span class="p">).</span><span class="n">tagged</span><span class="p">(</span><span class="n">groupTag</span><span class="p">).</span><span class="cm">/* ... */</span><span class="p">;</span>
 <span class="n">cubos</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;update velocity&quot;</span><span class="p">).</span><span class="n">tagged</span><span class="p">(</span><span class="n">groupTag</span><span class="p">).</span><span class="cm">/* ... */</span><span class="p">;</span>
@@ -210,7 +210,7 @@ Previously, serialization was done through a series of functions, both for readi
 On the previous (and first) release, we introduced a reflection system, that allowed for the inspection of types at runtime. This was an essential step to make the inspectors on the editor side work.</p>
 <p>But with this new system, we now had two sources of truth for the types, the reflection system and the serialization system.
 To solve this, we decided to change the serialization system to use the reflection system, and thus, not force the developer to write serialization code for each type.</p>
-<p>On this release, I've finally finished this transition, by replacing serialization by direct stream manipulation in places where performance was more of a concern, such as voxel object saving/loading; and by replacing the serialization methods by reflection in other places, such as the input bindings.</p>
+<p>On this release, we've finally finished this transition, by replacing serialization by direct stream manipulation in places where performance was more of a concern, such as voxel object saving/loading; and by replacing the serialization methods by reflection in other places, such as the input bindings.</p>
 </section>
 </section>
 </section>
