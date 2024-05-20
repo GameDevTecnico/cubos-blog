@@ -72,7 +72,7 @@ Sub-scene importing in scene editor :dim:`(@teres4)`
 
 Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
-To save time, I've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.
+To save time, we've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.
 
 .. image:: images/scene_editor_showcase.gif
 
@@ -163,7 +163,7 @@ Very often while working with **CUBOS**, we find the need to react to the additi
 One use case, for example, is setting up the AABB of an entity when we add a collider to it.
 Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially ``false``, and having a system initializing all colliders with the flag set to ``false``.
 
-To solve this problem in a more elegant way, I added a new special kind of system: *observers*. Observers are essentially systems which instead of running on a specific schedule, run immediately after a certain change occurs in the ECS (akin to callbacks).
+To solve this problem in a more elegant way, we added a new special kind of system: *observers*. Observers are essentially systems which instead of running on a specific schedule, run immediately after a certain change occurs in the ECS (akin to callbacks).
 
 We also found another unexpected use for this feature. Complex plugins with lots of components, such as the physics plugin, where previously cumbersome to work with, as all the required components had to be manually added to each entity we wanted physics to apply to.
 With observers, we instead now add a single component ``PhysicsBundle``. An observer picks up this addition, and immediately replaces this component with all of the required components for the physics plugin to work.
@@ -178,7 +178,7 @@ It works by attaching metadata to types, which we call *traits*. These traits ca
 For example, we provide a ``FieldsTrait``, which you can add to a type to expose its fields to the reflection system.
 
 One thing we were missing was information about inheritance relationships between types.
-I've added a new trait, ``InheritsTrait``, which allows you to specify that a type inherits from another type.
+We've added a new trait, ``InheritsTrait``, which allows you to specify that a type inherits from another type.
 
 This will be particularly useful for serialization, as right now we have to manually add the fields of the base class to the derived class. Now, serializers can check if this trait is present and fallback to the base class if necessary.
 
@@ -192,7 +192,7 @@ aproximations. In addition, some of them need to be executed in ordered groups. 
 * The velocity update system needs to run before the force clear system.
 * The force clear system needs to run before the impulse clear system.
 
-To allow repeating groups such as these, I added a new feature to the ECS tags: the repeat while modifier. This makes the systems tagged by it repeat until a certain condition becomes false.
+To allow repeating groups such as these, we added a new feature to the ECS tags: the repeat while modifier. This makes the systems tagged by it repeat until a certain condition becomes false.
 
 .. code-block:: cpp
 
@@ -222,7 +222,7 @@ On the previous (and first) release, we introduced a reflection system, that all
 But with this new system, we now had two sources of truth for the types, the reflection system and the serialization system.
 To solve this, we decided to change the serialization system to use the reflection system, and thus, not force the developer to write serialization code for each type.
 
-On this release, I've finally finished this transition, by replacing serialization by direct stream manipulation in places where performance was more of a concern, such as voxel object saving/loading; and by replacing the serialization methods by reflection in other places, such as the input bindings.
+On this release, we've finally finished this transition, by replacing serialization by direct stream manipulation in places where performance was more of a concern, such as voxel object saving/loading; and by replacing the serialization methods by reflection in other places, such as the input bindings.
 
 Next Steps
 ==========
