@@ -245,5 +245,4 @@ For the next release, which should be out in July, we'll be focusing on expandin
 
 You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/26>`_ for the next release.
 
-We're currently a team of 10 people, and **we're looking to expand**! If you're interested in joining us, please fill out this `form <https://forms.gle/A7ChMqC2qN9tHo6j8>`_.
-Feel free to contact us at cubos@gamedev.tecnico.ulisboa.pt!
+We're currently a team of 10 people, and **we're looking to expand**! If you're interested in joining us, or just want to learn more about the project, join our `Discord server <https://discord.gg/WjTtcNTRqD>`_!
