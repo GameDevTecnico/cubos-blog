@@ -1,8 +1,8 @@
-# **CUBOS.** Blog
+# **CUBOS** Blog
 
 <p align="center">
   <a href="https://gamedevtecnico.github.io/cubos-blog">
-    <img src="content/images/logo.png" alt="CUBOS. Engine logo">
+    <img src="content/images/logo.png" alt="CUBOS Engine logo">
   </a>
 </p>
 
