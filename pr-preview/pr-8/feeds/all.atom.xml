@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>CUBOS.</title><link href="https://gamedevtecnico.github.io/cubos/" rel="alternate"></link><link href="https://gamedevtecnico.github.io/cubos/feeds/all.atom.xml" rel="self"></link><id>https://gamedevtecnico.github.io/cubos/</id><updated>2024-05-15T19:00:00+01:00</updated><entry><title>Coffee'n Jam and... 0.2!</title><link href="https://gamedevtecnico.github.io/cubos/coffeen-jam-and-02.html" rel="alternate"></link><published>2024-05-15T19:00:00+01:00</published><updated>2024-05-15T19:00:00+01:00</updated><author><name>CUBOS. Team</name></author><id>tag:gamedevtecnico.github.io,2024-05-15:/cubos/coffeen-jam-and-02.html</id><summary type="html">&lt;p&gt;CUBOS 0.2 Release and Coffee'n Jam!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>CUBOS</title><link href="https://gamedevtecnico.github.io/cubos/" rel="alternate"></link><link href="https://gamedevtecnico.github.io/cubos/feeds/all.atom.xml" rel="self"></link><id>https://gamedevtecnico.github.io/cubos/</id><updated>2024-05-15T19:00:00+01:00</updated><entry><title>Coffee'n Jam and... 0.2!</title><link href="https://gamedevtecnico.github.io/cubos/coffeen-jam-and-02.html" rel="alternate"></link><published>2024-05-15T19:00:00+01:00</published><updated>2024-05-15T19:00:00+01:00</updated><author><name>CUBOS Team</name></author><id>tag:gamedevtecnico.github.io,2024-05-15:/cubos/coffeen-jam-and-02.html</id><summary type="html">&lt;p&gt;CUBOS 0.2 Release and Coffee'n Jam!&lt;/p&gt;
 </summary><content type="html">&lt;section id="coffee-n-jam"&gt;
 &lt;h2&gt;Coffee'n Jam&lt;/h2&gt;
 &lt;p&gt;From 26th of April to 3rd of May, &amp;#64;RiscadoA and &amp;#64;joaomanita participated in the Coffee'n Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;CUBOS&lt;/strong&gt;.
@@ -439,13 +439,13 @@ But these are not essential features, and can be added later on.&lt;/p&gt;
 &lt;p&gt;With this out of the way, my focus will now shift to the renderer plugin. I've been wanting to tackle ray tracing for a while now, and I think it's time to give it a shot.
 We'll also be working on a new demo soon, so stay tuned for that!&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Features"></category><category term="Core"></category><category term="ECS"></category></entry><entry><title>Hello World</title><link href="https://gamedevtecnico.github.io/cubos/hello-world.html" rel="alternate"></link><published>2023-11-10T10:06:00+00:00</published><updated>2023-11-10T10:06:00+00:00</updated><author><name>CUBOS. Team</name></author><id>tag:gamedevtecnico.github.io,2023-11-10:/cubos/hello-world.html</id><summary type="html">&lt;p&gt;This is CUBOS!&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Hello everyone, and welcome to the very first post of the CUBOS engine blog. This is where we'll be posting updates and information about CUBOS.
+</content><category term="Features"></category><category term="Core"></category><category term="ECS"></category></entry><entry><title>Hello World</title><link href="https://gamedevtecnico.github.io/cubos/hello-world.html" rel="alternate"></link><published>2023-11-10T10:06:00+00:00</published><updated>2023-11-10T10:06:00+00:00</updated><author><name>CUBOS Team</name></author><id>tag:gamedevtecnico.github.io,2023-11-10:/cubos/hello-world.html</id><summary type="html">&lt;p&gt;This is CUBOS!&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Hello everyone, and welcome to the very first post of the CUBOS engine blog. This is where we'll be posting updates and information about CUBOS
 Let's start today by talking about what CUBOS is!&lt;/p&gt;
 &lt;p&gt;CUBOS is an open-source game engine with two core features: everything is made out of voxels, and the engine is built on an entity component system.
 You can find the &lt;a href="https://github.com/GameDevTecnico/cubos"&gt;source right here&lt;/a&gt;.
 Up to this point, our work has built a powerful core and an array of plugins that give CUBOS a lot of the necessary functionalities to make a complete game.
-We have also been working on a suite of tools called Tesseratos that you can plug into any game you're making with CUBOS. to help with development.
+We have also been working on a suite of tools called Tesseratos that you can plug into any game you're making with CUBOS to help with development.
 It provides, among other things, editors for scenes, entities, palette.&lt;/p&gt;
 &lt;p&gt;So, what are we working on?&lt;/p&gt;
 &lt;p&gt;Right now, our current goal is to have an engine that can feasibly be used in game jams.
