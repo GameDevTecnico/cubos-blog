@@ -1,7 +1,7 @@
 Coffee'n Jam and... 0.2!
 ########################
 
-:date: 2024-05-15 19:00:00
+:date: 2024-05-21 10:00:00
 :category: Release
 :summary: CUBOS 0.2 Release and Coffee'n Jam!
 
