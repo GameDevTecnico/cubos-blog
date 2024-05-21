@@ -66,7 +66,7 @@ To tackle the first point we've added a search bar that allows you to filter the
 
 To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the ``ChildOf`` relation between entities.
 
-.. image:: images/world_inspector_showcase.gif
+.. image:: images/world_inspector.gif
 
 Sub-scene importing in scene editor :dim:`(@teres4)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,7 +75,7 @@ Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
 To save time, we've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.
 
-.. image:: images/scene_editor_showcase.gif
+.. image:: images/scene_editor.gif
 
 On the Engine
 -------------
