@@ -45,14 +45,14 @@ This release we particularly aimed on making it better by focusing on:&lt;/p&gt;
 &lt;li&gt;Searching for &amp;quot;player, Transform&amp;quot; will show all entities that have a &lt;code&gt;Transform&lt;/code&gt; component and contain &amp;quot;player&amp;quot; in their name.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the &lt;code&gt;ChildOf&lt;/code&gt; relation between entities.&lt;/p&gt;
-&lt;img class="m-image" src="images/world_inspector_showcase.gif" /&gt;
+&lt;img class="m-image" src="images/world_inspector.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="sub-scene-importing-in-scene-editor-teres4"&gt;
 &lt;h4&gt;Sub-scene importing in scene editor &lt;span class="m-text m-dim"&gt;(&amp;#64;teres4)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
 To save time, we've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.&lt;/p&gt;
-&lt;img class="m-image" src="images/scene_editor_showcase.gif" /&gt;
+&lt;img class="m-image" src="images/scene_editor.gif" /&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-engine"&gt;
