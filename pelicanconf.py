@@ -1,5 +1,5 @@
-AUTHOR = 'CUBOS Team'
-SITENAME = 'CUBOS'
+AUTHOR = 'Cubos Team'
+SITENAME = 'Cubos'
 SITEURL = ''
 
 PATH = 'content'

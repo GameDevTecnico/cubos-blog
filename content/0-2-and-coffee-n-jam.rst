@@ -3,7 +3,7 @@ Coffee'n Jam and... 0.2!
 
 :date: 2024-05-21 10:00:00
 :category: Release
-:summary: CUBOS 0.2 Release and Coffee'n Jam!
+:summary: Cubos 0.2 Release and Coffee'n Jam!
 
 .. role:: dim
     :class: m-text m-dim
@@ -11,7 +11,7 @@ Coffee'n Jam and... 0.2!
 Coffee'n Jam
 ============
 
-From 26th of April to 3rd of May, @RiscadoA and @joaomanita participated in the Coffee'n Jam, a game jam organized by GameDev Técnico, with our engine, **CUBOS**.
+From 26th of April to 3rd of May, @RiscadoA and @joaomanita participated in the Coffee'n Jam, a game jam organized by GameDev Técnico, with our engine, **Cubos**.
 The goal was to create a game in a week, with the theme "Apocalypse" - and we had a blast!
 
 The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
@@ -124,7 +124,7 @@ On the Core
 Clearer Plugin Dependencies :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-One of the main features of **CUBOS** is its plugin system. We structure all of the engine and editor features as plugins, each with its own set of components, systems, and resources.
+One of the main features of **Cubos** is its plugin system. We structure all of the engine and editor features as plugins, each with its own set of components, systems, and resources.
 The developer ultimately chooses which plugins to include in their game, and may also create their own plugins.
 
 Plugins may depend on each other. One example is the `physics plugin <https://gamedevtecnico.github.io/cubos/docs/group__physics-plugin.html>`_, which depends on the `collisions plugin <https://gamedevtecnico.github.io/cubos/docs/group__collisions-plugin.html>`_.
@@ -160,7 +160,7 @@ If the developer wants to configure the engine in a different way, they can simp
 Observers :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Very often while working with **CUBOS**, we find the need to react to the addition and removal of components in entities.
+Very often while working with **Cubos**, we find the need to react to the addition and removal of components in entities.
 One use case, for example, is setting up the AABB of an entity when we add a collider to it.
 Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially ``false``, and having a system initializing all colliders with the flag set to ``false``.
 
@@ -174,7 +174,7 @@ If you're interested in learning more about this feature and ECS in general on o
 Introducing Inheritance in Reflection :dim:`(@roby2014)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**CUBOS** has a powerful `reflection system <https://gamedevtecnico.github.io/cubos/docs/group__core-reflection.html>`_ to examine and interact with a structures and types at runtime
+**Cubos** has a powerful `reflection system <https://gamedevtecnico.github.io/cubos/docs/group__core-reflection.html>`_ to examine and interact with a structures and types at runtime
 It works by attaching metadata to types, which we call *traits*. These traits can be queried at runtime to get information about the type.
 For example, we provide a ``FieldsTrait``, which you can add to a type to expose its fields to the reflection system.
 
@@ -216,7 +216,7 @@ the ``DeltaTime`` passed, avoiding variance due to different frame rates and mor
 Moving Away from the Old Serialization :dim:`(@Dacops)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Serialization <https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html>`_ is a crucial part of the game engine that allows for the saving of any CUBOS game components as well as then loading them in.
+`Serialization <https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html>`_ is a crucial part of the game engine that allows for the saving of any Cubos game components as well as then loading them in.
 Previously, serialization was done through a series of functions, both for reading and writing, that could be overloaded for each type.
 On the previous (and first) release, we introduced a reflection system, that allowed for the inspection of types at runtime. This was an essential step to make the inspectors on the editor side work.
 

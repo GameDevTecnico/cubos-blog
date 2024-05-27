@@ -7,7 +7,7 @@ Hello Relations
 :summary: Adding entity relations to our ECS
 :author: Ricardo Antunes
 
-Hello! This past month I've been tinkering with the *ECS*, which arguably is the core foundation of CUBOS.
+Hello! This past month I've been tinkering with the *ECS*, which arguably is the core foundation of **Cubos**.
 We structure all of our engine code around it. You can learn more about the concept in our `ECS guide <https://gamedevtecnico.github.io/cubos/docs/features-ecs.html>`_!
 
 The Problem
@@ -52,7 +52,7 @@ Not only that, you would also have to keep the ``Children`` component in sync wi
 Physics Constraints
 -------------------
 
-Another use case we had trouble with at CUBOS was physics constraints. Eventually we will want to add support for adding constraints between entities such as springs, hinges, etc.
+Another use case we had trouble with at Cubos was physics constraints. Eventually we will want to add support for adding constraints between entities such as springs, hinges, etc.
 Where do we store the data for these constraints? For example, a spring constraint needs to store the two entities it's connecting, as well as the spring constant and rest length.
 One possible solution would be to represent the constraint itself as a separate entity which stores this data, and the references to the two entities it's connecting.
 This isn't a bad solution, but we can do better!
