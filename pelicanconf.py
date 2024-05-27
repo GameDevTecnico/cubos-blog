@@ -25,6 +25,7 @@ M_LINKS_FOOTER2 = [('Docs', 'https://gamedevtecnico.github.io/cubos/docs'),
 M_LINKS_FOOTER3 = [('Contact Us', 'mailto:cubos@gamedev.tecnico.ulisboa.pt'),
                    ('Blog Feed', 'feeds/all.atom.xml'),
                    ('GitHub', 'https://github.com/GameDevTecnico/cubos'),
+                   ('Discord', 'https://discord.gg/WjTtcNTRqD'),
                    ('E-mail', 'mailto:cubos@gamedev.tecnico.ulisboa.pt')]
 
 FEED_ALL_ATOM = None
