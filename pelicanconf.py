@@ -8,25 +8,25 @@ TIMEZONE = 'Europe/Lisbon'
 
 DEFAULT_LANG = 'en'
 
-M_LINKS_NAVBAR1 = [('Docs', 'https://gamedevtecnico.github.io/cubos/docs', 'docs', [])]
+M_LINKS_NAVBAR1 = [('Docs', 'https://docs.cubosengine.org', 'docs', [])]
 
 M_LINKS_FOOTER1 = [('Cubos', '.'),
-                   ('Getting Started', 'https://gamedevtecnico.github.io/cubos/docs/getting-started.html'),
-                   ('Feature Guide', 'https://gamedevtecnico.github.io/cubos/docs/features.html'),
-                   ('Examples', 'https://gamedevtecnico.github.io/cubos/docs/examples.html'),
-                   ('Contribution Guidelines', 'https://gamedevtecnico.github.io/cubos/docs/contribution.html')]
+                   ('Getting Started', 'https://docs.cubosengine.org/getting-started.html'),
+                   ('Feature Guide', 'https://docs.cubosengine.org/features.html'),
+                   ('Examples', 'https://docs.cubosengine.org/examples.html'),
+                   ('Contribution Guidelines', 'https://docs.cubosengine.org/contribution.html')]
 
-M_LINKS_FOOTER2 = [('Docs', 'https://gamedevtecnico.github.io/cubos/docs'),
-                   ('Pages', 'https://gamedevtecnico.github.io/cubos/docs/pages.html'),
-                   ('Modules', 'https://gamedevtecnico.github.io/cubos/docs/modules.html'),
-                   ('Classes', 'https://gamedevtecnico.github.io/cubos/docs/annotated.html'),
-                   ('Files', 'https://gamedevtecnico.github.io/cubos/docs/files.html')]
+M_LINKS_FOOTER2 = [('Docs', 'https://docs.cubosengine.org'),
+                   ('Pages', 'https://docs.cubosengine.org/pages.html'),
+                   ('Modules', 'https://docs.cubosengine.org/modules.html'),
+                   ('Classes', 'https://docs.cubosengine.org/annotated.html'),
+                   ('Files', 'https://docs.cubosengine.org/files.html')]
 
-M_LINKS_FOOTER3 = [('Contact Us', 'mailto:cubos@gamedev.tecnico.ulisboa.pt'),
+M_LINKS_FOOTER3 = [('Contact Us', 'mailto:team@cubosengine.org'),
                    ('Blog Feed', 'feeds/all.atom.xml'),
                    ('GitHub', 'https://github.com/GameDevTecnico/cubos'),
                    ('Discord', 'https://discord.gg/WjTtcNTRqD'),
-                   ('E-mail', 'mailto:cubos@gamedev.tecnico.ulisboa.pt')]
+                   ('E-mail', 'mailto:team@cubosengine.org')]
 
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
