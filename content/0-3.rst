@@ -67,12 +67,58 @@ On the Core
 Metrics :dim:`(@roby2014)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO: describe changes, show code sample
+We are excited to introduce the new metrics and profiling utilities! 
+This started becoming a priority since we detected lots of performance issues in the last Game Jam we participated.
+
+These tools are designed to help track performance and gather valuable insights about code execution and data.
+
+How it looks:
+
+.. code-block:: cpp
+
+    static void compute()
+    {
+        CUBOS_PROFILE();
+        // ...
+    } // after the scope ends, a new metric `compute` will be added, with the duration of this scope
+
+    static void myFunction() 
+    {
+        /// simulate profiling loop
+        for (int i = 0; i < 1337; ++i)
+        {
+            // simulate frame by calling a function that does work..
+            compute();
+
+            // register some metrics, this could be FPS, entities count, ....
+            CUBOS_METRIC("count", i);
+        }
+    }
+
+Currently, metrics can be accessed manually through the singleton class. However, we plan to 
+integrate these metrics into our editor for a more streamlined experience.
+
+Learn more about it on our `documentation <https://docs.cubosengine.org/examples-core-metrics.html>`_ : 
 
 Networking Utilities :dim:`(@roby2014)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO: describe changes, show code sample
+In the 0.3 release, Cubos finally has networking! This is a big step forward for our engine, bringing 
+powerful networking utilities such as ` Address <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html>`_, 
+`UdpSocket <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1UdpSocket.html>`_, `TcpListener <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpListener.html>`_, 
+and `TcpStream <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpStream.html>`_. 
+
+Creating an UDP client and sending a message is as simple as:
+
+.. code-block:: cpp
+
+    UdpSocket client;
+    client.bind(8080, Address::LocalHost);
+    
+    const char* msg = "Hello, I'm a Cubos UDP client!";
+    client.send(msg, std::strlen(msg), Address::from("server.com"), 8081))
+
+Learn more about it on our `documentation <https://docs.cubosengine.org/examples-core-networking.html>`_ : 
 
 Groundwork for a Standalone Editor :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -93,6 +139,7 @@ For the next release, which should be out in September, we'll be **WIP**
 * Basic **rigidbody physics**, with rotation and friction.
 * **Shadows** for all light types.
 * **Web-support**, so that games can be played in the browser.
+* **Tracing and spans**, for better tracking of program execution.
 * **TODO: what else? review stuff above too**
 
 You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/27>`_ for the next release.
