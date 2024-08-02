@@ -1,0 +1,100 @@
+0.3 is here!
+############
+
+:date: 2024-08-02 10:00:00
+:category: Release
+:summary: Cubos 0.3 Release!
+
+.. role:: dim
+    :class: m-text m-dim
+
+New 0.3 Features
+================
+
+On this release, we focused on adding essential features we've been wanting to have for quite some time now.
+It ended up being a tad smaller than expected, as we spent a lot of time working on non-code related stuff, such as rebranding the project.
+**TODO: should we introduce the rebranding here?**
+
+This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
+
+On the Editor
+-------------
+
+Console Plugin :dim:`(@Scarface1809)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, add a screenshot
+
+On the Engine
+-------------
+
+A New Physics Solver :dim:`(@fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, maybe a screenshot too?
+
+
+Friction and Bounciness :dim:`(@fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: should this be a separate entry?
+
+Raycasting :dim:`(@diogomsmiranda)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, show code sample
+
+Spot Light Shadows :dim:`(@tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, add a screenshot
+
+Initial UI Plugin :dim:`(@DiogoMendonc-a)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, add screenshots, maybe gifs too?
+
+Arbitrary Input Combinations for Actions and Axes :dim:`(@luishfonseca)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, show input bindings example
+
+TODO: describe changes, add screenshots, maybe gifs too?
+
+On the Core
+-----------
+
+Metrics :dim:`(@roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, show code sample
+
+Networking Utilities :dim:`(@roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, show code sample
+
+Groundwork for a Standalone Editor :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes
+
+Next Steps
+==========
+
+**TODO: I just copied this from the previous post, we should rewrite it:**
+We're very happy with the progress we've made on this release. The engine is becoming more and more powerful, and we were able to create a full game with it in a week!
+
+For the next release, which should be out in September, we'll be **WIP**
+
+* A **standalone editor application**. Our tools are currently integrated into the games themselves which is not ideal.
+* **Audio support**, as there's no sound at all in the engine right now.
+* Actual **voxel collisions**, as we currently only check the bounding boxes.
+* Basic **rigidbody physics**, with rotation and friction.
+* **Shadows** for all light types.
+* **Web-support**, so that games can be played in the browser.
+* **TODO: what else? review stuff above too**
+
+You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/27>`_ for the next release.
+
+We're currently a team of 13 people, and **we're looking to expand**! If you're interested in joining us, or just want to learn more about the project, join our `Discord server <https://discord.gg/WjTtcNTRqD>`_!
