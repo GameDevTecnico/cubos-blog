@@ -1,0 +1,171 @@
+0.3 is here!
+############
+
+:date: 2024-08-02 10:00:00
+:category: Release
+:summary: Cubos 0.3 Release!
+
+.. role:: dim
+    :class: m-text m-dim
+
+New 0.3 Features
+================
+
+On this release, we focused on adding essential features we've been wanting to have for quite some time now.
+It ended up being a tad smaller than expected, as we spent a lot of time working on non-code related stuff, such as rebranding the project.
+**TODO: should we introduce the rebranding here?**
+
+This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
+
+On the Editor
+-------------
+
+Console Plugin :dim:`(@Scarface1809)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, add a screenshot
+
+On the Engine
+-------------
+
+A New Physics Solver :dim:`(@fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Upon discovering some potential issues with regards to NVidia's patent of XPBD, some problems with how XPBD handled friction, and stability,
+we decided that this would be the ideal moment to switch to another solver. 
+Recently, Erin Catto shared his `comparison of multiple solvers <https://box2d.org/posts/2024/02/solver2d/>`_, and the results of TGS Soft seemed quite promising, so we decided to give it a try... And at this point, our simulation is already more stable than before!
+
+In simple terms, it differs from XPBD in the sense that it uses impulses instead of changing the position of the bodies directly, however, like XPBD it also uses substeps. On top of this it also uses soft constraints, which is what Soft stands for in it's name.
+
+Since these changes were mostly in internal systems, from a user stand point, everything works the same way.
+
+Additionally, we added Friction and Bounciness. For now, these are a predefined value for every body, but will be customizable in the next release with a ``PhysicsMaterial``.
+
+.. image:: images/complex_physics_sample_tgs_soft.gif
+
+Raycasting :dim:`(@diogomsmiranda)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, show code sample
+
+Spot Light Shadows :dim:`(@tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Our graphics renderer has received a new major feature in this release: shadows!
+
+.. image:: images/scraps_vs_zombies_shadows.png
+
+It should go without saying that this feature has a big impact on the visuals of games
+developed with Cubos. We've tried it on *Scraps vs Zombies* and the result is stunning!
+It's an important step towards the kind of appealing graphics that we hope to achieve.
+
+For the time being, shadows support is limited to spot lights. To enable them, all you need
+to do is add a `SpotShadowCaster <https://docs.cubosengine.org/structcubos_1_1engine_1_1SpotShadowCaster.html>`_ component to the spot lights for which you want shadows to be cast,
+as shown in the `Shadows sample <https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows>`_.
+Both hard and soft shadows are supported, with a configurable `blurRadius <https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html#a450e1d2c732f1c38403a428eb0536660>`_.
+
+Behind the scenes, this works by rendering the world from each light's perspective to determine which parts
+are occluded, and making these parts unlit. A large texture known as the "shadow atlas" holds this information for
+every light in a quadtree structure, reducing expensive texture switching. Finally, soft shadows are implemented
+as a post-processing step that effectively blurs out the shadows.
+Below is a screenshot of the shadow atlas with 5 spot lights. Lines have been drawn separating
+the areas of the atlas reserved for each light.
+
+.. image:: images/shadow_atlas.png
+
+Initial UI Plugin :dim:`(@DiogoMendonc-a)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, add screenshots, maybe gifs too?
+
+Arbitrary Input Combinations for Actions and Axes :dim:`(@luishfonseca)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes, show input bindings example
+
+TODO: describe changes, add screenshots, maybe gifs too?
+
+On the Core
+-----------
+
+Metrics :dim:`(@roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We are excited to introduce the new metrics and profiling utilities! 
+This started becoming a priority since we detected lots of performance issues in the last Game Jam we participated.
+
+These tools are designed to help track performance and gather valuable insights about code execution and data.
+
+How it looks:
+
+.. code-block:: cpp
+
+    static void compute()
+    {
+        CUBOS_PROFILE();
+        // ...
+    } // after the scope ends, a new metric `compute` will be added, with the duration of this scope
+
+    static void myFunction() 
+    {
+        /// simulate profiling loop
+        for (int i = 0; i < 1337; ++i)
+        {
+            // simulate frame by calling a function that does work..
+            compute();
+
+            // register some metrics, this could be FPS, entities count, ....
+            CUBOS_METRIC("count", i);
+        }
+    }
+
+Currently, metrics can be accessed manually through the singleton class. However, we plan to 
+integrate these metrics into our editor for a more streamlined experience.
+
+Learn more about it on our `documentation <https://docs.cubosengine.org/examples-core-metrics.html>`_ : 
+
+Networking Utilities :dim:`(@roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the 0.3 release, Cubos finally has networking! This is a big step forward for our engine, bringing 
+powerful networking utilities such as ` Address <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html>`_, 
+`UdpSocket <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1UdpSocket.html>`_, `TcpListener <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpListener.html>`_, 
+and `TcpStream <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpStream.html>`_. 
+
+Creating an UDP client and sending a message is as simple as:
+
+.. code-block:: cpp
+
+    UdpSocket client;
+    client.bind(8080, Address::LocalHost);
+    
+    const char* msg = "Hello, I'm a Cubos UDP client!";
+    client.send(msg, std::strlen(msg), Address::from("server.com"), 8081))
+
+Learn more about it on our `documentation <https://docs.cubosengine.org/examples-core-networking.html>`_ : 
+
+Groundwork for a Standalone Editor :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: describe changes
+
+Next Steps
+==========
+
+**TODO: I just copied this from the previous post, we should rewrite it:**
+We're very happy with the progress we've made on this release. The engine is becoming more and more powerful, and we were able to create a full game with it in a week!
+
+For the next release, which should be out in September, we'll be **WIP**
+
+* A **standalone editor application**. Our tools are currently integrated into the games themselves which is not ideal.
+* **Audio support**, as there's no sound at all in the engine right now.
+* Actual **voxel collisions**, as we currently only check the bounding boxes.
+* Basic **rigidbody physics**, with rotation and friction.
+* **Shadows** for all light types.
+* **Web-support**, so that games can be played in the browser.
+* **Tracing and spans**, for better tracking of program execution.
+* **TODO: what else? review stuff above too**
+
+You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/27>`_ for the next release.
+
+We're currently a team of 13 people, and **we're looking to expand**! If you're interested in joining us, or just want to learn more about the project, join our `Discord server <https://discord.gg/WjTtcNTRqD>`_!
