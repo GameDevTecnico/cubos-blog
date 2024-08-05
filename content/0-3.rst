@@ -51,7 +51,27 @@ TODO: describe changes, show code sample
 Spot Light Shadows :dim:`(@tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO: describe changes, add a screenshot
+Our graphics renderer has received a new major feature in this release: shadows!
+
+.. image:: images/scraps_vs_zombies_shadows.png
+
+It should go without saying that this feature has a big impact on the visuals of games
+developed with Cubos. We've tried it on *Scraps vs Zombies* and the result is stunning!
+It's an important step towards the kind of appealing graphics that we hope to achieve.
+
+For the time being, shadows support is limited to spot lights. To enable them, all you need
+to do is add a `SpotShadowCaster <https://docs.cubosengine.org/structcubos_1_1engine_1_1SpotShadowCaster.html>`_ component to the spot lights for which you want shadows to be cast,
+as shown in the `Shadows sample <https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows>`_.
+Both hard and soft shadows are supported, with a configurable `blurRadius <https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html#a450e1d2c732f1c38403a428eb0536660>`_.
+
+Behind the scenes, this works by rendering the world from each light's perspective to determine which parts
+are occluded, and making these parts unlit. A large texture known as the "shadow atlas" holds this information for
+every light in a quadtree structure, reducing expensive texture switching. Finally, soft shadows are implemented
+as a post-processing step that effectively blurs out the shadows.
+Below is a screenshot of the shadow atlas with 5 spot lights. Lines have been drawn separating
+the areas of the atlas reserved for each light.
+
+.. image:: images/shadow_atlas.png
 
 Initial UI Plugin :dim:`(@DiogoMendonc-a)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
