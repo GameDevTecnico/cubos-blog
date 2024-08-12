@@ -46,7 +46,148 @@ Additionally, we added Friction and Bounciness. For now, these are a predefined 
 Raycasting :dim:`(@diogomsmiranda)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO: describe changes, show code sample
+Raycasting is a commonly used tool in game development which we Cubos were lacking until now!
+
+Raycasting is a technique used to determine the intersection of a ray with an object in a scene, right now in Cubos there are 2 shapes of colliders,
+the ``BoxCollisionShape`` and the ``CapsuleCollisionShape``.
+
+Because of this, the new system argument ``Raycast`` implementation can be divided into 2 parts, **collision with boxes** and **collision with capsules** (notice that a sphere is a capsule with no height).
+
+**Collision with a Box**
+
+The collision with a box is based on the Cyrus-Beck algorithm, which is a line clipping algorithm that is used to find the intersection of a line segment with a convex polygon.
+
+We can easily define a box by the minimum and maximum values of x,y,z and the ray by its origin and the direction.
+
+A ray is defined then by the line formula:
+
+.. math:: point = ray.origin + t * ray.direction
+
+Being t a scalar value that represents the distance from the ray's origin to the point.
+
+Our objective is to find t, and check if the point is in the "right" side of the ray (the side that the ray is pointing to).
+
+For that we can rearrange the previous formula to:
+
+.. math::
+
+    t = (point - ray.origin) / ray.direction
+
+    OR (when decomposed in x,y,z)
+
+    tX = (point.x - ray.origin.x) / ray.direction.x
+    tY = (point.y - ray.origin.y) / ray.direction.y
+    tZ = (point.z - ray.origin.z) / ray.direction.z
+
+If the point is in the right side of the ray, then the intersection point is the point that is closest to the ray's origin.
+
+Now, the only thing that we still need to account is, that most of the times, we have 2 intersection points, one going in, and one going out.
+
+For this we can change the way we use this formulas by instead of using the point, we use the minimum and maximum values of the box.
+
+If both our t's make sense, then we have an intersection.
+
+Here is an excerpt taken from the ``Raycast`` class:
+
+.. code-block:: cpp
+    
+    static float intersects(cubos::engine::Raycast::Ray ray, cubos::core::geom::Box box)
+    {  
+        (...)
+
+        glm::vec3 max = corners[1];
+        glm::vec3 min = corners[0];
+
+        float tMinX = (min.x - ray.origin.x) / ray.direction.x;
+        float tMaxX = (max.x - ray.origin.x) / ray.direction.x;
+        float tMinY = (min.y - ray.origin.y) / ray.direction.y;
+        float tMaxY = (max.y - ray.origin.y) / ray.direction.y;
+        float tMinZ = (min.z - ray.origin.z) / ray.direction.z;
+        float tMaxZ = (max.z - ray.origin.z) / ray.direction.z;
+
+        // find the maximum of the min
+        float tMin = std::max(std::max(std::min(tMinX, tMaxX), std::min(tMinY, tMaxY)), std::min(tMinZ, tMaxZ));
+
+        // find the minimum of the max
+        float tMax = std::min(std::min(std::max(tMinX, tMaxX), std::max(tMinY, tMaxY)), std::max(tMinZ, tMaxZ));
+
+        if (tMax < 0 || tMin > tMax)
+        {
+            return -1.0F;
+        }
+
+        return tMin < 0.0F ? tMax : tMin;
+    };
+
+**Collision with a Capsule**
+
+The collision with a capsule is more straight forward than the collision with a box, as we can separate a capsule into 3 parts, 
+a cylinder and the two spheres at the ends.
+
+We then can check for a point of intersection by checking if the ray intersects the cylinder, and if it doesn't, we check if it intersects the spheres.
+
+We can determine both intersections by simply subbing the the ray's equation for x and z in the cylinder and sphere equations, and then solving it for t.
+
+Code excerpt from raycast.cpp for the cylinder intersection:
+
+.. code-block:: cpp
+    
+    static float intersects(cubos::engine::Raycast::Ray ray, float radius, float top, float bottom)
+    {
+        // We are gonna use the quadratic equation made by subbing the ray equation into the cylinder equation
+        // The cylinder equation is:
+        // x^2 + z^2 = r^2
+        // The ray equation is:
+        // x = x0 + t * dx
+        // z = z0 + t * dz
+
+        float a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
+        float b = 2.0F * (ray.direction.x * ray.origin.x + ray.direction.z * ray.origin.z);
+        float c = ray.origin.x * ray.origin.x + ray.origin.z * ray.origin.z - radius * radius;
+
+        float discriminant = b * b - 4.0F * a * c;
+        if (discriminant < 0)
+        {
+            return -1.0F; // no intersection with the cylinder
+        }
+
+        float t1 = (-b + std::sqrt(discriminant)) / (2.0F * a);
+        float t2 = (-b - std::sqrt(discriminant)) / (2.0F * a);
+
+        float max = std::max(t1, t2);
+        float min = std::min(t1, t2);
+
+        float t = min > 0.0F ? min : max;
+
+        if (t < 0.0F)
+        {
+            return -1.0F; // no valid intersection
+        }
+
+        float y = ray.origin.y + t * ray.direction.y;
+
+        if (y < bottom || y > top)
+        {
+            return -1.0F; // intersection is outside the finite cylinder
+        }
+
+        return t;
+    };
+
+To use the ``Raycast`` argument system, you can simply call the system ``Raycast.fire`` that takes a ``Ray`` as an argument.
+
+.. code-block:: cpp
+
+    cubos.system("raycast").call([](Raycast raycast)
+    {
+        // raycast from the origin to -50,0,0
+        auto hit = Raycast.fire({{0.0F,0.0F,0.0F},{-50.0F,0.0F,0.0F}});
+        if (hit.contains())
+        {
+            // hit.point is the point where the ray hit the object
+            // hit.entitiy is the entity that was hit
+        }
+    });
 
 Spot Light Shadows :dim:`(@tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
