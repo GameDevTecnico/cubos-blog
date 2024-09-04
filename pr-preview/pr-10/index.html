@@ -39,273 +39,6 @@
     <div class="m-col-m-10">
       <article>
         <header>
-          <h1><a href="https://cubosengine.org/03-is-here.html" rel="bookmark" title="Permalink to 0.3 is here!">
-            <time class="m-date" datetime="2024-08-02T10:00:00+01:00">
-              Aug <span class="m-date-day">02</span> 2024
-            </time>
-            0.3 is here!
-          </a></h1>
-          <p>Cubos 0.3 Release!</p>
-        </header>
-        <div class="m-clearfix-l"></div>
-<!-- content -->
-<section id="new-0-3-features">
-<h2>New 0.3 Features</h2>
-<p>On this release, we focused on adding essential features we've been wanting to have for quite some time now.
-It ended up being a tad smaller than expected, as we spent a lot of time working on non-code related stuff, such as rebranding the project.
-<strong>TODO: should we introduce the rebranding here?</strong></p>
-<p>This blog post covers the most important changes, but you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>.</p>
-<section id="on-the-editor">
-<h3>On the Editor</h3>
-<section id="console-plugin-scarface1809">
-<h4>Console Plugin <span class="m-text m-dim">(&#64;Scarface1809)</span></h4>
-<p>TODO: describe changes, add a screenshot</p>
-</section>
-</section>
-<section id="on-the-engine">
-<h3>On the Engine</h3>
-<section id="a-new-physics-solver-fallenatlas">
-<h4>A New Physics Solver <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
-<p>Upon discovering some potential issues with regards to NVidia's patent of XPBD, some problems with how XPBD handled friction, and stability,
-we decided that this would be the ideal moment to switch to another solver.
-Recently, Erin Catto shared his <a href="https://box2d.org/posts/2024/02/solver2d/">comparison of multiple solvers</a>, and the results of TGS Soft seemed quite promising, so we decided to give it a try... And at this point, our simulation is already more stable than before!</p>
-<p>In simple terms, it differs from XPBD in the sense that it uses impulses instead of changing the position of the bodies directly, however, like XPBD it also uses substeps. On top of this it also uses soft constraints, which is what Soft stands for in it's name.</p>
-<p>Since these changes were mostly in internal systems, from a user stand point, everything works the same way.</p>
-<p>Additionally, we added Friction and Bounciness. For now, these are a predefined value for every body, but will be customizable in the next release with a <code>PhysicsMaterial</code>.</p>
-<img class="m-image" src="images/complex_physics_sample_tgs_soft.gif" />
-</section>
-<section id="raycasting-diogomsmiranda">
-<h4>Raycasting <span class="m-text m-dim">(&#64;diogomsmiranda)</span></h4>
-<p>Raycasting is a commonly used tool in game development which we Cubos were lacking until now!</p>
-<p>Raycasting is a technique used to determine the intersection of a ray with an object in a scene, right now in Cubos there are 2 shapes of colliders,
-the <code>BoxCollisionShape</code> and the <code>CapsuleCollisionShape</code>.</p>
-<p>Because of this, the new system argument <code>Raycast</code> implementation can be divided into 2 parts, <strong>collision with boxes</strong> and <strong>collision with capsules</strong> (notice that a sphere is a capsule with no height).</p>
-<p><strong>Collision with a Box</strong></p>
-<p>The collision with a box is based on the Cyrus-Beck algorithm, which is a line clipping algorithm that is used to find the intersection of a line segment with a convex polygon.</p>
-<p>We can easily define a box by the minimum and maximum values of x,y,z and the ray by its origin and the direction.</p>
-<p>A ray is defined then by the line formula:</p>
-<div class="formula">
-<i>point</i> = <i>ray</i>.<i>origin</i> + <i>t</i>*<i>ray</i>.<i>direction</i>
-</div>
-<p>Being t a scalar value that represents the distance from the ray's origin to the point.</p>
-<p>Our objective is to find t, and check if the point is in the &quot;right&quot; side of the ray (the side that the ray is pointing to).</p>
-<p>For that we can rearrange the previous formula to:</p>
-<div class="formula">
-<i>t</i> = (<i>point</i> − <i>ray</i>.<i>origin</i>) ⁄ <i>ray</i>.<i>direction</i>
-</div>
-<div class="formula">
-<i>OR</i>(<i>when</i><i>decomposed</i><i>in</i><i>x</i>, <i>y</i>, <i>z</i>)
-</div>
-<div class="formula">
-<i>tX</i> = (<i>point</i>.<i>x</i> − <i>ray</i>.<i>origin</i>.<i>x</i>) ⁄ <i>ray</i>.<i>direction</i>.<i>x</i><i>tY</i> = (<i>point</i>.<i>y</i> − <i>ray</i>.<i>origin</i>.<i>y</i>) ⁄ <i>ray</i>.<i>direction</i>.<i>y</i><i>tZ</i> = (<i>point</i>.<i>z</i> − <i>ray</i>.<i>origin</i>.<i>z</i>) ⁄ <i>ray</i>.<i>direction</i>.<i>z</i>
-</div>
-<p>If the point is in the right side of the ray, then the intersection point is the point that is closest to the ray's origin.</p>
-<p>Now, the only thing that we still need to account is, that most of the times, we have 2 intersection points, one going in, and one going out.</p>
-<p>For this we can change the way we use this formulas by instead of using the point, we use the minimum and maximum values of the box.</p>
-<p>If both our t's make sense, then we have an intersection.</p>
-<p>Here is an excerpt taken from the <code>Raycast</code> class:</p>
-<pre class="m-code"><span class="k">static</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="nf">intersects</span><span class="p">(</span><span class="n">cubos</span><span class="o">::</span><span class="n">engine</span><span class="o">::</span><span class="n">Raycast</span><span class="o">::</span><span class="n">Ray</span><span class="w"> </span><span class="n">ray</span><span class="p">,</span><span class="w"> </span><span class="n">cubos</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">geom</span><span class="o">::</span><span class="n">Box</span><span class="w"> </span><span class="n">box</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="p">(...)</span>
-
-<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">corners</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">corners</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tMinX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">min</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tMaxX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">max</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tMinY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">min</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tMaxY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">max</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tMinZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">min</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tMaxZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">max</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// find the maximum of the min</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tMin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">tMinX</span><span class="p">,</span><span class="w"> </span><span class="n">tMaxX</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">tMinY</span><span class="p">,</span><span class="w"> </span><span class="n">tMaxY</span><span class="p">)),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">tMinZ</span><span class="p">,</span><span class="w"> </span><span class="n">tMaxZ</span><span class="p">));</span>
-
-<span class="w">    </span><span class="c1">// find the minimum of the max</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tMax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">tMinX</span><span class="p">,</span><span class="w"> </span><span class="n">tMaxX</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">tMinY</span><span class="p">,</span><span class="w"> </span><span class="n">tMaxY</span><span class="p">)),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">tMinZ</span><span class="p">,</span><span class="w"> </span><span class="n">tMaxZ</span><span class="p">));</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tMax</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">tMin</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">tMax</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">-1.0F</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tMin</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.0F</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">tMax</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">tMin</span><span class="p">;</span>
-<span class="p">};</span></pre>
-<p><strong>Collision with a Capsule</strong></p>
-<p>The collision with a capsule is more straight forward than the collision with a box, as we can separate a capsule into 3 parts,
-a cylinder and the two spheres at the ends.</p>
-<p>We then can check for a point of intersection by checking if the ray intersects the cylinder, and if it doesn't, we check if it intersects the spheres.</p>
-<p>We can determine both intersections by simply subbing the the ray's equation for x and z in the cylinder and sphere equations, and then solving it for t.</p>
-<p>Code excerpt from raycast.cpp for the cylinder intersection:</p>
-<pre class="m-code"><span class="k">static</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="nf">intersects</span><span class="p">(</span><span class="n">cubos</span><span class="o">::</span><span class="n">engine</span><span class="o">::</span><span class="n">Raycast</span><span class="o">::</span><span class="n">Ray</span><span class="w"> </span><span class="n">ray</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">top</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">bottom</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="c1">// We are gonna use the quadratic equation made by subbing the ray equation into the cylinder equation</span>
-<span class="w">    </span><span class="c1">// The cylinder equation is:</span>
-<span class="w">    </span><span class="c1">// x^2 + z^2 = r^2</span>
-<span class="w">    </span><span class="c1">// The ray equation is:</span>
-<span class="w">    </span><span class="c1">// x = x0 + t * dx</span>
-<span class="w">    </span><span class="c1">// z = z0 + t * dz</span>
-
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0F</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">discriminant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">4.0F</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">discriminant</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">-1.0F</span><span class="p">;</span><span class="w"> </span><span class="c1">// no intersection with the cylinder</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">discriminant</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0F</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">discriminant</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0F</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
-
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="w"> </span><span class="n">t2</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="w"> </span><span class="n">t2</span><span class="p">);</span>
-
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0F</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">-1.0F</span><span class="p">;</span><span class="w"> </span><span class="c1">// no valid intersection</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">top</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">-1.0F</span><span class="p">;</span><span class="w"> </span><span class="c1">// intersection is outside the finite cylinder</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
-<span class="p">};</span></pre>
-<p>To use the <code>Raycast</code> argument system, you can simply call the system <code>Raycast.fire</code> that takes a <code>Ray</code> as an argument.</p>
-<pre class="m-code"><span class="n">cubos</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;raycast&quot;</span><span class="p">).</span><span class="n">call</span><span class="p">([](</span><span class="n">Raycast</span><span class="w"> </span><span class="n">raycast</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="c1">// raycast from the origin to -50,0,0</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">hit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Raycast</span><span class="p">.</span><span class="n">fire</span><span class="p">({{</span><span class="mf">0.0F</span><span class="p">,</span><span class="mf">0.0F</span><span class="p">,</span><span class="mf">0.0F</span><span class="p">},{</span><span class="mf">-50.0F</span><span class="p">,</span><span class="mf">0.0F</span><span class="p">,</span><span class="mf">0.0F</span><span class="p">}});</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hit</span><span class="p">.</span><span class="n">contains</span><span class="p">())</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// hit.point is the point where the ray hit the object</span>
-<span class="w">        </span><span class="c1">// hit.entitiy is the entity that was hit</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">});</span></pre>
-</section>
-<section id="spot-light-shadows-tomas7770">
-<h4>Spot Light Shadows <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
-<p>Our graphics renderer has received a new major feature in this release: shadows!</p>
-<img class="m-image" src="images/scraps_vs_zombies_shadows.png" />
-<p>It should go without saying that this feature has a big impact on the visuals of games
-developed with Cubos. We've tried it on <em>Scraps vs Zombies</em> and the result is stunning!
-It's an important step towards the kind of appealing graphics that we hope to achieve.</p>
-<p>For the time being, shadows support is limited to spot lights. To enable them, all you need
-to do is add a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SpotShadowCaster.html">SpotShadowCaster</a> component to the spot lights for which you want shadows to be cast,
-as shown in the <a href="https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows">Shadows sample</a>.
-Both hard and soft shadows are supported, with a configurable <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html#a450e1d2c732f1c38403a428eb0536660">blurRadius</a>.</p>
-<p>Behind the scenes, this works by rendering the world from each light's perspective to determine which parts
-are occluded, and making these parts unlit. A large texture known as the &quot;shadow atlas&quot; holds this information for
-every light in a quadtree structure, reducing expensive texture switching. Finally, soft shadows are implemented
-as a post-processing step that effectively blurs out the shadows.
-Below is a screenshot of the shadow atlas with 5 spot lights. Lines have been drawn separating
-the areas of the atlas reserved for each light.</p>
-<img class="m-image" src="images/shadow_atlas.png" />
-</section>
-<section id="initial-ui-plugin-diogomendonc-a">
-<h4>Initial UI Plugin <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h4>
-<p>TODO: describe changes, add screenshots, maybe gifs too?</p>
-</section>
-<section id="arbitrary-input-combinations-for-actions-and-axes-luishfonseca">
-<h4>Arbitrary Input Combinations for Actions and Axes <span class="m-text m-dim">(&#64;luishfonseca)</span></h4>
-<p>TODO: describe changes, show input bindings example</p>
-<p>TODO: describe changes, add screenshots, maybe gifs too?</p>
-</section>
-</section>
-<section id="on-the-core">
-<h3>On the Core</h3>
-<section id="metrics-roby2014">
-<h4>Metrics <span class="m-text m-dim">(&#64;roby2014)</span></h4>
-<p>We are excited to introduce the new metrics and profiling utilities!
-This started becoming a priority since we detected lots of performance issues in the last Game Jam we participated.</p>
-<p>These tools are designed to help track performance and gather valuable insights about code execution and data.</p>
-<p>How it looks:</p>
-<pre class="m-code"><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">compute</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="n">CUBOS_PROFILE</span><span class="p">();</span>
-<span class="w">    </span><span class="c1">// ...</span>
-<span class="p">}</span><span class="w"> </span><span class="c1">// after the scope ends, a new metric `compute` will be added, with the duration of this scope</span>
-
-<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">myFunction</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="c1">/// simulate profiling loop</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1337</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// simulate frame by calling a function that does work..</span>
-<span class="w">        </span><span class="n">compute</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// register some metrics, this could be FPS, entities count, ....</span>
-<span class="w">        </span><span class="n">CUBOS_METRIC</span><span class="p">(</span><span class="s">&quot;count&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span></pre>
-<p>Currently, metrics can be accessed manually through the singleton class. However, we plan to
-integrate these metrics into our editor for a more streamlined experience.</p>
-<p>Learn more about it on our <a href="https://docs.cubosengine.org/examples-core-metrics.html">metrics documentation</a> :</p>
-</section>
-<section id="networking-utilities-roby2014">
-<h4>Networking Utilities <span class="m-text m-dim">(&#64;roby2014)</span></h4>
-<p>In the 0.3 release, Cubos finally has networking! This is a big step forward for our engine, bringing
-powerful networking utilities such as ` Address &lt;<a class="m-link-wrap" href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html">https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html</a>&gt;`_,
-<a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1UdpSocket.html">UdpSocket</a>, <a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpListener.html">TcpListener</a>,
-and <a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpStream.html">TcpStream</a>.</p>
-<p>Creating an UDP client and sending a message is as simple as:</p>
-<pre class="m-code"><span class="n">UdpSocket</span><span class="w"> </span><span class="n">client</span><span class="p">;</span>
-<span class="n">client</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span><span class="w"> </span><span class="n">Address</span><span class="o">::</span><span class="n">LocalHost</span><span class="p">);</span>
-
-<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello, I&#39;m a Cubos UDP client!&quot;</span><span class="p">;</span>
-<span class="n">client</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">strlen</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span><span class="w"> </span><span class="n">Address</span><span class="o">::</span><span class="n">from</span><span class="p">(</span><span class="s">&quot;server.com&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">8081</span><span class="p">))</span></pre>
-<p>Learn more about it on our <a href="https://docs.cubosengine.org/examples-core-networking.html">networking documentation</a> :</p>
-</section>
-<section id="groundwork-for-a-standalone-editor-riscadoa">
-<h4>Groundwork for a Standalone Editor <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
-<p>The original main goal for this version was to get a first prototype of our standalone editor working.
-Sadly, I didn't manage to get it done in time, as it was a bigger task than I anticipated.</p>
-<p>The initial approach, to which I dedicated most of my time, was to have two instances of Cubos running at the same time, on the <strong>same process</strong> - one for the editor and one for the game.
-The game instance would be running within the editor instance, and would be launched by loading the game's code from a shared library (such as a DLL).
-With this separation, it would be possible for the editor to interact with the game, pause it, restart it and so on, even across game code changes, without having to restart the editor.</p>
-<p>So, with this in mind, I restructured some parts of the code base to get it flexible enough to support this kind of setup.
-Namely, it is now possible to step Cubos instances, reset them, restart them, and other similar operations.
-I also added cross platform support for loading Cubos instances from shared libraries, so that we could load the game from the editor.</p>
-<p>This all seems, at first, perfect, but after discussing with the team, we realized that this approach of having two Cubos instances in the same process is not ideal at all.
-Any game crash would bring down the editor, any memory leak in the game would affect the editor, and infinite loops in the game would freeze the editor.
-Since solving the halting problem isn't in our roadmap, we decided that we should discard this approach, and instead try to keep the <strong>editor and the game in two separate processes</strong>.</p>
-<p>So, for the next release, I'll be focusing on following this new approach. It will be a big task, and it will be a lot more difficult, as it will require a lot of inter-process communication, but it will be worth it in the end.
-It will allows us to have a stable editor, whose performance is not affected (that much at least) by the game, and vice-versa.</p>
-</section>
-</section>
-</section>
-<section id="next-steps">
-<h2>Next Steps</h2>
-<p><strong>TODO: I just copied this from the previous post, we should rewrite it:</strong>
-We're very happy with the progress we've made on this release. The engine is becoming more and more powerful, and we were able to create a full game with it in a week!</p>
-<p>For the next release, which should be out in September, we'll be <strong>WIP</strong></p>
-<ul>
-<li>A <strong>standalone editor application</strong>. Our tools are currently integrated into the games themselves which is not ideal.</li>
-<li><strong>Audio support</strong>, as there's no sound at all in the engine right now.</li>
-<li>Actual <strong>voxel collisions</strong>, as we currently only check the bounding boxes.</li>
-<li>Basic <strong>rigidbody physics</strong>, with rotation and friction.</li>
-<li><strong>Shadows</strong> for all light types.</li>
-<li><strong>Web-support</strong>, so that games can be played in the browser.</li>
-<li><strong>Tracing and spans</strong>, for better tracking of program execution.</li>
-<li><strong>TODO: what else? review stuff above too</strong></li>
-</ul>
-<p>You can check out the full list of stuff we want to get done in the <a href="https://github.com/GameDevTecnico/cubos/milestone/27">milestone</a> for the next release.</p>
-<p>We're currently a team of 13 people, and <strong>we're looking to expand</strong>! If you're interested in joining us, or just want to learn more about the project, join our <a href="https://discord.gg/WjTtcNTRqD">Discord server</a>!</p>
-</section>
-<!-- /content -->
-        <footer>
-          <p>Posted by <a href="https://cubosengine.org/author/cubos-team.html">Cubos Team</a> on <time datetime="2024-08-02T10:00:00+01:00">Fri 02 August 2024</time> in <a href="https://cubosengine.org/category/release.html">Release</a>.</p>
-        </footer>
-      </article>
-      <article>
-        <header>
           <h1><a href="https://cubosengine.org/coffeen-jam-and-02.html" rel="bookmark" title="Permalink to Coffee'n Jam and... 0.2!">
             <time class="m-date" datetime="2024-05-21T10:00:00+01:00">
               May <span class="m-date-day">21</span> 2024
@@ -314,10 +47,197 @@ We're very happy with the progress we've made on this release. The engine is bec
           </a></h1>
           <p>Cubos 0.2 Release and Coffee'n Jam!</p>
         </header>
+        <div class="m-clearfix-l"></div>
+<!-- content -->
+<section id="coffee-n-jam">
+<h2>Coffee'n Jam</h2>
+<p>From 26th of April to 3rd of May, &#64;RiscadoA and &#64;joaomanita participated in the Coffee'n Jam, a game jam organized by GameDev Técnico, with our engine, <strong>Cubos</strong>.
+The goal was to create a game in a week, with the theme &quot;Apocalypse&quot; - and we had a blast!</p>
+<p>The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
+The game is called <em>Scraps vs Zombies</em>, and you can download it from its <a href="https://riscadoa.itch.io/scraps-vs-zombies">itch.io page</a>.
+You can also check out its source code in our <a href="https://github.com/GameDevTecnico/cubos-demo">demo repository</a>.</p>
+<p>We managed to win the &quot;Best Gameplay&quot; and &quot;People's Choice&quot; awards, which we're very proud of!</p>
+<div class="m-image">
+<a href="https://riscadoa.itch.io/scraps-vs-zombies"><img src="images/scraps_vs_zombies.png" /></a>
+</div>
+<p>We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
+One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
+We'll be working on fixing these issues in the next release, and we'll also be profiling the engine to find out where the bottlenecks are.</p>
+</section>
+<section id="new-0-2-features">
+<h2>New 0.2 Features</h2>
+<p>Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
+We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>).</p>
+<section id="on-the-editor">
+<h3>On the Editor</h3>
+<section id="transform-gizmo-upgrades-diogomendonc-a">
+<h4>Transform Gizmo Upgrades <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h4>
+<p>The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!</p>
+<p>We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
+and a new type of gizmo, a <code>Rotated Box</code>, which, unlike the old boz gizmos, does not need to be axis-aligned.</p>
+<p>Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
+This should hopefully make it easier to use the tool when moving entities either very far away, or very close.</p>
+<img class="m-image" src="images/transform_gizmo.gif" />
+</section>
+<section id="world-inspector-overhaul-diogomsmiranda">
+<h4>World Inspector Overhaul <span class="m-text m-dim">(&#64;diogomsmiranda)</span></h4>
+<p>The World inspector has been on our radar for quite some time now, as a tool that could be improved.
+This release we particularly aimed on making it better by focusing on:</p>
+<ul>
+<li>Making it easier to find the entities you are looking for.</li>
+<li>Displaying more information about the entities in the scene.</li>
+</ul>
+<p>To tackle the first point we've added a search bar that allows you to filter the entities in the scene, either by their name, or by their components. e.g:</p>
+<ul>
+<li>Searching for &quot;player&quot; will show all entities that have &quot;player&quot; in their name.</li>
+<li>Searching for &quot;Transform&quot; will show all entities that have a <code>Transform</code> component.</li>
+<li>Searching for &quot;player, Transform&quot; will show all entities that have a <code>Transform</code> component and contain &quot;player&quot; in their name.</li>
+</ul>
+<p>To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the <code>ChildOf</code> relation between entities.</p>
+<img class="m-image" src="images/world_inspector.gif" />
+</section>
+<section id="sub-scene-importing-in-scene-editor-teres4">
+<h4>Sub-scene importing in scene editor <span class="m-text m-dim">(&#64;teres4)</span></h4>
+<p>Previously our scene editor was lacking support for importing sub-scenes.
+This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
+To save time, we've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.</p>
+<img class="m-image" src="images/scene_editor.gif" />
+</section>
+</section>
+<section id="on-the-engine">
+<h3>On the Engine</h3>
+<section id="physics-improvements-fallenatlas">
+<h4>Physics Improvements <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
+<p>This update we introduced the <code>Solver</code>, which works to satisfy the physics constraints applied to entities (e.g. Spring, Fixed distance between entities, etc.).</p>
+<p>This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
+As of now, we have one constraint, internal to the engine, the <code>PenetrationConstraint</code>, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.</p>
+<p>With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
+will perform the physics update in multiple smaller steps. This is important to increase the convergence rate of the solver and preservation of energy, by reducing the errors caused by approximations of the simulation.</p>
+<p>These changes should lead to more realistic behavior, as well as better consistency between systems with different performance levels.</p>
+<img class="m-image" src="images/complex_physics_sample.gif" />
+</section>
+<section id="modular-renderer-riscadoa-tomas7770">
+<h4>Modular Renderer <span class="m-text m-dim">(&#64;RiscadoA, &#64;tomas7770)</span></h4>
+<p>Before this update, our graphics renderer was very monolithic, with a lot of the code being held in a single file. This posed some problems,
+namely that if we wanted to implement new rendering methods in the future (e.g. raytracing), we would end up with tons of duplicate code.
+It also didn't fit well with our ECS design, since things such as the renderer and its active cameras were just global resources.</p>
+<p>To overcome this, we've restructured the renderer, splitting it into <a href="https://gamedevtecnico.github.io/cubos/docs/group__render-plugins.html">several components with their respective plugins</a>. The most important ones
+are perhaps <code>RenderTarget</code>, representing something that can be drawn to, and <code>PerspectiveCamera</code>, which draws to render targets using perspective projection.
+Entities with these components are related using a <code>DrawsTo</code> relation. There are also components that individually enable various parts of the renderer,
+such as deferred shading, or effects like bloom and SSAO. This separation opens up possibilities for more customizability from the user side,
+and makes the renderer code easier to deal with by engine developers.</p>
+<p>We also used the opportunity to optimize the renderer, namely, by allocating a large GPU buffer for all the voxel meshes, which we then split into smaller buckets.
+This way, we can draw all the voxel objects with fewer draw calls, and with way less context switches.
+One other feature we improved greatly was entity picking - finding out which entity is visible at a given pixel. Previously, enabling it cut the framerate by more than half, which was unacceptable.
+By using <a href="https://www.khronos.org/opengl/wiki/Pixel_Buffer_Object">Pixel Buffers</a> and double-buffering, we managed to make its performance impact negligible.</p>
+<img class="m-image" src="images/scraps_vs_zombies_new_renderer.png" />
+<p>Additionally, we added a tone-mapping pass to the renderer, which makes better use of the HDR color space. It allows us to tune the exposure of the scene, and also to apply effects like bloom and SSAO in a more realistic way.
+One side-effect of us changing the color-space is that now the colors in the game are a bit more washed out. We'll have to go back and tweak the colors in the game to make them look good again.</p>
+</section>
+</section>
+<section id="on-the-core">
+<h3>On the Core</h3>
+<section id="clearer-plugin-dependencies-riscadoa">
+<h4>Clearer Plugin Dependencies <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
+<p>One of the main features of <strong>Cubos</strong> is its plugin system. We structure all of the engine and editor features as plugins, each with its own set of components, systems, and resources.
+The developer ultimately chooses which plugins to include in their game, and may also create their own plugins.</p>
+<p>Plugins may depend on each other. One example is the <a href="https://gamedevtecnico.github.io/cubos/docs/group__physics-plugin.html">physics plugin</a>, which depends on the <a href="https://gamedevtecnico.github.io/cubos/docs/group__collisions-plugin.html">collisions plugin</a>.
+Previously, when a plugin was included, all of its dependencies were automatically included. It was also possible to include a plugin twice - the second time, the plugin would simply be ignored.</p>
+<p>While this seems useful, this led to some problems. Since a plugin could be included more than once, there isn't a single place where its safe to make decisions about how a given plugin should behave.
+This was particularly problematic with the new modular renderer plugins.</p>
+<p>Imagine a scenario where we have two plugins A and B, which implement different rendering methods.
+A and B are incompatible. Adding both should be an error, as it's impossible to have both rendering methods active at the same time.
+Additionally, A and B both add on a plugin C, and make decisions about how C should behave. If both A and B are included, which one should have the final say?
+How do we specify the dependency between them without coupling their code?</p>
+<p>Our solution to this was to distinguish between <em>depending</em> and <em>including</em> a plugin. When a plugin X depends on a plugin Y, adding X without Y being present leads to an error.
+When a plugin X includes a plugin Y, including X will also include Y. But, if a plugin is included twice, an error occurs.
+This way, we get a clean plugin hierarchy, which is easier to reason about:</p>
+<pre class="m-code"><span class="kt">void</span><span class="w"> </span><span class="nf">myPlugin</span><span class="p">(</span><span class="n">Cubos</span><span class="o">&amp;</span><span class="w"> </span><span class="n">cubos</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cubos</span><span class="p">.</span><span class="n">depends</span><span class="p">(</span><span class="n">renderVoxelsPlugin</span><span class="p">);</span><span class="w"> </span><span class="c1">// Don&#39;t care about internals, just need the plugin</span>
+
+<span class="w">    </span><span class="n">cubos</span><span class="p">.</span><span class="n">plugin</span><span class="p">(</span><span class="n">mySubPlugin</span><span class="p">);</span><span class="w"> </span><span class="c1">// Include a sub-plugin, which becomes part of my plugin</span>
+
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span></pre>
+<p>One issue with this solution is that you would now have to manually include all plugins you need when making a game.
+Of course, this is not ideal, and thus, we've added a new <a href="https://gamedevtecnico.github.io/cubos/docs/group__defaults-plugin.html">defaults plugin</a> to the engine that includes all the plugins that are necessary for a basic game to run.
+If the developer wants to configure the engine in a different way, they can simply write their own alternative defaults plugin.</p>
+</section>
+<section id="observers-riscadoa">
+<h4>Observers <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
+<p>Very often while working with <strong>Cubos</strong>, we find the need to react to the addition and removal of components in entities.
+One use case, for example, is setting up the AABB of an entity when we add a collider to it.
+Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially <code>false</code>, and having a system initializing all colliders with the flag set to <code>false</code>.</p>
+<p>To solve this problem in a more elegant way, we added a new special kind of system: <em>observers</em>. Observers are essentially systems which instead of running on a specific schedule, run immediately after a certain change occurs in the ECS (akin to callbacks).</p>
+<p>We also found another unexpected use for this feature. Complex plugins with lots of components, such as the physics plugin, where previously cumbersome to work with, as all the required components had to be manually added to each entity we wanted physics to apply to.
+With observers, we instead now add a single component <code>PhysicsBundle</code>. An observer picks up this addition, and immediately replaces this component with all of the required components for the physics plugin to work.</p>
+<p>If you're interested in learning more about this feature and ECS in general on our engine, check out our <a href="https://gamedevtecnico.github.io/cubos/docs/features-ecs.html">ECS feature guide</a>.</p>
+</section>
+<section id="introducing-inheritance-in-reflection-roby2014">
+<h4>Introducing Inheritance in Reflection <span class="m-text m-dim">(&#64;roby2014)</span></h4>
+<p><strong>Cubos</strong> has a powerful <a href="https://gamedevtecnico.github.io/cubos/docs/group__core-reflection.html">reflection system</a> to examine and interact with a structures and types at runtime
+It works by attaching metadata to types, which we call <em>traits</em>. These traits can be queried at runtime to get information about the type.
+For example, we provide a <code>FieldsTrait</code>, which you can add to a type to expose its fields to the reflection system.</p>
+<p>One thing we were missing was information about inheritance relationships between types.
+We've added a new trait, <code>InheritsTrait</code>, which allows you to specify that a type inherits from another type.</p>
+<p>This will be particularly useful for serialization, as right now we have to manually add the fields of the base class to the derived class. Now, serializers can check if this trait is present and fallback to the base class if necessary.</p>
+</section>
+<section id="repeating-systems-and-fixed-step-updates-joaomanita">
+<h4>Repeating Systems and Fixed-Step Updates <span class="m-text m-dim">(&#64;joaomanita)</span></h4>
+<p>Certain plugins, like the physics plugin, required some of their systems to run multiple times per frame so that they could make more accurate
+aproximations. In addition, some of them need to be executed in ordered groups. For example:</p>
+<ul>
+<li>The integration system needs to run before the velocity update system.</li>
+<li>The velocity update system needs to run before the force clear system.</li>
+<li>The force clear system needs to run before the impulse clear system.</li>
+</ul>
+<p>To allow repeating groups such as these, we added a new feature to the ECS tags: the repeat while modifier. This makes the systems tagged by it repeat until a certain condition becomes false.</p>
+<pre class="m-code"><span class="n">cubos</span><span class="p">.</span><span class="n">tag</span><span class="p">(</span><span class="n">groupTag</span><span class="p">).</span><span class="n">repeatWhile</span><span class="p">(</span><span class="n">myCondition</span><span class="p">);</span>
+<span class="n">cubos</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;integrate physics&quot;</span><span class="p">).</span><span class="n">tagged</span><span class="p">(</span><span class="n">groupTag</span><span class="p">).</span><span class="cm">/* ... */</span><span class="p">;</span>
+<span class="n">cubos</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;update velocity&quot;</span><span class="p">).</span><span class="n">tagged</span><span class="p">(</span><span class="n">groupTag</span><span class="p">).</span><span class="cm">/* ... */</span><span class="p">;</span>
+<span class="n">cubos</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;clear forces&quot;</span><span class="p">).</span><span class="n">tagged</span><span class="p">(</span><span class="n">groupTag</span><span class="p">).</span><span class="cm">/* ... */</span><span class="p">;</span></pre>
+<p>Its also possible to make repeating subgroups by tagging the subgroup with the parent tag.</p>
+<pre class="m-code"><span class="n">cubos</span><span class="p">.</span><span class="n">tag</span><span class="p">(</span><span class="n">subgroupTag</span><span class="p">).</span><span class="n">tagged</span><span class="p">(</span><span class="n">groupTag</span><span class="p">).</span><span class="n">repeatWhile</span><span class="p">(</span><span class="n">myOtherCondition</span><span class="p">);</span></pre>
+<p>This way the subgroup's systems will repeat a total of n x m times, where n is the number of times the parent tag repeats and m is the number of times the subgroup tag repeats.</p>
+<p>With this implemented, it was easy to implement the fixed-step plugin on the engine side. It simply adds a tag that makes systems repeat as needed according to
+the <code>DeltaTime</code> passed, avoiding variance due to different frame rates and more/less powerful PCs.</p>
+</section>
+<section id="moving-away-from-the-old-serialization-dacops">
+<h4>Moving Away from the Old Serialization <span class="m-text m-dim">(&#64;Dacops)</span></h4>
+<p><a href="https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html">Serialization</a> is a crucial part of the game engine that allows for the saving of any Cubos game components as well as then loading them in.
+Previously, serialization was done through a series of functions, both for reading and writing, that could be overloaded for each type.
+On the previous (and first) release, we introduced a reflection system, that allowed for the inspection of types at runtime. This was an essential step to make the inspectors on the editor side work.</p>
+<p>But with this new system, we now had two sources of truth for the types, the reflection system and the serialization system.
+To solve this, we decided to change the serialization system to use the reflection system, and thus, not force the developer to write serialization code for each type.</p>
+<p>On this release, we've finally finished this transition, by replacing serialization by direct stream manipulation in places where performance was more of a concern, such as voxel object saving/loading; and by replacing the serialization methods by reflection in other places, such as the input bindings.</p>
+</section>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps</h2>
+<p>We're very happy with the progress we've made on this release. The engine is becoming more and more powerful, and we were able to create a full game with it in a week!</p>
+<p>For the next release, which should be out in July, we'll be focusing on expanding the engine's capabilities, as it is currently missing some key features, such as:</p>
+<ul>
+<li>A <strong>standalone editor application</strong>. Our tools are currently integrated into the games themselves which is not ideal.</li>
+<li><strong>Audio support</strong>, as there's no sound at all in the engine right now.</li>
+<li>An initial <strong>UI plugin</strong>, which can render images, text and handle buttons.</li>
+<li>Actual <strong>voxel collisions</strong>, as we currently only check the bounding boxes.</li>
+<li>Basic <strong>rigidbody physics</strong>, with rotation and friction.</li>
+<li><strong>Shadows, transparency</strong> and other rendering features.</li>
+<li><strong>Raycasting</strong>.</li>
+<li><strong>Networking</strong> utilities, to allow for online multiplayer games.</li>
+<li><strong>Web-support</strong>, so that games can be played in the browser.</li>
+<li><strong>C API</strong>, so that we can use the engine from other languages (scripts!).</li>
+<li><strong>Better editor tools</strong>.</li>
+</ul>
+<p>You can check out the full list of stuff we want to get done in the <a href="https://github.com/GameDevTecnico/cubos/milestone/26">milestone</a> for the next release.</p>
+<p>We're currently a team of 10 people, and <strong>we're looking to expand</strong>! If you're interested in joining us, or just want to learn more about the project, join our <a href="https://discord.gg/WjTtcNTRqD">Discord server</a>!</p>
+</section>
+<!-- /content -->
         <footer>
           <p>Posted by <a href="https://cubosengine.org/author/cubos-team.html">Cubos Team</a> on <time datetime="2024-05-21T10:00:00+01:00">Tue 21 May 2024</time> in <a href="https://cubosengine.org/category/release.html">Release</a>.</p>
         </footer>
-        <div class="m-clearfix-l"></div>
       </article>
       <article>
         <header>
