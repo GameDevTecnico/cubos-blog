@@ -106,16 +106,29 @@ Additionally, we added Friction and Bounciness. For now, these are a predefined 
 Raycasting :dim:`(@diogomsmiranda)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Raycasting is a commonly used tool in game development which we Cubos were lacking until now!
+Raycasting is a commonly used tool in game development which Cubos was lacking until now - it is a technique used to determine the intersection of a ray with an object in a scene.
+This allows for a wide range of applications, such as shooting mechanics, object selection, and more.
 
-Raycasting is a technique used to determine the intersection of a ray with an object in a scene, right now in Cubos there are 2 shapes of colliders,
-the ``BoxCollisionShape`` and the ``CapsuleCollisionShape``.
+This new utility was implemented as a system argument, which means it can be used in any system, by simply adding it as an argument:
 
-Because of this, the new system argument ``Raycast`` implementation can be divided into 2 parts, **collision with boxes** and **collision with capsules** (notice that a sphere is a capsule with no height).
+.. code-block:: cpp
 
-**Collision with a Box**
+    cubos.system("raycast").call([](Raycast raycast)
+    {
+        // raycast from the origin to -50,0,0
+        auto hit = Raycast.fire({{0.0F,0.0F,0.0F},{-50.0F,0.0F,0.0F}});
+        if (hit.contains())
+        {
+            CUBOS_INFO("Hit entity {} at point {}", hit->entity, hit->point);
+        }
+    });
 
-The collision with a box is based on the Cyrus-Beck algorithm, which is a line clipping algorithm that is used to find the intersection of a line segment with a convex polygon.
+To implement this, we had to handle the two types of colliders that we currently have in Cubos: boxes and capsules.
+
+Intersection with a Box
+***********************
+
+The intersection test with a box is based on the Cyrus-Beck algorithm, which is a line clipping algorithm that is used to find the intersection of a line segment with a convex polygon.
 
 We can easily define a box by the minimum and maximum values of x,y,z and the ray by its origin and the direction.
 
@@ -175,9 +188,10 @@ Here is an excerpt taken from the ``Raycast`` class:
         return tMin < 0.0F ? tMax : tMin;
     };
 
-**Collision with a Capsule**
+Intersection with a Capsule
+***************************
 
-The collision with a capsule is more straight forward than the collision with a box, as we can separate a capsule into 3 parts, 
+The intersection with a capsule is more straight forward than the collision with a box, as we can separate a capsule into 3 parts, 
 a cylinder and the two spheres at the ends.
 
 We then can check for a point of intersection by checking if the ray intersects the cylinder, and if it doesn't, we check if it intersects the spheres.
@@ -229,21 +243,6 @@ Code excerpt from raycast.cpp for the cylinder intersection:
 
         return t;
     };
-
-To use the ``Raycast`` argument system, you can simply call the system ``Raycast.fire`` that takes a ``Ray`` as an argument.
-
-.. code-block:: cpp
-
-    cubos.system("raycast").call([](Raycast raycast)
-    {
-        // raycast from the origin to -50,0,0
-        auto hit = Raycast.fire({{0.0F,0.0F,0.0F},{-50.0F,0.0F,0.0F}});
-        if (hit.contains())
-        {
-            // hit.point is the point where the ray hit the object
-            // hit.entitiy is the entity that was hit
-        }
-    });
 
 Spot Light Shadows :dim:`(@tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
