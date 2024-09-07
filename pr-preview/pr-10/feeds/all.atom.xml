@@ -127,12 +127,22 @@ Recently, Erin Catto shared his &lt;a href="https://box2d.org/posts/2024/02/solv
 &lt;/section&gt;
 &lt;section id="raycasting-diogomsmiranda"&gt;
 &lt;h4&gt;Raycasting &lt;span class="m-text m-dim"&gt;(&amp;#64;diogomsmiranda)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;Raycasting is a commonly used tool in game development which we Cubos were lacking until now!&lt;/p&gt;
-&lt;p&gt;Raycasting is a technique used to determine the intersection of a ray with an object in a scene, right now in Cubos there are 2 shapes of colliders,
-the &lt;code&gt;BoxCollisionShape&lt;/code&gt; and the &lt;code&gt;CapsuleCollisionShape&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Because of this, the new system argument &lt;code&gt;Raycast&lt;/code&gt; implementation can be divided into 2 parts, &lt;strong&gt;collision with boxes&lt;/strong&gt; and &lt;strong&gt;collision with capsules&lt;/strong&gt; (notice that a sphere is a capsule with no height).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Collision with a Box&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The collision with a box is based on the Cyrus-Beck algorithm, which is a line clipping algorithm that is used to find the intersection of a line segment with a convex polygon.&lt;/p&gt;
+&lt;p&gt;Raycasting is a commonly used tool in game development which Cubos was lacking until now - it is a technique used to determine the intersection of a ray with an object in a scene.
+This allows for a wide range of applications, such as shooting mechanics, object selection, and more.&lt;/p&gt;
+&lt;p&gt;This new utility was implemented as a system argument, which means it can be used in any system, by simply adding it as an argument:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;raycast&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;call&lt;/span&gt;&lt;span class="p"&gt;([](&lt;/span&gt;&lt;span class="n"&gt;Raycast&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;raycast&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// raycast from the origin to -50,0,0&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Raycast&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fire&lt;/span&gt;&lt;span class="p"&gt;({{&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;},{&lt;/span&gt;&lt;span class="mf"&gt;-50.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;}});&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contains&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hit entity {} at point {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hit&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;entity&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hit&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;To implement this, we had to handle the two types of colliders that we currently have in Cubos: boxes and capsules.&lt;/p&gt;
+&lt;section id="intersection-with-a-box"&gt;
+&lt;h5&gt;Intersection with a Box&lt;/h5&gt;
+&lt;p&gt;The intersection test with a box is based on the Cyrus-Beck algorithm, which is a line clipping algorithm that is used to find the intersection of a line segment with a convex polygon.&lt;/p&gt;
 &lt;p&gt;We can easily define a box by the minimum and maximum values of x,y,z and the ray by its origin and the direction.&lt;/p&gt;
 &lt;p&gt;A ray is defined then by the line formula:&lt;/p&gt;
 &lt;div class="m-math"&gt;
@@ -290,8 +300,10 @@ t = (point - ray.origin) / ray.direction
 
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tMin&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tMax&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tMin&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;};&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Collision with a Capsule&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The collision with a capsule is more straight forward than the collision with a box, as we can separate a capsule into 3 parts,
+&lt;/section&gt;
+&lt;section id="intersection-with-a-capsule"&gt;
+&lt;h5&gt;Intersection with a Capsule&lt;/h5&gt;
+&lt;p&gt;The intersection with a capsule is more straight forward than the collision with a box, as we can separate a capsule into 3 parts,
 a cylinder and the two spheres at the ends.&lt;/p&gt;
 &lt;p&gt;We then can check for a point of intersection by checking if the ray intersects the cylinder, and if it doesn't, we check if it intersects the spheres.&lt;/p&gt;
 &lt;p&gt;We can determine both intersections by simply subbing the the ray's equation for x and z in the cylinder and sphere equations, and then solving it for t.&lt;/p&gt;
@@ -337,17 +349,7 @@ a cylinder and the two spheres at the ends.&lt;/p&gt;
 
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;};&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;To use the &lt;code&gt;Raycast&lt;/code&gt; argument system, you can simply call the system &lt;code&gt;Raycast.fire&lt;/code&gt; that takes a &lt;code&gt;Ray&lt;/code&gt; as an argument.&lt;/p&gt;
-&lt;pre class="m-code"&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;raycast&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;call&lt;/span&gt;&lt;span class="p"&gt;([](&lt;/span&gt;&lt;span class="n"&gt;Raycast&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;raycast&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// raycast from the origin to -50,0,0&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Raycast&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fire&lt;/span&gt;&lt;span class="p"&gt;({{&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;},{&lt;/span&gt;&lt;span class="mf"&gt;-50.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;}});&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contains&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;// hit.point is the point where the ray hit the object&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;// hit.entitiy is the entity that was hit&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;});&lt;/span&gt;&lt;/pre&gt;
+&lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="spot-light-shadows-tomas7770"&gt;
 &lt;h4&gt;Spot Light Shadows &lt;span class="m-text m-dim"&gt;(&amp;#64;tomas7770)&lt;/span&gt;&lt;/h4&gt;
