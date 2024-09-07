@@ -427,17 +427,17 @@ and &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpStr
 &lt;section id="groundwork-for-a-standalone-editor-riscadoa"&gt;
 &lt;h4&gt;Groundwork for a Standalone Editor &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;The original main goal for this version was to get a first prototype of our standalone editor working.
-Sadly, I didn't manage to get it done in time, as it was a bigger task than I anticipated.&lt;/p&gt;
-&lt;p&gt;The initial approach, to which I dedicated most of my time, was to have two instances of Cubos running at the same time, on the &lt;strong&gt;same process&lt;/strong&gt; - one for the editor and one for the game.
+Sadly, we didn't manage to get it done in time, as it was a bigger task than we anticipated.&lt;/p&gt;
+&lt;p&gt;The initial approach, to which we dedicated most of the time, was to have two instances of Cubos running at the same time, on the &lt;strong&gt;same process&lt;/strong&gt; - one for the editor and one for the game.
 The game instance would be running within the editor instance, and would be launched by loading the game's code from a shared library (such as a DLL).
 With this separation, it would be possible for the editor to interact with the game, pause it, restart it and so on, even across game code changes, without having to restart the editor.&lt;/p&gt;
-&lt;p&gt;So, with this in mind, I restructured some parts of the code base to get it flexible enough to support this kind of setup.
+&lt;p&gt;So, with this in mind, we restructured some parts of the code base to get it flexible enough to support this kind of setup.
 Namely, it is now possible to step Cubos instances, reset them, restart them, and other similar operations.
-I also added cross platform support for loading Cubos instances from shared libraries, so that we could load the game from the editor.&lt;/p&gt;
+We also added cross platform support for loading Cubos instances from shared libraries, so that we could load the game from the editor.&lt;/p&gt;
 &lt;p&gt;This all seems, at first, perfect, but after discussing with the team, we realized that this approach of having two Cubos instances in the same process is not ideal at all.
 Any game crash would bring down the editor, any memory leak in the game would affect the editor, and infinite loops in the game would freeze the editor.
 Since solving the halting problem isn't in our roadmap, we decided that we should discard this approach, and instead try to keep the &lt;strong&gt;editor and the game in two separate processes&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;So, for the next release, I'll be focusing on following this new approach. It will be a big task, and it will be a lot more difficult, as it will require a lot of inter-process communication, but it will be worth it in the end.
+&lt;p&gt;So, for the next release, we'll be focusing on following this new approach. It will be a big task, and it will be a lot more difficult, as it will require a lot of inter-process communication, but it will be worth it in the end.
 It will allows us to have a stable editor, whose performance is not affected (that much at least) by the game, and vice-versa.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
