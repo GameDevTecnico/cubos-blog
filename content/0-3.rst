@@ -8,6 +8,9 @@
 .. role:: dim
     :class: m-text m-dim
 
+This blog post came a bit late due to the summer break, but we're back with a new release!
+Features-wise, this release was a tad smaller than the previous one as we spent a lot of time working on non-code related stuff, such as rebranding and marketing the project.
+
 A New Brand Identity :dim:`(Nuno Baptista)`
 ===========================================
 
@@ -72,9 +75,6 @@ Speaking of which, a Brand Guidelines Document was enacted to specify how the br
 New 0.3 Features
 ================
 
-On this release, we focused on adding essential features we've been wanting to have for quite some time now.
-Features-wise, this release was a bit smaller than the previous one, as we spent a lot of time working on non-code related stuff, such as rebranding the project.
-
 This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
 
 On the Editor
@@ -121,7 +121,9 @@ We can easily define a box by the minimum and maximum values of x,y,z and the ra
 
 A ray is defined then by the line formula:
 
-.. math:: point = ray.origin + t * ray.direction
+.. math::
+    
+    point = ray.origin + t * ray.direction
 
 Being t a scalar value that represents the distance from the ray's origin to the point.
 
@@ -132,12 +134,6 @@ For that we can rearrange the previous formula to:
 .. math::
 
     t = (point - ray.origin) / ray.direction
-
-    OR (when decomposed in x,y,z)
-
-    tX = (point.x - ray.origin.x) / ray.direction.x
-    tY = (point.y - ray.origin.y) / ray.direction.y
-    tZ = (point.z - ray.origin.z) / ray.direction.z
 
 If the point is in the right side of the ray, then the intersection point is the point that is closest to the ray's origin.
 

@@ -19,6 +19,21 @@
               ps.pelican
               ps.pygments
             ]))
+            (pkgs.texlive.combine {
+              inherit (pkgs.texlive)
+                scheme-basic
+                ucs
+                gensymb
+                newtx
+                etoolbox
+                xstring
+                xcolor
+                fontaxes
+                preview
+                tex-gyre
+                dvisvgm
+                standalone;
+            })
           ];
         };
       });
