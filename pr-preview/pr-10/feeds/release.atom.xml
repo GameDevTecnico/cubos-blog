@@ -372,7 +372,12 @@ the areas of the atlas reserved for each light.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="initial-ui-plugin-diogomendonc-a"&gt;
 &lt;h4&gt;Initial UI Plugin &lt;span class="m-text m-dim"&gt;(&amp;#64;DiogoMendonc-a)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO: describe changes, add screenshots, maybe gifs too?&lt;/p&gt;
+&lt;p&gt;Cubos now has a UI system!&lt;/p&gt;
+&lt;p&gt;Add a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UICanvas.html"&gt;UICanvas&lt;/a&gt; to your Render Target, and set a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIElement.html"&gt;UIElement&lt;/a&gt; as its child. The UIElement will determine where the entity is drawn, and other UI components you add to the entity, such as a UIImage, will determine what it is that is drawn.
+For this initial version of the plugin, there are only two types of elements: &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIColorRect.html"&gt;UIColorRect&lt;/a&gt;, which simply fills the element with a solid colour, and &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIImage.html"&gt;UIImage&lt;/a&gt;, which draws an image asset.&lt;/p&gt;
+&lt;p&gt;To make using the UIElement easier, there are also a number of components meant to dynamically change its size: &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIHorizontalStretch.html"&gt;UIHorizontalStretch&lt;/a&gt; and &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIVerticalStretch.html"&gt;UIVerticalStretch&lt;/a&gt; will make the element expand to its parent's size.&lt;/p&gt;
+&lt;p&gt;One more problem that was tackled was the question of how to handle different aspect ratios. As it stands, Cubos now has five different settings for how to handle that, that can be read in detail on &lt;a href="https://docs.cubosengine.org/examples-engine-ui.html"&gt;the sample page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Finally, there is a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html"&gt;UINativeAspectRatio&lt;/a&gt; that, when paired with an UIImage, will ensure that the UIELement will retain the proportions of the original source file.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="arbitrary-input-combinations-for-actions-and-axes-luishfonseca"&gt;
 &lt;h4&gt;Arbitrary Input Combinations for Actions and Axes &lt;span class="m-text m-dim"&gt;(&amp;#64;luishfonseca)&lt;/span&gt;&lt;/h4&gt;

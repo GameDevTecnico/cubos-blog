@@ -421,7 +421,12 @@ the areas of the atlas reserved for each light.</p>
 </section>
 <section id="initial-ui-plugin-diogomendonc-a">
 <h4>Initial UI Plugin <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h4>
-<p>TODO: describe changes, add screenshots, maybe gifs too?</p>
+<p>Cubos now has a UI system!</p>
+<p>Add a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UICanvas.html">UICanvas</a> to your Render Target, and set a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIElement.html">UIElement</a> as its child. The UIElement will determine where the entity is drawn, and other UI components you add to the entity, such as a UIImage, will determine what it is that is drawn.
+For this initial version of the plugin, there are only two types of elements: <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIColorRect.html">UIColorRect</a>, which simply fills the element with a solid colour, and <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIImage.html">UIImage</a>, which draws an image asset.</p>
+<p>To make using the UIElement easier, there are also a number of components meant to dynamically change its size: <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIHorizontalStretch.html">UIHorizontalStretch</a> and <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIVerticalStretch.html">UIVerticalStretch</a> will make the element expand to its parent's size.</p>
+<p>One more problem that was tackled was the question of how to handle different aspect ratios. As it stands, Cubos now has five different settings for how to handle that, that can be read in detail on <a href="https://docs.cubosengine.org/examples-engine-ui.html">the sample page</a>.</p>
+<p>Finally, there is a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html">UINativeAspectRatio</a> that, when paired with an UIImage, will ensure that the UIELement will retain the proportions of the original source file.</p>
 </section>
 <section id="arbitrary-input-combinations-for-actions-and-axes-luishfonseca">
 <h4>Arbitrary Input Combinations for Actions and Axes <span class="m-text m-dim">(&#64;luishfonseca)</span></h4>
