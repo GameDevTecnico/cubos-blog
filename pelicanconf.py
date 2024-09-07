@@ -49,4 +49,4 @@ M_SITE_LOGO = 'images/favicon.png'
 M_SITE_LOGO_TEXT = 'Cubos'
 
 PLUGIN_PATHS = ['m.css/plugins']
-PLUGINS = ['m.htmlsanity', 'm.code', 'm.images']
+PLUGINS = ['m.htmlsanity', 'm.code', 'm.images', 'm.math']
