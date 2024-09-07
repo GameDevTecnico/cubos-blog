@@ -18,6 +18,7 @@
             (python3.withPackages (ps: [
               ps.pelican
               ps.pygments
+              ps.pillow
             ]))
             (pkgs.texlive.combine {
               inherit (pkgs.texlive)
@@ -32,6 +33,7 @@
                 preview
                 tex-gyre
                 dvisvgm
+                xpatch
                 standalone;
             })
           ];
