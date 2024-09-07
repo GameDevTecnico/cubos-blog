@@ -272,7 +272,16 @@ the areas of the atlas reserved for each light.
 Initial UI Plugin :dim:`(@DiogoMendonc-a)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO: describe changes, add screenshots, maybe gifs too?
+Cubos now has a UI system!
+
+Add a `UICanvas <https://docs.cubosengine.org/structcubos_1_1engine_1_1UICanvas.html>`_ to your Render Target, and set a `UIElement <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIElement.html>`_ as its child. The UIElement will determine where the entity is drawn, and other UI components you add to the entity, such as a UIImage, will determine what it is that is drawn.
+For this initial version of the plugin, there are only two types of elements: `UIColorRect <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIColorRect.html>`_, which simply fills the element with a solid colour, and `UIImage <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIImage.html>`_, which draws an image asset.
+
+To make using the UIElement easier, there are also a number of components meant to dynamically change its size: `UIHorizontalStretch <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIHorizontalStretch.html>`_ and `UIVerticalStretch <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIVerticalStretch.html>`_ will make the element expand to its parent's size. 
+
+One more problem that was tackled was the question of how to handle different aspect ratios. As it stands, Cubos now has five different settings for how to handle that, that can be read in detail on `the sample page <https://docs.cubosengine.org/examples-engine-ui.html>`_.
+
+Finally, there is a `UINativeAspectRatio <https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html>`_ that, when paired with an UIImage, will ensure that the UIELement will retain the proportions of the original source file.
 
 Arbitrary Input Combinations for Actions and Axes :dim:`(@luishfonseca)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
