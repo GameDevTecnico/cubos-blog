@@ -449,18 +449,15 @@ It will allows us to have a stable editor, whose performance is not affected (th
 &lt;/section&gt;
 &lt;section id="next-steps"&gt;
 &lt;h2&gt;Next Steps&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;TODO: I just copied this from the previous post, we should rewrite it:&lt;/strong&gt;
-We're very happy with the progress we've made on this release. The engine is becoming more and more powerful, and we were able to create a full game with it in a week!&lt;/p&gt;
-&lt;p&gt;For the next release, which should be out in September, we'll be &lt;strong&gt;WIP&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Although this was a smaller release, we managed to get some important features done!
+In the next release, which should be out by the end of this month, we're planning to add:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;A &lt;strong&gt;standalone editor application&lt;/strong&gt;. Our tools are currently integrated into the games themselves which is not ideal.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Audio support&lt;/strong&gt;, as there's no sound at all in the engine right now.&lt;/li&gt;
 &lt;li&gt;Actual &lt;strong&gt;voxel collisions&lt;/strong&gt;, as we currently only check the bounding boxes.&lt;/li&gt;
 &lt;li&gt;Basic &lt;strong&gt;rigidbody physics&lt;/strong&gt;, with rotation and friction.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Shadows&lt;/strong&gt; for all light types.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Web-support&lt;/strong&gt;, so that games can be played in the browser.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shadows&lt;/strong&gt; for other light types.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Tracing and spans&lt;/strong&gt;, for better tracking of program execution.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;TODO: what else? review stuff above too&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/27"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;p&gt;We're currently a team of 13 people, and &lt;strong&gt;we're looking to expand&lt;/strong&gt;! If you're interested in joining us, or just want to learn more about the project, join our &lt;a href="https://discord.gg/WjTtcNTRqD"&gt;Discord server&lt;/a&gt;!&lt;/p&gt;
