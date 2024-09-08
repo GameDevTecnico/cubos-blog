@@ -373,19 +373,15 @@ It will allows us to have a stable editor, whose performance is not affected (th
 Next Steps
 ==========
 
-**TODO: I just copied this from the previous post, we should rewrite it:**
-We're very happy with the progress we've made on this release. The engine is becoming more and more powerful, and we were able to create a full game with it in a week!
-
-For the next release, which should be out in September, we'll be **WIP**
+Although this was a smaller release, we managed to get some important features done!
+In the next release, which should be out by the end of this month, we're planning to add:
 
 * A **standalone editor application**. Our tools are currently integrated into the games themselves which is not ideal.
 * **Audio support**, as there's no sound at all in the engine right now.
 * Actual **voxel collisions**, as we currently only check the bounding boxes.
 * Basic **rigidbody physics**, with rotation and friction.
-* **Shadows** for all light types.
-* **Web-support**, so that games can be played in the browser.
+* **Shadows** for other light types.
 * **Tracing and spans**, for better tracking of program execution.
-* **TODO: what else? review stuff above too**
 
 You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/27>`_ for the next release.
 
