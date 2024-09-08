@@ -85,6 +85,27 @@ Console Plugin :dim:`(@Scarface1809)`
 
 TODO: describe changes, add a screenshot
 
+Groundwork for a Standalone Editor :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The original main goal for this version was to get a first prototype of our standalone editor working.
+Sadly, we didn't manage to get it done in time, as it was a bigger task than we anticipated.
+
+The initial approach, to which we dedicated most of the time, was to have two instances of Cubos running at the same time, on the **same process** - one for the editor and one for the game.
+The game instance would be running within the editor instance, and would be launched by loading the game's code from a shared library (such as a DLL).
+With this separation, it would be possible for the editor to interact with the game, pause it, restart it and so on, even across game code changes, without having to restart the editor.
+
+So, with this in mind, we restructured some parts of the code base to get it flexible enough to support this kind of setup.
+Namely, it is now possible to step Cubos instances, reset them, restart them, and other similar operations.
+We also added cross platform support for loading Cubos instances from shared libraries, so that we could load the game from the editor. 
+
+This all seems, at first, perfect, but after discussing with the team, we realized that this approach of having two Cubos instances in the same process is not ideal at all.
+Any game crash would bring down the editor, any memory leak in the game would affect the editor, and infinite loops in the game would freeze the editor.
+Since solving the halting problem isn't in our roadmap, we decided that we should discard this approach, and instead try to keep the **editor and the game in two separate processes**.
+
+So, for the next release, we'll be focusing on following this new approach. It will be a big task, and it will be a lot more difficult, as it will require a lot of inter-process communication, but it will be worth it in the end.
+It will allows us to have a stable editor, whose performance is not affected (that much at least) by the game, and vice-versa.
+
 On the Engine
 -------------
 
@@ -348,27 +369,6 @@ Creating an UDP client and sending a message is as simple as:
     client.send(msg, std::strlen(msg), Address::from("server.com"), 8081);
 
 Learn more about it on our `networking documentation <https://docs.cubosengine.org/examples-core-networking.html>`_ : 
-
-Groundwork for a Standalone Editor :dim:`(@RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The original main goal for this version was to get a first prototype of our standalone editor working.
-Sadly, we didn't manage to get it done in time, as it was a bigger task than we anticipated.
-
-The initial approach, to which we dedicated most of the time, was to have two instances of Cubos running at the same time, on the **same process** - one for the editor and one for the game.
-The game instance would be running within the editor instance, and would be launched by loading the game's code from a shared library (such as a DLL).
-With this separation, it would be possible for the editor to interact with the game, pause it, restart it and so on, even across game code changes, without having to restart the editor.
-
-So, with this in mind, we restructured some parts of the code base to get it flexible enough to support this kind of setup.
-Namely, it is now possible to step Cubos instances, reset them, restart them, and other similar operations.
-We also added cross platform support for loading Cubos instances from shared libraries, so that we could load the game from the editor. 
-
-This all seems, at first, perfect, but after discussing with the team, we realized that this approach of having two Cubos instances in the same process is not ideal at all.
-Any game crash would bring down the editor, any memory leak in the game would affect the editor, and infinite loops in the game would freeze the editor.
-Since solving the halting problem isn't in our roadmap, we decided that we should discard this approach, and instead try to keep the **editor and the game in two separate processes**.
-
-So, for the next release, we'll be focusing on following this new approach. It will be a big task, and it will be a lot more difficult, as it will require a lot of inter-process communication, but it will be worth it in the end.
-It will allows us to have a stable editor, whose performance is not affected (that much at least) by the game, and vice-versa.
 
 Next Steps
 ==========
