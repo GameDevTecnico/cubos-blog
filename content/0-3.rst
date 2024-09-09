@@ -64,7 +64,7 @@ Russo One conveys energy and strength while maintaining a dynamic feel to it, wh
 About the logo's colors, it can be observed that these remained virtually unchanged thought out the design process.
 The contrast of neutral colors with a cyan blue, that aim to represent knowledge and innovation, was well received.
 Additional colors were added to the pallet for software and marketing purposes.
-Speaking of which, a Brand Guidelines Document was enacted to specify how the brand and marketing material should be designed and to which principles it should adhere.
+Speaking of which, a `Brand Guidelines Document </images/brand.pdf>`_ was enacted to specify how the brand and marketing material should be designed and to which principles it should adhere.
 
 .. image-grid::
     {static}/images/brand_guidelines_1.png
