@@ -14,7 +14,8 @@ M_LINKS_FOOTER1 = [('Cubos', '.'),
                    ('Getting Started', 'https://docs.cubosengine.org/getting-started.html'),
                    ('Feature Guide', 'https://docs.cubosengine.org/features.html'),
                    ('Examples', 'https://docs.cubosengine.org/examples.html'),
-                   ('Contribution Guidelines', 'https://docs.cubosengine.org/contribution.html')]
+                   ('Contribution Guidelines', 'https://docs.cubosengine.org/contribution.html'),
+                   ('Brand Guidelines', '/images/brand.pdf')]
 
 M_LINKS_FOOTER2 = [('Docs', 'https://docs.cubosengine.org'),
                    ('Pages', 'https://docs.cubosengine.org/pages.html'),
