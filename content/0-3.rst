@@ -80,11 +80,6 @@ This blog post covers the most important changes, but you can check out the full
 On the Editor
 -------------
 
-Console Plugin :dim:`(@Scarface1809)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-TODO: describe changes, add a screenshot
-
 Groundwork for a Standalone Editor :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -303,13 +298,6 @@ To make using the UIElement easier, there are also a number of components meant 
 One more problem that was tackled was the question of how to handle different aspect ratios. As it stands, Cubos now has five different settings for how to handle that, that can be read in detail on `the sample page <https://docs.cubosengine.org/examples-engine-ui.html>`_.
 
 Finally, there is a `UINativeAspectRatio <https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html>`_ that, when paired with an UIImage, will ensure that the UIELement will retain the proportions of the original source file.
-
-Arbitrary Input Combinations for Actions and Axes :dim:`(@luishfonseca)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-TODO: describe changes, show input bindings example
-
-TODO: describe changes, add screenshots, maybe gifs too?
 
 On the Core
 -----------
