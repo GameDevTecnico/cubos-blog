@@ -108,10 +108,6 @@ Speaking of which, a Brand Guidelines Document was enacted to specify how the br
 &lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
 &lt;section id="on-the-editor"&gt;
 &lt;h3&gt;On the Editor&lt;/h3&gt;
-&lt;section id="console-plugin-scarface1809"&gt;
-&lt;h4&gt;Console Plugin &lt;span class="m-text m-dim"&gt;(&amp;#64;Scarface1809)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO: describe changes, add a screenshot&lt;/p&gt;
-&lt;/section&gt;
 &lt;section id="groundwork-for-a-standalone-editor-riscadoa"&gt;
 &lt;h4&gt;Groundwork for a Standalone Editor &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;The original main goal for this version was to get a first prototype of our standalone editor working.
@@ -394,11 +390,6 @@ For this initial version of the plugin, there are only two types of elements: &l
 &lt;p&gt;To make using the UIElement easier, there are also a number of components meant to dynamically change its size: &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIHorizontalStretch.html"&gt;UIHorizontalStretch&lt;/a&gt; and &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIVerticalStretch.html"&gt;UIVerticalStretch&lt;/a&gt; will make the element expand to its parent's size.&lt;/p&gt;
 &lt;p&gt;One more problem that was tackled was the question of how to handle different aspect ratios. As it stands, Cubos now has five different settings for how to handle that, that can be read in detail on &lt;a href="https://docs.cubosengine.org/examples-engine-ui.html"&gt;the sample page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Finally, there is a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html"&gt;UINativeAspectRatio&lt;/a&gt; that, when paired with an UIImage, will ensure that the UIELement will retain the proportions of the original source file.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="arbitrary-input-combinations-for-actions-and-axes-luishfonseca"&gt;
-&lt;h4&gt;Arbitrary Input Combinations for Actions and Axes &lt;span class="m-text m-dim"&gt;(&amp;#64;luishfonseca)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO: describe changes, show input bindings example&lt;/p&gt;
-&lt;p&gt;TODO: describe changes, add screenshots, maybe gifs too?&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-core"&gt;
