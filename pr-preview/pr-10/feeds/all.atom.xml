@@ -118,7 +118,7 @@ With this separation, it would be possible for the editor to interact with the g
 &lt;p&gt;So, with this in mind, we restructured some parts of the code base to get it flexible enough to support this kind of setup.
 Namely, it is now possible to step Cubos instances, reset them, restart them, and other similar operations.
 We also added cross platform support for loading Cubos instances from shared libraries, so that we could load the game from the editor.&lt;/p&gt;
-&lt;p&gt;This all seems, at first, perfect, but after discussing with the team, we realized that this approach of having two Cubos instances in the same process is not ideal at all.
+&lt;p&gt;This all seems, at first, perfect, but after a team discussion, we realized that this approach of having two Cubos instances in the same process is not ideal at all.
 Any game crash would bring down the editor, any memory leak in the game would affect the editor, and infinite loops in the game would freeze the editor.
 Since solving the halting problem isn't in our roadmap, we decided that we should discard this approach, and instead try to keep the &lt;strong&gt;editor and the game in two separate processes&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;So, for the next release, we'll be focusing on following this new approach. It will be a big task, and it will be a lot more difficult, as it will require a lot of inter-process communication, but it will be worth it in the end.
@@ -389,7 +389,7 @@ the areas of the atlas reserved for each light.&lt;/p&gt;
 For this initial version of the plugin, there are only two types of elements: &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIColorRect.html"&gt;UIColorRect&lt;/a&gt;, which simply fills the element with a solid colour, and &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIImage.html"&gt;UIImage&lt;/a&gt;, which draws an image asset.&lt;/p&gt;
 &lt;p&gt;To make using the UIElement easier, there are also a number of components meant to dynamically change its size: &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIHorizontalStretch.html"&gt;UIHorizontalStretch&lt;/a&gt; and &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIVerticalStretch.html"&gt;UIVerticalStretch&lt;/a&gt; will make the element expand to its parent's size.&lt;/p&gt;
 &lt;p&gt;One more problem that was tackled was the question of how to handle different aspect ratios. As it stands, Cubos now has five different settings for how to handle that, that can be read in detail on &lt;a href="https://docs.cubosengine.org/examples-engine-ui.html"&gt;the sample page&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Finally, there is a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html"&gt;UINativeAspectRatio&lt;/a&gt; that, when paired with an UIImage, will ensure that the UIELement will retain the proportions of the original source file.&lt;/p&gt;
+&lt;p&gt;Finally, there is a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html"&gt;UINativeAspectRatio&lt;/a&gt; that, when paired with an UIImage, will ensure that the UIElement will retain the proportions of the original source file.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-core"&gt;
