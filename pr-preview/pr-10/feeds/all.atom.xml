@@ -420,12 +420,12 @@ This started becoming a priority since we detected lots of performance issues in
 &lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
 &lt;p&gt;Currently, metrics can be accessed manually through the singleton class. However, we plan to
 integrate these metrics into our editor for a more streamlined experience.&lt;/p&gt;
-&lt;p&gt;Learn more about it on our &lt;a href="https://docs.cubosengine.org/examples-core-metrics.html"&gt;metrics documentation&lt;/a&gt; :&lt;/p&gt;
+&lt;p&gt;Learn more about it on our &lt;a href="https://docs.cubosengine.org/examples-core-metrics.html"&gt;metrics documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="networking-utilities-roby2014"&gt;
 &lt;h4&gt;Networking Utilities &lt;span class="m-text m-dim"&gt;(&amp;#64;roby2014)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;In the 0.3 release, Cubos finally has networking! This is a big step forward for our engine, bringing
-powerful networking utilities such as ` Address &amp;lt;&lt;a class="m-link-wrap" href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html"&gt;https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html&lt;/a&gt;&amp;gt;`_,
+powerful networking utilities such as &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html"&gt;Address&lt;/a&gt;,
 &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1UdpSocket.html"&gt;UdpSocket&lt;/a&gt;, &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpListener.html"&gt;TcpListener&lt;/a&gt;,
 and &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpStream.html"&gt;TcpStream&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Creating an UDP client and sending a message is as simple as:&lt;/p&gt;
@@ -434,7 +434,7 @@ and &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpStr
 
 &lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello, I&amp;#39;m a Cubos UDP client!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;strlen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Address&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;server.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8081&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;Learn more about it on our &lt;a href="https://docs.cubosengine.org/examples-core-networking.html"&gt;networking documentation&lt;/a&gt; :&lt;/p&gt;
+&lt;p&gt;Learn more about it on our &lt;a href="https://docs.cubosengine.org/examples-core-networking.html"&gt;networking documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;/section&gt;
