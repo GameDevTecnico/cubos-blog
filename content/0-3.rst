@@ -94,7 +94,7 @@ So, with this in mind, we restructured some parts of the code base to get it fle
 Namely, it is now possible to step Cubos instances, reset them, restart them, and other similar operations.
 We also added cross platform support for loading Cubos instances from shared libraries, so that we could load the game from the editor. 
 
-This all seems, at first, perfect, but after discussing with the team, we realized that this approach of having two Cubos instances in the same process is not ideal at all.
+This all seems, at first, perfect, but after a team discussion, we realized that this approach of having two Cubos instances in the same process is not ideal at all.
 Any game crash would bring down the editor, any memory leak in the game would affect the editor, and infinite loops in the game would freeze the editor.
 Since solving the halting problem isn't in our roadmap, we decided that we should discard this approach, and instead try to keep the **editor and the game in two separate processes**.
 
@@ -297,7 +297,7 @@ To make using the UIElement easier, there are also a number of components meant 
 
 One more problem that was tackled was the question of how to handle different aspect ratios. As it stands, Cubos now has five different settings for how to handle that, that can be read in detail on `the sample page <https://docs.cubosengine.org/examples-engine-ui.html>`_.
 
-Finally, there is a `UINativeAspectRatio <https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html>`_ that, when paired with an UIImage, will ensure that the UIELement will retain the proportions of the original source file.
+Finally, there is a `UINativeAspectRatio <https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html>`_ that, when paired with an UIImage, will ensure that the UIElement will retain the proportions of the original source file.
 
 On the Core
 -----------
@@ -336,13 +336,13 @@ How it looks:
 Currently, metrics can be accessed manually through the singleton class. However, we plan to 
 integrate these metrics into our editor for a more streamlined experience.
 
-Learn more about it on our `metrics documentation <https://docs.cubosengine.org/examples-core-metrics.html>`_ : 
+Learn more about it on our `metrics documentation <https://docs.cubosengine.org/examples-core-metrics.html>`_.
 
 Networking Utilities :dim:`(@roby2014)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the 0.3 release, Cubos finally has networking! This is a big step forward for our engine, bringing 
-powerful networking utilities such as ` Address <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html>`_, 
+powerful networking utilities such as `Address <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html>`_, 
 `UdpSocket <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1UdpSocket.html>`_, `TcpListener <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpListener.html>`_, 
 and `TcpStream <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpStream.html>`_. 
 
@@ -356,7 +356,7 @@ Creating an UDP client and sending a message is as simple as:
     const char* msg = "Hello, I'm a Cubos UDP client!";
     client.send(msg, std::strlen(msg), Address::from("server.com"), 8081);
 
-Learn more about it on our `networking documentation <https://docs.cubosengine.org/examples-core-networking.html>`_ : 
+Learn more about it on our `networking documentation <https://docs.cubosengine.org/examples-core-networking.html>`_.
 
 Next Steps
 ==========
