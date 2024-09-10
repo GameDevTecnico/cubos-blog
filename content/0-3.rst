@@ -39,7 +39,7 @@ The final shape was a 3-armed spiral, inspired by the Keltic symbol the Trisquel
     {static}/images/prototype_logo_2_horizontal.png Second design - horizontal layout
     {static}/images/prototype_logo_2_vertical.png Second design - vertical layout
 
-Unfortunately, to some members of the team, the new icon reminded them of a swastika.
+Unfortunately, to some members of the team, the new icon reminded them of some unpleasant symbol.
 Consequently, we're back to square one. A brainstorming session ensued.
 Various shapes were tested and debated, but the icons kept getting too complex and unrecognizable.
 
