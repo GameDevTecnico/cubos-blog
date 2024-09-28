@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>9999-01-01T00:00:00+00:00</updated><entry><title>0.4</title><link href="https://cubosengine.org/04.html" rel="alternate"></link><published>9999-01-01T00:00:00+00:00</published><updated>9999-01-01T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,9999-01-01:/04.html</id><summary type="html">&lt;p&gt;Cubos 0.4 Release!&lt;/p&gt;
-</summary><content type="html">&lt;img-comparison-slider&gt;
-&lt;img slot="before" src="https://cubosengine.org/images/brand_guidelines_1.png" style="width: 100%" /&gt;
-&lt;img slot="after" src="https://cubosengine.org/images/brand_guidelines_2.png" style="width: 100%" /&gt;
-&lt;/img-comparison-slider&gt;
-&lt;img-comparison-slider class="with-shadows"&gt;
-&lt;img slot="before" src="https://cubosengine.org/images/brand_guidelines_1.png" style="width: 100%" /&gt;
-&lt;img slot="after" src="https://cubosengine.org/images/brand_guidelines_2.png" style="width: 100%" /&gt;
-&lt;/img-comparison-slider&gt;
-&lt;img-comparison-slider class="with-dark-divider"&gt;
-&lt;img slot="before" src="https://cubosengine.org/images/brand_guidelines_1.png" style="width: 100%" /&gt;
-&lt;img slot="after" src="https://cubosengine.org/images/brand_guidelines_2.png" style="width: 100%" /&gt;
-&lt;/img-comparison-slider&gt;
-</content><category term="Release"></category></entry><entry><title>0.3 is here!</title><link href="https://cubosengine.org/03-is-here.html" rel="alternate"></link><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/03-is-here.html</id><summary type="html">&lt;p&gt;Cubos 0.3 Release!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2024-09-09T16:00:00+01:00</updated><entry><title>0.3 is here!</title><link href="https://cubosengine.org/03-is-here.html" rel="alternate"></link><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/03-is-here.html</id><summary type="html">&lt;p&gt;Cubos 0.3 Release!&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This blog post came a bit late due to the summer break, but we're back with a new release!
 Features-wise, this release was a tad smaller than the previous one as we spent a lot of time working on non-code related stuff, such as rebranding and marketing the project.&lt;/p&gt;
 &lt;section id="a-new-brand-identity-nuno-baptista"&gt;
