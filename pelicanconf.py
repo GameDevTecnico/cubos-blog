@@ -42,7 +42,9 @@ THEME_STATIC_DIR = 'static'
 DIRECT_TEMPLATES = ['index']
 
 M_CSS_FILES = ['https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600',
-               'static/m-dark.css']
+               'static/m-dark.css',
+               'https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css']
+M_JS_FILES = ['https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js']
 M_THEME_COLOR = '#22272e'
 
 M_FAVICON = ('images/favicon.png', 'image/png')
