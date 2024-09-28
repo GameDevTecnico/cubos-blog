@@ -1002,6 +1002,17 @@ figure.m-figure figcaption .m-figure-description a {
     border-right-width: 0;
   }
 }
+img-comparison-slider.with-shadows {
+  --default-handle-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  --divider-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+img-comparison-slider.with-dark-divider {
+  --divider-color: rgba(0, 0, 0, 0.5);
+  --default-handle-color: rgba(0, 0, 0, 0.5);
+}
+img-comparison-slider:focus {
+  outline: none;
+}
 .m-container-inflatable > .m-row > [class*='m-col-'] > .m-note,
 .m-container-inflatable > .m-row > [class*='m-col-'] > .m-frame,
 .m-container-inflatable > .m-row > [class*='m-col-'] > .m-block,
