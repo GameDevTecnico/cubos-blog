@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2024-09-09T16:00:00+01:00</updated><entry><title>0.3 is here!</title><link href="https://cubosengine.org/03-is-here.html" rel="alternate"></link><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/03-is-here.html</id><summary type="html">&lt;p&gt;Cubos 0.3 Release!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>9999-01-01T00:00:00+00:00</updated><entry><title>0.4</title><link href="https://cubosengine.org/04.html" rel="alternate"></link><published>9999-01-01T00:00:00+00:00</published><updated>9999-01-01T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,9999-01-01:/04.html</id><summary type="html">&lt;p&gt;Cubos 0.4 Release!&lt;/p&gt;
+</summary><content type="html">&lt;img-comparison-slider&gt;
+&lt;img slot="before" src="https://cubosengine.org/images/brand_guidelines_1.png" style="width: 100%" /&gt;
+&lt;img slot="after" src="https://cubosengine.org/images/brand_guidelines_2.png" style="width: 100%" /&gt;
+&lt;/img-comparison-slider&gt;
+&lt;img-comparison-slider class="with-shadows"&gt;
+&lt;img slot="before" src="https://cubosengine.org/images/brand_guidelines_1.png" style="width: 100%" /&gt;
+&lt;img slot="after" src="https://cubosengine.org/images/brand_guidelines_2.png" style="width: 100%" /&gt;
+&lt;/img-comparison-slider&gt;
+&lt;img-comparison-slider class="with-dark-divider"&gt;
+&lt;img slot="before" src="https://cubosengine.org/images/brand_guidelines_1.png" style="width: 100%" /&gt;
+&lt;img slot="after" src="https://cubosengine.org/images/brand_guidelines_2.png" style="width: 100%" /&gt;
+&lt;/img-comparison-slider&gt;
+</content><category term="Release"></category></entry><entry><title>0.3 is here!</title><link href="https://cubosengine.org/03-is-here.html" rel="alternate"></link><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/03-is-here.html</id><summary type="html">&lt;p&gt;Cubos 0.3 Release!&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This blog post came a bit late due to the summer break, but we're back with a new release!
 Features-wise, this release was a tad smaller than the previous one as we spent a lot of time working on non-code related stuff, such as rebranding and marketing the project.&lt;/p&gt;
 &lt;section id="a-new-brand-identity-nuno-baptista"&gt;
@@ -719,7 +732,7 @@ However, unlike components, relations belong to pairs of entities, instead of a 
 &lt;p&gt;Symmetry is particularly important for collision relations. While the direction of some relations, such as &lt;code&gt;ChildOf&lt;/code&gt;, matter, the direction of others, such as &lt;code&gt;CollidingWith&lt;/code&gt;, should not.
 For example, a relation between &lt;em&gt;foo and bar&lt;/em&gt; will also be identifiable through &lt;em&gt;bar and foo&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Tree relations are used to specify that each entity can only have at most one outgoing instance of that relation type, and that cycles are not allowed.
-This is useful for parent-child relations: &lt;code&gt;cmds.relate(a, b, ChildOf{})&lt;/code&gt; would remove any previous relations of type &lt;code&gt;ChildOf&lt;/code&gt; from &lt;code&gt;a&lt;/code&gt; to other entity.&lt;/p&gt;
+This is useful for parent-child relations: &lt;code class="m-code"&gt;cmds.relate(a, b, ChildOf{})&lt;/code&gt; would remove any previous relations of type &lt;code&gt;ChildOf&lt;/code&gt; from &lt;code&gt;a&lt;/code&gt; to other entity.&lt;/p&gt;
 &lt;p&gt;This is great, but how do we store these relations tightly in memory while also allowing for fast queries?&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
