@@ -1,9 +1,44 @@
-0.4
-###
+0.4 is out! 
+###########
 
-:date: 9999-01-1 00:00:00
+:date: 2024-10-20 00:00:00
 :category: Release
 :summary: Cubos 0.4 Release!
+
+.. role:: dim
+    :class: m-text m-dim
+
+New 0.4 Features
+================
+
+This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
+
+On the Editor
+-------------
+
+Project Management and Debugging :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Voxel Model Importing Tool :dim:`(@Scarface1809)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+On the Engine
+-------------
+
+Physics with Rotation :dim:`(@fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Cascading Shadow Maps :dim:`(@tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+also, here is how you can use the image comparison thing:
 
 .. role:: dim
     :class: m-text m-dim
@@ -21,3 +56,51 @@
     :class: with-dark-divider
     :before: {static}/images/brand_guidelines_1.png
     :after: {static}/images/brand_guidelines_2.png
+
+Input Axis Deadzones :dim:`(@kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Ortographic Cameras :dim:`(@mkuritsu)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+On the Core
+-------------
+
+Spans for Profiling and Tracing :dim:`(@roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Swapping OpenAL for Miniaudio :dim:`(@diogomsmiranda, @Dageus)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Type Client and Type Server :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Stacktraces on Crashes :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Next Steps
+==========
+
+In the next release, which should be out by the end of November, we're planning to work on the following features:
+
+* Make it possible to edit scenes through the now standalone editor.
+* An Audio plugin, using the new Audio Context abstraction we've added in this release.
+* ?? TODO: add graphics plans here
+* ?? TODO: add physics plans here
+* ?? TODO: add other stuff here
+
+Additionally, we're planning to work on a new game project using our engine - now with online multiplayer support!
+
+You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/28>`_ for the next release.
