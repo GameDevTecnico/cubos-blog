@@ -138,7 +138,13 @@ For now, we've decided to simply ignore these traits, but we'll eventually need 
 Stacktraces on Crashes :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO
+Previously, when the engine crashed, it would simply print an error message to the console, and that was it.
+We would not get a lot of information about the crash's context, other than the previous log messages.
+To debug a crash, we usually spun up a debugger and tried to reproduce it.
+This way we could get a stack trace, but it was a bit cumbersome, and when the crash happened in a release build or in a different environment, we were out of luck.
+
+In order to make our lives easier, we've integrated `cpptrace <https://github.com/jeremy-rifkin/cpptrace>`_ into the core library.
+Now, whenever the engine aborts, it prints a pretty stack trace to ``stderr``, which includes the function names, the file names, and the line numbers of the functions that were called.
 
 Next Steps
 ==========
