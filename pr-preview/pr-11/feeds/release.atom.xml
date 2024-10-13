@@ -7,8 +7,24 @@
 &lt;h3&gt;On the Editor&lt;/h3&gt;
 &lt;section id="project-management-and-debugging-riscadoa"&gt;
 &lt;h4&gt;Project Management and Debugging &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO&lt;/p&gt;
-&lt;/section&gt;
+&lt;p&gt;In this release, we were finally able to make our editor, &lt;strong&gt;Tesseratos&lt;/strong&gt;, a standalone application!
+Previously, the editor was a part of the engine itself. If you made changes to the game's code, you had to recompile the editor itself and restart it.
+Now, the editor has its own executable, and through it, you can open projects, edit their assets, and even debug them - all without having to restart the editor when recompiling the game.
+Right now, the UX is still a bit rough, as we've focused on making it work first.&lt;/p&gt;
+&lt;p&gt;One major hurdle we had to overcome was how to make the editor aware of the project's data types, such as its components and resources.
+Before, they were part of the same application, and thus, the editor could simply access them directly.
+Now, with the editor being a separate application, we needed a way to share this information across different processes.
+You can read more about it in the &amp;quot;Type Client and Type Server&amp;quot; section at the end of this post, but in short, it is now possible to share type data across different processes, through, for example, a socket.&lt;/p&gt;
+&lt;p&gt;In practice, this means that games made with Cubos can now be launched with a debug flag which makes them act as a server at a given port.
+Then, the editor is able to connect to this server and extract all of the required debug information.
+We also make use of this new connection to allow the editor to send debugging commands to the game, such as pausing, resuming, and stepping the game's execution.&lt;/p&gt;
+&lt;p&gt;So, essentially, we've added two new tools to the editor:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A debugger tool, which allows you to connect to a running game and debug it (pause, resume, step, etc.).&lt;/li&gt;
+&lt;li&gt;A project manager tool, which allows you to open projects, edit their assets, and launch them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can see them in action in the video below:&lt;/p&gt;
+&lt;iframe width="560" height="340" style="display: block; margin: auto" src="https://www.youtube.com/embed/Pu40BjmmW2U" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen&gt;&lt;/iframe&gt;&lt;/section&gt;
 &lt;section id="voxel-model-importing-tool-scarface1809"&gt;
 &lt;h4&gt;Voxel Model Importing Tool &lt;span class="m-text m-dim"&gt;(&amp;#64;Scarface1809)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;TODO&lt;/p&gt;
@@ -58,11 +74,41 @@ also, here is how you can use the image comparison thing:&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="type-client-and-type-server-riscadoa"&gt;
 &lt;h4&gt;Type Client and Type Server &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;To separate &lt;strong&gt;Tesseratos&lt;/strong&gt; from the engine into a separate process, we needed a way to share type data across different processes.
+This is because the editor needs to know about the project's data types, such as its components and resources, to be able to work with them, for example, to show them in the editor's UI, or to edit scene assets.&lt;/p&gt;
+&lt;p&gt;To solve this problem, we've added the &lt;code&gt;TypeServer&lt;/code&gt; and &lt;code&gt;TypeClient&lt;/code&gt; classes to the core's reflection module.
+The editor contains a &lt;code&gt;TypeClient&lt;/code&gt;, the game contains a &lt;code&gt;TypeServer&lt;/code&gt; and both communicate through an abstract stream, which currently is implemented using a TCP socket.&lt;/p&gt;
+&lt;p&gt;Our reflection system is based on the concept of &amp;quot;traits&amp;quot;. A trait is a piece of metadata that describes a type, such as its name, its fields, and its methods.
+Both the &lt;code&gt;TypeClient&lt;/code&gt; and the &lt;code&gt;TypeServer&lt;/code&gt; allow registering serialization and deserialization functions for each trait, so that they can be sent across the stream.&lt;/p&gt;
+&lt;p&gt;The protocol itself is relatively simple:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The client sends a list of the names of the traits it supports.&lt;/li&gt;
+&lt;li&gt;The client sends a list of the types it already knows about (for example, primitive types like &lt;code&gt;int&lt;/code&gt; and &lt;code&gt;float&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The server sends a list with the types that the client doesn't know about yet. This includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The type name.&lt;/li&gt;
+&lt;li&gt;A list of the serialized traits that describe the type.&lt;/li&gt;
+&lt;li&gt;The serialized default value for the type, if it has one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Most of the complexity of this system is on the client side, as it needs to figure out the memory layout of the types it receives from the server.
+We do this by basing the memory layout on one of the received traits.
+For example, if the server sends a trait that describes an object type with fields, then the client will create a new type which stores these fields in memory.
+If the trait describes an array type, then the client will create a new type that stores an array in memory, and so on.&lt;/p&gt;
+&lt;p&gt;One major limitation of the current implementation is that it lacks support for traits like &lt;code&gt;NullableTrait&lt;/code&gt;.
+This trait contains a function which determines if a value is null or not, and another to make a value null.
+How can we pass a function through a stream? We can't. One thing we could do would be to communicate again with the server whenever the client needs to know whether a value is null or not.
+For now, we've decided to simply ignore these traits, but we'll eventually need to tackle this issue, as it would allow for better UX in the editor.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="stacktraces-on-crashes-riscadoa"&gt;
 &lt;h4&gt;Stacktraces on Crashes &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;Previously, when the engine crashed, it would simply print an error message to the console, and that was it.
+We would not get a lot of information about the crash's context, other than the previous log messages.
+To debug a crash, we usually spun up a debugger and tried to reproduce it.
+This way we could get a stack trace, but it was a bit cumbersome, and when the crash happened in a release build or in a different environment, we were out of luck.&lt;/p&gt;
+&lt;p&gt;In order to make our lives easier, we've integrated &lt;a href="https://github.com/jeremy-rifkin/cpptrace"&gt;cpptrace&lt;/a&gt; into the core library.
+Now, whenever the engine aborts, it prints a pretty stack trace to &lt;code&gt;stderr&lt;/code&gt;, which includes the function names, the file names, and the line numbers of the functions that were called.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;/section&gt;
