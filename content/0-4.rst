@@ -19,7 +19,30 @@ On the Editor
 Project Management and Debugging :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO
+In this release, we were finally able to make our editor, **Tesseratos**, a standalone application!
+Previously, the editor was a part of the engine itself. If you made changes to the game's code, you had to recompile the editor itself and restart it.
+Now, the editor has its own executable, and through it, you can open projects, edit their assets, and even debug them - all without having to restart the editor when recompiling the game.
+Right now, the UX is still a bit rough, as we've focused on making it work first.
+
+One major hurdle we had to overcome was how to make the editor aware of the project's data types, such as its components and resources.
+Before, they were part of the same application, and thus, the editor could simply access them directly.
+Now, with the editor being a separate application, we needed a way to share this information across different processes.
+You can read more about it in the "Type Client and Type Server" section at the end of this post, but in short, it is now possible to share type data across different processes, through, for example, a socket.
+
+In practice, this means that games made with Cubos can now be launched with a debug flag which makes them act as a server at a given port.
+Then, the editor is able to connect to this server and extract all of the required debug information.
+We also make use of this new connection to allow the editor to send debugging commands to the game, such as pausing, resuming, and stepping the game's execution.
+
+So, essentially, we've added two new tools to the editor:
+
+- A debugger tool, which allows you to connect to a running game and debug it (pause, resume, step, etc.).
+- A project manager tool, which allows you to open projects, edit their assets, and launch them.
+
+You can see them in action in the video below:
+
+.. raw:: html
+
+    <iframe width="560" height="340" style="display: block; margin: auto" src="https://www.youtube.com/embed/Pu40BjmmW2U" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen></iframe>
 
 Voxel Model Importing Tool :dim:`(@Scarface1809)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
