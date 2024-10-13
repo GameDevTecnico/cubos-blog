@@ -106,7 +106,34 @@ TODO
 Type Client and Type Server :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO
+To separate **Tesseratos** from the engine into a separate process, we needed a way to share type data across different processes.
+This is because the editor needs to know about the project's data types, such as its components and resources, to be able to work with them, for example, to show them in the editor's UI, or to edit scene assets.
+
+To solve this problem, we've added the ``TypeServer`` and ``TypeClient`` classes to the core's reflection module.
+The editor contains a ``TypeClient``, the game contains a ``TypeServer`` and both communicate through an abstract stream, which currently is implemented using a TCP socket.
+
+Our reflection system is based on the concept of "traits". A trait is a piece of metadata that describes a type, such as its name, its fields, and its methods.
+Both the ``TypeClient`` and the ``TypeServer`` allow registering serialization and deserialization functions for each trait, so that they can be sent across the stream.
+
+The protocol itself is relatively simple:
+
+#. The client sends a list of the names of the traits it supports.
+#. The client sends a list of the types it already knows about (for example, primitive types like ``int`` and ``float``).
+#. The server sends a list with the types that the client doesn't know about yet. This includes:
+
+   - The type name.
+   - A list of the serialized traits that describe the type.
+   - The serialized default value for the type, if it has one.
+
+Most of the complexity of this system is on the client side, as it needs to figure out the memory layout of the types it receives from the server.
+We do this by basing the memory layout on one of the received traits.
+For example, if the server sends a trait that describes an object type with fields, then the client will create a new type which stores these fields in memory.
+If the trait describes an array type, then the client will create a new type that stores an array in memory, and so on.
+
+One major limitation of the current implementation is that it lacks support for traits like ``NullableTrait``.
+This trait contains a function which determines if a value is null or not, and another to make a value null.
+How can we pass a function through a stream? We can't. One thing we could do would be to communicate again with the server whenever the client needs to know whether a value is null or not.
+For now, we've decided to simply ignore these traits, but we'll eventually need to tackle this issue, as it would allow for better UX in the editor.
 
 Stacktraces on Crashes :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
