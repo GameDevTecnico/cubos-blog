@@ -89,20 +89,45 @@ We also make use of this new connection to allow the editor to send debugging co
 </section>
 <section id="cascading-shadow-maps-tomas7770">
 <h4>Cascading Shadow Maps <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
-<p>TODO
-also, here is how you can use the image comparison thing:</p>
+<p>In the previous release, we introduced <strong>shadows</strong>.
+As shown in the release blog post, this had a significant impact on the quality of Cubos's graphics.
+However, due to the complexity and time it took to implement this feature, we were only able to support
+spot lights, the type of light for which it's easiest to cast shadows. This obviously restricted the
+scenarios where this impact was visible. For this release we aimed to extend shadows support
+to directional lights, leaving only point light shadows to be implemented.</p>
+<p>Here are some comparison screenshots showing the difference that having directional shadows can make.
+Try dragging the slider in the middle to compare the before and after!</p>
 <img-comparison-slider>
-<img slot="before" src="./images/brand_guidelines_1.png" style="width: 100%" />
-<img slot="after" src="./images/brand_guidelines_2.png" style="width: 100%" />
+<img slot="before" src="./images/scraps_vs_zombies_csm_before.png" style="width: 100%" />
+<img slot="after" src="./images/scraps_vs_zombies_csm_after.png" style="width: 100%" />
 </img-comparison-slider>
-<img-comparison-slider class="with-shadows">
-<img slot="before" src="./images/brand_guidelines_1.png" style="width: 100%" />
-<img slot="after" src="./images/brand_guidelines_2.png" style="width: 100%" />
+<img-comparison-slider>
+<img slot="before" src="./images/cars_csm_before.png" style="width: 100%" />
+<img slot="after" src="./images/cars_csm_after.png" style="width: 100%" />
 </img-comparison-slider>
-<img-comparison-slider class="with-dark-divider">
-<img slot="before" src="./images/brand_guidelines_1.png" style="width: 100%" />
-<img slot="after" src="./images/brand_guidelines_2.png" style="width: 100%" />
+<img-comparison-slider>
+<img slot="before" src="./images/surfers_csm_before.png" style="width: 100%" />
+<img slot="after" src="./images/surfers_csm_after.png" style="width: 100%" />
 </img-comparison-slider>
+<p>As you can see, this adds a whole new level of depth to the engine's graphics.</p>
+<p>Similarly to spot shadows, directional shadows can be enabled by adding a component to the respective light,
+in this case a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1DirectionalShadowCaster.html">DirectionalShadowCaster</a>.
+The <a href="https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows">Shadows sample</a> has been updated to show this.</p>
+<p>Because directional shadows are more complex than spot shadows, there are more options that can be configured,
+namely the maximum and minimum distances for which shadows are casted (directional lights have an unlimited
+range, but shadows have a limited range), the distances at which the shadow quality level drops (&quot;splits&quot;), and the resolution
+of the shadow map. You may want to tweak the distance values for better results: a lower value will result in
+better shadow quality at the expense of range, and vice-versa.</p>
+<p>Due to a technical limitation in our renderer, only one directional light can cast shadows at a given time;
+other directional shadow casters will simply be ignored.</p>
+<p>The way directional shadows are implemented is similar to spot shadows. One of the main differences is
+that, because of directional lights' unlimited range, a technique known as <a href="https://learnopengl.com/Guest-Articles/2021/CSM">Cascaded Shadow Mapping</a>
+is employed, rendering the world from a point which varies with the camera's position, and at multiple
+distances to balance quality with draw range. This means that instead of just a single shadow map texture
+for the light, there is a texture for each camera, multiplied by the number of distances at which the world is rendered.
+It's worth noting that each directional shadow caster has its own textures, instead of using a shared shadow atlas like spot casters.
+Below is a screenshot of the directional shadow map used to draw shadows in <em>Scraps vs Zombies</em>, as shown earlier.</p>
+<img class="m-image" src="images/cascaded_shadow_map.png" />
 </section>
 <section id="input-axis-deadzones-kuukitenshi">
 <h4>Input Axis Deadzones <span class="m-text m-dim">(&#64;kuukitenshi)</span></h4>
