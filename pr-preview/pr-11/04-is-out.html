@@ -145,7 +145,48 @@ Below is a screenshot of the directional shadow map used to draw shadows in <em>
 <h3>On the Core</h3>
 <section id="spans-for-profiling-and-tracing-roby2014">
 <h4>Spans for Profiling and Tracing <span class="m-text m-dim">(&#64;roby2014)</span></h4>
-<p>TODO</p>
+<p>In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing.
+This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with Cubos.</p>
+<p>Tracing allows developers to track the execution of their code by creating spans that represent specific periods of execution.
+This capability makes it easier to log messages and visualize the flow of an application, providing valuable insights into performance and behaviour.</p>
+<p>In Cubos, tracing is facilitated through a set of macros defined in <code>core/tel/tracing.hpp</code>:
+- <code>CUBOS_SPAN_TRACE</code>
+- <code>CUBOS_SPAN_DEBUG</code>
+- <code>CUBOS_SPAN_INFO</code></p>
+<p>From now on, the logger level will be shared across all telemetry components. You can set it by using <code>cubos::core::tel::level</code> method.
+This means that, e.g, trace spans will only be registered if the telemetry level is trace.
+We also moved the other components to <code>tel</code> namespace (metrics and logging).</p>
+<p>Here's a simple code snippet on how it works and it's output:</p>
+<pre class="m-code"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cubos</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">tel</span><span class="o">::</span><span class="n">level</span><span class="p">(</span><span class="n">Level</span><span class="o">::</span><span class="n">Debug</span><span class="p">);</span>
+<span class="w">    </span><span class="n">CUBOS_SPAN_TRACE</span><span class="p">(</span><span class="s">&quot;this_wont_exist!&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// wont exist because trace &lt; debug</span>
+
+<span class="w">    </span><span class="n">CUBOS_INFO</span><span class="p">(</span><span class="s">&quot;hello from root span!&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">CUBOS_SPAN_INFO</span><span class="p">(</span><span class="s">&quot;main_span&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// With this macro, a new RAII guard is created. When dropped, exits the span.</span>
+<span class="w">    </span><span class="c1">// This indicates that we are in the span for the current lexical scope.</span>
+<span class="w">    </span><span class="c1">// Logs and metrics from here will be associated with &#39;main&#39; span.</span>
+<span class="w">    </span><span class="n">CUBOS_INFO</span><span class="p">(</span><span class="s">&quot;hello!&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">CUBOS_SPAN_DEBUG</span><span class="p">(</span><span class="s">&quot;other_scope&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">CUBOS_INFO</span><span class="p">(</span><span class="s">&quot;hello again!&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">SpanManager</span><span class="o">::</span><span class="n">begin</span><span class="p">(</span><span class="s">&quot;manual_span&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cubos</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">tel</span><span class="o">::</span><span class="n">Level</span><span class="o">::</span><span class="n">Debug</span><span class="p">);</span>
+<span class="w">    </span><span class="n">CUBOS_INFO</span><span class="p">(</span><span class="s">&quot;entered a manual span&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SpanManager</span><span class="o">::</span><span class="n">end</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">CUBOS_INFO</span><span class="p">(</span><span class="s">&quot;after exit manual span&quot;</span><span class="p">);</span>
+<span class="p">}</span></pre>
+<pre class="m-code"><span class="o">[</span><span class="m">16</span>:03:31.966<span class="o">]</span><span class="w"> </span><span class="o">[</span>main.cpp:20<span class="w"> </span>main<span class="o">]</span><span class="w"> </span><span class="o">[</span>thread11740<span class="o">]</span><span class="w"> </span>info:<span class="w"> </span>hello<span class="w"> </span>from<span class="w"> </span>root<span class="w"> </span>span!
+<span class="o">[</span><span class="m">16</span>:03:31.967<span class="o">]</span><span class="w"> </span><span class="o">[</span>main.cpp:26<span class="w"> </span>main<span class="o">]</span><span class="w"> </span><span class="o">[</span>thread11740:main_span<span class="o">]</span><span class="w"> </span>info:<span class="w"> </span>hello!
+<span class="o">[</span><span class="m">16</span>:03:31.967<span class="o">]</span><span class="w"> </span><span class="o">[</span>main.cpp:29<span class="w"> </span>main<span class="o">]</span><span class="w"> </span><span class="o">[</span>thread11740:main_span:other_scope<span class="o">]</span><span class="w"> </span>info:<span class="w"> </span>hello<span class="w"> </span>again!
+<span class="o">[</span><span class="m">16</span>:03:31.968<span class="o">]</span><span class="w"> </span><span class="o">[</span>main.cpp:34<span class="w"> </span>main<span class="o">]</span><span class="w"> </span><span class="o">[</span>thread11740:main_span:other_scope:manual_span<span class="o">]</span><span class="w"> </span>info:<span class="w"> </span>entered<span class="w"> </span>a<span class="w"> </span>manual<span class="w"> </span>span
+<span class="o">[</span><span class="m">16</span>:03:31.969<span class="o">]</span><span class="w"> </span><span class="o">[</span>main.cpp:37<span class="w"> </span>main<span class="o">]</span><span class="w"> </span><span class="o">[</span>thread11740:main_span:other_scope<span class="o">]</span><span class="w"> </span>info:<span class="w"> </span>after<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>manual<span class="w"> </span>span</pre>
+<p>Looking ahead, we aim to develop a Tesseratos plugin that will allow developers to debug and view all possible spans and their execution times
+(e.g: <a class="m-link-wrap" href="https://github.com/bwrsandman/imgui-flame-graph">https://github.com/bwrsandman/imgui-flame-graph</a>).</p>
+<p>This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.</p>
 </section>
 <section id="swapping-openal-for-miniaudio-diogomsmiranda-dageus">
 <h4>Swapping OpenAL for Miniaudio <span class="m-text m-dim">(&#64;diogomsmiranda, &#64;Dageus)</span></h4>

@@ -91,7 +91,48 @@ Below is a screenshot of the directional shadow map used to draw shadows in &lt;
 &lt;h3&gt;On the Core&lt;/h3&gt;
 &lt;section id="spans-for-profiling-and-tracing-roby2014"&gt;
 &lt;h4&gt;Spans for Profiling and Tracing &lt;span class="m-text m-dim"&gt;(&amp;#64;roby2014)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing.
+This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with Cubos.&lt;/p&gt;
+&lt;p&gt;Tracing allows developers to track the execution of their code by creating spans that represent specific periods of execution.
+This capability makes it easier to log messages and visualize the flow of an application, providing valuable insights into performance and behaviour.&lt;/p&gt;
+&lt;p&gt;In Cubos, tracing is facilitated through a set of macros defined in &lt;code&gt;core/tel/tracing.hpp&lt;/code&gt;:
+- &lt;code&gt;CUBOS_SPAN_TRACE&lt;/code&gt;
+- &lt;code&gt;CUBOS_SPAN_DEBUG&lt;/code&gt;
+- &lt;code&gt;CUBOS_SPAN_INFO&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;From now on, the logger level will be shared across all telemetry components. You can set it by using &lt;code&gt;cubos::core::tel::level&lt;/code&gt; method.
+This means that, e.g, trace spans will only be registered if the telemetry level is trace.
+We also moved the other components to &lt;code&gt;tel&lt;/code&gt; namespace (metrics and logging).&lt;/p&gt;
+&lt;p&gt;Here's a simple code snippet on how it works and it's output:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;tel&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Level&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_SPAN_TRACE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;this_wont_exist!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// wont exist because trace &amp;lt; debug&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello from root span!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_SPAN_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;main_span&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// With this macro, a new RAII guard is created. When dropped, exits the span.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// This indicates that we are in the span for the current lexical scope.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// Logs and metrics from here will be associated with &amp;#39;main&amp;#39; span.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_SPAN_DEBUG&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;other_scope&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello again!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;SpanManager&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;manual_span&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;tel&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Level&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;entered a manual span&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;SpanManager&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;after exit manual span&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
+&lt;pre class="m-code"&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.966&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:20&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;hello&lt;span class="w"&gt; &lt;/span&gt;from&lt;span class="w"&gt; &lt;/span&gt;root&lt;span class="w"&gt; &lt;/span&gt;span!
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.967&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:26&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;hello!
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.967&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:29&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span:other_scope&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;hello&lt;span class="w"&gt; &lt;/span&gt;again!
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.968&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:34&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span:other_scope:manual_span&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;entered&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;manual&lt;span class="w"&gt; &lt;/span&gt;span
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.969&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:37&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span:other_scope&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;after&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;manual&lt;span class="w"&gt; &lt;/span&gt;span&lt;/pre&gt;
+&lt;p&gt;Looking ahead, we aim to develop a Tesseratos plugin that will allow developers to debug and view all possible spans and their execution times
+(e.g: &lt;a class="m-link-wrap" href="https://github.com/bwrsandman/imgui-flame-graph"&gt;https://github.com/bwrsandman/imgui-flame-graph&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="swapping-openal-for-miniaudio-diogomsmiranda-dageus"&gt;
 &lt;h4&gt;Swapping OpenAL for Miniaudio &lt;span class="m-text m-dim"&gt;(&amp;#64;diogomsmiranda, &amp;#64;Dageus)&lt;/span&gt;&lt;/h4&gt;
