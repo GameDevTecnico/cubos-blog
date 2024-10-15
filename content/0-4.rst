@@ -123,7 +123,60 @@ On the Core
 Spans for Profiling and Tracing :dim:`(@roby2014)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO
+In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing. 
+This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with Cubos.
+
+Tracing allows developers to track the execution of their code by creating spans that represent specific periods of execution. 
+This capability makes it easier to log messages and visualize the flow of an application, providing valuable insights into performance and behaviour.
+
+In Cubos, tracing is facilitated through a set of macros defined in ``core/tel/tracing.hpp``:
+- ``CUBOS_SPAN_TRACE``
+- ``CUBOS_SPAN_DEBUG``
+- ``CUBOS_SPAN_INFO``
+
+From now on, the logger level will be shared across all telemetry components. You can set it by using ``cubos::core::tel::level`` method.
+This means that, e.g, trace spans will only be registered if the telemetry level is trace.
+We also moved the other components to ``tel`` namespace (metrics and logging). 
+
+Here's a simple code snippet on how it works and it's output:
+
+.. code-block:: cpp
+
+    int main()
+    {
+        cubos::core::tel::level(Level::Debug);
+        CUBOS_SPAN_TRACE("this_wont_exist!"); // wont exist because trace < debug
+
+        CUBOS_INFO("hello from root span!");
+
+        CUBOS_SPAN_INFO("main_span");
+        // With this macro, a new RAII guard is created. When dropped, exits the span.
+        // This indicates that we are in the span for the current lexical scope.
+        // Logs and metrics from here will be associated with 'main' span.
+        CUBOS_INFO("hello!");
+
+        CUBOS_SPAN_DEBUG("other_scope");
+        CUBOS_INFO("hello again!");
+
+        SpanManager::begin("manual_span", cubos::core::tel::Level::Debug);
+        CUBOS_INFO("entered a manual span");
+        SpanManager::end();
+
+        CUBOS_INFO("after exit manual span");
+    }
+
+.. code-block:: shell
+
+    [16:03:31.966] [main.cpp:20 main] [thread11740] info: hello from root span!
+    [16:03:31.967] [main.cpp:26 main] [thread11740:main_span] info: hello!
+    [16:03:31.967] [main.cpp:29 main] [thread11740:main_span:other_scope] info: hello again!
+    [16:03:31.968] [main.cpp:34 main] [thread11740:main_span:other_scope:manual_span] info: entered a manual span
+    [16:03:31.969] [main.cpp:37 main] [thread11740:main_span:other_scope] info: after exit manual span
+
+Looking ahead, we aim to develop a Tesseratos plugin that will allow developers to debug and view all possible spans and their execution times
+(e.g: https://github.com/bwrsandman/imgui-flame-graph).
+
+This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.
 
 Swapping OpenAL for Miniaudio :dim:`(@diogomsmiranda, @Dageus)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
