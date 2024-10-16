@@ -1,0 +1,364 @@
+0.4 is out! 
+###########
+
+:date: 2024-10-20 00:00:00
+:category: Release
+:summary: Cubos 0.4 Release!
+
+.. role:: dim
+    :class: m-text m-dim
+
+New 0.4 Features
+================
+
+This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
+
+On the Editor
+-------------
+
+Project Management and Debugging :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In this release, we were finally able to make our editor, **Tesseratos**, a standalone application!
+Previously, the editor was a part of the engine itself. If you made changes to the game's code, you had to recompile the editor itself and restart it.
+Now, the editor has its own executable, and through it, you can open projects, edit their assets, and even debug them - all without having to restart the editor when recompiling the game.
+Right now, the UX is still a bit rough, as we've focused on making it work first.
+
+One major hurdle we had to overcome was how to make the editor aware of the project's data types, such as its components and resources.
+Before, they were part of the same application, and thus, the editor could simply access them directly.
+Now, with the editor being a separate application, we needed a way to share this information across different processes.
+You can read more about it in the "Type Client and Type Server" section at the end of this post, but in short, it is now possible to share type data across different processes, through, for example, a socket.
+
+In practice, this means that games made with Cubos can now be launched with a debug flag which makes them act as a server at a given port.
+Then, the editor is able to connect to this server and extract all of the required debug information.
+We also make use of this new connection to allow the editor to send debugging commands to the game, such as pausing, resuming, and stepping the game's execution.
+
+So, essentially, we've added two new tools to the editor:
+
+- A debugger tool, which allows you to connect to a running game and debug it (pause, resume, step, etc.).
+- A project manager tool, which allows you to open projects, edit their assets, and launch them.
+
+You can see them in action in the video below:
+
+.. raw:: html
+
+    <iframe width="560" height="340" style="display: block; margin: auto" src="https://www.youtube.com/embed/Pu40BjmmW2U" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen></iframe>
+
+Voxel Model Importing Tool :dim:`(@Scarface1809)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+On the Engine
+-------------
+
+Physics with Rotation :dim:`(@fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We have **rotations**!
+
+.. image:: images/complex_physics_sample_rotations.gif
+
+Since the start of the physics plugin, we always treated rigid bodies as simple particles.
+This is because the calculations were more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging, of penetration solving for example, easier.
+With the particle behaviour stabilized, we decided it was time to expand the plugin to consider rotation, and for that we had to:
+
+- Add Collision Manifold and Collision Points computation.
+- Add Components for Rotation.
+- Expand the Integrator and Solver to compute rotations.
+
+Collision Manifold and Collision Points
+***************************************
+
+Previously, since everything was a particle, we simply computed if there was a collision using SAT, which also returned the normal along which the penetration was the smallest, along with that penetration value.
+For rotations we need a ``ContactManifold`` Relation, that holds all information about the collision. A Contact Manifold is effectively a 2D polygon that details the surface of contact between the 2 bodies. 
+In computer physics the bodies inter-penetrate each other, which does not happen in the real world. The manifold is the aproximation of the real contact surface the bodies would have. 
+This polygon is described by it's vertices, in the form of Contact Points, all of which contain their position and penetration in ``ContactPointData``.
+
+To compute the manifold we use the Sutherland Hodgman algorithm. Our current implementation was mostly inspired by this `tutorial <https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/previousinformation/physics5collisionmanifolds/2017%20Tutorial%205%20-%20Collision%20Manifolds.pdf>`_, which you can check out, to see how it works.
+
+.. code-block:: cpp
+
+    struct ContactPointData
+    {
+        cubos::core::ecs::Entity entity; ///< Entity to which the normal is relative to.
+        glm::vec3 globalOn1;             ///< Position on the entity of the contact in global coordinates.
+        glm::vec3 globalOn2;             ///< Position on the other entity of the contact in global coordinates.
+        glm::vec3 localOn1;              ///< Position on the entity of the contact in local coordinates.
+        glm::vec3 localOn2;              ///< Position on the other entity of the contact in local coordinates.
+        float penetration;               ///< Penetration of the contact point. Always positive.
+    };
+
+    struct ContactManifold
+    {
+        cubos::core::ecs::Entity entity;      ///< Entity to which the normal is relative to.
+        glm::vec3 normal;                     ///< A contact normal shared by all contacts in this manifold,
+                                              ///< expressed in the local space of the first entity.
+        std::vector<ContactPointData> points; ///< Contact points of this manifold.
+    };
+
+With this change, our narrow phase firstly checks for collision with SAT, since it's cheaper, and only then computes the manifold.
+
+The Collisions sample was also enhanced so we could visualize this information.
+
+.. image:: images/collision_sample_manifold_demo.gif
+
+New Components
+**************
+
+The next thing to add were Components to support rotations, such as ``Inertia``, ``Torque``, and ``AngularVelocity``, just to name a few.
+To facilitate the creation, we also added automatic computation of the inertia tensor for the ``BoxCollisionShape``, which is performed upon adding the ``Inertia`` component and every time ``Mass`` or the dimentions of the shape are changed.
+
+Expand the Integrator and Solver
+********************************
+
+The last step was to add rotation in the Integrator and ``PenetrationConstraint`` Solving. 
+
+The integrator simply takes the ``AngularImpulse`` and ``Torque`` components and handles them similarly to the linear movement components.
+We want to note that the ``Force`` component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through ``Force``, meaning, it has an hidden torque vector, which we also use in the Integration fase.
+
+.. code-block:: cpp
+    
+    struct Force
+    {
+        void addForceOnPoint(glm::vec3 force, glm::vec3 localPoint, glm::vec3 centerOfMass)
+        {
+            mForce += force;
+            mTorque = glm::cross(localPoint - centerOfMass, force);
+        }
+
+    private:
+        glm::vec3 mForce = {0.0F, 0.0F, 0.0F};
+        glm::vec3 mTorque = {0.0F, 0.0F, 0.0F};
+    };
+
+The ``PenetrationConstraint`` is now solved for each contact Point, using their local anchor for relative velocity, separation and angular velocity calculation at each step. 
+This involved changing the constraint itself to also have ``PenetrationConstraintPointData``, which are the same as the manifold points but with extra information to keep track of the constraint solving.
+The constraint is now created when the ``ContactManifold`` relation is present between 2 entities, instead of ``CollidingWith``.
+
+.. code-block:: cpp
+
+    struct PenetrationConstraintPointData
+    {
+        float initialSeparation; ///< The separation of the contact point. Negative separation indicates
+                                 ///< penetration.
+        float normalSpeed; ///< The relative velocity of the bodies along the normal at the contact point the begging of
+                           ///< the collision.
+
+        glm::vec3 localAnchor1; ///< The local contact point relative to the center of mass of the first body.
+        glm::vec3 localAnchor2; ///< The local contact point relative to the center of mass of the second body.
+
+        /// Store fixed world-space anchors.
+        /// This improves rolling behavior for shapes like balls and capsules. Used for restitution and friction.
+        glm::vec3 fixedAnchor1; ///< The world-space contact point relative to the center of mass of the first body.
+        glm::vec3 fixedAnchor2; ///< The world-space contact point relative to the center of mass of the second body.
+
+        // separation
+        float normalMass;    ///< Mass to use for normal impulse calculation.
+        float normalImpulse; ///< Accumulated impulse for separation.
+
+        // friction
+        float frictionMass1;    ///< Mass to use for friction impulse calculation along the first tangent..
+        float frictionMass2;    ///< Mass to use for friction impulse calculation along the second tangent..
+        float frictionImpulse1; ///< Accumulated impulse for friction along the first tangent.
+        float frictionImpulse2; ///< Accumulated impulse for friction along the second tangent.
+    };
+
+    struct PenetrationConstraint
+    {
+        cubos::core::ecs::Entity entity; ///< Entity to which the normal is relative to.
+        glm::vec3 normal;                ///< Normal of contact on the surface of the entity.
+        float friction;                  ///< Friction of the constraint.
+        float restitution;               ///< Restitution coefficient of the constraint.
+
+        std::vector<PenetrationConstraintPointData> points; ///< Contact points in the contact manifold.
+    };
+
+And that's it for this very short summary of the changes. 
+Our implementation is still far from perfect. As you might have seen in the sample clip, some movements still don't look very natural, and the boxes should have stayed on top of each other, which is something we'll be working on over the next releases.
+
+To wrap up, as we promised in the previous release blog post, we've added the ``PhysicsMaterial`` component, which allows users to fine tune be friction and bounciness behaviour of each body. Check it out in our documentation!
+
+Cascading Shadow Maps :dim:`(@tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the previous release, we introduced **shadows**.
+As shown in the release blog post, this had a significant impact on the quality of Cubos's graphics.
+However, due to the complexity and time it took to implement this feature, we were only able to support
+spot lights, the type of light for which it's easiest to cast shadows. This obviously restricted the
+scenarios where this impact was visible. For this release we aimed to extend shadows support
+to directional lights, leaving only point light shadows to be implemented.
+
+Here are some comparison screenshots showing the difference that having directional shadows can make.
+Try dragging the slider in the middle to compare the before and after!
+
+.. image-comparison::
+    :before: {static}/images/scraps_vs_zombies_csm_before.png
+    :after: {static}/images/scraps_vs_zombies_csm_after.png
+
+.. image-comparison::
+    :before: {static}/images/cars_csm_before.png
+    :after: {static}/images/cars_csm_after.png
+
+.. image-comparison::
+    :before: {static}/images/surfers_csm_before.png
+    :after: {static}/images/surfers_csm_after.png
+
+As you can see, this adds a whole new level of depth to the engine's graphics.
+
+Similarly to spot shadows, directional shadows can be enabled by adding a component to the respective light,
+in this case a `DirectionalShadowCaster <https://docs.cubosengine.org/structcubos_1_1engine_1_1DirectionalShadowCaster.html>`_.
+The `Shadows sample <https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows>`_ has been updated to show this.
+
+Because directional shadows are more complex than spot shadows, there are more options that can be configured,
+namely the maximum and minimum distances for which shadows are casted (directional lights have an unlimited
+range, but shadows have a limited range), the distances at which the shadow quality level drops ("splits"), and the resolution
+of the shadow map. You may want to tweak the distance values for better results: a lower value will result in
+better shadow quality at the expense of range, and vice-versa.
+
+Due to a technical limitation in our renderer, only one directional light can cast shadows at a given time;
+other directional shadow casters will simply be ignored.
+
+The way directional shadows are implemented is similar to spot shadows. One of the main differences is
+that, because of directional lights' unlimited range, a technique known as `Cascaded Shadow Mapping <https://learnopengl.com/Guest-Articles/2021/CSM>`_
+is employed, rendering the world from a point which varies with the camera's position, and at multiple
+distances to balance quality with draw range. This means that instead of just a single shadow map texture
+for the light, there is a texture for each camera, multiplied by the number of distances at which the world is rendered.
+It's worth noting that each directional shadow caster has its own textures, instead of using a shared shadow atlas like spot casters.
+Below is a screenshot of the directional shadow map used to draw shadows in *Scraps vs Zombies*, as shown earlier.
+
+.. image:: images/cascaded_shadow_map.png
+
+Input Axis Deadzones :dim:`(@kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Ortographic Cameras :dim:`(@mkuritsu)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+On the Core
+-------------
+
+Spans for Profiling and Tracing :dim:`(@roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing. 
+This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with Cubos.
+
+Tracing allows developers to track the execution of their code by creating spans that represent specific periods of execution. 
+This capability makes it easier to log messages and visualize the flow of an application, providing valuable insights into performance and behaviour.
+
+In Cubos, tracing is facilitated through a set of macros defined in ``core/tel/tracing.hpp``:
+- ``CUBOS_SPAN_TRACE``
+- ``CUBOS_SPAN_DEBUG``
+- ``CUBOS_SPAN_INFO``
+
+From now on, the logger level will be shared across all telemetry components. You can set it by using ``cubos::core::tel::level`` method.
+This means that, e.g, trace spans will only be registered if the telemetry level is trace.
+We also moved the other components to ``tel`` namespace (metrics and logging). 
+
+Here's a simple code snippet on how it works and it's output:
+
+.. code-block:: cpp
+
+    int main()
+    {
+        cubos::core::tel::level(Level::Debug);
+        CUBOS_SPAN_TRACE("this_wont_exist!"); // wont exist because trace < debug
+
+        CUBOS_INFO("hello from root span!");
+
+        CUBOS_SPAN_INFO("main_span");
+        // With this macro, a new RAII guard is created. When dropped, exits the span.
+        // This indicates that we are in the span for the current lexical scope.
+        // Logs and metrics from here will be associated with 'main' span.
+        CUBOS_INFO("hello!");
+
+        CUBOS_SPAN_DEBUG("other_scope");
+        CUBOS_INFO("hello again!");
+
+        SpanManager::begin("manual_span", cubos::core::tel::Level::Debug);
+        CUBOS_INFO("entered a manual span");
+        SpanManager::end();
+
+        CUBOS_INFO("after exit manual span");
+    }
+
+.. code-block:: shell
+
+    [16:03:31.966] [main.cpp:20 main] [thread11740] info: hello from root span!
+    [16:03:31.967] [main.cpp:26 main] [thread11740:main_span] info: hello!
+    [16:03:31.967] [main.cpp:29 main] [thread11740:main_span:other_scope] info: hello again!
+    [16:03:31.968] [main.cpp:34 main] [thread11740:main_span:other_scope:manual_span] info: entered a manual span
+    [16:03:31.969] [main.cpp:37 main] [thread11740:main_span:other_scope] info: after exit manual span
+
+Looking ahead, we aim to develop a Tesseratos plugin that will allow developers to debug and view all possible spans and their execution times
+(e.g: https://github.com/bwrsandman/imgui-flame-graph).
+
+This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.
+
+Swapping OpenAL for Miniaudio :dim:`(@diogomsmiranda, @Dageus)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Type Client and Type Server :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To separate **Tesseratos** from the engine into a separate process, we needed a way to share type data across different processes.
+This is because the editor needs to know about the project's data types, such as its components and resources, to be able to work with them, for example, to show them in the editor's UI, or to edit scene assets.
+
+To solve this problem, we've added the ``TypeServer`` and ``TypeClient`` classes to the core's reflection module.
+The editor contains a ``TypeClient``, the game contains a ``TypeServer`` and both communicate through an abstract stream, which currently is implemented using a TCP socket.
+
+Our reflection system is based on the concept of "traits". A trait is a piece of metadata that describes a type, such as its name, its fields, and its methods.
+Both the ``TypeClient`` and the ``TypeServer`` allow registering serialization and deserialization functions for each trait, so that they can be sent across the stream.
+
+The protocol itself is relatively simple:
+
+#. The client sends a list of the names of the traits it supports.
+#. The client sends a list of the types it already knows about (for example, primitive types like ``int`` and ``float``).
+#. The server sends a list with the types that the client doesn't know about yet. This includes:
+
+   - The type name.
+   - A list of the serialized traits that describe the type.
+   - The serialized default value for the type, if it has one.
+
+Most of the complexity of this system is on the client side, as it needs to figure out the memory layout of the types it receives from the server.
+We do this by basing the memory layout on one of the received traits.
+For example, if the server sends a trait that describes an object type with fields, then the client will create a new type which stores these fields in memory.
+If the trait describes an array type, then the client will create a new type that stores an array in memory, and so on.
+
+One major limitation of the current implementation is that it lacks support for traits like ``NullableTrait``.
+This trait contains a function which determines if a value is null or not, and another to make a value null.
+How can we pass a function through a stream? We can't. One thing we could do would be to communicate again with the server whenever the client needs to know whether a value is null or not.
+For now, we've decided to simply ignore these traits, but we'll eventually need to tackle this issue, as it would allow for better UX in the editor.
+
+Stacktraces on Crashes :dim:`(@RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Previously, when the engine crashed, it would simply print an error message to the console, and that was it.
+We would not get a lot of information about the crash's context, other than the previous log messages.
+To debug a crash, we usually spun up a debugger and tried to reproduce it.
+This way we could get a stack trace, but it was a bit cumbersome, and when the crash happened in a release build or in a different environment, we were out of luck.
+
+In order to make our lives easier, we've integrated `cpptrace <https://github.com/jeremy-rifkin/cpptrace>`_ into the core library.
+Now, whenever the engine aborts, it prints a pretty stack trace to ``stderr``, which includes the function names, the file names, and the line numbers of the functions that were called.
+
+Next Steps
+==========
+
+In the next release, which should be out by the end of November, we're planning to work on the following features:
+
+* Make it possible to edit scenes through the now standalone editor.
+* An Audio plugin, using the new Audio Context abstraction we've added in this release.
+* ?? TODO: add graphics plans here
+* ?? TODO: add physics plans here
+* ?? TODO: add other stuff here
+
+Additionally, we're planning to work on a new game project using our engine - now with online multiplayer support!
+
+You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/28>`_ for the next release.
