@@ -70,7 +70,7 @@ To compute the manifold we use the Sutherland Hodgman algorithm. Our current imp
 &lt;span class="p"&gt;};&lt;/span&gt;&lt;/pre&gt;
 &lt;p&gt;With this change, our narrow phase firstly checks for collision with SAT, since it's cheaper, and only then computes the manifold.&lt;/p&gt;
 &lt;p&gt;The Collisions sample was also enhanced so we could visualize this information.&lt;/p&gt;
-&lt;img class="m-image" src="images/collisions_sample_manifold_demo.gif" /&gt;
+&lt;img class="m-image" src="images/collision_sample_manifold_demo.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="new-components"&gt;
 &lt;h5&gt;New Components&lt;/h5&gt;
