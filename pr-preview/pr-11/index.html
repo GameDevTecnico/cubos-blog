@@ -100,8 +100,8 @@ With the particle behaviour stabilized, we decided it was time to expand the plu
 <p>Previously, since everything was a particle, we simply computed if there was a collision using SAT, which also returned the normal along which the penetration was the smallest, along with that penetration value.
 For rotations we need a <code>ContactManifold</code> Relation, that holds all information about the collision. A Contact Manifold is effectively a 2D polygon that details the surface of contact between the 2 bodies.
 In computer physics the bodies inter-penetrate each other, which does not happen in the real world. The manifold is the aproximation of the real contact surface the bodies would have.
-This polygon is described by it's vertices, in the form of Contact Points, all of which contain their position and penetration in <code>ContactPointData</code>.
-To compute the manifold we use the Sutherland Hodgman algorithm. Our current implementation was mostly inspired by this <a href="https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/previousinformation/physics5collisionmanifolds/2017%20Tutorial%205%20-%20Collision%20Manifolds.pdf">tutorial</a>, which you can check out, to see how it works.</p>
+This polygon is described by it's vertices, in the form of Contact Points, all of which contain their position and penetration in <code>ContactPointData</code>.</p>
+<p>To compute the manifold we use the Sutherland Hodgman algorithm. Our current implementation was mostly inspired by this <a href="https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/previousinformation/physics5collisionmanifolds/2017%20Tutorial%205%20-%20Collision%20Manifolds.pdf">tutorial</a>, which you can check out, to see how it works.</p>
 <pre class="m-code"><span class="k">struct</span><span class="w"> </span><span class="nc">ContactPointData</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="n">cubos</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">ecs</span><span class="o">::</span><span class="n">Entity</span><span class="w"> </span><span class="n">entity</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; Entity to which the normal is relative to.</span>
@@ -133,16 +133,18 @@ To facilitate the creation, we also added automatic computation of the inertia t
 <p>The last step was to add rotation in the Integrator and <code>PenetrationConstraint</code> Solving.</p>
 <p>The integrator simply takes the <code>AngularImpulse</code> and <code>Torque</code> components and handles them similarly to the linear movement components.
 We want to note that the <code>Force</code> component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through <code>Force</code>, meaning, it has an hidden torque vector, which we also use in the Integration fase.</p>
-<pre class="m-code">    void addForceOnPoint(glm::vec3 force, glm::vec3 localPoint, glm::vec3 centerOfMass)
-    {
-        mForce += force;
-        mTorque = glm::cross(localPoint - centerOfMass, force);
-    }
+<pre class="m-code"><span class="k">struct</span><span class="w"> </span><span class="nc">Force</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addForceOnPoint</span><span class="p">(</span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">force</span><span class="p">,</span><span class="w"> </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">localPoint</span><span class="p">,</span><span class="w"> </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">centerOfMass</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mForce</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">force</span><span class="p">;</span>
+<span class="w">        </span><span class="n">mTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glm</span><span class="o">::</span><span class="n">cross</span><span class="p">(</span><span class="n">localPoint</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">centerOfMass</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-private:
-    glm::vec3 mForce = {0.0F, 0.0F, 0.0F};
-    glm::vec3 mTorque = {0.0F, 0.0F, 0.0F};
-};</pre>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">mForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">};</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">mTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">};</span>
+<span class="p">};</span></pre>
 <p>The <code>PenetrationConstraint</code> is now solved for each contact Point, using their local anchor for relative velocity, separation and angular velocity calculation at each step.
 This involved changing the constraint itself to also have <code>PenetrationConstraintPointData</code>, which are the same as the manifold points but with extra information to keep track of the constraint solving.
 The constraint is now created when the <code>ContactManifold</code> relation is present between 2 entities, instead of <code>CollidingWith</code>.</p>
