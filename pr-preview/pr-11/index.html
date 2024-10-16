@@ -85,7 +85,106 @@ We also make use of this new connection to allow the editor to send debugging co
 <h3>On the Engine</h3>
 <section id="physics-with-rotation-fallenatlas">
 <h4>Physics with Rotation <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
-<p>TODO</p>
+<p>We have <strong>rotations</strong>!</p>
+<img class="m-image" src="images/complex_physics_sample_rotations.gif" />
+<p>Since the start of the physics plugin, we always treated rigid bodies as simple particles.
+This is because the calculations were more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging, of penetration solving for example, easier.
+With the particle behaviour stabilized, we decided it was time to expand the plugin to consider rotation, and for that we had to:</p>
+<ul>
+<li>Add Collision Manifold and Collision Points computation.</li>
+<li>Add Components for Rotation.</li>
+<li>Expand the Integrator and Solver to compute rotations.</li>
+</ul>
+<section id="collision-manifold-and-collision-points">
+<h5>Collision Manifold and Collision Points</h5>
+<p>Previously, since everything was a particle, we simply computed if there was a collision using SAT, which also returned the normal along which the penetration was the smallest, along with that penetration value.
+For rotations we need a <code>ContactManifold</code> Relation, that holds all information about the collision. A Contact Manifold is effectively a 2D polygon that details the surface of contact between the 2 bodies.
+In computer physics the bodies inter-penetrate each other, which does not happen in the real world. The manifold is the aproximation of the real contact surface the bodies would have.
+This polygon is described by it's vertices, in the form of Contact Points, all of which contain their position and penetration in <code>ContactPointData</code>.
+To compute the manifold we use the Sutherland Hodgman algorithm. Our current implementation was mostly inspired by this <a href="https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/previousinformation/physics5collisionmanifolds/2017%20Tutorial%205%20-%20Collision%20Manifolds.pdf">tutorial</a>, which you can check out, to see how it works.</p>
+<pre class="m-code"><span class="k">struct</span><span class="w"> </span><span class="nc">ContactPointData</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cubos</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">ecs</span><span class="o">::</span><span class="n">Entity</span><span class="w"> </span><span class="n">entity</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; Entity to which the normal is relative to.</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">globalOn1</span><span class="p">;</span><span class="w">             </span><span class="c1">///&lt; Position on the entity of the contact in global coordinates.</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">globalOn2</span><span class="p">;</span><span class="w">             </span><span class="c1">///&lt; Position on the other entity of the contact in global coordinates.</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">localOn1</span><span class="p">;</span><span class="w">              </span><span class="c1">///&lt; Position on the entity of the contact in local coordinates.</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">localOn2</span><span class="p">;</span><span class="w">              </span><span class="c1">///&lt; Position on the other entity of the contact in local coordinates.</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">penetration</span><span class="p">;</span><span class="w">               </span><span class="c1">///&lt; Penetration of the contact point. Always positive.</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">ContactManifold</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cubos</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">ecs</span><span class="o">::</span><span class="n">Entity</span><span class="w"> </span><span class="n">entity</span><span class="p">;</span><span class="w">      </span><span class="c1">///&lt; Entity to which the normal is relative to.</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">normal</span><span class="p">;</span><span class="w">                     </span><span class="c1">///&lt; A contact normal shared by all contacts in this manifold,</span>
+<span class="w">                                          </span><span class="c1">///&lt; expressed in the local space of the first entity.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ContactPointData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; Contact points of this manifold.</span>
+<span class="p">};</span></pre>
+<p>With this change, our narrow phase firstly checks for collision with SAT, since it's cheaper, and only then computes the manifold.</p>
+<p>The Collisions sample was also enhanced so we could visualize this information.</p>
+<img class="m-image" src="images/collisions_sample_manifold_demo.gif" />
+</section>
+<section id="new-components">
+<h5>New Components</h5>
+<p>The next thing to add were Components to support rotations, such as <code>Inertia</code>, <code>Torque</code>, and <code>AngularVelocity</code>, just to name a few.
+To facilitate the creation, we also added automatic computation of the inertia tensor for the <code>BoxCollisionShape</code>, which is performed upon adding the <code>Inertia</code> component and every time <code>Mass</code> or the dimentions of the shape are changed.</p>
+</section>
+<section id="expand-the-integrator-and-solver">
+<h5>Expand the Integrator and Solver</h5>
+<p>The last step was to add rotation in the Integrator and <code>PenetrationConstraint</code> Solving.</p>
+<p>The integrator simply takes the <code>AngularImpulse</code> and <code>Torque</code> components and handles them similarly to the linear movement components.
+We want to note that the <code>Force</code> component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through <code>Force</code>, meaning, it has an hidden torque vector, which we also use in the Integration fase.</p>
+<pre class="m-code">    void addForceOnPoint(glm::vec3 force, glm::vec3 localPoint, glm::vec3 centerOfMass)
+    {
+        mForce += force;
+        mTorque = glm::cross(localPoint - centerOfMass, force);
+    }
+
+private:
+    glm::vec3 mForce = {0.0F, 0.0F, 0.0F};
+    glm::vec3 mTorque = {0.0F, 0.0F, 0.0F};
+};</pre>
+<p>The <code>PenetrationConstraint</code> is now solved for each contact Point, using their local anchor for relative velocity, separation and angular velocity calculation at each step.
+This involved changing the constraint itself to also have <code>PenetrationConstraintPointData</code>, which are the same as the manifold points but with extra information to keep track of the constraint solving.
+The constraint is now created when the <code>ContactManifold</code> relation is present between 2 entities, instead of <code>CollidingWith</code>.</p>
+<pre class="m-code"><span class="k">struct</span><span class="w"> </span><span class="nc">PenetrationConstraintPointData</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">initialSeparation</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; The separation of the contact point. Negative separation indicates</span>
+<span class="w">                             </span><span class="c1">///&lt; penetration.</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">normalSpeed</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; The relative velocity of the bodies along the normal at the contact point the begging of</span>
+<span class="w">                       </span><span class="c1">///&lt; the collision.</span>
+
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">localAnchor1</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; The local contact point relative to the center of mass of the first body.</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">localAnchor2</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; The local contact point relative to the center of mass of the second body.</span>
+
+<span class="w">    </span><span class="c1">/// Store fixed world-space anchors.</span>
+<span class="w">    </span><span class="c1">/// This improves rolling behavior for shapes like balls and capsules. Used for restitution and friction.</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">fixedAnchor1</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; The world-space contact point relative to the center of mass of the first body.</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">fixedAnchor2</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; The world-space contact point relative to the center of mass of the second body.</span>
+
+<span class="w">    </span><span class="c1">// separation</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">normalMass</span><span class="p">;</span><span class="w">    </span><span class="c1">///&lt; Mass to use for normal impulse calculation.</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">normalImpulse</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; Accumulated impulse for separation.</span>
+
+<span class="w">    </span><span class="c1">// friction</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">frictionMass1</span><span class="p">;</span><span class="w">    </span><span class="c1">///&lt; Mass to use for friction impulse calculation along the first tangent..</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">frictionMass2</span><span class="p">;</span><span class="w">    </span><span class="c1">///&lt; Mass to use for friction impulse calculation along the second tangent..</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">frictionImpulse1</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; Accumulated impulse for friction along the first tangent.</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">frictionImpulse2</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; Accumulated impulse for friction along the second tangent.</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">PenetrationConstraint</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cubos</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">ecs</span><span class="o">::</span><span class="n">Entity</span><span class="w"> </span><span class="n">entity</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; Entity to which the normal is relative to.</span>
+<span class="w">    </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">normal</span><span class="p">;</span><span class="w">                </span><span class="c1">///&lt; Normal of contact on the surface of the entity.</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">friction</span><span class="p">;</span><span class="w">                  </span><span class="c1">///&lt; Friction of the constraint.</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">restitution</span><span class="p">;</span><span class="w">               </span><span class="c1">///&lt; Restitution coefficient of the constraint.</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PenetrationConstraintPointData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; Contact points in the contact manifold.</span>
+<span class="p">};</span></pre>
+<p>And that's it for this very short summary of the changes.
+Our implementation is still far from perfect. As you might have seen in the sample clip, some movements still don't look very natural, and the boxes should have stayed on top of each other, which is something we'll be working on over the next releases.</p>
+<p>To wrap up, as we promised in the previous release blog post, we've added the <code>PhysicsMaterial</code> component, which allows users to fine tune be friction and bounciness behaviour of each body. Check it out in our documentation!</p>
+</section>
 </section>
 <section id="cascading-shadow-maps-tomas7770">
 <h4>Cascading Shadow Maps <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
