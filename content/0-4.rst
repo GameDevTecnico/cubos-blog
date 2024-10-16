@@ -55,7 +55,129 @@ On the Engine
 Physics with Rotation :dim:`(@fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO
+We have **rotations**!
+
+.. image:: images/complex_physics_sample_rotations.gif
+
+Since the start of the physics plugin, we always treated rigid bodies as simple particles.
+This is because the calculations were more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging, of penetration solving for example, easier.
+With the particle behaviour stabilized, we decided it was time to expand the plugin to consider rotation, and for that we had to:
+
+- Add Collision Manifold and Collision Points computation.
+- Add Components for Rotation.
+- Expand the Integrator and Solver to compute rotations.
+
+Collision Manifold and Collision Points
+***************************************
+
+Previously, since everything was a particle, we simply computed if there was a collision using SAT, which also returned the normal along which the penetration was the smallest, along with that penetration value.
+For rotations we need a ``ContactManifold`` Relation, that holds all information about the collision. A Contact Manifold is effectively a 2D polygon that details the surface of contact between the 2 bodies. 
+In computer physics the bodies inter-penetrate each other, which does not happen in the real world. The manifold is the aproximation of the real contact surface the bodies would have. 
+This polygon is described by it's vertices, in the form of Contact Points, all of which contain their position and penetration in ``ContactPointData``.
+
+To compute the manifold we use the Sutherland Hodgman algorithm. Our current implementation was mostly inspired by this `tutorial <https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/previousinformation/physics5collisionmanifolds/2017%20Tutorial%205%20-%20Collision%20Manifolds.pdf>`_, which you can check out, to see how it works.
+
+.. code-block:: cpp
+
+    struct ContactPointData
+    {
+        cubos::core::ecs::Entity entity; ///< Entity to which the normal is relative to.
+        glm::vec3 globalOn1;             ///< Position on the entity of the contact in global coordinates.
+        glm::vec3 globalOn2;             ///< Position on the other entity of the contact in global coordinates.
+        glm::vec3 localOn1;              ///< Position on the entity of the contact in local coordinates.
+        glm::vec3 localOn2;              ///< Position on the other entity of the contact in local coordinates.
+        float penetration;               ///< Penetration of the contact point. Always positive.
+    };
+
+    struct ContactManifold
+    {
+        cubos::core::ecs::Entity entity;      ///< Entity to which the normal is relative to.
+        glm::vec3 normal;                     ///< A contact normal shared by all contacts in this manifold,
+                                              ///< expressed in the local space of the first entity.
+        std::vector<ContactPointData> points; ///< Contact points of this manifold.
+    };
+
+With this change, our narrow phase firstly checks for collision with SAT, since it's cheaper, and only then computes the manifold.
+
+The Collisions sample was also enhanced so we could visualize this information.
+
+.. image:: images/collision_sample_manifold_demo.gif
+
+New Components
+**************
+
+The next thing to add were Components to support rotations, such as ``Inertia``, ``Torque``, and ``AngularVelocity``, just to name a few.
+To facilitate the creation, we also added automatic computation of the inertia tensor for the ``BoxCollisionShape``, which is performed upon adding the ``Inertia`` component and every time ``Mass`` or the dimentions of the shape are changed.
+
+Expand the Integrator and Solver
+********************************
+
+The last step was to add rotation in the Integrator and ``PenetrationConstraint`` Solving. 
+
+The integrator simply takes the ``AngularImpulse`` and ``Torque`` components and handles them similarly to the linear movement components.
+We want to note that the ``Force`` component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through ``Force``, meaning, it has an hidden torque vector, which we also use in the Integration fase.
+
+.. code-block:: cpp
+    
+    struct Force
+    {
+        void addForceOnPoint(glm::vec3 force, glm::vec3 localPoint, glm::vec3 centerOfMass)
+        {
+            mForce += force;
+            mTorque = glm::cross(localPoint - centerOfMass, force);
+        }
+
+    private:
+        glm::vec3 mForce = {0.0F, 0.0F, 0.0F};
+        glm::vec3 mTorque = {0.0F, 0.0F, 0.0F};
+    };
+
+The ``PenetrationConstraint`` is now solved for each contact Point, using their local anchor for relative velocity, separation and angular velocity calculation at each step. 
+This involved changing the constraint itself to also have ``PenetrationConstraintPointData``, which are the same as the manifold points but with extra information to keep track of the constraint solving.
+The constraint is now created when the ``ContactManifold`` relation is present between 2 entities, instead of ``CollidingWith``.
+
+.. code-block:: cpp
+
+    struct PenetrationConstraintPointData
+    {
+        float initialSeparation; ///< The separation of the contact point. Negative separation indicates
+                                 ///< penetration.
+        float normalSpeed; ///< The relative velocity of the bodies along the normal at the contact point the begging of
+                           ///< the collision.
+
+        glm::vec3 localAnchor1; ///< The local contact point relative to the center of mass of the first body.
+        glm::vec3 localAnchor2; ///< The local contact point relative to the center of mass of the second body.
+
+        /// Store fixed world-space anchors.
+        /// This improves rolling behavior for shapes like balls and capsules. Used for restitution and friction.
+        glm::vec3 fixedAnchor1; ///< The world-space contact point relative to the center of mass of the first body.
+        glm::vec3 fixedAnchor2; ///< The world-space contact point relative to the center of mass of the second body.
+
+        // separation
+        float normalMass;    ///< Mass to use for normal impulse calculation.
+        float normalImpulse; ///< Accumulated impulse for separation.
+
+        // friction
+        float frictionMass1;    ///< Mass to use for friction impulse calculation along the first tangent..
+        float frictionMass2;    ///< Mass to use for friction impulse calculation along the second tangent..
+        float frictionImpulse1; ///< Accumulated impulse for friction along the first tangent.
+        float frictionImpulse2; ///< Accumulated impulse for friction along the second tangent.
+    };
+
+    struct PenetrationConstraint
+    {
+        cubos::core::ecs::Entity entity; ///< Entity to which the normal is relative to.
+        glm::vec3 normal;                ///< Normal of contact on the surface of the entity.
+        float friction;                  ///< Friction of the constraint.
+        float restitution;               ///< Restitution coefficient of the constraint.
+
+        std::vector<PenetrationConstraintPointData> points; ///< Contact points in the contact manifold.
+    };
+
+And that's it for this very short summary of the changes. 
+Our implementation is still far from perfect. As you might have seen in the sample clip, some movements still don't look very natural, and the boxes should have stayed on top of each other, which is something we'll be working on over the next releases.
+
+To wrap up, as we promised in the previous release blog post, we've added the ``PhysicsMaterial`` component, which allows users to fine tune be friction and bounciness behaviour of each body. Check it out in our documentation!
 
 Cascading Shadow Maps :dim:`(@tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
