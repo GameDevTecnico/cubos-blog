@@ -181,7 +181,10 @@ Below is a screenshot of the directional shadow map used to draw shadows in &lt;
 &lt;/section&gt;
 &lt;section id="input-axis-deadzones-kuukitenshi"&gt;
 &lt;h4&gt;Input Axis Deadzones &lt;span class="m-text m-dim"&gt;(&amp;#64;kuukitenshi)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;Previously, dealing with input sources that exhibited drift, like older gamepad joysticks, required developers to manually filter out noise from input data.&lt;/p&gt;
+&lt;p&gt;In this release, we’ve introduced a new feature to make input handling more user-friendly: the input axis deadzones.
+Deadzones can now be configured directly within the bindings asset, allowing players to adjust it in the settings for their controllers to filter out unwanted noise.&lt;/p&gt;
+&lt;p&gt;This enhancement significantly simplifies input handling and ensures a smoother and more reliable gameplay experience, especially for games that heavily rely on precise controller input.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="ortographic-cameras-mkuritsu"&gt;
 &lt;h4&gt;Ortographic Cameras &lt;span class="m-text m-dim"&gt;(&amp;#64;mkuritsu)&lt;/span&gt;&lt;/h4&gt;
