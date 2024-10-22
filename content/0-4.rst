@@ -308,7 +308,15 @@ This UI will enable developers to interact with the tracing data, providing a co
 Swapping OpenAL for Miniaudio :dim:`(@diogomsmiranda, @Dageus)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO
+This milestone marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
+But before we could start working on the plugin itself, we had to make some changes to the audio backend.
+Previously, we were using OpenAL for audio, which no longer aligned with our vision for Cubos, so we decided to switch to `miniaudio.h <https://miniaud.io>`_, a lightweight, single-file audio library easy to integrate and use while also sharing the same license as Cubos. Now, we are working on a new audio context abstraction `AudioContext <https://docs.cubosengine.org/classcubos_1_1core_1_1al_1_1AudioContext.html#ac94450fd25db89331cfef27fd06c94a1>`_ that will allow us to easily create other more conventional components that come with an audio system, such as AudioBuffers, Sources, and Listeners.
+
+For those interested in a sneak peek, you can check out the interface in this src `file <https://github.com/GameDevTecnico/cubos/blob/main/core/include/cubos/core/al/audio_context.hpp>`_ containing the ``AudioContext`` class as well as ``Source``, ``Listener`` and ``Buffer`` classes.
+
+This change will allow us to have a more flexible audio system, making it easier to implement the audio plugin, coming in the next release of Cubos!
+
+*(Dev note: With these improvements, background music in Cubos could soon become a reality!)*
 
 Type Client and Type Server :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
