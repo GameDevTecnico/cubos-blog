@@ -298,8 +298,8 @@ We also moved the other components to <code>tel</code> namespace (metrics and lo
 But before we could start working on the plugin itself, we had to make some changes to the audio backend.
 Previously, we were using OpenAL for audio, which no longer aligned with our vision for Cubos, so we decided to switch to <a href="https://miniaud.io">miniaudio.h</a>, a lightweight, single-file audio library easy to integrate and use while also sharing the same license as Cubos. Now, we are working on a new audio context abstraction <a href="https://docs.cubosengine.org/classcubos_1_1core_1_1al_1_1AudioContext.html#ac94450fd25db89331cfef27fd06c94a1">AudioContext</a> that will allow us to easily create other more conventional components that come with an audio system, such as AudioBuffers, Sources, and Listeners.</p>
 <p>For those interested in a sneak peek, you can check out the interface in this src <a href="https://github.com/GameDevTecnico/cubos/blob/main/core/include/cubos/core/al/audio_context.hpp">file</a> containing the <code>AudioContext</code> class as well as <code>Source</code>, <code>Listener</code> and <code>Buffer</code> classes.</p>
-<p>This change will allow us to have a more flexible audio system, making it easier to implement the audio plugin, coming in the next release of Cubos!
-<em>(Dev note: With these improvements, background music in Cubos could soon become a reality!)</em></p>
+<p>This change will allow us to have a more flexible audio system, making it easier to implement the audio plugin, coming in the next release of Cubos!</p>
+<p><em>(Dev note: With these improvements, background music in Cubos could soon become a reality!)</em></p>
 </section>
 <section id="type-client-and-type-server-riscadoa">
 <h4>Type Client and Type Server <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
