@@ -240,7 +240,13 @@ We also moved the other components to &lt;code&gt;tel&lt;/code&gt; namespace (me
 &lt;/section&gt;
 &lt;section id="swapping-openal-for-miniaudio-diogomsmiranda-dageus"&gt;
 &lt;h4&gt;Swapping OpenAL for Miniaudio &lt;span class="m-text m-dim"&gt;(&amp;#64;diogomsmiranda, &amp;#64;Dageus)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;This milestone marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
+But before we could start working on the plugin itself, we had to make some changes to the audio backend.
+Previously, we were using OpenAL for audio, which no longer aligned with our vision for Cubos, so we decided to switch to &lt;cite&gt;miniaudio.h &amp;lt;https://miniaud.io&amp;gt;&lt;/cite&gt;, a lightweight, single-file audio library easy to integrate and use while also sharing the same license as Cubos.&lt;/p&gt;
+&lt;p&gt;We've been working on a new audio context abstraction &lt;cite&gt;AudioContext &amp;lt;https://docs.cubosengine.org/classcubos_1_1core_1_1al_1_1AudioContext.html#ac94450fd25db89331cfef27fd06c94a1&amp;gt;&lt;/cite&gt; that will allow us to easily create other more conventional components that come with an audio system, such as AudioBuffers, Sources, and Listeners.&lt;/p&gt;
+&lt;p&gt;For those interested in a sneak peek, you can check out the interface in this src &lt;cite&gt;file &amp;lt;https://github.com/GameDevTecnico/cubos/blob/main/core/include/cubos/core/al/audio_context.hpp&amp;gt;&lt;/cite&gt; containing the &lt;code&gt;AudioContext&lt;/code&gt; class as well as &lt;code&gt;Source&lt;/code&gt;, &lt;code&gt;Listener&lt;/code&gt; and &lt;code&gt;Buffer&lt;/code&gt; classes.&lt;/p&gt;
+&lt;p&gt;This change will allow us to have a more flexible audio system, making it easier to implement the audio plugin, coming in the next release of Cubos!
+&lt;em&gt;(Dev note: With these improvements, background music in Cubos could soon become a reality!)&lt;/em&gt;&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="type-client-and-type-server-riscadoa"&gt;
 &lt;h4&gt;Type Client and Type Server &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
