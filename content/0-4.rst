@@ -242,7 +242,11 @@ This enhancement significantly simplifies input handling and ensures a smoother 
 Ortographic Cameras :dim:`(@mkuritsu)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO
+Created a standalone generic Camera component that holds the projection matrix of the current camera in use.
+
+This component should be used and preferred for query operations where previously the Perspective Camera component would be used whenever possible, allowing for better separation and abstraction over the current camera.
+
+With this, it was also possible to add an Ortographic Camera component in the new Camera system, this camera updates the matrix with an ortographic projection of the scene currently in view.
 
 On the Core
 -------------
