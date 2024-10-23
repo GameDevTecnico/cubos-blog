@@ -239,7 +239,9 @@ Deadzones can now be configured directly within the bindings asset, allowing pla
 </section>
 <section id="ortographic-cameras-mkuritsu">
 <h4>Ortographic Cameras <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
-<p>TODO</p>
+<p>Created a standalone generic Camera component that holds the projection matrix of the current camera in use.</p>
+<p>This component should be used and preferred for query operations where previously the Perspective Camera component would be used whenever possible, allowing for better separation and abstraction over the current camera.</p>
+<p>With this, it was also possible to add an Ortographic Camera component in the new Camera system, this camera updates the matrix with an ortographic projection of the scene currently in view.</p>
 </section>
 </section>
 <section id="on-the-core">
