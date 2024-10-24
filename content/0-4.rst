@@ -47,7 +47,16 @@ You can see them in action in the video below:
 Voxel Model Importing Tool :dim:`(@Scarface1809)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO
+In this release, we’ve added a highly useful plugin to **Tesseratos**: a **Voxel Model Importing Tool**. With this new tool, you can now import `.qb` files directly within the editor, bypassing the need for the external conversion tool **Quadrados**.
+
+Previously, importing voxel models required converting `.qb` files into `.pal` and `.grd` files using Quadrados before they could be used in the engine. Now, with the **Voxel Model Importer Plugin**, the process has been simplified, acting as an interface to handle the conversion process within the editor.
+
+The tool allows you to:
+- Assign names to the `.pal` and `.grd` files.
+- Choose the file paths where the `.grd` files and the `.pal` file should be saved.
+- Specify how many `.grd` files supported by the `.qb` file you want to import.
+  
+With this tool, importing voxel models into your projects is now faster and easier, allowing for a smoother workflow and less reliance on Quadrados.
 
 On the Engine
 -------------
