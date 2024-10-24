@@ -27,7 +27,13 @@ We also make use of this new connection to allow the editor to send debugging co
 &lt;iframe width="560" height="340" style="display: block; margin: auto" src="https://www.youtube.com/embed/Pu40BjmmW2U" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen&gt;&lt;/iframe&gt;&lt;/section&gt;
 &lt;section id="voxel-model-importing-tool-scarface1809"&gt;
 &lt;h4&gt;Voxel Model Importing Tool &lt;span class="m-text m-dim"&gt;(&amp;#64;Scarface1809)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;In this release, we’ve added a highly useful plugin to &lt;strong&gt;Tesseratos&lt;/strong&gt;: a &lt;strong&gt;Voxel Model Importing Tool&lt;/strong&gt;. With this new tool, you can now import &lt;cite&gt;.qb&lt;/cite&gt; files directly within the editor, bypassing the need for the external conversion tool &lt;strong&gt;Quadrados&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Previously, importing voxel models required converting &lt;cite&gt;.qb&lt;/cite&gt; files into &lt;cite&gt;.pal&lt;/cite&gt; and &lt;cite&gt;.grd&lt;/cite&gt; files using Quadrados before they could be used in the engine. Now, with the &lt;strong&gt;Voxel Model Importer Plugin&lt;/strong&gt;, the process has been simplified, acting as an interface to handle the conversion process within the editor.&lt;/p&gt;
+&lt;p&gt;The tool allows you to:
+- Assign names to the &lt;cite&gt;.pal&lt;/cite&gt; and &lt;cite&gt;.grd&lt;/cite&gt; files.
+- Choose the file paths where the &lt;cite&gt;.grd&lt;/cite&gt; files and the &lt;cite&gt;.pal&lt;/cite&gt; file should be saved.
+- Specify how many &lt;cite&gt;.grd&lt;/cite&gt; files supported by the &lt;cite&gt;.qb&lt;/cite&gt; file you want to import.&lt;/p&gt;
+&lt;p&gt;With this tool, importing voxel models into your projects is now faster and easier, allowing for a smoother workflow and less reliance on Quadrados.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-engine"&gt;
