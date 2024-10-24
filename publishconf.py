@@ -12,4 +12,5 @@ CATEGORY_FEED_ATOM = 'feeds/{slug}.atom.xml'
 DELETE_OUTPUT_DIRECTORY = True
 
 M_CSS_FILES = ['https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600',
-               'static/m-dark.compiled.css']
+               'static/m-dark.compiled.css',
+               'https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css']
