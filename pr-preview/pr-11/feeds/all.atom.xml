@@ -296,11 +296,27 @@ Now, whenever the engine aborts, it prints a pretty stack trace to &lt;code&gt;s
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;/section&gt;
+&lt;section id="new-team-organization"&gt;
+&lt;h2&gt;New Team Organization&lt;/h2&gt;
+&lt;p&gt;We're currently undergoing a major reorganization of the team itself, as it has grown significantly over the past few months.
+We have now over 20 developers working on the project, and we're planning to expand even further.&lt;/p&gt;
+&lt;p&gt;Previusly, we all met weekly to showcase what each member had been working, and to discuss the project's direction.
+Of course, with such a large team, these meetings were becoming increasingly long and unproductive.&lt;/p&gt;
+&lt;p&gt;So, we decided to split the big team into smaller teams, each with its own focus. As of now, we have the following teams:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Community&lt;/strong&gt;: responsible for managing the more meta aspects of the project, such as the blog, the Discord server, and the social media.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graphics&lt;/strong&gt;: responsible for any graphics-related features, such as voxels, UI and gizmos rendering.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physics&lt;/strong&gt;: responsible for the physics and collisions plugins.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tools&lt;/strong&gt;: responsible for &lt;strong&gt;Tesseratos&lt;/strong&gt;, &lt;strong&gt;Quadrados&lt;/strong&gt; and all other kinds of tooling.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wildcard&lt;/strong&gt;: catch-all team for any other kind of feature that doesn't fit in the other teams.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now each team meets weekly to discuss their progress and plans, and we have a big meeting less frequently to discuss the project as a whole.&lt;/p&gt;
+&lt;/section&gt;
 &lt;section id="next-steps"&gt;
 &lt;h2&gt;Next Steps&lt;/h2&gt;
 &lt;p&gt;In the next release, which should be out by the end of November, we're planning to work on the following features:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Make it possible to edit scenes through the now standalone editor.&lt;/li&gt;
+&lt;li&gt;Scene editing through the new standalone editor, &lt;strong&gt;Tesseratos&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;An Audio plugin, using the new Audio Context abstraction we've added in this release.&lt;/li&gt;
 &lt;li&gt;?? TODO: add graphics plans here&lt;/li&gt;
 &lt;li&gt;?? TODO: add physics plans here&lt;/li&gt;
