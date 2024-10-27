@@ -47,16 +47,17 @@ You can see them in action in the video below:
 Voxel Model Importing Tool :dim:`(@Scarface1809)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this release, we’ve added a highly useful plugin to **Tesseratos**: a **Voxel Model Importing Tool**. With this new tool, you can now import `.qb` files directly within the editor, bypassing the need for the external conversion tool **Quadrados**.
+In this release, we've added a highly useful plugin to **Tesseratos**: a **Voxel Model Importing Tool**. With this new tool, you can now import `.qb` files directly within the editor, bypassing the need for the external conversion tool **Quadrados**.
 
-Previously, importing voxel models required converting `.qb` files into `.pal` and `.grd` files using Quadrados before they could be used in the engine. Now, with the **Voxel Model Importer Plugin**, the process has been simplified, acting as an interface to handle the conversion process within the editor.
+Previously, importing voxel models required converting `.qb` files into `.pal` and `.grd` files using **Quadrados**, a CLI tool, before they could be used in the engine. Now, with the **Voxel Model Importer Plugin**, the process has been simplified, acting as an interface to handle the conversion process within the editor.
 
 The tool allows you to:
+
 - Assign names to the `.pal` and `.grd` files.
 - Choose the file paths where the `.grd` files and the `.pal` file should be saved.
 - Specify how many `.grd` files supported by the `.qb` file you want to import.
   
-With this tool, importing voxel models into your projects is now faster and easier, allowing for a smoother workflow and less reliance on Quadrados.
+With this tool, importing voxel models into your projects is now faster and easier, allowing for a smoother workflow and less reliance on **Quadrados**.
 
 On the Engine
 -------------
@@ -64,7 +65,7 @@ On the Engine
 Physics with Rotation :dim:`(@fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We have **rotations**!
+We have **rotation**!
 
 .. image:: images/complex_physics_sample_rotations.gif
 
@@ -80,9 +81,9 @@ Collision Manifold and Collision Points
 ***************************************
 
 Previously, since everything was a particle, we simply computed if there was a collision using SAT, which also returned the normal along which the penetration was the smallest, along with that penetration value.
-For rotations we need a ``ContactManifold`` Relation, that holds all information about the collision. A Contact Manifold is effectively a 2D polygon that details the surface of contact between the 2 bodies. 
+For rotations we need a ``ContactManifold`` relation, that holds all information about the collision. A *Contact Manifold* is effectively a 2D polygon that details the surface of contact between the 2 bodies. 
 In computer physics the bodies inter-penetrate each other, which does not happen in the real world. The manifold is the aproximation of the real contact surface the bodies would have. 
-This polygon is described by it's vertices, in the form of Contact Points, all of which contain their position and penetration in ``ContactPointData``.
+This polygon is described by it's vertices, in the form of *Contact Points*, all of which contain their position and penetration in ``ContactPointData``.
 
 To compute the manifold we use the Sutherland Hodgman algorithm. Our current implementation was mostly inspired by this `tutorial <https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/previousinformation/physics5collisionmanifolds/2017%20Tutorial%205%20-%20Collision%20Manifolds.pdf>`_, which you can check out, to see how it works.
 
@@ -108,7 +109,7 @@ To compute the manifold we use the Sutherland Hodgman algorithm. Our current imp
 
 With this change, our narrow phase firstly checks for collision with SAT, since it's cheaper, and only then computes the manifold.
 
-The Collisions sample was also enhanced so we could visualize this information.
+The collisions sample was also enhanced so we could visualize this information.
 
 .. image:: images/collision_sample_manifold_demo.gif
 
@@ -124,7 +125,7 @@ Expand the Integrator and Solver
 The last step was to add rotation in the Integrator and ``PenetrationConstraint`` Solving. 
 
 The integrator simply takes the ``AngularImpulse`` and ``Torque`` components and handles them similarly to the linear movement components.
-We want to note that the ``Force`` component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through ``Force``, meaning, it has an hidden torque vector, which we also use in the Integration fase.
+We want to note that the ``Force`` component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through ``Force``, meaning, it has an hidden torque vector, which we also use in the Integration phase.
 
 .. code-block:: cpp
     
@@ -141,7 +142,7 @@ We want to note that the ``Force`` component also holds a torque vector, in our 
         glm::vec3 mTorque = {0.0F, 0.0F, 0.0F};
     };
 
-The ``PenetrationConstraint`` is now solved for each contact Point, using their local anchor for relative velocity, separation and angular velocity calculation at each step. 
+The ``PenetrationConstraint`` is now solved for each contact point, using their local anchor for relative velocity, separation and angular velocity calculation at each step. 
 This involved changing the constraint itself to also have ``PenetrationConstraintPointData``, which are the same as the manifold points but with extra information to keep track of the constraint solving.
 The constraint is now created when the ``ContactManifold`` relation is present between 2 entities, instead of ``CollidingWith``.
 
@@ -243,19 +244,18 @@ Input Axis Deadzones :dim:`(@kuukitenshi)`
 
 Previously, dealing with input sources that exhibited drift, like older gamepad joysticks, required developers to manually filter out noise from input data. 
 
-In this release, we’ve introduced a new feature to make input handling more user-friendly: the input axis deadzones.
-Deadzones can now be configured directly within the bindings asset, allowing players to adjust it in the settings for their controllers to filter out unwanted noise.
+In this release, input deadzones can now be configured directly within the bindings asset, allowing players to adjust it in the settings for their controllers to filter out unwanted noise.
 
 This enhancement significantly simplifies input handling and ensures a smoother and more reliable gameplay experience, especially for games that heavily rely on precise controller input.
 
 Ortographic Cameras :dim:`(@mkuritsu)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Created a standalone generic Camera component that holds the projection matrix of the current camera in use.
+Previously we only had support for perspective cameras in Cubos, and additionally, perspective matrix computations were duplicated all over the code.
+To address this, we've added a new generic ``Camera`` component that holds the projection matrix of the current camera in use.
+Now, the ``PerspectiveCamera`` component is only used to fill in the ``Camera`` component with the correct projection matrix, and code needing the projection matrix can simply query the ``Camera`` component.
 
-This component should be used and preferred for query operations where previously the Perspective Camera component would be used whenever possible, allowing for better separation and abstraction over the current camera.
-
-With this, it was also possible to add an Ortographic Camera component in the new Camera system, this camera updates the matrix with an ortographic projection of the scene currently in view.
+With this, we decoupled the camera type from the rest of code, allowing us to add a new ``OrtographicCamera`` component uses an ortographic projection instead of a perspective one.
 
 On the Core
 -------------
@@ -264,12 +264,12 @@ Spans for Profiling and Tracing :dim:`(@roby2014)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing. 
-This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with Cubos.
+This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with **Cubos**.
 
 Tracing allows developers to track the execution of their code by creating spans that represent specific periods of execution. 
 This capability makes it easier to log messages and visualize the flow of an application, providing valuable insights into performance and behaviour.
 
-In Cubos, tracing is facilitated through a set of macros defined in ``core/tel/tracing.hpp``:
+In **Cubos**, tracing is facilitated through a set of macros defined in ``core/tel/tracing.hpp``:
 - ``CUBOS_SPAN_TRACE``
 - ``CUBOS_SPAN_DEBUG``
 - ``CUBOS_SPAN_INFO``
@@ -313,7 +313,7 @@ Here's a simple code snippet on how it works and it's output:
     [16:03:31.968] [main.cpp:34 main] [thread11740:main_span:other_scope:manual_span] info: entered a manual span
     [16:03:31.969] [main.cpp:37 main] [thread11740:main_span:other_scope] info: after exit manual span
 
-Looking ahead, we aim to develop a Tesseratos plugin that will allow developers to debug and view all possible spans and their execution times
+Looking ahead, we aim to develop a **Tesseratos** plugin that will allow developers to debug and view all possible spans and their execution times
 (e.g: https://github.com/bwrsandman/imgui-flame-graph).
 
 This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.
@@ -321,15 +321,12 @@ This UI will enable developers to interact with the tracing data, providing a co
 Swapping OpenAL for Miniaudio :dim:`(@diogomsmiranda, @Dageus)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This milestone marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
+This release marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
 But before we could start working on the plugin itself, we had to make some changes to the audio backend.
-Previously, we were using OpenAL for audio, which no longer aligned with our vision for Cubos, so we decided to switch to `miniaudio.h <https://miniaud.io>`_, a lightweight, single-file audio library easy to integrate and use while also sharing the same license as Cubos. Now, we are working on a new audio context abstraction `AudioContext <https://docs.cubosengine.org/classcubos_1_1core_1_1al_1_1AudioContext.html#ac94450fd25db89331cfef27fd06c94a1>`_ that will allow us to easily create other more conventional components that come with an audio system, such as AudioBuffers, Sources, and Listeners.
+Previously, we were using OpenAL for audio, which no longer aligned with our vision for Cubos, so we decided to switch to `miniaudio.h <https://miniaud.io>`_, a lightweight, single-file audio library easy to integrate and use while also sharing the same license as Cubos.
+We implemented a new ``AudioContext`` abstraction on the core library, which hides the underlying audio library from the rest of the engine.
 
-For those interested in a sneak peek, you can check out the interface in this src `file <https://github.com/GameDevTecnico/cubos/blob/main/core/include/cubos/core/al/audio_context.hpp>`_ containing the ``AudioContext`` class as well as ``Source``, ``Listener`` and ``Buffer`` classes.
-
-This change will allow us to have a more flexible audio system, making it easier to implement the audio plugin, coming in the next release of Cubos!
-
-*(Dev note: With these improvements, background music in Cubos could soon become a reality!)*
+In the next release of **Cubos**, we're planning to have a fully functional audio plugin, which will allow you to play sounds and music in your games!
 
 Type Client and Type Server :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
