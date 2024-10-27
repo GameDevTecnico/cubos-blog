@@ -371,12 +371,31 @@ This way we could get a stack trace, but it was a bit cumbersome, and when the c
 In order to make our lives easier, we've integrated `cpptrace <https://github.com/jeremy-rifkin/cpptrace>`_ into the core library.
 Now, whenever the engine aborts, it prints a pretty stack trace to ``stderr``, which includes the function names, the file names, and the line numbers of the functions that were called.
 
+New Team Organization
+=====================
+
+We're currently undergoing a major reorganization of the team itself, as it has grown significantly over the past few months.
+We have now over 20 developers working on the project, and we're planning to expand even further.
+
+Previusly, we all met weekly to showcase what each member had been working, and to discuss the project's direction.
+Of course, with such a large team, these meetings were becoming increasingly long and unproductive.
+
+So, we decided to split the big team into smaller teams, each with its own focus. As of now, we have the following teams:
+
+- **Community**: responsible for managing the more meta aspects of the project, such as the blog, the Discord server, and the social media.
+- **Graphics**: responsible for any graphics-related features, such as voxels, UI and gizmos rendering.
+- **Physics**: responsible for the physics and collisions plugins.
+- **Tools**: responsible for **Tesseratos**, **Quadrados** and all other kinds of tooling.
+- **Wildcard**: catch-all team for any other kind of feature that doesn't fit in the other teams.
+
+Now each team meets weekly to discuss their progress and plans, and we have a big meeting less frequently to discuss the project as a whole.
+
 Next Steps
 ==========
 
 In the next release, which should be out by the end of November, we're planning to work on the following features:
 
-* Make it possible to edit scenes through the now standalone editor.
+* Scene editing through the new standalone editor, **Tesseratos**.
 * An Audio plugin, using the new Audio Context abstraction we've added in this release.
 * ?? TODO: add graphics plans here
 * ?? TODO: add physics plans here
