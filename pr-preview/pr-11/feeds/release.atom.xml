@@ -27,20 +27,22 @@ We also make use of this new connection to allow the editor to send debugging co
 &lt;iframe width="560" height="340" style="display: block; margin: auto" src="https://www.youtube.com/embed/Pu40BjmmW2U" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen&gt;&lt;/iframe&gt;&lt;/section&gt;
 &lt;section id="voxel-model-importing-tool-scarface1809"&gt;
 &lt;h4&gt;Voxel Model Importing Tool &lt;span class="m-text m-dim"&gt;(&amp;#64;Scarface1809)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;In this release, we’ve added a highly useful plugin to &lt;strong&gt;Tesseratos&lt;/strong&gt;: a &lt;strong&gt;Voxel Model Importing Tool&lt;/strong&gt;. With this new tool, you can now import &lt;cite&gt;.qb&lt;/cite&gt; files directly within the editor, bypassing the need for the external conversion tool &lt;strong&gt;Quadrados&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Previously, importing voxel models required converting &lt;cite&gt;.qb&lt;/cite&gt; files into &lt;cite&gt;.pal&lt;/cite&gt; and &lt;cite&gt;.grd&lt;/cite&gt; files using Quadrados before they could be used in the engine. Now, with the &lt;strong&gt;Voxel Model Importer Plugin&lt;/strong&gt;, the process has been simplified, acting as an interface to handle the conversion process within the editor.&lt;/p&gt;
-&lt;p&gt;The tool allows you to:
-- Assign names to the &lt;cite&gt;.pal&lt;/cite&gt; and &lt;cite&gt;.grd&lt;/cite&gt; files.
-- Choose the file paths where the &lt;cite&gt;.grd&lt;/cite&gt; files and the &lt;cite&gt;.pal&lt;/cite&gt; file should be saved.
-- Specify how many &lt;cite&gt;.grd&lt;/cite&gt; files supported by the &lt;cite&gt;.qb&lt;/cite&gt; file you want to import.&lt;/p&gt;
-&lt;p&gt;With this tool, importing voxel models into your projects is now faster and easier, allowing for a smoother workflow and less reliance on Quadrados.&lt;/p&gt;
+&lt;p&gt;In this release, we've added a highly useful plugin to &lt;strong&gt;Tesseratos&lt;/strong&gt;: a &lt;strong&gt;Voxel Model Importing Tool&lt;/strong&gt;. With this new tool, you can now import &lt;cite&gt;.qb&lt;/cite&gt; files directly within the editor, bypassing the need for the external conversion tool &lt;strong&gt;Quadrados&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Previously, importing voxel models required converting &lt;cite&gt;.qb&lt;/cite&gt; files into &lt;cite&gt;.pal&lt;/cite&gt; and &lt;cite&gt;.grd&lt;/cite&gt; files using &lt;strong&gt;Quadrados&lt;/strong&gt;, a CLI tool, before they could be used in the engine. Now, with the &lt;strong&gt;Voxel Model Importer Plugin&lt;/strong&gt;, the process has been simplified, acting as an interface to handle the conversion process within the editor.&lt;/p&gt;
+&lt;p&gt;The tool allows you to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Assign names to the &lt;cite&gt;.pal&lt;/cite&gt; and &lt;cite&gt;.grd&lt;/cite&gt; files.&lt;/li&gt;
+&lt;li&gt;Choose the file paths where the &lt;cite&gt;.grd&lt;/cite&gt; files and the &lt;cite&gt;.pal&lt;/cite&gt; file should be saved.&lt;/li&gt;
+&lt;li&gt;Specify how many &lt;cite&gt;.grd&lt;/cite&gt; files supported by the &lt;cite&gt;.qb&lt;/cite&gt; file you want to import.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With this tool, importing voxel models into your projects is now faster and easier, allowing for a smoother workflow and less reliance on &lt;strong&gt;Quadrados&lt;/strong&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-engine"&gt;
 &lt;h3&gt;On the Engine&lt;/h3&gt;
 &lt;section id="physics-with-rotation-fallenatlas"&gt;
 &lt;h4&gt;Physics with Rotation &lt;span class="m-text m-dim"&gt;(&amp;#64;fallenatlas)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;We have &lt;strong&gt;rotations&lt;/strong&gt;!&lt;/p&gt;
+&lt;p&gt;We have &lt;strong&gt;rotation&lt;/strong&gt;!&lt;/p&gt;
 &lt;img class="m-image" src="images/complex_physics_sample_rotations.gif" /&gt;
 &lt;p&gt;Since the start of the physics plugin, we always treated rigid bodies as simple particles.
 This is because the calculations were more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging, of penetration solving for example, easier.
@@ -53,9 +55,9 @@ With the particle behaviour stabilized, we decided it was time to expand the plu
 &lt;section id="collision-manifold-and-collision-points"&gt;
 &lt;h5&gt;Collision Manifold and Collision Points&lt;/h5&gt;
 &lt;p&gt;Previously, since everything was a particle, we simply computed if there was a collision using SAT, which also returned the normal along which the penetration was the smallest, along with that penetration value.
-For rotations we need a &lt;code&gt;ContactManifold&lt;/code&gt; Relation, that holds all information about the collision. A Contact Manifold is effectively a 2D polygon that details the surface of contact between the 2 bodies.
+For rotations we need a &lt;code&gt;ContactManifold&lt;/code&gt; relation, that holds all information about the collision. A &lt;em&gt;Contact Manifold&lt;/em&gt; is effectively a 2D polygon that details the surface of contact between the 2 bodies.
 In computer physics the bodies inter-penetrate each other, which does not happen in the real world. The manifold is the aproximation of the real contact surface the bodies would have.
-This polygon is described by it's vertices, in the form of Contact Points, all of which contain their position and penetration in &lt;code&gt;ContactPointData&lt;/code&gt;.&lt;/p&gt;
+This polygon is described by it's vertices, in the form of &lt;em&gt;Contact Points&lt;/em&gt;, all of which contain their position and penetration in &lt;code&gt;ContactPointData&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;To compute the manifold we use the Sutherland Hodgman algorithm. Our current implementation was mostly inspired by this &lt;a href="https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/previousinformation/physics5collisionmanifolds/2017%20Tutorial%205%20-%20Collision%20Manifolds.pdf"&gt;tutorial&lt;/a&gt;, which you can check out, to see how it works.&lt;/p&gt;
 &lt;pre class="m-code"&gt;&lt;span class="k"&gt;struct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;ContactPointData&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
@@ -75,7 +77,7 @@ This polygon is described by it's vertices, in the form of Contact Points, all o
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;ContactPointData&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;points&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Contact points of this manifold.&lt;/span&gt;
 &lt;span class="p"&gt;};&lt;/span&gt;&lt;/pre&gt;
 &lt;p&gt;With this change, our narrow phase firstly checks for collision with SAT, since it's cheaper, and only then computes the manifold.&lt;/p&gt;
-&lt;p&gt;The Collisions sample was also enhanced so we could visualize this information.&lt;/p&gt;
+&lt;p&gt;The collisions sample was also enhanced so we could visualize this information.&lt;/p&gt;
 &lt;img class="m-image" src="images/collision_sample_manifold_demo.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="new-components"&gt;
@@ -87,7 +89,7 @@ To facilitate the creation, we also added automatic computation of the inertia t
 &lt;h5&gt;Expand the Integrator and Solver&lt;/h5&gt;
 &lt;p&gt;The last step was to add rotation in the Integrator and &lt;code&gt;PenetrationConstraint&lt;/code&gt; Solving.&lt;/p&gt;
 &lt;p&gt;The integrator simply takes the &lt;code&gt;AngularImpulse&lt;/code&gt; and &lt;code&gt;Torque&lt;/code&gt; components and handles them similarly to the linear movement components.
-We want to note that the &lt;code&gt;Force&lt;/code&gt; component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through &lt;code&gt;Force&lt;/code&gt;, meaning, it has an hidden torque vector, which we also use in the Integration fase.&lt;/p&gt;
+We want to note that the &lt;code&gt;Force&lt;/code&gt; component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through &lt;code&gt;Force&lt;/code&gt;, meaning, it has an hidden torque vector, which we also use in the Integration phase.&lt;/p&gt;
 &lt;pre class="m-code"&gt;&lt;span class="k"&gt;struct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Force&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;addForceOnPoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;force&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;localPoint&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;centerOfMass&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -100,7 +102,7 @@ We want to note that the &lt;code&gt;Force&lt;/code&gt; component also holds a t
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mForce&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mTorque&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
 &lt;span class="p"&gt;};&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;PenetrationConstraint&lt;/code&gt; is now solved for each contact Point, using their local anchor for relative velocity, separation and angular velocity calculation at each step.
+&lt;p&gt;The &lt;code&gt;PenetrationConstraint&lt;/code&gt; is now solved for each contact point, using their local anchor for relative velocity, separation and angular velocity calculation at each step.
 This involved changing the constraint itself to also have &lt;code&gt;PenetrationConstraintPointData&lt;/code&gt;, which are the same as the manifold points but with extra information to keep track of the constraint solving.
 The constraint is now created when the &lt;code&gt;ContactManifold&lt;/code&gt; relation is present between 2 entities, instead of &lt;code&gt;CollidingWith&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class="m-code"&gt;&lt;span class="k"&gt;struct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PenetrationConstraintPointData&lt;/span&gt;
@@ -188,15 +190,15 @@ Below is a screenshot of the directional shadow map used to draw shadows in &lt;
 &lt;section id="input-axis-deadzones-kuukitenshi"&gt;
 &lt;h4&gt;Input Axis Deadzones &lt;span class="m-text m-dim"&gt;(&amp;#64;kuukitenshi)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;Previously, dealing with input sources that exhibited drift, like older gamepad joysticks, required developers to manually filter out noise from input data.&lt;/p&gt;
-&lt;p&gt;In this release, we’ve introduced a new feature to make input handling more user-friendly: the input axis deadzones.
-Deadzones can now be configured directly within the bindings asset, allowing players to adjust it in the settings for their controllers to filter out unwanted noise.&lt;/p&gt;
+&lt;p&gt;In this release, input deadzones can now be configured directly within the bindings asset, allowing players to adjust it in the settings for their controllers to filter out unwanted noise.&lt;/p&gt;
 &lt;p&gt;This enhancement significantly simplifies input handling and ensures a smoother and more reliable gameplay experience, especially for games that heavily rely on precise controller input.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="ortographic-cameras-mkuritsu"&gt;
 &lt;h4&gt;Ortographic Cameras &lt;span class="m-text m-dim"&gt;(&amp;#64;mkuritsu)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;Created a standalone generic Camera component that holds the projection matrix of the current camera in use.&lt;/p&gt;
-&lt;p&gt;This component should be used and preferred for query operations where previously the Perspective Camera component would be used whenever possible, allowing for better separation and abstraction over the current camera.&lt;/p&gt;
-&lt;p&gt;With this, it was also possible to add an Ortographic Camera component in the new Camera system, this camera updates the matrix with an ortographic projection of the scene currently in view.&lt;/p&gt;
+&lt;p&gt;Previously we only had support for perspective cameras in Cubos, and additionally, perspective matrix computations were duplicated all over the code.
+To address this, we've added a new generic &lt;code&gt;Camera&lt;/code&gt; component that holds the projection matrix of the current camera in use.
+Now, the &lt;code&gt;PerspectiveCamera&lt;/code&gt; component is only used to fill in the &lt;code&gt;Camera&lt;/code&gt; component with the correct projection matrix, and code needing the projection matrix can simply query the &lt;code&gt;Camera&lt;/code&gt; component.&lt;/p&gt;
+&lt;p&gt;With this, we decoupled the camera type from the rest of code, allowing us to add a new &lt;code&gt;OrtographicCamera&lt;/code&gt; component uses an ortographic projection instead of a perspective one.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-core"&gt;
@@ -204,10 +206,10 @@ Deadzones can now be configured directly within the bindings asset, allowing pla
 &lt;section id="spans-for-profiling-and-tracing-roby2014"&gt;
 &lt;h4&gt;Spans for Profiling and Tracing &lt;span class="m-text m-dim"&gt;(&amp;#64;roby2014)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing.
-This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with Cubos.&lt;/p&gt;
+This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Tracing allows developers to track the execution of their code by creating spans that represent specific periods of execution.
 This capability makes it easier to log messages and visualize the flow of an application, providing valuable insights into performance and behaviour.&lt;/p&gt;
-&lt;p&gt;In Cubos, tracing is facilitated through a set of macros defined in &lt;code&gt;core/tel/tracing.hpp&lt;/code&gt;:
+&lt;p&gt;In &lt;strong&gt;Cubos&lt;/strong&gt;, tracing is facilitated through a set of macros defined in &lt;code&gt;core/tel/tracing.hpp&lt;/code&gt;:
 - &lt;code&gt;CUBOS_SPAN_TRACE&lt;/code&gt;
 - &lt;code&gt;CUBOS_SPAN_DEBUG&lt;/code&gt;
 - &lt;code&gt;CUBOS_SPAN_INFO&lt;/code&gt;&lt;/p&gt;
@@ -242,18 +244,17 @@ We also moved the other components to &lt;code&gt;tel&lt;/code&gt; namespace (me
 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.967&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:29&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span:other_scope&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;hello&lt;span class="w"&gt; &lt;/span&gt;again!
 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.968&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:34&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span:other_scope:manual_span&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;entered&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;manual&lt;span class="w"&gt; &lt;/span&gt;span
 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.969&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:37&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span:other_scope&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;after&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;manual&lt;span class="w"&gt; &lt;/span&gt;span&lt;/pre&gt;
-&lt;p&gt;Looking ahead, we aim to develop a Tesseratos plugin that will allow developers to debug and view all possible spans and their execution times
+&lt;p&gt;Looking ahead, we aim to develop a &lt;strong&gt;Tesseratos&lt;/strong&gt; plugin that will allow developers to debug and view all possible spans and their execution times
 (e.g: &lt;a class="m-link-wrap" href="https://github.com/bwrsandman/imgui-flame-graph"&gt;https://github.com/bwrsandman/imgui-flame-graph&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="swapping-openal-for-miniaudio-diogomsmiranda-dageus"&gt;
 &lt;h4&gt;Swapping OpenAL for Miniaudio &lt;span class="m-text m-dim"&gt;(&amp;#64;diogomsmiranda, &amp;#64;Dageus)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;This milestone marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
+&lt;p&gt;This release marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
 But before we could start working on the plugin itself, we had to make some changes to the audio backend.
-Previously, we were using OpenAL for audio, which no longer aligned with our vision for Cubos, so we decided to switch to &lt;a href="https://miniaud.io"&gt;miniaudio.h&lt;/a&gt;, a lightweight, single-file audio library easy to integrate and use while also sharing the same license as Cubos. Now, we are working on a new audio context abstraction &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1al_1_1AudioContext.html#ac94450fd25db89331cfef27fd06c94a1"&gt;AudioContext&lt;/a&gt; that will allow us to easily create other more conventional components that come with an audio system, such as AudioBuffers, Sources, and Listeners.&lt;/p&gt;
-&lt;p&gt;For those interested in a sneak peek, you can check out the interface in this src &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/core/include/cubos/core/al/audio_context.hpp"&gt;file&lt;/a&gt; containing the &lt;code&gt;AudioContext&lt;/code&gt; class as well as &lt;code&gt;Source&lt;/code&gt;, &lt;code&gt;Listener&lt;/code&gt; and &lt;code&gt;Buffer&lt;/code&gt; classes.&lt;/p&gt;
-&lt;p&gt;This change will allow us to have a more flexible audio system, making it easier to implement the audio plugin, coming in the next release of Cubos!&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;(Dev note: With these improvements, background music in Cubos could soon become a reality!)&lt;/em&gt;&lt;/p&gt;
+Previously, we were using OpenAL for audio, which no longer aligned with our vision for Cubos, so we decided to switch to &lt;a href="https://miniaud.io"&gt;miniaudio.h&lt;/a&gt;, a lightweight, single-file audio library easy to integrate and use while also sharing the same license as Cubos.
+We implemented a new &lt;code&gt;AudioContext&lt;/code&gt; abstraction on the core library, which hides the underlying audio library from the rest of the engine.&lt;/p&gt;
+&lt;p&gt;In the next release of &lt;strong&gt;Cubos&lt;/strong&gt;, we're planning to have a fully functional audio plugin, which will allow you to play sounds and music in your games!&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="type-client-and-type-server-riscadoa"&gt;
 &lt;h4&gt;Type Client and Type Server &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
