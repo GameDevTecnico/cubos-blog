@@ -397,9 +397,16 @@ In the next release, which should be out by the end of November, we're planning 
 
 * Scene editing through the new standalone editor, **Tesseratos**.
 * An Audio plugin, using the new Audio Context abstraction we've added in this release.
-* ?? TODO: add graphics plans here
-* ?? TODO: add physics plans here
-* ?? TODO: add other stuff here
+* Point light shadows.
+* Anti-aliasing.
+* MSDF text rendering on our UI plugin.
+* Reduce shadow artifacts such as shadow acne and peter panning.
+* Toggleable gravity on the physics plugin.
+* Voxel collision shapes, where the collision shape is the same as the voxel model.
+* Contact point caching to avoid recomputing the collision manifolds every frame.
+* Saving settings after changing them in the UI.
+* An ``Active`` component to enable and disable all kinds of behaviors in entities.
+* Refactoring the whole CMake configuration to support installation and packaging.
 
 Additionally, we're planning to work on a new game project using our engine - now with online multiplayer support!
 
