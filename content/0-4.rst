@@ -20,14 +20,14 @@ Project Management and Debugging :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this release, we were finally able to make our editor, **Tesseratos**, a standalone application!
-Previously, the editor was a part of the engine itself. If you made changes to the game's code, you had to recompile the editor itself and restart it.
-Now, the editor has its own executable, and through it, you can open projects, edit their assets, and even debug them - all without having to restart the editor when recompiling the game.
-Right now, the UX is still a bit rough, as we've focused on making it work first.
+Previously, the editor was a part of the engine itself, which meant if you made changes to the game's code, you had to recompile the editor as well, and restart it.
+Now the editor has its own executable, and through it, you can open projects, edit their assets, and even debug them - all without having to restart the editor when recompiling the game.
+At this time, the UX is still a bit rough, as we've focused on making it work first.
 
 One major hurdle we had to overcome was how to make the editor aware of the project's data types, such as its components and resources.
 Before, they were part of the same application, and thus, the editor could simply access them directly.
 Now, with the editor being a separate application, we needed a way to share this information across different processes.
-You can read more about it in the "Type Client and Type Server" section at the end of this post, but in short, it is now possible to share type data across different processes, through, for example, a socket.
+You can read more about it in the "Type Client and Type Server" section at the end of this post, but in short, with the new reflection functionalities, it is now possible to share type data across different processes, through, for example, a socket.
 
 In practice, this means that games made with Cubos can now be launched with a debug flag which makes them act as a server at a given port.
 Then, the editor is able to connect to this server and extract all of the required debug information.
@@ -70,7 +70,7 @@ We have **rotation**!
 .. image:: images/complex_physics_sample_rotations.gif
 
 Since the start of the physics plugin, we always treated rigid bodies as simple particles.
-This is because the calculations were more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging, of penetration solving for example, easier.
+This is because it made the calculations more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging - of penetration solving for example - easier.
 With the particle behaviour stabilized, we decided it was time to expand the plugin to consider rotation, and for that we had to:
 
 - Add Collision Manifold and Collision Points computation.
@@ -83,7 +83,7 @@ Collision Manifold and Collision Points
 Previously, since everything was a particle, we simply computed if there was a collision using SAT, which also returned the normal along which the penetration was the smallest, along with that penetration value.
 For rotations we need a ``ContactManifold`` relation, that holds all information about the collision. A *Contact Manifold* is effectively a 2D polygon that details the surface of contact between the 2 bodies. 
 In computer physics the bodies inter-penetrate each other, which does not happen in the real world. The manifold is the aproximation of the real contact surface the bodies would have. 
-This polygon is described by it's vertices, in the form of *Contact Points*, all of which contain their position and penetration in ``ContactPointData``.
+This polygon is described by its vertices, in the form of *Contact Points*, all of which contain their position and penetration in ``ContactPointData``.
 
 To compute the manifold we use the Sutherland Hodgman algorithm. Our current implementation was mostly inspired by this `tutorial <https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/previousinformation/physics5collisionmanifolds/2017%20Tutorial%205%20-%20Collision%20Manifolds.pdf>`_, which you can check out, to see how it works.
 
@@ -117,7 +117,7 @@ New Components
 **************
 
 The next thing to add were Components to support rotations, such as ``Inertia``, ``Torque``, and ``AngularVelocity``, just to name a few.
-To facilitate the creation, we also added automatic computation of the inertia tensor for the ``BoxCollisionShape``, which is performed upon adding the ``Inertia`` component and every time ``Mass`` or the dimentions of the shape are changed.
+To facilitate the creation of entities with box collision shapes, we also added automatic computation of the inertia tensor for the ``BoxCollisionShape``, which is performed upon adding the ``Inertia`` component and every time ``Mass`` or the dimentions of the shape are changed.
 
 Expand the Integrator and Solver
 ********************************
@@ -125,7 +125,9 @@ Expand the Integrator and Solver
 The last step was to add rotation in the Integrator and ``PenetrationConstraint`` Solving. 
 
 The integrator simply takes the ``AngularImpulse`` and ``Torque`` components and handles them similarly to the linear movement components.
-We want to note that the ``Force`` component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through ``Force``, meaning, it has an hidden torque vector, which we also use in the Integration phase.
+We want to note that the ``Force`` component also holds a torque vector, in our current design.
+This is because the method we supply to apply a force on a point of the body belongs to ``Force``, and that method may also apply some torque, if the force isn't aligned with the center of mass.
+This hidden torque vector is also used in the Integration phase.
 
 .. code-block:: cpp
     
@@ -142,8 +144,8 @@ We want to note that the ``Force`` component also holds a torque vector, in our 
         glm::vec3 mTorque = {0.0F, 0.0F, 0.0F};
     };
 
-The ``PenetrationConstraint`` is now solved for each contact point, using their local anchor for relative velocity, separation and angular velocity calculation at each step. 
-This involved changing the constraint itself to also have ``PenetrationConstraintPointData``, which are the same as the manifold points but with extra information to keep track of the constraint solving.
+The ``PenetrationConstraint`` is now solved for each contact point, using their local anchor for relative velocity, separation, and angular velocity calculation at each step. 
+This involved changing the constraint itself to also have a number of ``PenetrationConstraintPointData``, which are the same as the manifold points but with extra information to keep track of the constraint solving.
 The constraint is now created when the ``ContactManifold`` relation is present between 2 entities, instead of ``CollidingWith``.
 
 .. code-block:: cpp
@@ -184,7 +186,7 @@ The constraint is now created when the ``ContactManifold`` relation is present b
         std::vector<PenetrationConstraintPointData> points; ///< Contact points in the contact manifold.
     };
 
-And that's it for this very short summary of the changes. 
+And that's it for this very short summary of the physics changes. 
 Our implementation is still far from perfect. As you might have seen in the sample clip, some movements still don't look very natural, and the boxes should have stayed on top of each other, which is something we'll be working on over the next releases.
 
 To wrap up, as we promised in the previous release blog post, we've added the ``PhysicsMaterial`` component, which allows users to fine tune be friction and bounciness behaviour of each body. Check it out in our documentation!
@@ -193,13 +195,13 @@ Cascading Shadow Maps :dim:`(@tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the previous release, we introduced **shadows**.
-As shown in the release blog post, this had a significant impact on the quality of Cubos's graphics.
+As shown in the release blog post, this had a significant impact on the quality of Cubos' graphics.
 However, due to the complexity and time it took to implement this feature, we were only able to support
 spot lights, the type of light for which it's easiest to cast shadows. This obviously restricted the
-scenarios where this impact was visible. For this release we aimed to extend shadows support
+scenarios where shadows were visible. For this release we aimed to extend shadows support
 to directional lights, leaving only point light shadows to be implemented.
 
-Here are some comparison screenshots showing the difference that having directional shadows can make.
+Here are some comparison screenshots showing the difference directional shadows can make.
 Try dragging the slider in the middle to compare the before and after!
 
 .. image-comparison::
@@ -267,7 +269,7 @@ Previously we only had support for perspective cameras in Cubos, and additionall
 To address this, we've added a new generic ``Camera`` component that holds the projection matrix of the current camera in use.
 Now, the ``PerspectiveCamera`` component is only used to fill in the ``Camera`` component with the correct projection matrix, and code needing the projection matrix can simply query the ``Camera`` component.
 
-With this, we decoupled the camera type from the rest of code, allowing us to add a new ``OrtographicCamera`` component uses an ortographic projection instead of a perspective one.
+With this, we decoupled the camera type from the rest of code, allowing us to add a new ``OrtographicCamera`` component which uses an ortographic projection instead of a perspective one.
 
 On the Core
 -----------
@@ -286,11 +288,11 @@ In **Cubos**, tracing is facilitated through a set of macros defined in ``core/t
 - ``CUBOS_SPAN_DEBUG``
 - ``CUBOS_SPAN_INFO``
 
-From now on, the logger level will be shared across all telemetry components. You can set it by using ``cubos::core::tel::level`` method.
-This means that, e.g, trace spans will only be registered if the telemetry level is trace.
-We also moved the other components to ``tel`` namespace (metrics and logging). 
+From now on, all telemetry components share the same logging level. You can set it by using ``cubos::core::tel::level`` method.
+This means that, as an example, trace spans will only be registered if the logger level is set to trace.
+We also moved the other components to the ``tel`` namespace (metrics and logging). 
 
-Here's a simple code snippet on how it works and it's output:
+Here's a simple code snippet on how it works and its output:
 
 .. code-block:: cpp
 
@@ -344,7 +346,7 @@ Type Client and Type Server :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To separate **Tesseratos** from the engine into a separate process, we needed a way to share type data across different processes.
-This is because the editor needs to know about the project's data types, such as its components and resources, to be able to work with them, for example, to show them in the editor's UI, or to edit scene assets.
+This is because the editor needs to know about the project's data types, such as its components and resources, to be able to do work with them, such as showing them in the editor's UI, or editing scene assets.
 
 To solve this problem, we've added the ``TypeServer`` and ``TypeClient`` classes to the core's reflection module.
 The editor contains a ``TypeClient``, the game contains a ``TypeServer`` and both communicate through an abstract stream, which currently is implemented using a TCP socket.
@@ -354,10 +356,9 @@ Both the ``TypeClient`` and the ``TypeServer`` allow registering serialization a
 
 The protocol itself is relatively simple:
 
-#. The client sends a list of the names of the traits it supports.
-#. The client sends a list of the types it already knows about (for example, primitive types like ``int`` and ``float``).
-#. The server sends a list with the types that the client doesn't know about yet. This includes:
-
+#. The client - the editor - sends a list with the names of the traits it supports.
+#. The client sends a list with the types it already knows about (for example, primitive types like ``int`` and ``float``).
+#. The server - the game - sends a list with the types that the client doesn't know about yet. This includes:
    - The type name.
    - A list of the serialized traits that describe the type.
    - The serialized default value for the type, if it has one.
