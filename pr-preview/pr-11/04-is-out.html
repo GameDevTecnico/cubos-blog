@@ -63,12 +63,12 @@
 <h4>Project Management and Debugging <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
 <p>In this release, we were finally able to make our editor, <strong>Tesseratos</strong>, a standalone application!
 Previously, the editor was a part of the engine itself, which meant if you made changes to the game's code, you had to recompile the editor as well, and restart it.
-Now, the editor has its own executable, and through it, you can open projects, edit their assets, and even debug them - all without having to restart the editor when recompiling the game.
+Now the editor has its own executable, and through it, you can open projects, edit their assets, and even debug them - all without having to restart the editor when recompiling the game.
 At this time, the UX is still a bit rough, as we've focused on making it work first.</p>
 <p>One major hurdle we had to overcome was how to make the editor aware of the project's data types, such as its components and resources.
 Before, they were part of the same application, and thus, the editor could simply access them directly.
 Now, with the editor being a separate application, we needed a way to share this information across different processes.
-You can read more about it in the &quot;Type Client and Type Server&quot; section at the end of this post, but in short, it is now possible to share type data across different processes, through, for example, a socket.</p>
+You can read more about it in the &quot;Type Client and Type Server&quot; section at the end of this post, but in short, with the new reflection functionalities, it is now possible to share type data across different processes, through, for example, a socket.</p>
 <p>In practice, this means that games made with Cubos can now be launched with a debug flag which makes them act as a server at a given port.
 Then, the editor is able to connect to this server and extract all of the required debug information.
 We also make use of this new connection to allow the editor to send debugging commands to the game, such as pausing, resuming, and stepping the game's execution.</p>
@@ -137,13 +137,15 @@ This polygon is described by its vertices, in the form of <em>Contact Points</em
 <section id="new-components">
 <h5>New Components</h5>
 <p>The next thing to add were Components to support rotations, such as <code>Inertia</code>, <code>Torque</code>, and <code>AngularVelocity</code>, just to name a few.
-To facilitate the creation, we also added automatic computation of the inertia tensor for the <code>BoxCollisionShape</code>, which is performed upon adding the <code>Inertia</code> component and every time <code>Mass</code> or the dimentions of the shape are changed.</p>
+To facilitate the creation of entities with box collision shapes, we also added automatic computation of the inertia tensor for the <code>BoxCollisionShape</code>, which is performed upon adding the <code>Inertia</code> component and every time <code>Mass</code> or the dimentions of the shape are changed.</p>
 </section>
 <section id="expand-the-integrator-and-solver">
 <h5>Expand the Integrator and Solver</h5>
 <p>The last step was to add rotation in the Integrator and <code>PenetrationConstraint</code> Solving.</p>
 <p>The integrator simply takes the <code>AngularImpulse</code> and <code>Torque</code> components and handles them similarly to the linear movement components.
-We want to note that the <code>Force</code> component also holds a torque vector, in our current design. This is because our way of adding force on a point of the body is done through <code>Force</code>, meaning, it has an hidden torque vector, which we also use in the Integration phase.</p>
+We want to note that the <code>Force</code> component also holds a torque vector, in our current design.
+This is because the method we supply to apply a force on a point of the body belongs to <code>Force</code>, and that method may also apply some torque, if the force isn't aligned with the center of mass.
+This hidden torque vector is also used in the Integration phase.</p>
 <pre class="m-code"><span class="k">struct</span><span class="w"> </span><span class="nc">Force</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addForceOnPoint</span><span class="p">(</span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">force</span><span class="p">,</span><span class="w"> </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">localPoint</span><span class="p">,</span><span class="w"> </span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="w"> </span><span class="n">centerOfMass</span><span class="p">)</span>
@@ -330,9 +332,9 @@ The editor contains a <code>TypeClient</code>, the game contains a <code>TypeSer
 Both the <code>TypeClient</code> and the <code>TypeServer</code> allow registering serialization and deserialization functions for each trait, so that they can be sent across the stream.</p>
 <p>The protocol itself is relatively simple:</p>
 <ol>
-<li>The client sends a list with the names of the traits it supports.</li>
+<li>The client - the editor - sends a list with the names of the traits it supports.</li>
 <li>The client sends a list with the types it already knows about (for example, primitive types like <code>int</code> and <code>float</code>).</li>
-<li>The server sends a list with the types that the client doesn't know about yet. This includes:
+<li>The server - the game - sends a list with the types that the client doesn't know about yet. This includes:
 - The type name.
 - A list of the serialized traits that describe the type.
 - The serialized default value for the type, if it has one.</li>
