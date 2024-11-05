@@ -184,8 +184,18 @@ is employed, rendering the world from a point which varies with the camera's pos
 distances to balance quality with draw range. This means that instead of just a single shadow map texture
 for the light, there is a texture for each camera, multiplied by the number of distances at which the world is rendered.
 It's worth noting that each directional shadow caster has its own textures, instead of using a shared shadow atlas like spot casters.
-Below is a screenshot of the directional shadow map used to draw shadows in &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, as shown earlier.&lt;/p&gt;
-&lt;img class="m-image" src="images/cascaded_shadow_map.png" /&gt;
+Below are screenshots of the directional shadow map used to draw shadows in &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, as shown earlier.&lt;/p&gt;
+&lt;div class="m-row"&gt;
+&lt;div class="m-col-m-4"&gt;
+&lt;img class="m-image" src="images/cascaded_shadow_map_1.png" /&gt;
+&lt;/div&gt;
+&lt;div class="m-col-m-4"&gt;
+&lt;img class="m-image" src="images/cascaded_shadow_map_2.png" /&gt;
+&lt;/div&gt;
+&lt;div class="m-col-m-4"&gt;
+&lt;img class="m-image" src="images/cascaded_shadow_map_3.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/section&gt;
 &lt;section id="input-axis-deadzones-kuukitenshi"&gt;
 &lt;h4&gt;Input Axis Deadzones &lt;span class="m-text m-dim"&gt;(&amp;#64;kuukitenshi)&lt;/span&gt;&lt;/h4&gt;
