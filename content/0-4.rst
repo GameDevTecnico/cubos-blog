@@ -1,7 +1,7 @@
 0.4 is out! 
 ###########
 
-:date: 2024-10-20 00:00:00
+:date: 2024-11-05 00:00:00
 :category: Release
 :summary: Cubos 0.4 Release!
 
