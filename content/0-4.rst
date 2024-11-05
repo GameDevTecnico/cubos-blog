@@ -270,7 +270,7 @@ Now, the ``PerspectiveCamera`` component is only used to fill in the ``Camera`` 
 With this, we decoupled the camera type from the rest of code, allowing us to add a new ``OrtographicCamera`` component uses an ortographic projection instead of a perspective one.
 
 On the Core
--------------
+-----------
 
 Spans for Profiling and Tracing :dim:`(@roby2014)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
