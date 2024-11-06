@@ -1,5 +1,347 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos - Release</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/release.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2024-09-09T16:00:00+01:00</updated><entry><title>0.3 is here!</title><link href="https://cubosengine.org/03-is-here.html" rel="alternate"></link><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/03-is-here.html</id><summary type="html">&lt;p&gt;Cubos 0.3 Release!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos - Release</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/release.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2024-11-05T00:00:00+00:00</updated><entry><title>0.4 is out!</title><link href="https://cubosengine.org/04-is-out.html" rel="alternate"></link><published>2024-11-05T00:00:00+00:00</published><updated>2024-11-05T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-11-05:/04-is-out.html</id><summary type="html">&lt;p&gt;Cubos 0.4 Release!&lt;/p&gt;
+</summary><content type="html">&lt;section id="new-0-4-features"&gt;
+&lt;h2&gt;New 0.4 Features&lt;/h2&gt;
+&lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
+&lt;section id="on-the-editor"&gt;
+&lt;h3&gt;On the Editor&lt;/h3&gt;
+&lt;section id="project-management-and-debugging-riscadoa"&gt;
+&lt;h4&gt;Project Management and Debugging &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;In this release, we were finally able to make our editor, &lt;strong&gt;Tesseratos&lt;/strong&gt;, a standalone application!
+Previously, the editor was a part of the engine itself, which meant if you made changes to the game's code, you had to recompile the editor as well, and restart it.
+Now the editor has its own executable, and through it, you can open projects, edit their assets, and even debug them - all without having to restart the editor when recompiling the game.
+At this time, the UX is still a bit rough, as we've focused on making it work first.&lt;/p&gt;
+&lt;p&gt;One major hurdle we had to overcome was how to make the editor aware of the project's data types, such as its components and resources.
+Before, they were part of the same application, and thus, the editor could simply access them directly.
+Now, with the editor being a separate application, we needed a way to share this information across different processes.
+You can read more about it in the &amp;quot;Type Client and Type Server&amp;quot; section at the end of this post, but in short, with the new reflection functionalities, it is now possible to share type data across different processes, through, for example, a socket.&lt;/p&gt;
+&lt;p&gt;In practice, this means that games made with Cubos can now be launched with a debug flag which makes them act as a server at a given port.
+Then, the editor is able to connect to this server and extract all of the required debug information.
+We also make use of this new connection to allow the editor to send debugging commands to the game, such as pausing, resuming, and stepping the game's execution.&lt;/p&gt;
+&lt;p&gt;So, essentially, we've added two new tools to the editor:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A debugger tool, which allows you to connect to a running game and debug it (pause, resume, step, etc.).&lt;/li&gt;
+&lt;li&gt;A project manager tool, which allows you to open projects, edit their assets, and launch them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can see them in action in the video below:&lt;/p&gt;
+&lt;iframe width="560" height="340" style="display: block; margin: auto" src="https://www.youtube.com/embed/Pu40BjmmW2U" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen&gt;&lt;/iframe&gt;&lt;/section&gt;
+&lt;section id="voxel-model-importing-tool-scarface1809"&gt;
+&lt;h4&gt;Voxel Model Importing Tool &lt;span class="m-text m-dim"&gt;(&amp;#64;Scarface1809)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;In this release, we've added a highly useful plugin to &lt;strong&gt;Tesseratos&lt;/strong&gt;: a &lt;strong&gt;Voxel Model Importing Tool&lt;/strong&gt;. With this new tool, you can now import &lt;cite&gt;.qb&lt;/cite&gt; files directly within the editor, bypassing the need for the external conversion tool &lt;strong&gt;Quadrados&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Previously, importing voxel models required converting &lt;cite&gt;.qb&lt;/cite&gt; files into &lt;cite&gt;.pal&lt;/cite&gt; and &lt;cite&gt;.grd&lt;/cite&gt; files using &lt;strong&gt;Quadrados&lt;/strong&gt;, a CLI tool, before they could be used in the engine. Now, with the &lt;strong&gt;Voxel Model Importer Plugin&lt;/strong&gt;, the process has been simplified, acting as an interface to handle the conversion process within the editor.&lt;/p&gt;
+&lt;p&gt;The tool allows you to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Assign names to the &lt;cite&gt;.pal&lt;/cite&gt; and &lt;cite&gt;.grd&lt;/cite&gt; files.&lt;/li&gt;
+&lt;li&gt;Choose the file paths where the &lt;cite&gt;.grd&lt;/cite&gt; files and the &lt;cite&gt;.pal&lt;/cite&gt; file should be saved.&lt;/li&gt;
+&lt;li&gt;Specify how many &lt;cite&gt;.grd&lt;/cite&gt; files supported by the &lt;cite&gt;.qb&lt;/cite&gt; file you want to import.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With this tool, importing voxel models into your projects is now faster and easier, allowing for a smoother workflow and less reliance on &lt;strong&gt;Quadrados&lt;/strong&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="on-the-engine"&gt;
+&lt;h3&gt;On the Engine&lt;/h3&gt;
+&lt;section id="physics-with-rotation-fallenatlas"&gt;
+&lt;h4&gt;Physics with Rotation &lt;span class="m-text m-dim"&gt;(&amp;#64;fallenatlas)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;We have &lt;strong&gt;rotation&lt;/strong&gt;!&lt;/p&gt;
+&lt;img class="m-image" src="images/complex_physics_sample_rotations.gif" /&gt;
+&lt;p&gt;Since the start of the physics plugin, we always treated rigid bodies as simple particles.
+This is because it made the calculations more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging - of penetration solving for example - easier.
+With the particle behaviour stabilized, we decided it was time to expand the plugin to consider rotation, and for that we had to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add Collision Manifold and Collision Points computation.&lt;/li&gt;
+&lt;li&gt;Add Components for Rotation.&lt;/li&gt;
+&lt;li&gt;Expand the Integrator and Solver to compute rotations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section id="collision-manifold-and-collision-points"&gt;
+&lt;h5&gt;Collision Manifold and Collision Points&lt;/h5&gt;
+&lt;p&gt;Previously, since everything was a particle, we simply computed if there was a collision using SAT, which also returned the normal along which the penetration was the smallest, along with that penetration value.
+For rotations we need a &lt;code&gt;ContactManifold&lt;/code&gt; relation, that holds all information about the collision. A &lt;em&gt;Contact Manifold&lt;/em&gt; is effectively a 2D polygon that details the surface of contact between the 2 bodies.
+In computer physics the bodies inter-penetrate each other, which does not happen in the real world. The manifold is the aproximation of the real contact surface the bodies would have.
+This polygon is described by its vertices, in the form of &lt;em&gt;Contact Points&lt;/em&gt;, all of which contain their position and penetration in &lt;code&gt;ContactPointData&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To compute the manifold we use the Sutherland Hodgman algorithm. Our current implementation was mostly inspired by this &lt;a href="https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/previousinformation/physics5collisionmanifolds/2017%20Tutorial%205%20-%20Collision%20Manifolds.pdf"&gt;tutorial&lt;/a&gt;, which you can check out, to see how it works.&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="k"&gt;struct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;ContactPointData&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;ecs&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Entity&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;entity&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Entity to which the normal is relative to.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;globalOn1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Position on the entity of the contact in global coordinates.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;globalOn2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Position on the other entity of the contact in global coordinates.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;localOn1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Position on the entity of the contact in local coordinates.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;localOn2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Position on the other entity of the contact in local coordinates.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;penetration&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;               &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Penetration of the contact point. Always positive.&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;struct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;ContactManifold&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;ecs&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Entity&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;entity&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Entity to which the normal is relative to.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;                     &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; A contact normal shared by all contacts in this manifold,&lt;/span&gt;
+&lt;span class="w"&gt;                                          &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; expressed in the local space of the first entity.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;ContactPointData&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;points&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Contact points of this manifold.&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;With this change, our narrow phase firstly checks for collision with SAT, since it's cheaper, and only then computes the manifold.&lt;/p&gt;
+&lt;p&gt;The collisions sample was also enhanced so we could visualize this information.&lt;/p&gt;
+&lt;img class="m-image" src="images/collision_sample_manifold_demo.gif" /&gt;
+&lt;/section&gt;
+&lt;section id="new-components"&gt;
+&lt;h5&gt;New Components&lt;/h5&gt;
+&lt;p&gt;The next thing to add were Components to support rotations, such as &lt;code&gt;Inertia&lt;/code&gt;, &lt;code&gt;Torque&lt;/code&gt;, and &lt;code&gt;AngularVelocity&lt;/code&gt;, just to name a few.
+To facilitate the creation of entities with box collision shapes, we also added automatic computation of the inertia tensor for the &lt;code&gt;BoxCollisionShape&lt;/code&gt;, which is performed upon adding the &lt;code&gt;Inertia&lt;/code&gt; component and every time &lt;code&gt;Mass&lt;/code&gt; or the dimentions of the shape are changed.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="expand-the-integrator-and-solver"&gt;
+&lt;h5&gt;Expand the Integrator and Solver&lt;/h5&gt;
+&lt;p&gt;The last step was to add rotation in the Integrator and &lt;code&gt;PenetrationConstraint&lt;/code&gt; Solving.&lt;/p&gt;
+&lt;p&gt;The integrator simply takes the &lt;code&gt;AngularImpulse&lt;/code&gt; and &lt;code&gt;Torque&lt;/code&gt; components and handles them similarly to the linear movement components.
+We want to note that the &lt;code&gt;Force&lt;/code&gt; component also holds a torque vector, in our current design.
+This is because the method we supply to apply a force on a point of the body belongs to &lt;code&gt;Force&lt;/code&gt;, and that method may also apply some torque, if the force isn't aligned with the center of mass.
+This hidden torque vector is also used in the Integration phase.&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="k"&gt;struct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Force&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;addForceOnPoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;force&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;localPoint&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;centerOfMass&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;mForce&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;force&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;mTorque&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cross&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;localPoint&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;centerOfMass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;force&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;private&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mForce&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mTorque&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0F&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;PenetrationConstraint&lt;/code&gt; is now solved for each contact point, using their local anchor for relative velocity, separation, and angular velocity calculation at each step.
+This involved changing the constraint itself to also have a number of &lt;code&gt;PenetrationConstraintPointData&lt;/code&gt;, which are the same as the manifold points but with extra information to keep track of the constraint solving.
+The constraint is now created when the &lt;code&gt;ContactManifold&lt;/code&gt; relation is present between 2 entities, instead of &lt;code&gt;CollidingWith&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="k"&gt;struct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PenetrationConstraintPointData&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;initialSeparation&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; The separation of the contact point. Negative separation indicates&lt;/span&gt;
+&lt;span class="w"&gt;                             &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; penetration.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;normalSpeed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; The relative velocity of the bodies along the normal at the contact point the begging of&lt;/span&gt;
+&lt;span class="w"&gt;                       &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; the collision.&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;localAnchor1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; The local contact point relative to the center of mass of the first body.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;localAnchor2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; The local contact point relative to the center of mass of the second body.&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;/// Store fixed world-space anchors.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;/// This improves rolling behavior for shapes like balls and capsules. Used for restitution and friction.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fixedAnchor1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; The world-space contact point relative to the center of mass of the first body.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fixedAnchor2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; The world-space contact point relative to the center of mass of the second body.&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// separation&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;normalMass&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Mass to use for normal impulse calculation.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;normalImpulse&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Accumulated impulse for separation.&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// friction&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;frictionMass1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Mass to use for friction impulse calculation along the first tangent..&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;frictionMass2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Mass to use for friction impulse calculation along the second tangent..&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;frictionImpulse1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Accumulated impulse for friction along the first tangent.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;frictionImpulse2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Accumulated impulse for friction along the second tangent.&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;struct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PenetrationConstraint&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;ecs&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Entity&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;entity&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Entity to which the normal is relative to.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;glm&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vec3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Normal of contact on the surface of the entity.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;friction&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;                  &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Friction of the constraint.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;restitution&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;               &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Restitution coefficient of the constraint.&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;PenetrationConstraintPointData&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;points&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;///&amp;lt; Contact points in the contact manifold.&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;And that's it for this very short summary of the physics changes.
+Our implementation is still far from perfect. As you might have seen in the sample clip, some movements still don't look very natural, and the boxes should have stayed on top of each other, which is something we'll be working on over the next releases.&lt;/p&gt;
+&lt;p&gt;To wrap up, as we promised in the previous release blog post, we've added the &lt;code&gt;PhysicsMaterial&lt;/code&gt; component, which allows users to fine tune the friction and bounciness behaviour of each body. Check it out in our documentation!&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="cascading-shadow-maps-tomas7770"&gt;
+&lt;h4&gt;Cascading Shadow Maps &lt;span class="m-text m-dim"&gt;(&amp;#64;tomas7770)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;In the previous release, we introduced &lt;strong&gt;shadows&lt;/strong&gt;.
+As shown in the release blog post, this had a significant impact on the quality of Cubos' graphics.
+However, due to the complexity and time it took to implement this feature, we were only able to support
+spot lights, the type of light for which it's easiest to cast shadows. This obviously restricted the
+scenarios where shadows were visible. For this release we aimed to extend shadows support
+to directional lights, leaving only point light shadows to be implemented.&lt;/p&gt;
+&lt;p&gt;Here are some comparison screenshots showing the difference directional shadows can make.
+Try dragging the slider in the middle to compare the before and after!&lt;/p&gt;
+&lt;img-comparison-slider&gt;
+&lt;img slot="before" src="https://cubosengine.org/images/scraps_vs_zombies_csm_before.png" style="width: 100%" /&gt;
+&lt;img slot="after" src="https://cubosengine.org/images/scraps_vs_zombies_csm_after.png" style="width: 100%" /&gt;
+&lt;/img-comparison-slider&gt;
+&lt;img-comparison-slider&gt;
+&lt;img slot="before" src="https://cubosengine.org/images/cars_csm_before.png" style="width: 100%" /&gt;
+&lt;img slot="after" src="https://cubosengine.org/images/cars_csm_after.png" style="width: 100%" /&gt;
+&lt;/img-comparison-slider&gt;
+&lt;img-comparison-slider&gt;
+&lt;img slot="before" src="https://cubosengine.org/images/surfers_csm_before.png" style="width: 100%" /&gt;
+&lt;img slot="after" src="https://cubosengine.org/images/surfers_csm_after.png" style="width: 100%" /&gt;
+&lt;/img-comparison-slider&gt;
+&lt;p&gt;As you can see, this adds a whole new level of depth to the engine's graphics.&lt;/p&gt;
+&lt;p&gt;Similarly to spot shadows, directional shadows can be enabled by adding a component to the respective light,
+in this case a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1DirectionalShadowCaster.html"&gt;DirectionalShadowCaster&lt;/a&gt;.
+The &lt;a href="https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows"&gt;Shadows sample&lt;/a&gt; has been updated to show this.&lt;/p&gt;
+&lt;p&gt;Because directional shadows are more complex than spot shadows, there are more options that can be configured,
+namely the maximum and minimum distances for which shadows are casted (directional lights have an unlimited
+range, but shadows have a limited range), the distances at which the shadow quality level drops (&amp;quot;splits&amp;quot;), and the resolution
+of the shadow map. You may want to tweak the distance values for better results: a lower value will result in
+better shadow quality at the expense of range, and vice-versa.&lt;/p&gt;
+&lt;p&gt;Due to a technical limitation in our renderer, only one directional light can cast shadows at a given time;
+other directional shadow casters will simply be ignored.&lt;/p&gt;
+&lt;p&gt;The way directional shadows are implemented is similar to spot shadows. One of the main differences is
+that, because of directional lights' unlimited range, a technique known as &lt;a href="https://learnopengl.com/Guest-Articles/2021/CSM"&gt;Cascaded Shadow Mapping&lt;/a&gt;
+is employed, rendering the world from a point which varies with the camera's position, and at multiple
+distances to balance quality with draw range. This means that instead of just a single shadow map texture
+for the light, there is a texture for each camera, multiplied by the number of distances at which the world is rendered.
+It's worth noting that each directional shadow caster has its own textures, instead of using a shared shadow atlas like spot casters.
+Below are screenshots of the directional shadow map used to draw shadows in &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, as shown earlier.&lt;/p&gt;
+&lt;div class="m-row"&gt;
+&lt;div class="m-col-m-4"&gt;
+&lt;img class="m-image" src="images/cascaded_shadow_map_1.png" /&gt;
+&lt;/div&gt;
+&lt;div class="m-col-m-4"&gt;
+&lt;img class="m-image" src="images/cascaded_shadow_map_2.png" /&gt;
+&lt;/div&gt;
+&lt;div class="m-col-m-4"&gt;
+&lt;img class="m-image" src="images/cascaded_shadow_map_3.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="input-axis-deadzones-kuukitenshi"&gt;
+&lt;h4&gt;Input Axis Deadzones &lt;span class="m-text m-dim"&gt;(&amp;#64;kuukitenshi)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Previously, dealing with input sources that exhibited drift, like older gamepad joysticks, required developers to manually filter out noise from input data.&lt;/p&gt;
+&lt;p&gt;In this release, input deadzones can now be configured directly within the bindings asset, allowing players to adjust it in the settings for their controllers to filter out unwanted noise.&lt;/p&gt;
+&lt;p&gt;This enhancement significantly simplifies input handling and ensures a smoother and more reliable gameplay experience, especially for games that heavily rely on precise controller input.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="ortographic-cameras-mkuritsu"&gt;
+&lt;h4&gt;Ortographic Cameras &lt;span class="m-text m-dim"&gt;(&amp;#64;mkuritsu)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Previously we only had support for perspective cameras in Cubos, and additionally, perspective matrix computations were duplicated all over the code.
+To address this, we've added a new generic &lt;code&gt;Camera&lt;/code&gt; component that holds the projection matrix of the current camera in use.
+Now, the &lt;code&gt;PerspectiveCamera&lt;/code&gt; component is only used to fill in the &lt;code&gt;Camera&lt;/code&gt; component with the correct projection matrix, and code needing the projection matrix can simply query the &lt;code&gt;Camera&lt;/code&gt; component.&lt;/p&gt;
+&lt;p&gt;With this, we decoupled the camera type from the rest of code, allowing us to add a new &lt;code&gt;OrtographicCamera&lt;/code&gt; component which uses an ortographic projection instead of a perspective one.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="on-the-core"&gt;
+&lt;h3&gt;On the Core&lt;/h3&gt;
+&lt;section id="spans-for-profiling-and-tracing-roby2014"&gt;
+&lt;h4&gt;Spans for Profiling and Tracing &lt;span class="m-text m-dim"&gt;(&amp;#64;roby2014)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing.
+This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Tracing allows developers to track the execution of their code by creating spans that represent specific periods of execution.
+This capability makes it easier to log messages and visualize the flow of an application, providing valuable insights into performance and behaviour.&lt;/p&gt;
+&lt;p&gt;In &lt;strong&gt;Cubos&lt;/strong&gt;, tracing is facilitated through a set of macros defined in &lt;code&gt;core/tel/tracing.hpp&lt;/code&gt;:
+- &lt;code&gt;CUBOS_SPAN_TRACE&lt;/code&gt;
+- &lt;code&gt;CUBOS_SPAN_DEBUG&lt;/code&gt;
+- &lt;code&gt;CUBOS_SPAN_INFO&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;From now on, all telemetry components share the same logging level. You can set it by using &lt;code&gt;cubos::core::tel::level&lt;/code&gt; method.
+This means that, as an example, trace spans will only be registered if the logger level is set to trace.
+We also moved the other components to the &lt;code&gt;tel&lt;/code&gt; namespace (metrics and logging).&lt;/p&gt;
+&lt;p&gt;Here's a simple code snippet on how it works and its output:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;tel&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Level&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_SPAN_TRACE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;this_wont_exist!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// wont exist because trace &amp;lt; debug&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello from root span!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_SPAN_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;main_span&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// With this macro, a new RAII guard is created. When dropped, exits the span.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// This indicates that we are in the span for the current lexical scope.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// Logs and metrics from here will be associated with &amp;#39;main&amp;#39; span.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_SPAN_DEBUG&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;other_scope&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello again!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;SpanManager&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;manual_span&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;tel&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Level&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;entered a manual span&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;SpanManager&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;CUBOS_INFO&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;after exit manual span&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
+&lt;pre class="m-code"&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.966&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:20&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;hello&lt;span class="w"&gt; &lt;/span&gt;from&lt;span class="w"&gt; &lt;/span&gt;root&lt;span class="w"&gt; &lt;/span&gt;span!
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.967&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:26&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;hello!
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.967&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:29&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span:other_scope&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;hello&lt;span class="w"&gt; &lt;/span&gt;again!
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.968&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:34&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span:other_scope:manual_span&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;entered&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;manual&lt;span class="w"&gt; &lt;/span&gt;span
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;:03:31.969&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;main.cpp:37&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;thread11740:main_span:other_scope&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;info:&lt;span class="w"&gt; &lt;/span&gt;after&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;manual&lt;span class="w"&gt; &lt;/span&gt;span&lt;/pre&gt;
+&lt;p&gt;Looking ahead, we aim to develop a &lt;strong&gt;Tesseratos&lt;/strong&gt; plugin that will allow developers to debug and view all possible spans and their execution times
+(e.g: &lt;a class="m-link-wrap" href="https://github.com/bwrsandman/imgui-flame-graph"&gt;https://github.com/bwrsandman/imgui-flame-graph&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="swapping-openal-for-miniaudio-diogomsmiranda-dageus"&gt;
+&lt;h4&gt;Swapping OpenAL for Miniaudio &lt;span class="m-text m-dim"&gt;(&amp;#64;diogomsmiranda, &amp;#64;Dageus)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;This release marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
+But before we could start working on the plugin itself, we had to make some changes to the audio backend.
+Previously, we were using OpenAL for audio, which no longer aligned with our vision for Cubos, so we decided to switch to &lt;a href="https://miniaud.io"&gt;miniaudio.h&lt;/a&gt;, a lightweight, single-file audio library easy to integrate and use while also sharing the same license as Cubos.
+We implemented a new &lt;code&gt;AudioContext&lt;/code&gt; abstraction on the core library, which hides the underlying audio library from the rest of the engine.&lt;/p&gt;
+&lt;p&gt;In the next release of &lt;strong&gt;Cubos&lt;/strong&gt;, we're planning to have a fully functional audio plugin, which will allow you to play sounds and music in your games!&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="type-client-and-type-server-riscadoa"&gt;
+&lt;h4&gt;Type Client and Type Server &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;To separate &lt;strong&gt;Tesseratos&lt;/strong&gt; from the engine into a separate process, we needed a way to share type data across different processes.
+This is because the editor needs to know about the project's data types, such as its components and resources, to be able to do work with them, such as showing them in the editor's UI, or editing scene assets.&lt;/p&gt;
+&lt;p&gt;To solve this problem, we've added the &lt;code&gt;TypeServer&lt;/code&gt; and &lt;code&gt;TypeClient&lt;/code&gt; classes to the core's reflection module.
+The editor contains a &lt;code&gt;TypeClient&lt;/code&gt;, the game contains a &lt;code&gt;TypeServer&lt;/code&gt; and both communicate through an abstract stream, which currently is implemented using a TCP socket.&lt;/p&gt;
+&lt;p&gt;Our reflection system is based on the concept of &amp;quot;traits&amp;quot;. A trait is a piece of metadata that describes a type, such as its name, its fields, and its methods.
+Both the &lt;code&gt;TypeClient&lt;/code&gt; and the &lt;code&gt;TypeServer&lt;/code&gt; allow registering serialization and deserialization functions for each trait, so that they can be sent across the stream.&lt;/p&gt;
+&lt;p&gt;The protocol itself is relatively simple:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The client - the editor - sends a list with the names of the traits it supports.&lt;/li&gt;
+&lt;li&gt;The client sends a list with the types it already knows about (for example, primitive types like &lt;code&gt;int&lt;/code&gt; and &lt;code&gt;float&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;The server - the game - sends a list with the types that the client doesn't know about yet. This includes:
+- The type name.
+- A list of the serialized traits that describe the type.
+- The serialized default value for the type, if it has one.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Most of the complexity of this system is on the client side, as it needs to figure out the memory layout of the types it receives from the server.
+We do this by basing the memory layout on one of the received traits.
+For example, if the server sends a trait that describes an object type with fields, then the client will create a new type which stores these fields in memory.
+If the trait describes an array type, then the client will create a new type that stores an array in memory, and so on.&lt;/p&gt;
+&lt;p&gt;One major limitation of the current implementation is that it lacks support for traits like &lt;code&gt;NullableTrait&lt;/code&gt;.
+This trait contains a function which determines if a value is null or not, and another to make a value null.
+How can we pass a function through a stream? We can't. One thing we could do would be to communicate again with the server whenever the client needs to know whether a value is null or not.
+For now, we've decided to simply ignore these traits, but we'll eventually need to tackle this issue, as it would allow for better UX in the editor.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="stacktraces-on-crashes-riscadoa"&gt;
+&lt;h4&gt;Stacktraces on Crashes &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Previously, when the engine crashed, it would simply print an error message to the console, and that was it.
+We would not get a lot of information about the crash's context, other than the previous log messages.
+To debug a crash, we usually spun up a debugger and tried to reproduce it.
+This way we could get a stack trace, but it was a bit cumbersome, and when the crash happened in a release build or in a different environment, we were out of luck.&lt;/p&gt;
+&lt;p&gt;In order to make our lives easier, we've integrated &lt;a href="https://github.com/jeremy-rifkin/cpptrace"&gt;cpptrace&lt;/a&gt; into the core library.
+Now, whenever the engine aborts, it prints a pretty stack trace to &lt;code&gt;stderr&lt;/code&gt;, which includes the function names, the file names, and the line numbers of the functions that were called.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="new-team-organization"&gt;
+&lt;h2&gt;New Team Organization&lt;/h2&gt;
+&lt;p&gt;We're currently undergoing a major reorganization of the team itself, as it has grown significantly over the past few months.
+We have now over 20 developers working on the project, and we're planning to expand even further.&lt;/p&gt;
+&lt;p&gt;Previusly, we all met weekly to showcase what each member had been working, and to discuss the project's direction.
+Of course, with such a large team, these meetings were becoming increasingly long and unproductive.&lt;/p&gt;
+&lt;p&gt;So, we decided to split the big team into smaller teams, each with its own focus. As of now, we have the following teams:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Community&lt;/strong&gt;: responsible for managing the more meta aspects of the project, such as the blog, the Discord server, and the social media.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graphics&lt;/strong&gt;: responsible for any graphics-related features, such as voxels, UI and gizmos rendering.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physics&lt;/strong&gt;: responsible for the physics and collisions plugins.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tools&lt;/strong&gt;: responsible for &lt;strong&gt;Tesseratos&lt;/strong&gt;, &lt;strong&gt;Quadrados&lt;/strong&gt; and all other kinds of tooling.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wildcard&lt;/strong&gt;: catch-all team for any other kind of feature that doesn't fit in the other teams.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now each team meets weekly to discuss their progress and plans, and we have a big meeting less frequently to discuss the project as a whole.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="next-steps"&gt;
+&lt;h2&gt;Next Steps&lt;/h2&gt;
+&lt;p&gt;In the next release, which should be out by the end of November, we're planning to work on the following features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Scene editing through the new standalone editor, &lt;strong&gt;Tesseratos&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;An Audio plugin, using the new Audio Context abstraction we've added in this release.&lt;/li&gt;
+&lt;li&gt;Point light shadows.&lt;/li&gt;
+&lt;li&gt;Anti-aliasing.&lt;/li&gt;
+&lt;li&gt;MSDF text rendering on our UI plugin.&lt;/li&gt;
+&lt;li&gt;Reduce shadow artifacts such as shadow acne and peter panning.&lt;/li&gt;
+&lt;li&gt;Toggleable gravity on the physics plugin.&lt;/li&gt;
+&lt;li&gt;Voxel collision shapes, where the collision shape is the same as the voxel model.&lt;/li&gt;
+&lt;li&gt;Contact point caching to avoid recomputing the collision manifolds every frame.&lt;/li&gt;
+&lt;li&gt;Saving settings after changing them in the UI.&lt;/li&gt;
+&lt;li&gt;An &lt;code&gt;Active&lt;/code&gt; component to enable and disable all kinds of behaviors in entities.&lt;/li&gt;
+&lt;li&gt;Refactoring the whole CMake configuration to support installation and packaging.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Additionally, we're planning to work on a new game project using our engine - now with online multiplayer support!&lt;/p&gt;
+&lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/28"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
+&lt;/section&gt;
+</content><category term="Release"></category></entry><entry><title>0.3 is here!</title><link href="https://cubosengine.org/03-is-here.html" rel="alternate"></link><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/03-is-here.html</id><summary type="html">&lt;p&gt;Cubos 0.3 Release!&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This blog post came a bit late due to the summer break, but we're back with a new release!
 Features-wise, this release was a tad smaller than the previous one as we spent a lot of time working on non-code related stuff, such as rebranding and marketing the project.&lt;/p&gt;
 &lt;section id="a-new-brand-identity-nuno-baptista"&gt;
