@@ -17,6 +17,11 @@ This blog post covers the most important changes, but you can check out the full
 On the Editor
 -------------
 
+Hold mode for Debug Camera. :dim:`(@jdbaracho)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It wasn't very convenient to have only a toogle to control the Debug Camera, so we added a hold mode.
+
 Editor Feature 1 :dim:`(@Author1)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
