@@ -51,6 +51,19 @@ Below is a screenshot of the sample with all light types casting shadows. Some t
 
 .. image:: images/0.5/shadows_sample.png
 
+Audio Support through the Audio Plugin  :dim:`(@Dageus, @diogomsmiranda)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This release is a significant milestone for the CUBOS engine, as it finally introduces Audio functionality!
+
+The new ``audioPlugin`` leverages the previously implemented ``Audio Context`` to manage audio playback. It introduces two new components:
+
+- **``AudioSource``**: Attach this component to entities to play audio files in supported formats such as FLAC, MP3 and WAV.
+- **``AudioListener``**: Attach this component to an entity to capture audio from the scene.
+
+With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the ``AudioSource`` properties for each entity. Adjust settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
+Due to restrictions in our audio backend, you can only have up to **three active listeners** at a time. For practical examples of how to use these new audio components (``AudioPlay``, ``AudioPause``, ``AudioStop``), check out our `Audio Sample <https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp>`_.
+
 Sub-title for this feature
 **************************
 
