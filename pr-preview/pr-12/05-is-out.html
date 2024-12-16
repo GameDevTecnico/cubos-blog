@@ -59,6 +59,10 @@
 <p>This blog post covers the most important changes, but you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>.</p>
 <section id="on-the-editor">
 <h3>On the Editor</h3>
+<section id="hold-mode-for-debug-camera-jdbaracho">
+<h4>Hold mode for Debug Camera. <span class="m-text m-dim">(&#64;jdbaracho)</span></h4>
+<p>It wasn't very convenient to have only a toogle to control the Debug Camera, so we added a hold mode.</p>
+</section>
 <section id="editor-feature-1-author1">
 <h4>Editor Feature 1 <span class="m-text m-dim">(&#64;Author1)</span></h4>
 <p>TODO: explain feature and why it is useful</p>
@@ -66,13 +70,57 @@
 </section>
 <section id="on-the-engine">
 <h3>On the Engine</h3>
-<section id="engine-feature-1-author2">
-<h4>Engine Feature 1 <span class="m-text m-dim">(&#64;Author2)</span></h4>
-<p>TODO: explain feature and why it is useful</p>
+<section id="point-light-shadows-tomas7770">
+<h4>Point Light Shadows <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<p>Over the past couple releases, <strong>shadows</strong> have been gradually introduced to the engine's graphics
+renderer, starting with spot light shadows, and then directional ones. Naturally, the next step was to
+implement shadows for point lights, finally completing support for all types of lights.</p>
+<p>Once again, point shadows are enabled by adding a component to the light entity, this time a
+<a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1PointShadowCaster.html">PointShadowCaster</a>.
+They behave similarly to spot shadows, lacking all the configurable values of the more complex directional shadows.
+You may want to read the previous blog posts for more detailed information on this.</p>
+<p>In terms of implementation, point shadows are also very similar to spot shadows, using a shared atlas texture
+that stores shadow maps for every point light in a quadtree structure. However, because point lights cast light in
+all directions, there are actually 6 atlas textures, one for each direction of a cube.</p>
+<p>The final result of shadows can be seen in the <a href="https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows">Shadows sample</a>.
+Below is a screenshot of the sample with all light types casting shadows. Some tweaks have been done to better highlight the shadows.</p>
+<img class="m-image" src="images/0.5/shadows_sample.png" />
+</section>
+<section id="audio-support-through-the-audio-plugin-dageus-diogomsmiranda">
+<h4>Audio Support through the Audio Plugin  <span class="m-text m-dim">(&#64;Dageus, &#64;diogomsmiranda)</span></h4>
+<p>This release is a significant milestone for the CUBOS engine, as it finally introduces Audio functionality!</p>
+<p>The new <code>audioPlugin</code> leverages the previously implemented <code>Audio Context</code> to manage audio playback. It introduces two new components:</p>
+<ul>
+<li><strong>``AudioSource``</strong>: Attach this component to entities to play audio files in supported formats such as FLAC, MP3 and WAV.</li>
+<li><strong>``AudioListener``</strong>: Attach this component to an entity to capture audio from the scene.</li>
+</ul>
+<p>With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the <code>AudioSource</code> properties for each entity. Adjust settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
+Due to restrictions in our audio backend, you can only have up to <strong>three active listeners</strong> at a time. For practical examples of how to use these new audio components (<code>AudioPlay</code>, <code>AudioPause</code>, <code>AudioStop</code>), check out our <a href="https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp">Audio Sample</a>.</p>
 <section id="sub-title-for-this-feature">
 <h5>Sub-title for this feature</h5>
 <p>TODO: more explaining</p>
 </section>
+</section>
+<section id="collision-detection-between-voxelcollisionshapes-joaomanita">
+<h4>Collision detection between VoxelCollisionShapes <span class="m-text m-dim">(&#64;joaomanita)</span></h4>
+<p>The engine was only able to able to detect collisons between boxes, now we can add a <cite>VoxelCollisionShape &lt;https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html&gt;</cite>
+to decompose a voxel shape into multiple box collision shapes.</p>
+</section>
+<section id="ui-text-element-using-msdf-for-text-rendering-mkuritsu">
+<h4>UI text element using MSDF for text rendering <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
+<p>Another great addition to the CUBOS engine was the support for text rendering in the UI, this will greatly improve the capabilities
+for communicating with the player in future games developed with the engine.</p>
+<p>This new features includes and <cite>uiTextPlugin</cite> that can be added wich contains the <cite>UIText</cite> component, this one contains all the data needed
+to draw text on the screen. The plugin also adds two new asset types:</p>
+<ul>
+<li><strong>Font</strong>: represents a font to be that can be used to create font atlases (.ttf and .otf supported).</li>
+<li><strong>FontAtlas</strong>: atlas created from a given font with different configurable properties.</li>
+</ul>
+<p>In order to draw the text on the screen this plugins uses Multi Signed Distante Fields (MSDFs) with the help from <a href="https://github.com/Chlumsky/msdfgen">msdfgen</a>
+and <a href="https://github.com/Chlumsky/msdf-atlas-gen">msdf-atlas-gen</a>, and <a href="https://freetype.org/">FreeType</a> to load different font formats. Below is a screenshot
+taken from the UI sample available in the engine showcasing the text rendering in action.</p>
+<img class="m-image" src="images/0.5/ui-text.png" />
+<p><strong>Note:</strong> Currently only the ASCII charset is supported, UTF-8 support will be worked on in a future release.</p>
 </section>
 </section>
 <section id="on-the-core">
