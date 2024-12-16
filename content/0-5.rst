@@ -18,7 +18,7 @@ On the Editor
 -------------
 
 Hold mode for Debug Camera. :dim:`(@jdbaracho)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It wasn't very convenient to have only a toogle to control the Debug Camera, so we added a hold mode.
 
@@ -31,7 +31,7 @@ On the Engine
 -------------
 
 Point Light Shadows :dim:`(@tomas7770)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Over the past couple releases, **shadows** have been gradually introduced to the engine's graphics
 renderer, starting with spot light shadows, and then directional ones. Naturally, the next step was to
@@ -52,7 +52,7 @@ Below is a screenshot of the sample with all light types casting shadows. Some t
 .. image:: images/0.5/shadows_sample.png
 
 Audio Support through the Audio Plugin  :dim:`(@Dageus, @diogomsmiranda)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This release is a significant milestone for the CUBOS engine, as it finally introduces Audio functionality!
 
@@ -70,10 +70,31 @@ Sub-title for this feature
 TODO: more explaining
 
 Collision detection between VoxelCollisionShapes :dim:`(@joaomanita)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The engine was only able to able to detect collisons between boxes, now we can add a `VoxelCollisionShape <https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html>`
 to decompose a voxel shape into multiple box collision shapes.
+
+UI text element using MSDF for text rendering :dim:`(@mkuritsu)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Another great addition to the CUBOS engine was the support for text rendering in the UI, this will greatly improve the capabilities 
+for communicating with the player in future games developed with the engine.
+
+This new features includes and `uiTextPlugin` that can be added wich contains the `UIText` component, this one contains all the data needed
+to draw text on the screen. The plugin also adds two new asset types:
+
+- **Font**: represents a font to be that can be used to create font atlases (.ttf and .otf supported).
+- **FontAtlas**: atlas created from a given font with different configurable properties. 
+
+In order to draw the text on the screen this plugins uses Multi Signed Distante Fields (MSDFs) with the help from `msdfgen <https://github.com/Chlumsky/msdfgen>`_ 
+and `msdf-atlas-gen <https://github.com/Chlumsky/msdf-atlas-gen>`_, and `FreeType <https://freetype.org/>`_ to load different font formats. Below is a screenshot
+taken from the UI sample available in the engine showcasing the text rendering in action.
+
+.. image:: images/0.5/ui-text.png
+
+**Note:** Currently only the ASCII charset is supported, UTF-8 support will be worked on in a future release.
+
 
 On the Core
 -----------
