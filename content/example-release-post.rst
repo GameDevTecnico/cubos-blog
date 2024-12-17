@@ -2,7 +2,7 @@
 ###########
 
 :date: 2024-12-02 00:00:00
-:status: skip
+:status: hidden
 :category: Release
 :summary: Cubos 0.X Release!
 
