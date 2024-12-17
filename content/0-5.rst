@@ -93,6 +93,15 @@ Collision detection between VoxelCollisionShapes :dim:`(@joaomanita)`
 The engine was only able to able to detect collisons between boxes, now we can add a `VoxelCollisionShape <https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html>`
 to decompose a voxel shape into multiple box collision shapes.
 
+Anti-aliasing using FXAA technique :dim:`(@kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagged edges in the rendered images. 
+As you can see in the images below, the FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.
+
+.. image-comparison::
+    :before: {static}/images/0.5/cars_before.png
+    :after: {static}/images/0.5/cars_after.png
+
 UI text element using MSDF for text rendering :dim:`(@mkuritsu)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
