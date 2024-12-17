@@ -138,9 +138,27 @@ taken from the UI sample available in the engine showcasing the text rendering i
 </section>
 <section id="on-the-core">
 <h3>On the Core</h3>
-<section id="core-feature-1-author3">
-<h4>Core Feature 1 <span class="m-text m-dim">(&#64;Author3)</span></h4>
-<p>TODO: explain feature and why it is useful</p>
+<section id="a-proper-cmake-configuration-riscadoa">
+<h4>A Proper CMake Configuration <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
+<p>Previously, our <a href="https://cmake.org/">CMake</a> build configuration, while functional, was really incomplete in terms of features and was also extremely messy.
+With the engine becoming more and more fleshed out, we started wanting to be able to install the engine as a library system-wide, so that we could use it in other projects
+Before, we always simply added the engine repository as a <code>git</code> submodule in our projects, but this meant having one copy locally of the whole codebase for each project, which was not ideal.
+So, we decided to clean up the CMake configuration, and add installation and <code>find_package</code> support. In pratice, this means that you can now install the whole Cubos project, and to use it in another project, you just need to add the following lines to your <code>CMakeLists.txt</code>:</p>
+<pre class="m-code"><span class="nb">find_package</span><span class="p">(</span><span class="s">cubos</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">your_game</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">cubos::engine</span><span class="p">)</span></pre>
+<p>One big advantage of this is that we can now also install Quadrados and Tesseratos, the tools we use for making games with Cubos, system-wide, as you would with any other application.
+As of now, Cubos has only been packaged for NixOS, but we haven't contributed it to the Nixpkgs repository yet. We plan to do so in the future, and also to package it for other distributions.</p>
+</section>
+<section id="web-support-with-emscripten-riscadoa-luishfonseca">
+<h4>Web Support with Emscripten <span class="m-text m-dim">(&#64;RiscadoA, &#64;luishfonseca)</span></h4>
+<p>We've had a PR open since 0.2 for porting Cubos to the web with <a href="https://emscripten.org/">Emscripten</a>, but it was constantly postponed due to some issues still being present, and the fact that we were focusing on other features.
+Now, we finally made the final push to get it working, and now Cubos can be compiled to WebAssembly and run in the browser!</p>
+<p>We think this is an important feature, as for game jams, for example, it's very useful to be able to share your game with others without them having to download anything, and also to be able to play it on any device.
+We also think it's a good way to showcase the engine to people who might be interested in using it, but don't want to download it.
+We plan on embedding each sample on their respective documentation page, but that will be left for a future release.</p>
+<p>One of the major challenges was guaranteeing compatibility with WebGL2. Fortunately, the whole rendering code is built on top of a rendering API abstraction layer.
+We had to make some changes to this layer to guarantee we cover strictly the intersection between the features of OpenGL 3.3 and WebGL2, but we managed to do it without much hassle.
+As of now, this means we're making some performance sacrifices, as we're not using advanced features even when they're available. We plan to address this in the future.</p>
 </section>
 </section>
 </section>
