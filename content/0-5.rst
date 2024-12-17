@@ -64,6 +64,25 @@ The new ``audioPlugin`` leverages the previously implemented ``Audio Context`` t
 With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the ``AudioSource`` properties for each entity. Adjust settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
 Due to restrictions in our audio backend, you can only have up to **three active listeners** at a time. For practical examples of how to use these new audio components (``AudioPlay``, ``AudioPause``, ``AudioStop``), check out our `Audio Sample <https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp>`_.
 
+
+Method to save settings to files :dim:`(@SrGesus)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some way to interact with the files of the ``Settings`` resource was missing,
+there was only a startupSystem that would load the file from a command line
+argument and then no way for changes to persist which was a bit inconvenient.
+
+So now there are two simple new methods - ``save(path, indentation)`` and
+``load(path)`` - to save and load the ``Settings`` to and from
+``cubos::core::data::FileSystem`` paths. E.g:
+
+.. code-block:: cpp
+
+    [](Settings& settings) {
+            settings.merge(settings::load("/file.json"))
+            settings.save("/file_backup.json");
+        }
+
 Sub-title for this feature
 **************************
 
