@@ -65,6 +65,11 @@ With the plugin, you can now register listeners, and control audio sources with 
 Due to restrictions in our audio backend, you can only have up to **three active listeners** at a time. For practical examples of how to use these new audio components (``AudioPlay``, ``AudioPause``, ``AudioStop``), check out our `Audio Sample <https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp>`_.
 
 
+Sub-title for this feature
+**************************
+
+TODO: more explaining
+
 Method to save settings to files :dim:`(@SrGesus)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -82,11 +87,6 @@ So now there are two simple new methods - ``save(path, indentation)`` and
             settings.merge(settings::load("/file.json"))
             settings.save("/file_backup.json");
         }
-
-Sub-title for this feature
-**************************
-
-TODO: more explaining
 
 Collision detection between VoxelCollisionShapes :dim:`(@joaomanita)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
