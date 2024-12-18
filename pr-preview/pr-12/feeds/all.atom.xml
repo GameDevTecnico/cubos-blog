@@ -90,6 +90,15 @@ taken from the UI sample available in the engine showcasing the text rendering i
 &lt;img class="m-image" src="images/0.5/ui-text.png" /&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Currently only the ASCII charset is supported, UTF-8 support will be worked on in a future release.&lt;/p&gt;
 &lt;/section&gt;
+&lt;section id="allow-identifying-assets-in-code-from-their-path-galaxycrush"&gt;
+&lt;h4&gt;Allow identifying assets in code from their path &lt;span class="m-text m-dim"&gt;(&amp;#64;GalaxyCrush)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Assets could only be identified by their UUID, which could sometimes be confusing when working with multiple assets.
+Now, they are able to be identified by their path, thus allowing for better compression when developing projects with CUBOS.
+E.g., you can now do:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="n"&gt;Asset&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scene&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SceneAsset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;AnyAsset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/path/to/asset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;instead of:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="n"&gt;Asset&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scene&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SceneAsset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;AnyAsset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;uuid&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/pre&gt;
+&lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-core"&gt;
 &lt;h3&gt;On the Core&lt;/h3&gt;
