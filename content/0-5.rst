@@ -139,6 +139,12 @@ instead of:
 
     Asset<Scene> SceneAsset = AnyAsset("uuid");
 
+Option to use Shadow Normal Offset Bias algorithm :dim:`(@GalaxyCrush)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We noticed that in some samples, the shadows had some shadow acne and/or peter panning artifacts. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters `ShadowCaster  <https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html>`.
+
+
 On the Core
 -----------
 
