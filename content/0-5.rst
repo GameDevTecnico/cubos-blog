@@ -149,6 +149,13 @@ Resource to easily configure constants in the physics solver :dim:`(@GCeSilva)`
 
 The physics solver had some constants that were hardcoded, which made it difficult to change them. Now we have a resource that allows the user to easily configure these constants.
 
+Contact caching for collision between box shapes :dim:`(@fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We added contact caching as a first step towards implementing warm-starting. Contact caching consists of keeping information about collisions that were happening in the previous physics update
+so that in the next update we can trace them back. This information consists of identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of 
+collisions between entities, this is currently only supported for box shapes.
+
 On the Core
 -----------
 
