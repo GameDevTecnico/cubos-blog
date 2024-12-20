@@ -103,6 +103,16 @@ E.g., you can now do:&lt;/p&gt;
 &lt;h4&gt;Option to use Shadow Normal Offset Bias algorithm &lt;span class="m-text m-dim"&gt;(&amp;#64;GalaxyCrush)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;We noticed that in some samples, the shadows had some shadow acne and/or peter panning artifacts. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters &lt;cite&gt;ShadowCaster  &amp;lt;https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html&amp;gt;&lt;/cite&gt;.&lt;/p&gt;
 &lt;/section&gt;
+&lt;section id="resource-to-easily-configure-constants-in-the-physics-solver-gcesilva"&gt;
+&lt;h4&gt;Resource to easily configure constants in the physics solver &lt;span class="m-text m-dim"&gt;(&amp;#64;GCeSilva)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;The physics solver had some constants that were hardcoded, which made it difficult to change them. Now we have a resource that allows the user to easily configure these constants.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="contact-caching-for-collision-between-box-shapes-fallenatlas"&gt;
+&lt;h4&gt;Contact caching for collision between box shapes &lt;span class="m-text m-dim"&gt;(&amp;#64;fallenatlas)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;We added contact caching as a first step towards implementing warm-starting. Contact caching consists of keeping information about collisions that were happening in the previous physics update
+so that in the next update we can trace them back. This information consists of identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of
+collisions between entities, this is currently only supported for box shapes.&lt;/p&gt;
+&lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-core"&gt;
 &lt;h3&gt;On the Core&lt;/h3&gt;
