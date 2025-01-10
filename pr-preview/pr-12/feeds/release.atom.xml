@@ -62,7 +62,7 @@ argument and then no way for changes to persist which was a bit inconvenient.&lt
 &lt;/section&gt;
 &lt;section id="collision-detection-between-voxelcollisionshapes-joaomanita"&gt;
 &lt;h4&gt;Collision detection between VoxelCollisionShapes &lt;span class="m-text m-dim"&gt;(&amp;#64;joaomanita)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;The engine was only able to able to detect collisons between boxes, now we can add a &lt;cite&gt;VoxelCollisionShape &amp;lt;https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html&amp;gt;&lt;/cite&gt;
+&lt;p&gt;The engine was only able to able to detect collisons between boxes, now we can add a &lt;a href="https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html"&gt;VoxelCollisionShape&lt;/a&gt;
 to decompose a voxel shape into multiple box collision shapes.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="anti-aliasing-using-fxaa-technique-kuukitenshi"&gt;
@@ -101,7 +101,7 @@ E.g., you can now do:&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="option-to-use-shadow-normal-offset-bias-algorithm-galaxycrush"&gt;
 &lt;h4&gt;Option to use Shadow Normal Offset Bias algorithm &lt;span class="m-text m-dim"&gt;(&amp;#64;GalaxyCrush)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;We noticed that in some samples, the shadows had some shadow acne and/or peter panning artifacts. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters &lt;cite&gt;ShadowCaster  &amp;lt;https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html&amp;gt;&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;We noticed that in some samples, the shadows had some shadow acne and/or peter panning artifacts. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html"&gt;ShadowCaster&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="resource-to-easily-configure-constants-in-the-physics-solver-gcesilva"&gt;
 &lt;h4&gt;Resource to easily configure constants in the physics solver &lt;span class="m-text m-dim"&gt;(&amp;#64;GCeSilva)&lt;/span&gt;&lt;/h4&gt;
