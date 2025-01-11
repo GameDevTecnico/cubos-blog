@@ -99,8 +99,8 @@ We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagg
 As you can see in the images below, the FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.
 
 .. image-comparison::
-    :before: {static}/images/0.5/cars_before.png
     :after: {static}/images/0.5/cars_after.png
+    :before: {static}/images/0.5/cars_before.png
 
 UI text element using MSDF for text rendering :dim:`(@mkuritsu)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
