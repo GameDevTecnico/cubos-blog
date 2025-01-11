@@ -147,6 +147,8 @@ As of now, this means we're making some performance sacrifices, as we're not usi
 &lt;li&gt;Very cool feature 1.&lt;/li&gt;
 &lt;li&gt;Very cool feature 2.&lt;/li&gt;
 &lt;li&gt;...&lt;/li&gt;
+&lt;li&gt;Toggleable gravity on the physics plugin.&lt;/li&gt;
+&lt;li&gt;Warm starting in physics solver.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;TODO: maybe some more stuff here if needed&lt;/p&gt;
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/29"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
