@@ -197,6 +197,8 @@ In the next release, which should be out by **TODO WHEN**, we're planning to wor
 * Very cool feature 1.
 * Very cool feature 2.
 * ...
+* Toggleable gravity on the physics plugin.
+* Warm starting in physics solver.
 
 TODO: maybe some more stuff here if needed
 
