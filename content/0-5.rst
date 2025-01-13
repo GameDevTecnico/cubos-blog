@@ -199,6 +199,9 @@ In the next release, which should be out by **TODO WHEN**, we're planning to wor
 * ...
 * Toggleable gravity on the physics plugin.
 * Warm starting in physics solver.
+* Graphics performance improvements.
+* Transparent voxel rendering.
+* Particle system.
 
 TODO: maybe some more stuff here if needed
 
