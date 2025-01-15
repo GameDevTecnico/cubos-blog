@@ -194,15 +194,16 @@ Next Steps
 
 In the next release, which should be out by **TODO WHEN**, we're planning to work on the following features:
 
-* Very cool feature 1.
-* Very cool feature 2.
-* ...
 * Toggleable gravity on the physics plugin.
 * Warm starting in physics solver.
 * Graphics performance improvements.
 * Transparent voxel rendering.
 * Particle system.
+* Editor UX improvements, making it very useful.
+* New scene editor.
 
-TODO: maybe some more stuff here if needed
+And many other features coming up in the future.
+
+We also developed a demo showcasing the new features of this release, which you will be able to check out pretty soon here.
 
 You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/29>`_ for the next release.
