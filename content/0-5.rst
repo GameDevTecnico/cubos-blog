@@ -32,20 +32,20 @@ On the Engine
 Point Light Shadows :dim:`(@tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Over the past couple releases, **shadows** have been gradually introduced to the engine's graphics
-renderer, starting with spot light shadows, and then directional ones. Naturally, the next step was to
-implement shadows for point lights, finally completing support for all types of lights.
+Over the past couple of releases, **shadows** have been gradually introduced to the engine's graphics
+renderer, starting with spotlight shadows, and then directional ones. Naturally, the next step was to
+implement shadows for point lights, finally completing support for the most common types of lights.
 
-Once again, point shadows are enabled by adding a component to the light entity, this time a
-`PointShadowCaster <https://docs.cubosengine.org/structcubos_1_1engine_1_1PointShadowCaster.html>`_.
+Point shadows are enabled by adding a `PointShadowCaster <https://docs.cubosengine.org/structcubos_1_1engine_1_1PointShadowCaster.html>`_
+component to the light entity.
 They behave similarly to spot shadows, lacking all the configurable values of the more complex directional shadows.
-You may want to read the previous blog posts for more detailed information on this.
+You can read the previous blog posts for more detailed information (`0.3 <https://cubosengine.org/03-is-here.html>`_, `0.4 <https://cubosengine.org/04-is-out.html>`_).
 
 In terms of implementation, point shadows are also very similar to spot shadows, using a shared atlas texture
 that stores shadow maps for every point light in a quadtree structure. However, because point lights cast light in
-all directions, there are actually 6 atlas textures, one for each direction of a cube.
+all directions, there are 6 atlas textures, one for each direction of a cube.
 
-The final result of shadows can be seen in the `Shadows sample <https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows>`_.
+The final result of our shadows engine can be seen in the `Shadows sample <https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows>`_.
 Below is a screenshot of the sample with all light types casting shadows. Some tweaks have been done to better highlight the shadows.
 
 .. image:: images/0.5/shadows_sample.png
