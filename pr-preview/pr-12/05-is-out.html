@@ -144,10 +144,10 @@ taken from the UI sample available in the engine showcasing the text rendering i
 <img class="m-image" src="images/0.5/ui-text.png" />
 <p><strong>Note:</strong> Currently only the ASCII charset is supported, UTF-8 support will be worked on in a future release.</p>
 </section>
-<section id="allow-identifying-assets-in-code-from-their-path-galaxycrush">
-<h4>Allow identifying assets in code from their path <span class="m-text m-dim">(&#64;GalaxyCrush)</span></h4>
-<p>Assets could only be identified by their UUID, which could sometimes be confusing when working with multiple assets.
-Now, they are able to be identified by their path, thus allowing for better compression when developing projects with CUBOS.
+<section id="enable-assets-to-be-identified-in-the-code-by-their-file-path-galaxycrush">
+<h4>Enable assets to be identified in the code by their file path <span class="m-text m-dim">(&#64;GalaxyCrush)</span></h4>
+<p>Assets could only be identified by their UUID, which can be hard to keep track of for human developers.
+Now, they are able to be identified by their path, thus making them easier to handle when developing projects with CUBOS.
 E.g., you can now do:</p>
 <pre class="m-code"><span class="n">Asset</span><span class="o">&lt;</span><span class="n">Scene</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SceneAsset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnyAsset</span><span class="p">(</span><span class="s">&quot;/path/to/asset&quot;</span><span class="p">);</span></pre>
 <p>instead of:</p>
@@ -155,7 +155,7 @@ E.g., you can now do:</p>
 </section>
 <section id="option-to-use-shadow-normal-offset-bias-algorithm-galaxycrush">
 <h4>Option to use Shadow Normal Offset Bias algorithm <span class="m-text m-dim">(&#64;GalaxyCrush)</span></h4>
-<p>We noticed that in some samples, the shadows had some shadow acne and/or peter panning artifacts. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html">ShadowCaster</a>.</p>
+<p>We noticed that the shadows had some <a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#Acne">shadow acne</a> and/or <a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#PeterPanning">peter panning</a> artifacts in some samples. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html">ShadowCaster</a>.</p>
 </section>
 <section id="resource-to-easily-configure-constants-in-the-physics-solver-gcesilva">
 <h4>Resource to easily configure constants in the physics solver <span class="m-text m-dim">(&#64;GCeSilva)</span></h4>

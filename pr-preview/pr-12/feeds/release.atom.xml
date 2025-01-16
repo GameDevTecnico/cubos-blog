@@ -90,10 +90,10 @@ taken from the UI sample available in the engine showcasing the text rendering i
 &lt;img class="m-image" src="images/0.5/ui-text.png" /&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Currently only the ASCII charset is supported, UTF-8 support will be worked on in a future release.&lt;/p&gt;
 &lt;/section&gt;
-&lt;section id="allow-identifying-assets-in-code-from-their-path-galaxycrush"&gt;
-&lt;h4&gt;Allow identifying assets in code from their path &lt;span class="m-text m-dim"&gt;(&amp;#64;GalaxyCrush)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;Assets could only be identified by their UUID, which could sometimes be confusing when working with multiple assets.
-Now, they are able to be identified by their path, thus allowing for better compression when developing projects with CUBOS.
+&lt;section id="enable-assets-to-be-identified-in-the-code-by-their-file-path-galaxycrush"&gt;
+&lt;h4&gt;Enable assets to be identified in the code by their file path &lt;span class="m-text m-dim"&gt;(&amp;#64;GalaxyCrush)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Assets could only be identified by their UUID, which can be hard to keep track of for human developers.
+Now, they are able to be identified by their path, thus making them easier to handle when developing projects with CUBOS.
 E.g., you can now do:&lt;/p&gt;
 &lt;pre class="m-code"&gt;&lt;span class="n"&gt;Asset&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scene&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SceneAsset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;AnyAsset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/path/to/asset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/pre&gt;
 &lt;p&gt;instead of:&lt;/p&gt;
@@ -101,7 +101,7 @@ E.g., you can now do:&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="option-to-use-shadow-normal-offset-bias-algorithm-galaxycrush"&gt;
 &lt;h4&gt;Option to use Shadow Normal Offset Bias algorithm &lt;span class="m-text m-dim"&gt;(&amp;#64;GalaxyCrush)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;We noticed that in some samples, the shadows had some shadow acne and/or peter panning artifacts. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html"&gt;ShadowCaster&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We noticed that the shadows had some &lt;a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#Acne"&gt;shadow acne&lt;/a&gt; and/or &lt;a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#PeterPanning"&gt;peter panning&lt;/a&gt; artifacts in some samples. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html"&gt;ShadowCaster&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="resource-to-easily-configure-constants-in-the-physics-solver-gcesilva"&gt;
 &lt;h4&gt;Resource to easily configure constants in the physics solver &lt;span class="m-text m-dim"&gt;(&amp;#64;GCeSilva)&lt;/span&gt;&lt;/h4&gt;
