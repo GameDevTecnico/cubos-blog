@@ -197,8 +197,6 @@ In the next release, which should be out by February 6th, we're planning to work
 * Editor UX improvements, making it very useful.
 * New scene editor.
 
-And many other features coming up in the future.
-
 We also developed a demo showcasing the new features of this release, which you will be able to check out pretty soon here.
 
 You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/29>`_ for the next release.
