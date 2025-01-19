@@ -56,16 +56,16 @@
 <!-- content -->
 <section id="new-0-5-features">
 <h2>New 0.5 Features</h2>
-<p>This blog post covers the most important changes, but you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>.</p>
+<p>This blog post covers the most important changes in the 0.5 release - we've added a lot of new features, such point light shadows, audio support, MSDF text rendering and more!
+We've released 0.5 some time ago, but with the exam season and the holidays, we only got around to writing this blog post now.
+As usual, you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>.</p>
 <section id="on-the-editor">
 <h3>On the Editor</h3>
 <section id="hold-mode-for-debug-camera-jdbaracho">
 <h4>Hold mode for Debug Camera. <span class="m-text m-dim">(&#64;jdbaracho)</span></h4>
-<p>It wasn't very convenient to have only a toogle to control the Debug Camera, so we added a hold mode.</p>
-</section>
-<section id="editor-feature-1-author1">
-<h4>Editor Feature 1 <span class="m-text m-dim">(&#64;Author1)</span></h4>
-<p>TODO: explain feature and why it is useful</p>
+<p>For debugging purposes, we have a debug camera which allows the user to move around the scene and inspect it.
+Previous this camera could only be controlled by locking the camera to the mouse with a toggle.
+This was inconvenient when also using the mouse to interact with the editor UI, so we added a new mode where the camera can be rotated by holding a key or mouse button (e.g. the middle mouse button).</p>
 </section>
 </section>
 <section id="on-the-engine">
@@ -94,19 +94,15 @@ Below is a screenshot of the sample with all light types casting shadows. Some t
 <li><strong>``AudioSource``</strong>: Attach this component to entities to play audio files in supported formats such as FLAC, MP3 and WAV.</li>
 <li><strong>``AudioListener``</strong>: Attach this component to an entity to capture audio from the scene.</li>
 </ul>
-<p>With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the <code>AudioSource</code> properties for each entity. Adjust settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
+<p>With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the <code>AudioSource</code> properties for each entity, adjusting settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
 Due to restrictions in our audio backend, you can only have up to <strong>three active listeners</strong> at a time. For practical examples of how to use these new audio components (<code>AudioPlay</code>, <code>AudioPause</code>, <code>AudioStop</code>), check out our <a href="https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp">Audio Sample</a>.</p>
-<section id="sub-title-for-this-feature">
-<h5>Sub-title for this feature</h5>
-<p>TODO: more explaining</p>
-</section>
 </section>
 <section id="method-to-save-settings-to-files-srgesus">
 <h4>Method to save settings to files <span class="m-text m-dim">(&#64;SrGesus)</span></h4>
-<p>Some way to interact with the files of the <code>Settings</code> resource was missing,
-there was only a startupSystem that would load the file from a command line
-argument and then no way for changes to persist which was a bit inconvenient.</p>
-<p>So now there are two simple new methods - <code>save(path, indentation)</code> and
+<p>The <code>Settings</code> resource was missing some way to interact with its corresponding file,
+as it was limited to a startup system that would load the file from a command line
+argument with no way for posterior changes to persist which was inconvenient.</p>
+<p>Now there are two new simple methods - <code>save(path, indentation)</code> and
 <code>load(path)</code> - to save and load the <code>Settings</code> to and from
 <code>cubos::core::data::FileSystem</code> paths. E.g:</p>
 <pre class="m-code"><span class="p">[](</span><span class="n">Settings</span><span class="o">&amp;</span><span class="w"> </span><span class="n">settings</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -119,10 +115,10 @@ argument and then no way for changes to persist which was a bit inconvenient.</p
 <p>The engine was only able to able to detect collisons between boxes, now we can add a <a href="https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html">VoxelCollisionShape</a>
 to decompose a voxel shape into multiple box collision shapes.</p>
 </section>
-<section id="anti-aliasing-using-fxaa-technique-kuukitenshi">
-<h4>Anti-aliasing using FXAA technique <span class="m-text m-dim">(&#64;kuukitenshi)</span></h4>
+<section id="anti-aliasing-using-the-fxaa-technique-kuukitenshi">
+<h4>Anti-aliasing using the FXAA technique <span class="m-text m-dim">(&#64;kuukitenshi)</span></h4>
 <p>We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagged edges in the rendered images.
-As you can see in the images below, the FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.</p>
+As you can see in the images below, FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.</p>
 <img-comparison-slider>
 <img slot="before" src="./images/0.5/cars_before.png" style="width: 100%" />
 <img slot="after" src="./images/0.5/cars_after.png" style="width: 100%" />
@@ -130,19 +126,19 @@ As you can see in the images below, the FXAA smooths out the visuals without the
 </section>
 <section id="ui-text-element-using-msdf-for-text-rendering-mkuritsu">
 <h4>UI text element using MSDF for text rendering <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
-<p>Another great addition to the CUBOS engine was the support for text rendering in the UI, this will greatly improve the capabilities
+<p>A significant addition to the Cubos engine was the support for text rendering in the UI, which will greatly improve the capabilities
 for communicating with the player in future games developed with the engine.</p>
-<p>This new features includes and <cite>uiTextPlugin</cite> that can be added wich contains the <cite>UIText</cite> component, this one contains all the data needed
+<p>This new features comes in the <cite>uiTextPlugin</cite>, which includes the <cite>UIText</cite> component, containing all the data needed
 to draw text on the screen. The plugin also adds two new asset types:</p>
 <ul>
-<li><strong>Font</strong>: represents a font to be that can be used to create font atlases (.ttf and .otf supported).</li>
-<li><strong>FontAtlas</strong>: atlas created from a given font with different configurable properties.</li>
+<li><strong>Font</strong>: holds the raw font data to be used to create font atlases (.ttf and .otf files supported).</li>
+<li><strong>FontAtlas</strong>: maps characters to their glyph on a given font, with different configurable properties.</li>
 </ul>
 <p>In order to draw the text on the screen this plugins uses Multi Signed Distante Fields (MSDFs) with the help from <a href="https://github.com/Chlumsky/msdfgen">msdfgen</a>
 and <a href="https://github.com/Chlumsky/msdf-atlas-gen">msdf-atlas-gen</a>, and <a href="https://freetype.org/">FreeType</a> to load different font formats. Below is a screenshot
 taken from the UI sample available in the engine showcasing the text rendering in action.</p>
 <img class="m-image" src="images/0.5/ui-text.png" />
-<p><strong>Note:</strong> Currently only the ASCII charset is supported, UTF-8 support will be worked on in a future release.</p>
+<p><strong>Note:</strong> Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.</p>
 </section>
 <section id="enable-assets-to-be-identified-in-the-code-by-their-file-path-galaxycrush">
 <h4>Enable assets to be identified in the code by their file path <span class="m-text m-dim">(&#64;GalaxyCrush)</span></h4>
@@ -159,12 +155,13 @@ E.g., you can now do:</p>
 </section>
 <section id="resource-to-easily-configure-constants-in-the-physics-solver-gcesilva">
 <h4>Resource to easily configure constants in the physics solver <span class="m-text m-dim">(&#64;GCeSilva)</span></h4>
-<p>The physics solver had some constants that were hardcoded, which made it difficult to change them. Now we have a resource that allows the user to easily configure these constants.</p>
+<p>The physics solver previously included hardcoded constants, which were not easily accessible or modifiable.
+A new resource has been added which allows the user to configure these constants, making it easier to tune and debug, even at runtime.</p>
 </section>
 <section id="contact-caching-for-collision-between-box-shapes-fallenatlas">
 <h4>Contact caching for collision between box shapes <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
 <p>We added contact caching as a first step towards implementing warm-starting. Contact caching consists of keeping information about collisions that were happening in the previous physics update
-so that in the next update we can trace them back. This information consists of identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of
+so that in the next update we can trace them back. This information includes identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of
 collisions between entities, this is currently only supported for box shapes.</p>
 </section>
 </section>
@@ -172,10 +169,10 @@ collisions between entities, this is currently only supported for box shapes.</p
 <h3>On the Core</h3>
 <section id="a-proper-cmake-configuration-riscadoa">
 <h4>A Proper CMake Configuration <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
-<p>Previously, our <a href="https://cmake.org/">CMake</a> build configuration, while functional, was really incomplete in terms of features and was also extremely messy.
-With the engine becoming more and more fleshed out, we started wanting to be able to install the engine as a library system-wide, so that we could use it in other projects
-Before, we always simply added the engine repository as a <code>git</code> submodule in our projects, but this meant having one copy locally of the whole codebase for each project, which was not ideal.
-So, we decided to clean up the CMake configuration, and add installation and <code>find_package</code> support. In pratice, this means that you can now install the whole Cubos project, and to use it in another project, you just need to add the following lines to your <code>CMakeLists.txt</code>:</p>
+<p>While functional, our <a href="https://cmake.org/">CMake</a> build configuration was incomplete in terms of features and poorly organized.
+As the engine evolved, we recognized the need to install it as a system-wide library for use in other projects.
+Before, we always simply added the engine repository as a <code>git</code> submodule in our projects, which required maintaining a local copy of the entire codebase for each project - an inneficient approach.
+To address this, we decided to clean up the CMake configuration, and add installation and <code>find_package</code> support. As a result, you can now install the whole Cubos project, and to use it in another project, you only need to include the following lines in your <code>CMakeLists.txt</code>:</p>
 <pre class="m-code"><span class="nb">find_package</span><span class="p">(</span><span class="s">cubos</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 <span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">your_game</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">cubos::engine</span><span class="p">)</span></pre>
 <p>One big advantage of this is that we can now also install Quadrados and Tesseratos, the tools we use for making games with Cubos, system-wide, as you would with any other application.
@@ -183,12 +180,12 @@ As of now, Cubos has only been packaged for NixOS, but we haven't contributed it
 </section>
 <section id="web-support-with-emscripten-riscadoa-luishfonseca">
 <h4>Web Support with Emscripten <span class="m-text m-dim">(&#64;RiscadoA, &#64;luishfonseca)</span></h4>
-<p>We've had a PR open since 0.2 for porting Cubos to the web with <a href="https://emscripten.org/">Emscripten</a>, but it was constantly postponed due to some issues still being present, and the fact that we were focusing on other features.
-Now, we finally made the final push to get it working, and now Cubos can be compiled to WebAssembly and run in the browser!</p>
-<p>We think this is an important feature, as for game jams, for example, it's very useful to be able to share your game with others without them having to download anything, and also to be able to play it on any device.
-We also think it's a good way to showcase the engine to people who might be interested in using it, but don't want to download it.
+<p>We've had a pull request open since 0.2 for porting Cubos to the web with <a href="https://emscripten.org/">Emscripten</a>, but it was constantly postponed due to some blocking issues being present, and us being focused on other features.
+Now, we finally made the final push to get it working, and now Cubos can be compiled to WebAssembly and ran in the browser!</p>
+<p>This is an important feature, as for game jams, for example, it's handy to be able to share your game with others without them having to download anything, and also to be able to play it on any device.
+It's a good way to showcase the engine to people who might be interested in using it, but are reluctant to download it.
 We plan on embedding each sample on their respective documentation page, but that will be left for a future release.</p>
-<p>One of the major challenges was guaranteeing compatibility with WebGL2. Fortunately, the whole rendering code is built on top of a rendering API abstraction layer.
+<p>One of the major challenges was guaranteeing compatibility with WebGL2. Fortunately, the rendering code is built on top of a rendering API abstraction layer.
 We had to make some changes to this layer to guarantee we cover strictly the intersection between the features of OpenGL 3.3 and WebGL2, but we managed to do it without much hassle.
 As of now, this means we're making some performance sacrifices, as we're not using advanced features even when they're available. We plan to address this in the future.</p>
 </section>
@@ -196,7 +193,7 @@ As of now, this means we're making some performance sacrifices, as we're not usi
 </section>
 <section id="next-steps">
 <h2>Next Steps</h2>
-<p>In the next release, which should be out by <strong>TODO WHEN</strong>, we're planning to work on the following features:</p>
+<p>In the next release, which should be out by February 6th, we're planning to work on the following features:</p>
 <ul>
 <li>Toggleable gravity on the physics plugin.</li>
 <li>Warm starting in physics solver.</li>
