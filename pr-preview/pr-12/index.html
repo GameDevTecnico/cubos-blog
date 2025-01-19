@@ -59,7 +59,7 @@ As usual, you can check out the full changelog in our <a href="https://github.co
 <section id="on-the-editor">
 <h3>On the Editor</h3>
 <section id="hold-mode-for-debug-camera-jdbaracho">
-<h4>Hold mode for Debug Camera. <span class="m-text m-dim">(&#64;jdbaracho)</span></h4>
+<h4>Hold mode for Debug Camera <span class="m-text m-dim">(&#64;jdbaracho)</span></h4>
 <p>For debugging purposes, we have a debug camera which allows the user to move around the scene and inspect it.
 Previous this camera could only be controlled by locking the camera to the mouse with a toggle.
 This was inconvenient when also using the mouse to interact with the editor UI, so we added a new mode where the camera can be rotated by holding a key or mouse button (e.g. the middle mouse button).</p>
@@ -85,11 +85,11 @@ Below is a screenshot of the sample with all light types casting shadows. Some t
 </section>
 <section id="audio-support-through-the-audio-plugin-dageus-diogomsmiranda">
 <h4>Audio Support through the Audio Plugin  <span class="m-text m-dim">(&#64;Dageus, &#64;diogomsmiranda)</span></h4>
-<p>This release is a significant milestone for the CUBOS engine, as it finally introduces Audio functionality!</p>
+<p>This release is a significant milestone for the Cubos engine, as it finally introduces Audio functionality!</p>
 <p>The new <code>audioPlugin</code> leverages the previously implemented <code>Audio Context</code> to manage audio playback. It introduces two new components:</p>
 <ul>
-<li><strong>``AudioSource``</strong>: Attach this component to entities to play audio files in supported formats such as FLAC, MP3 and WAV.</li>
-<li><strong>``AudioListener``</strong>: Attach this component to an entity to capture audio from the scene.</li>
+<li><code>AudioSource</code>: Attach this component to entities to play audio files in supported formats such as FLAC, MP3 and WAV.</li>
+<li><code>AudioListener</code>: Attach this component to an entity to capture audio from the scene.</li>
 </ul>
 <p>With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the <code>AudioSource</code> properties for each entity, adjusting settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
 Due to restrictions in our audio backend, you can only have up to <strong>three active listeners</strong> at a time. For practical examples of how to use these new audio components (<code>AudioPlay</code>, <code>AudioPause</code>, <code>AudioStop</code>), check out our <a href="https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp">Audio Sample</a>.</p>
@@ -140,7 +140,7 @@ taken from the UI sample available in the engine showcasing the text rendering i
 <section id="enable-assets-to-be-identified-in-the-code-by-their-file-path-galaxycrush">
 <h4>Enable assets to be identified in the code by their file path <span class="m-text m-dim">(&#64;GalaxyCrush)</span></h4>
 <p>Assets could only be identified by their UUID, which can be hard to keep track of for human developers.
-Now, they are able to be identified by their path, thus making them easier to handle when developing projects with CUBOS.
+Now, they are able to be identified by their path, thus making them easier to handle when developing projects with Cubos.
 E.g., you can now do:</p>
 <pre class="m-code"><span class="n">Asset</span><span class="o">&lt;</span><span class="n">Scene</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SceneAsset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnyAsset</span><span class="p">(</span><span class="s">&quot;/path/to/asset&quot;</span><span class="p">);</span></pre>
 <p>instead of:</p>
