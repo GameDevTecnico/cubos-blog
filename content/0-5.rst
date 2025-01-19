@@ -18,8 +18,8 @@ As usual, you can check out the full changelog in our `repository <https://githu
 On the Editor
 -------------
 
-Hold mode for Debug Camera. :dim:`(@jdbaracho)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Hold mode for Debug Camera :dim:`(@jdbaracho)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For debugging purposes, we have a debug camera which allows the user to move around the scene and inspect it.
 Previous this camera could only be controlled by locking the camera to the mouse with a toggle.
