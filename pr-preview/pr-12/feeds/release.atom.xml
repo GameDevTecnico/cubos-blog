@@ -149,7 +149,6 @@ As of now, this means we're making some performance sacrifices, as we're not usi
 &lt;li&gt;Editor UX improvements, making it very useful.&lt;/li&gt;
 &lt;li&gt;New scene editor.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;And many other features coming up in the future.&lt;/p&gt;
 &lt;p&gt;We also developed a demo showcasing the new features of this release, which you will be able to check out pretty soon here.&lt;/p&gt;
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/29"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
