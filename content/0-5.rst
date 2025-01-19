@@ -11,7 +11,9 @@
 New 0.5 Features
 ================
 
-This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
+This blog post covers the most important changes in the 0.5 release - we've added a lot of new features, such point light shadows, audio support, MSDF text rendering and more!
+We've released 0.5 some time ago, but with the exam season and the holidays, we only got around to writing this blog post now.
+As usual, you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
 
 On the Editor
 -------------
@@ -19,12 +21,9 @@ On the Editor
 Hold mode for Debug Camera. :dim:`(@jdbaracho)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-It wasn't very convenient to have only a toogle to control the Debug Camera, so we added a hold mode.
-
-Editor Feature 1 :dim:`(@Author1)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-TODO: explain feature and why it is useful
+For debugging purposes, we have a debug camera which allows the user to move around the scene and inspect it.
+Previous this camera could only be controlled by locking the camera to the mouse with a toggle.
+This was inconvenient when also using the mouse to interact with the editor UI, so we added a new mode where the camera can be rotated by holding a key or mouse button (e.g. the middle mouse button).
 
 On the Engine
 -------------
@@ -60,23 +59,17 @@ The new ``audioPlugin`` leverages the previously implemented ``Audio Context`` t
 - **``AudioSource``**: Attach this component to entities to play audio files in supported formats such as FLAC, MP3 and WAV.
 - **``AudioListener``**: Attach this component to an entity to capture audio from the scene.
 
-With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the ``AudioSource`` properties for each entity. Adjust settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
+With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the ``AudioSource`` properties for each entity, adjusting settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
 Due to restrictions in our audio backend, you can only have up to **three active listeners** at a time. For practical examples of how to use these new audio components (``AudioPlay``, ``AudioPause``, ``AudioStop``), check out our `Audio Sample <https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp>`_.
-
-
-Sub-title for this feature
-**************************
-
-TODO: more explaining
 
 Method to save settings to files :dim:`(@SrGesus)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some way to interact with the files of the ``Settings`` resource was missing,
-there was only a startupSystem that would load the file from a command line
-argument and then no way for changes to persist which was a bit inconvenient.
+The ``Settings`` resource was missing some way to interact with its corresponding file,
+as it was limited to a startup system that would load the file from a command line
+argument with no way for posterior changes to persist which was inconvenient.
 
-So now there are two simple new methods - ``save(path, indentation)`` and
+Now there are two new simple methods - ``save(path, indentation)`` and
 ``load(path)`` - to save and load the ``Settings`` to and from
 ``cubos::core::data::FileSystem`` paths. E.g:
 
@@ -93,10 +86,11 @@ Collision detection between VoxelCollisionShapes :dim:`(@joaomanita)`
 The engine was only able to able to detect collisons between boxes, now we can add a `VoxelCollisionShape <https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html>`_
 to decompose a voxel shape into multiple box collision shapes.
 
-Anti-aliasing using FXAA technique :dim:`(@kuukitenshi)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Anti-aliasing using the FXAA technique :dim:`(@kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagged edges in the rendered images. 
-As you can see in the images below, the FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.
+As you can see in the images below, FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.
 
 .. image-comparison::
     :after: {static}/images/0.5/cars_after.png
@@ -105,14 +99,14 @@ As you can see in the images below, the FXAA smooths out the visuals without the
 UI text element using MSDF for text rendering :dim:`(@mkuritsu)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Another great addition to the CUBOS engine was the support for text rendering in the UI, this will greatly improve the capabilities 
+A significant addition to the Cubos engine was the support for text rendering in the UI, which will greatly improve the capabilities 
 for communicating with the player in future games developed with the engine.
 
-This new features includes and `uiTextPlugin` that can be added wich contains the `UIText` component, this one contains all the data needed
+This new features comes in the `uiTextPlugin`, which includes the `UIText` component, containing all the data needed
 to draw text on the screen. The plugin also adds two new asset types:
 
-- **Font**: represents a font to be that can be used to create font atlases (.ttf and .otf supported).
-- **FontAtlas**: atlas created from a given font with different configurable properties. 
+- **Font**: holds the raw font data to be used to create font atlases (.ttf and .otf files supported).
+- **FontAtlas**: maps characters to their glyph on a given font, with different configurable properties. 
 
 In order to draw the text on the screen this plugins uses Multi Signed Distante Fields (MSDFs) with the help from `msdfgen <https://github.com/Chlumsky/msdfgen>`_ 
 and `msdf-atlas-gen <https://github.com/Chlumsky/msdf-atlas-gen>`_, and `FreeType <https://freetype.org/>`_ to load different font formats. Below is a screenshot
@@ -120,7 +114,7 @@ taken from the UI sample available in the engine showcasing the text rendering i
 
 .. image:: images/0.5/ui-text.png
 
-**Note:** Currently only the ASCII charset is supported, UTF-8 support will be worked on in a future release.
+**Note:** Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.
 
 Enable assets to be identified in the code by their file path :dim:`(@GalaxyCrush)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -147,13 +141,14 @@ We noticed that the shadows had some `shadow acne <https://digitalrune.github.io
 Resource to easily configure constants in the physics solver :dim:`(@GCeSilva)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The physics solver had some constants that were hardcoded, which made it difficult to change them. Now we have a resource that allows the user to easily configure these constants.
+The physics solver previously included hardcoded constants, which were not easily accessible or modifiable.
+A new resource has been added which allows the user to configure these constants, making it easier to tune and debug, even at runtime.
 
 Contact caching for collision between box shapes :dim:`(@fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We added contact caching as a first step towards implementing warm-starting. Contact caching consists of keeping information about collisions that were happening in the previous physics update
-so that in the next update we can trace them back. This information consists of identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of 
+so that in the next update we can trace them back. This information includes identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of 
 collisions between entities, this is currently only supported for box shapes.
 
 On the Core
@@ -162,10 +157,10 @@ On the Core
 A Proper CMake Configuration :dim:`(@RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Previously, our `CMake <https://cmake.org/>`_ build configuration, while functional, was really incomplete in terms of features and was also extremely messy.
-With the engine becoming more and more fleshed out, we started wanting to be able to install the engine as a library system-wide, so that we could use it in other projects
-Before, we always simply added the engine repository as a ``git`` submodule in our projects, but this meant having one copy locally of the whole codebase for each project, which was not ideal.
-So, we decided to clean up the CMake configuration, and add installation and ``find_package`` support. In pratice, this means that you can now install the whole Cubos project, and to use it in another project, you just need to add the following lines to your ``CMakeLists.txt``:
+While functional, our `CMake <https://cmake.org/>`_ build configuration was incomplete in terms of features and poorly organized.
+As the engine evolved, we recognized the need to install it as a system-wide library for use in other projects.
+Before, we always simply added the engine repository as a ``git`` submodule in our projects, which required maintaining a local copy of the entire codebase for each project - an inneficient approach.
+To address this, we decided to clean up the CMake configuration, and add installation and ``find_package`` support. As a result, you can now install the whole Cubos project, and to use it in another project, you only need to include the following lines in your ``CMakeLists.txt``:
 
 .. code-block:: cmake
 
@@ -178,21 +173,21 @@ As of now, Cubos has only been packaged for NixOS, but we haven't contributed it
 Web Support with Emscripten :dim:`(@RiscadoA, @luishfonseca)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We've had a PR open since 0.2 for porting Cubos to the web with `Emscripten <https://emscripten.org/>`_, but it was constantly postponed due to some issues still being present, and the fact that we were focusing on other features.
-Now, we finally made the final push to get it working, and now Cubos can be compiled to WebAssembly and run in the browser!
+We've had a pull request open since 0.2 for porting Cubos to the web with `Emscripten <https://emscripten.org/>`_, but it was constantly postponed due to some blocking issues being present, and us being focused on other features.
+Now, we finally made the final push to get it working, and now Cubos can be compiled to WebAssembly and ran in the browser!
 
-We think this is an important feature, as for game jams, for example, it's very useful to be able to share your game with others without them having to download anything, and also to be able to play it on any device.
-We also think it's a good way to showcase the engine to people who might be interested in using it, but don't want to download it.
+This is an important feature, as for game jams, for example, it's handy to be able to share your game with others without them having to download anything, and also to be able to play it on any device.
+It's a good way to showcase the engine to people who might be interested in using it, but are reluctant to download it.
 We plan on embedding each sample on their respective documentation page, but that will be left for a future release.
 
-One of the major challenges was guaranteeing compatibility with WebGL2. Fortunately, the whole rendering code is built on top of a rendering API abstraction layer.
+One of the major challenges was guaranteeing compatibility with WebGL2. Fortunately, the rendering code is built on top of a rendering API abstraction layer.
 We had to make some changes to this layer to guarantee we cover strictly the intersection between the features of OpenGL 3.3 and WebGL2, but we managed to do it without much hassle.
 As of now, this means we're making some performance sacrifices, as we're not using advanced features even when they're available. We plan to address this in the future.
 
 Next Steps
 ==========
 
-In the next release, which should be out by **TODO WHEN**, we're planning to work on the following features:
+In the next release, which should be out by February 6th, we're planning to work on the following features:
 
 * Toggleable gravity on the physics plugin.
 * Warm starting in physics solver.
