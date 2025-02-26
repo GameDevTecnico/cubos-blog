@@ -33,7 +33,22 @@ TODO: explain feature and why it is useful
 Sub-title for this feature
 **************************
 
-TODO: more explaining
+Physics with Warm-Starting :dim:`(@fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Continuing the work from the previous release, we finished **warm-starting** for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly, the total impulses applied on each point on the previous frame, and applies it before any solving is performed.
+It works based on the assumption that the impulses applied on the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should be already nearer it's ideal position. Over time, these impulses will stablize (since our solver is a "dirty" solver), leading to less jitter.
+This works especially well for stacks of bodies, since in this case bodies will be pushing each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting we can both stack more bodies, and when the stack isn't fully stable it stays together for longer.
+
+Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.
+
+.. image:: images/complex_physics_sample_warm_starting.gif
+
+However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.
+
+.. image:: images/complex_physics_sample_1_stack.gif
+
+Unfortunatly, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!
 
 On the Core
 -----------
