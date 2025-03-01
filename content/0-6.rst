@@ -50,6 +50,39 @@ However, if we increase our physics update rate to 60 times per second (rather t
 
 Unfortunatly, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!
 
+Toggleable SSAO and resolution scale :dim:`(@tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some time ago, we profiled Cubos's graphics engine to determine the main performance bottlenecks. SSAO stood out as the
+graphics plugin that took the most frametime. However, due to the way the rendering pipeline was implemented, disabling it to get
+better performance wasn't possible without breaking rendering altogether.
+Starting with this release, the `SSAO <https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html>`_ component can be removed
+from a render target to disable this feature.
+
+In addition, we found that other game engines often default to rendering SSAO textures at half the width/height of the screen resolution,
+which greatly improves performance without major loss in quality.
+To implement this, we added a `resolution scale <https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html#ab4c8760eb1582559172373476ff04508>`_ option to the SSAO component,
+which defaults to 0.5, but can be set to any value up to 2.0.
+
+Conditional shader compilation :dim:`(@tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Another major bottleneck in the graphics renderer is the `render picker <https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html>`_, which
+allows finding out which entity is visible at a given pixel. As explained in the **Modular Renderer** section of the `0.2 blog post <https://cubosengine.org/coffeen-jam-and-02.html>`_,
+we attempted to mitigate performance loss with Pixel Buffers and double-buffering. But despite this, it remains a demanding feature.
+
+Just like what happened with SSAO, disabling the render picker wasn't possible. Unlike the former, though, this one required the ability
+to change shaders' source code at runtime. To solve this, we added new methods to the `Shader <https://docs.cubosengine.org/classcubos_1_1engine_1_1Shader.html>`_
+class to prepend ``#define`` macros and recompile the shader.
+
+.. code-block:: cpp
+
+    auto vs = vsAsset->shaderStage(); // unmodified shader
+    vs = vsAsset->builder().with("RENDER_PICKER").build(); // shader with #define RENDER_PICKER
+    vs = vsAsset->builder().with("MAX_CSM_SPLITS", "5").build(); // shader with #define MAX_CSM_SPLITS 5
+
+Unfortunately, the actual ability to toggle render picking didn't make it to this release, but it should make it to the next one!
+
 On the Core
 -----------
 
