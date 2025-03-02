@@ -34,7 +34,7 @@ Sub-title for this feature
 **************************
 
 Physics with Warm-Starting :dim:`(@fallenatlas)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Continuing the work from the previous release, we finished **warm-starting** for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly, the total impulses applied on each point on the previous frame, and applies it before any solving is performed.
 It works based on the assumption that the impulses applied on the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should be already nearer it's ideal position. Over time, these impulses will stablize (since our solver is a "dirty" solver), leading to less jitter.
@@ -85,6 +85,12 @@ Unfortunately, the actual ability to toggle render picking didn't make it to thi
 
 On the Core
 -----------
+
+Added Frustum geometry and intersection utilities :dim:`(@mkuritsu)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A new geometry object was added, the **Frustum**, and with that it was also added two new intersection functions to check if a `Box <https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html>` or a `Capsule <https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html>` is inside the Frustum.
+This new geometry and functions will prove useful to perform Frustum culling in a future release that could bring a great performance improvement to the graphics rendering in Cubos.
 
 Core Feature 1 :dim:`(@Author3)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
