@@ -71,12 +71,52 @@
 <p>TODO: explain feature and why it is useful</p>
 <section id="sub-title-for-this-feature">
 <h5>Sub-title for this feature</h5>
-<p>TODO: more explaining</p>
 </section>
+</section>
+<section id="physics-with-warm-starting-fallenatlas">
+<h4>Physics with Warm-Starting <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
+<p>Continuing the work from the previous release, we finished <strong>warm-starting</strong> for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly, the total impulses applied on each point on the previous frame, and applies it before any solving is performed.
+It works based on the assumption that the impulses applied on the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should be already nearer it's ideal position. Over time, these impulses will stablize (since our solver is a &quot;dirty&quot; solver), leading to less jitter.
+This works especially well for stacks of bodies, since in this case bodies will be pushing each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting we can both stack more bodies, and when the stack isn't fully stable it stays together for longer.</p>
+<p>Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.</p>
+<img class="m-image" src="images/complex_physics_sample_warm_starting.gif" />
+<p>However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.</p>
+<img class="m-image" src="images/complex_physics_sample_1_stack.gif" />
+<p>Unfortunatly, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!</p>
+</section>
+<section id="toggleable-ssao-and-resolution-scale-tomas7770">
+<h4>Toggleable SSAO and resolution scale <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<p>Some time ago, we profiled Cubos's graphics engine to determine the main performance bottlenecks. SSAO stood out as the
+graphics plugin that took the most frametime. However, due to the way the rendering pipeline was implemented, disabling it to get
+better performance wasn't possible without breaking rendering altogether.
+Starting with this release, the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html">SSAO</a> component can be removed
+from a render target to disable this feature.</p>
+<p>In addition, we found that other game engines often default to rendering SSAO textures at half the width/height of the screen resolution,
+which greatly improves performance without major loss in quality.
+To implement this, we added a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html#ab4c8760eb1582559172373476ff04508">resolution scale</a> option to the SSAO component,
+which defaults to 0.5, but can be set to any value up to 2.0.</p>
+</section>
+<section id="conditional-shader-compilation-tomas7770">
+<h4>Conditional shader compilation <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<p>Another major bottleneck in the graphics renderer is the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html">render picker</a>, which
+allows finding out which entity is visible at a given pixel. As explained in the <strong>Modular Renderer</strong> section of the <a href="https://cubosengine.org/coffeen-jam-and-02.html">0.2 blog post</a>,
+we attempted to mitigate performance loss with Pixel Buffers and double-buffering. But despite this, it remains a demanding feature.</p>
+<p>Just like what happened with SSAO, disabling the render picker wasn't possible. Unlike the former, though, this one required the ability
+to change shaders' source code at runtime. To solve this, we added new methods to the <a href="https://docs.cubosengine.org/classcubos_1_1engine_1_1Shader.html">Shader</a>
+class to prepend <code>#define</code> macros and recompile the shader.</p>
+<pre class="m-code"><span class="k">auto</span><span class="w"> </span><span class="n">vs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsAsset</span><span class="o">-&gt;</span><span class="n">shaderStage</span><span class="p">();</span><span class="w"> </span><span class="c1">// unmodified shader</span>
+<span class="n">vs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsAsset</span><span class="o">-&gt;</span><span class="n">builder</span><span class="p">().</span><span class="n">with</span><span class="p">(</span><span class="s">&quot;RENDER_PICKER&quot;</span><span class="p">).</span><span class="n">build</span><span class="p">();</span><span class="w"> </span><span class="c1">// shader with #define RENDER_PICKER</span>
+<span class="n">vs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsAsset</span><span class="o">-&gt;</span><span class="n">builder</span><span class="p">().</span><span class="n">with</span><span class="p">(</span><span class="s">&quot;MAX_CSM_SPLITS&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p">).</span><span class="n">build</span><span class="p">();</span><span class="w"> </span><span class="c1">// shader with #define MAX_CSM_SPLITS 5</span></pre>
+<p>Unfortunately, the actual ability to toggle render picking didn't make it to this release, but it should make it to the next one!</p>
 </section>
 </section>
 <section id="on-the-core">
 <h3>On the Core</h3>
+<section id="added-frustum-geometry-and-intersection-utilities-mkuritsu">
+<h4>Added Frustum geometry and intersection utilities <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
+<p>A new geometry object was added, the <strong>Frustum</strong>, and with that it was also added two new intersection functions to check if a <cite>Box &lt;https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html&gt;</cite> or a <cite>Capsule &lt;https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html&gt;</cite> is inside the Frustum.
+This new geometry and functions will prove useful to perform Frustum culling in a future release that could bring a great performance improvement to the graphics rendering in Cubos.</p>
+</section>
 <section id="core-feature-1-author3">
 <h4>Core Feature 1 <span class="m-text m-dim">(&#64;Author3)</span></h4>
 <p>TODO: explain feature and why it is useful</p>
