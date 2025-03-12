@@ -1,7 +1,7 @@
 0.6 is out!
 ###########
 
-:date: 2024-12-02 00:00:00
+:date: 2025-03-12 00:00:00
 :status: hidden
 :category: Release
 :summary: Cubos 0.6 Release!
@@ -14,24 +14,8 @@ New 0.6 Features
 
 This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
 
-On the Editor
--------------
-
-Editor Feature 1 :dim:`(@Author1)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-TODO: explain feature and why it is useful
-
 On the Engine
 -------------
-
-Engine Feature 1 :dim:`(@Author2)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-TODO: explain feature and why it is useful
-
-Sub-title for this feature
-**************************
 
 Physics with Warm-Starting :dim:`(@fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -92,20 +76,28 @@ Added Frustum geometry and intersection utilities :dim:`(@mkuritsu)`
 A new geometry object was added, the **Frustum**, and with that it was also added two new intersection functions to check if a `Box <https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html>` or a `Capsule <https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html>` is inside the Frustum.
 This new geometry and functions will prove useful to perform Frustum culling in a future release that could bring a great performance improvement to the graphics rendering in Cubos.
 
-Core Feature 1 :dim:`(@Author3)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+New Demo Sneak Peek
+===================
 
-TODO: explain feature and why it is useful
+We have been working on a new game made with **Cubos**, and we're excited to share a sneak peek with you!
+
+The game is a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
+We're planning to implement networked multiplayer, so that you can play with your friends online - this will be a first for **Cubos**!
+
+Expect to hear more about it after the 0.7 release blog post!
+
+.. image:: images/0.6/airships_sneak_peek.png
 
 Next Steps
 ==========
 
-In the next release, which should be out by **TODO WHEN**, we're planning to work on the following features:
+In the next release, which should be out by the end of April, we're planning to work on the following features:
 
 * Very cool feature 1.
 * Very cool feature 2.
 * ...
 
-TODO: maybe some more stuff here if needed
+Until then, we'll also participate in the `Azul Jam <https://azulgamejam.com/>`_, a game jam that will take place over the weekend of March 22nd.
+We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published some time after the jam.
 
-You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/29>`_ for the next release.
+You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/30>`_ for the next release.
