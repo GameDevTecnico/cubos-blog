@@ -90,9 +90,13 @@ Next Steps
 
 In the next release, which should be out by the end of April, we're planning to work on the following features:
 
-* Very cool feature 1.
-* Very cool feature 2.
-* ...
+* A menu bar and sane default layout for **Tesseratos**.
+* A proper scene editor on **Tesseratos**.
+* Automated inertia computation for arbitrary voxel shapes.
+* Frustum culling when rendering.
+* Various other performance improvements in the renderer.
+* Better integration of mouse input with the high-level input system.
+* And many other new features and bug fixes!
 
 Until then, we'll also participate in the `Azul Jam <https://azulgamejam.com/>`_, a game jam that will take place over the weekend of March 22nd.
 We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published some time after the jam.
