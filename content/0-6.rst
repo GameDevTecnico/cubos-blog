@@ -98,7 +98,7 @@ In the next release, which should be out by the end of April, we're planning to 
 * Better integration of mouse input with the high-level input system.
 * And many other new features and bug fixes!
 
-In the meantime, we'll also be participating in the `Azul Jam <https://azulgamejam.com/>`_, a game jam happening over the weekend of March 22nd.
+In the meantime, we'll also be participating in the `Azul Jam <https://azulgamejam.com/>`_, a game jam happening over the weekend of March 28nd.
 We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published sometime after the jam.
 
 You can check out the full list of things we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/30>`_ for the next release.
