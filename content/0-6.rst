@@ -19,9 +19,9 @@ On the Engine
 Physics with Warm-Starting :dim:`(@fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Continuing the work from the previous release, we finished **warm-starting** for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly, the total impulses applied on each point on the previous frame, and applies it before any solving is performed.
-It works based on the assumption that the impulses applied on the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should be already nearer it's ideal position. Over time, these impulses will stablize (since our solver is a "dirty" solver), leading to less jitter.
-This works especially well for stacks of bodies, since in this case bodies will be pushing each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting we can both stack more bodies, and when the stack isn't fully stable it stays together for longer.
+Continuing the work from the previous release, we finished **warm-starting** for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly the total impulses applied over each point in the previous frame, and applies it before any solving is performed.
+It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a "dirty" solver), leading to less jitter.
+This works especially well for stacks of bodies since, in this case, the bodies will push each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable it stays together for longer.
 
 Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.
 
@@ -31,13 +31,13 @@ However, if we increase our physics update rate to 60 times per second (rather t
 
 .. image:: images/complex_physics_sample_1_stack.gif
 
-Unfortunatly, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!
+Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!
 
-Toggleable SSAO and resolution scale :dim:`(@tomas7770)`
+Toggleable SSAO and Resolution Scale :dim:`(@tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some time ago, we profiled **Cubos**'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
-graphics plugin that took the most frametime. However, due to the way the rendering pipeline was implemented, disabling it to get
+graphics plugin that took the most frame time. However, due to the way the rendering pipeline was implemented, disabling it to get
 better performance wasn't possible without breaking rendering altogether.
 Starting with this release, the `SSAO <https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html>`_ component can be removed
 from a render target to disable this feature.
@@ -47,7 +47,7 @@ which greatly improves performance without major loss in quality.
 To implement this, we added a `resolution scale <https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html#ab4c8760eb1582559172373476ff04508>`_ option to the SSAO component,
 which defaults to 0.5, but can be set to any value up to 2.0.
 
-Conditional shader compilation :dim:`(@tomas7770)`
+Conditional Shader Compilation :dim:`(@tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Another major bottleneck in the graphics renderer is the `render picker <https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html>`_, which
@@ -90,8 +90,8 @@ Next Steps
 
 In the next release, which should be out by the end of April, we're planning to work on the following features:
 
-* A menu bar and sane default layout for **Tesseratos**.
-* A proper scene editor on **Tesseratos**.
+* A menu bar and a sane default layout for **Tesseratos**.
+* A proper scene editor for **Tesseratos**.
 * Automated inertia computation for arbitrary voxel shapes.
 * Frustum culling when rendering.
 * Various other performance improvements in the renderer.
@@ -99,6 +99,6 @@ In the next release, which should be out by the end of April, we're planning to 
 * And many other new features and bug fixes!
 
 Until then, we'll also participate in the `Azul Jam <https://azulgamejam.com/>`_, a game jam that will take place over the weekend of March 22nd.
-We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published some time after the jam.
+We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published sometime after the jam.
 
-You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/30>`_ for the next release.
+You can check out the full list of things we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/30>`_ for the next release.
