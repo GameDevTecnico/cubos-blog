@@ -61,19 +61,19 @@
 <h3>On the Engine</h3>
 <section id="physics-with-warm-starting-fallenatlas">
 <h4>Physics with Warm-Starting <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
-<p>Continuing the work from the previous release, we finished <strong>warm-starting</strong> for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly, the total impulses applied on each point on the previous frame, and applies it before any solving is performed.
-It works based on the assumption that the impulses applied on the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should be already nearer it's ideal position. Over time, these impulses will stablize (since our solver is a &quot;dirty&quot; solver), leading to less jitter.
-This works especially well for stacks of bodies, since in this case bodies will be pushing each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting we can both stack more bodies, and when the stack isn't fully stable it stays together for longer.</p>
+<p>Continuing the work from the previous release, we finished <strong>warm-starting</strong> for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly the total impulses applied over each point in the previous frame, and applies it before any solving is performed.
+It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &quot;dirty&quot; solver), leading to less jitter.
+This works especially well for stacks of bodies since, in this case, the bodies will push each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable it stays together for longer.</p>
 <p>Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.</p>
 <img class="m-image" src="images/complex_physics_sample_warm_starting.gif" />
 <p>However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.</p>
 <img class="m-image" src="images/complex_physics_sample_1_stack.gif" />
-<p>Unfortunatly, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!</p>
+<p>Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!</p>
 </section>
 <section id="toggleable-ssao-and-resolution-scale-tomas7770">
-<h4>Toggleable SSAO and resolution scale <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<h4>Toggleable SSAO and Resolution Scale <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
 <p>Some time ago, we profiled <strong>Cubos</strong>'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
-graphics plugin that took the most frametime. However, due to the way the rendering pipeline was implemented, disabling it to get
+graphics plugin that took the most frame time. However, due to the way the rendering pipeline was implemented, disabling it to get
 better performance wasn't possible without breaking rendering altogether.
 Starting with this release, the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html">SSAO</a> component can be removed
 from a render target to disable this feature.</p>
@@ -83,7 +83,7 @@ To implement this, we added a <a href="https://docs.cubosengine.org/structcubos_
 which defaults to 0.5, but can be set to any value up to 2.0.</p>
 </section>
 <section id="conditional-shader-compilation-tomas7770">
-<h4>Conditional shader compilation <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<h4>Conditional Shader Compilation <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
 <p>Another major bottleneck in the graphics renderer is the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html">render picker</a>, which
 allows finding out which entity is visible at a given pixel. As explained in the <strong>Modular Renderer</strong> section of the <a href="https://cubosengine.org/coffeen-jam-and-02.html">0.2 blog post</a>,
 we attempted to mitigate performance loss with Pixel Buffers and double-buffering. But despite this, it remains a demanding feature.</p>
@@ -117,8 +117,8 @@ Expect to hear more about it after the 0.7 release blog post!</p>
 <h2>Next Steps</h2>
 <p>In the next release, which should be out by the end of April, we're planning to work on the following features:</p>
 <ul>
-<li>A menu bar and sane default layout for <strong>Tesseratos</strong>.</li>
-<li>A proper scene editor on <strong>Tesseratos</strong>.</li>
+<li>A menu bar and a sane default layout for <strong>Tesseratos</strong>.</li>
+<li>A proper scene editor for <strong>Tesseratos</strong>.</li>
 <li>Automated inertia computation for arbitrary voxel shapes.</li>
 <li>Frustum culling when rendering.</li>
 <li>Various other performance improvements in the renderer.</li>
@@ -126,8 +126,8 @@ Expect to hear more about it after the 0.7 release blog post!</p>
 <li>And many other new features and bug fixes!</li>
 </ul>
 <p>Until then, we'll also participate in the <a href="https://azulgamejam.com/">Azul Jam</a>, a game jam that will take place over the weekend of March 22nd.
-We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published some time after the jam.</p>
-<p>You can check out the full list of stuff we want to get done in the <a href="https://github.com/GameDevTecnico/cubos/milestone/30">milestone</a> for the next release.</p>
+We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published sometime after the jam.</p>
+<p>You can check out the full list of things we want to get done in the <a href="https://github.com/GameDevTecnico/cubos/milestone/30">milestone</a> for the next release.</p>
 </section>
 <!-- /content -->
       <footer>
