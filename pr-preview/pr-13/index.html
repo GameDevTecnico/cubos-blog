@@ -58,9 +58,9 @@
 <h3>On the Engine</h3>
 <section id="physics-with-warm-starting-fallenatlas">
 <h4>Physics with Warm-Starting <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
-<p>Continuing the work from the previous release, we finished <strong>warm-starting</strong> for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly the total impulses applied over each point in the previous frame, and applies it before any solving is performed.
-It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &quot;dirty&quot; solver), leading to less jitter.
-This works especially well for stacks of bodies since, in this case, the bodies will push each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable it stays together for longer.</p>
+<p>Continuing the work from the previous release, we finished <strong>warm-starting</strong> for our physics simulation. Warm-starting uses the information stored in the contact manifold between two bodies, especially the total impulses applied to each contact point in the previous frame, and applies it before solving begins.
+It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &quot;dirty&quot; solver), resulting in less jitter.
+This is particularly effective for stacks of bodies, where the bodies push against each other, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable, it stays together for longer.</p>
 <p>Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.</p>
 <img class="m-image" src="images/complex_physics_sample_warm_starting.gif" />
 <p>However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.</p>
@@ -98,7 +98,7 @@ class to prepend <code>#define</code> macros and recompile the shader.</p>
 <section id="added-frustum-geometry-and-intersection-utilities-mkuritsu">
 <h4>Added Frustum geometry and intersection utilities <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
 <p>A new geometry object was added, the <strong>frustum</strong>, and additionally, two new intersection functions to check if a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html">box</a> or a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html">capsule</a> intersects a frustum.
-This new geometry utility will prove useful to perform <em>frustum culling</em> in a future release, which could bring a great graphics performance improvement when rendering large scenes with <strong>Cubos</strong>.</p>
+This new geometry utility will be useful for <em>frustum culling</em> in a future release, potentially improving graphics performance when rendering large scenes with <strong>Cubos</strong>.</p>
 </section>
 </section>
 </section>
@@ -106,15 +106,15 @@ This new geometry utility will prove useful to perform <em>frustum culling</em> 
 <h2>New Demo Sneak Peek</h2>
 <p>We have been working on a new game made with <strong>Cubos</strong>, and we're excited to share a sneak peek with you!
 It's a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
-We're planning to implement networked multiplayer, so that you can play with your friends online - this will be a first for <strong>Cubos</strong>!
-Expect to hear more about it after the 0.7 release blog post!</p>
+We plan to implement networked multiplayer, allowing you to play with friends online — this will be a first for <strong>Cubos</strong>!
+Stay tuned for more details after the 0.7 release blog post!</p>
 <img class="m-image" src="images/0.6/airships_sneak_peek.png" />
 </section>
 <section id="next-steps">
 <h2>Next Steps</h2>
 <p>In the next release, which should be out by the end of April, we're planning to work on the following features:</p>
 <ul>
-<li>A menu bar and a sane default layout for <strong>Tesseratos</strong>.</li>
+<li>A menu bar and a sensible default layout for <strong>Tesseratos</strong>.</li>
 <li>A proper scene editor for <strong>Tesseratos</strong>.</li>
 <li>Automated inertia computation for arbitrary voxel shapes.</li>
 <li>Frustum culling when rendering.</li>
@@ -122,7 +122,7 @@ Expect to hear more about it after the 0.7 release blog post!</p>
 <li>Better integration of mouse input with the high-level input system.</li>
 <li>And many other new features and bug fixes!</li>
 </ul>
-<p>Until then, we'll also participate in the <a href="https://azulgamejam.com/">Azul Jam</a>, a game jam that will take place over the weekend of March 22nd.
+<p>In the meantime, we'll also be participating in the <a href="https://azulgamejam.com/">Azul Jam</a>, a game jam happening over the weekend of March 22nd.
 We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published sometime after the jam.</p>
 <p>You can check out the full list of things we want to get done in the <a href="https://github.com/GameDevTecnico/cubos/milestone/30">milestone</a> for the next release.</p>
 </section>

@@ -7,9 +7,9 @@
 &lt;h3&gt;On the Engine&lt;/h3&gt;
 &lt;section id="physics-with-warm-starting-fallenatlas"&gt;
 &lt;h4&gt;Physics with Warm-Starting &lt;span class="m-text m-dim"&gt;(&amp;#64;fallenatlas)&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;Continuing the work from the previous release, we finished &lt;strong&gt;warm-starting&lt;/strong&gt; for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly the total impulses applied over each point in the previous frame, and applies it before any solving is performed.
-It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &amp;quot;dirty&amp;quot; solver), leading to less jitter.
-This works especially well for stacks of bodies since, in this case, the bodies will push each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable it stays together for longer.&lt;/p&gt;
+&lt;p&gt;Continuing the work from the previous release, we finished &lt;strong&gt;warm-starting&lt;/strong&gt; for our physics simulation. Warm-starting uses the information stored in the contact manifold between two bodies, especially the total impulses applied to each contact point in the previous frame, and applies it before solving begins.
+It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &amp;quot;dirty&amp;quot; solver), resulting in less jitter.
+This is particularly effective for stacks of bodies, where the bodies push against each other, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable, it stays together for longer.&lt;/p&gt;
 &lt;p&gt;Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.&lt;/p&gt;
 &lt;img class="m-image" src="images/complex_physics_sample_warm_starting.gif" /&gt;
 &lt;p&gt;However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.&lt;/p&gt;
@@ -47,7 +47,7 @@ class to prepend &lt;code&gt;#define&lt;/code&gt; macros and recompile the shade
 &lt;section id="added-frustum-geometry-and-intersection-utilities-mkuritsu"&gt;
 &lt;h4&gt;Added Frustum geometry and intersection utilities &lt;span class="m-text m-dim"&gt;(&amp;#64;mkuritsu)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;A new geometry object was added, the &lt;strong&gt;frustum&lt;/strong&gt;, and additionally, two new intersection functions to check if a &lt;a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html"&gt;box&lt;/a&gt; or a &lt;a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html"&gt;capsule&lt;/a&gt; intersects a frustum.
-This new geometry utility will prove useful to perform &lt;em&gt;frustum culling&lt;/em&gt; in a future release, which could bring a great graphics performance improvement when rendering large scenes with &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
+This new geometry utility will be useful for &lt;em&gt;frustum culling&lt;/em&gt; in a future release, potentially improving graphics performance when rendering large scenes with &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;/section&gt;
@@ -55,15 +55,15 @@ This new geometry utility will prove useful to perform &lt;em&gt;frustum culling
 &lt;h2&gt;New Demo Sneak Peek&lt;/h2&gt;
 &lt;p&gt;We have been working on a new game made with &lt;strong&gt;Cubos&lt;/strong&gt;, and we're excited to share a sneak peek with you!
 It's a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
-We're planning to implement networked multiplayer, so that you can play with your friends online - this will be a first for &lt;strong&gt;Cubos&lt;/strong&gt;!
-Expect to hear more about it after the 0.7 release blog post!&lt;/p&gt;
+We plan to implement networked multiplayer, allowing you to play with friends online — this will be a first for &lt;strong&gt;Cubos&lt;/strong&gt;!
+Stay tuned for more details after the 0.7 release blog post!&lt;/p&gt;
 &lt;img class="m-image" src="images/0.6/airships_sneak_peek.png" /&gt;
 &lt;/section&gt;
 &lt;section id="next-steps"&gt;
 &lt;h2&gt;Next Steps&lt;/h2&gt;
 &lt;p&gt;In the next release, which should be out by the end of April, we're planning to work on the following features:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;A menu bar and a sane default layout for &lt;strong&gt;Tesseratos&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;A menu bar and a sensible default layout for &lt;strong&gt;Tesseratos&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;A proper scene editor for &lt;strong&gt;Tesseratos&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;Automated inertia computation for arbitrary voxel shapes.&lt;/li&gt;
 &lt;li&gt;Frustum culling when rendering.&lt;/li&gt;
@@ -71,7 +71,7 @@ Expect to hear more about it after the 0.7 release blog post!&lt;/p&gt;
 &lt;li&gt;Better integration of mouse input with the high-level input system.&lt;/li&gt;
 &lt;li&gt;And many other new features and bug fixes!&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Until then, we'll also participate in the &lt;a href="https://azulgamejam.com/"&gt;Azul Jam&lt;/a&gt;, a game jam that will take place over the weekend of March 22nd.
+&lt;p&gt;In the meantime, we'll also be participating in the &lt;a href="https://azulgamejam.com/"&gt;Azul Jam&lt;/a&gt;, a game jam happening over the weekend of March 22nd.
 We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published sometime after the jam.&lt;/p&gt;
 &lt;p&gt;You can check out the full list of things we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/30"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
