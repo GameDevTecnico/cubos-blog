@@ -1,5 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos - Release</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/release.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-01-27T00:00:00+00:00</updated><entry><title>0.5 is out!</title><link href="https://cubosengine.org/05-is-out.html" rel="alternate"></link><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-27T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-01-27:/05-is-out.html</id><summary type="html">&lt;p&gt;Cubos 0.5 Release!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos - Release</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/release.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-03-12T00:00:00+00:00</updated><entry><title>0.6 is out!</title><link href="https://cubosengine.org/06-is-out.html" rel="alternate"></link><published>2025-03-12T00:00:00+00:00</published><updated>2025-03-12T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-03-12:/06-is-out.html</id><summary type="html">&lt;p&gt;Cubos 0.6 Release!&lt;/p&gt;
+</summary><content type="html">&lt;section id="new-0-6-features"&gt;
+&lt;h2&gt;New 0.6 Features&lt;/h2&gt;
+&lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
+&lt;section id="on-the-engine"&gt;
+&lt;h3&gt;On the Engine&lt;/h3&gt;
+&lt;section id="physics-with-warm-starting-fallenatlas"&gt;
+&lt;h4&gt;Physics with Warm-Starting &lt;span class="m-text m-dim"&gt;(&amp;#64;fallenatlas)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Continuing the work from the previous release, we finished &lt;strong&gt;warm-starting&lt;/strong&gt; for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly, the total impulses applied on each point on the previous frame, and applies it before any solving is performed.
+It works based on the assumption that the impulses applied on the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should be already nearer it's ideal position. Over time, these impulses will stablize (since our solver is a &amp;quot;dirty&amp;quot; solver), leading to less jitter.
+This works especially well for stacks of bodies, since in this case bodies will be pushing each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting we can both stack more bodies, and when the stack isn't fully stable it stays together for longer.&lt;/p&gt;
+&lt;p&gt;Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.&lt;/p&gt;
+&lt;img class="m-image" src="images/complex_physics_sample_warm_starting.gif" /&gt;
+&lt;p&gt;However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.&lt;/p&gt;
+&lt;img class="m-image" src="images/complex_physics_sample_1_stack.gif" /&gt;
+&lt;p&gt;Unfortunatly, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="toggleable-ssao-and-resolution-scale-tomas7770"&gt;
+&lt;h4&gt;Toggleable SSAO and resolution scale &lt;span class="m-text m-dim"&gt;(&amp;#64;tomas7770)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Some time ago, we profiled &lt;strong&gt;Cubos&lt;/strong&gt;'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
+graphics plugin that took the most frametime. However, due to the way the rendering pipeline was implemented, disabling it to get
+better performance wasn't possible without breaking rendering altogether.
+Starting with this release, the &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html"&gt;SSAO&lt;/a&gt; component can be removed
+from a render target to disable this feature.&lt;/p&gt;
+&lt;p&gt;In addition, we found that other game engines often default to rendering SSAO textures at half the width/height of the screen resolution,
+which greatly improves performance without major loss in quality.
+To implement this, we added a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html#ab4c8760eb1582559172373476ff04508"&gt;resolution scale&lt;/a&gt; option to the SSAO component,
+which defaults to 0.5, but can be set to any value up to 2.0.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="conditional-shader-compilation-tomas7770"&gt;
+&lt;h4&gt;Conditional shader compilation &lt;span class="m-text m-dim"&gt;(&amp;#64;tomas7770)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Another major bottleneck in the graphics renderer is the &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html"&gt;render picker&lt;/a&gt;, which
+allows finding out which entity is visible at a given pixel. As explained in the &lt;strong&gt;Modular Renderer&lt;/strong&gt; section of the &lt;a href="https://cubosengine.org/coffeen-jam-and-02.html"&gt;0.2 blog post&lt;/a&gt;,
+we attempted to mitigate performance loss with Pixel Buffers and double-buffering. But despite this, it remains a demanding feature.&lt;/p&gt;
+&lt;p&gt;Just like what happened with SSAO, disabling the render picker wasn't possible. Unlike the former, though, this one required the ability
+to change shaders' source code at runtime. To solve this, we added new methods to the &lt;a href="https://docs.cubosengine.org/classcubos_1_1engine_1_1Shader.html"&gt;Shader&lt;/a&gt;
+class to prepend &lt;code&gt;#define&lt;/code&gt; macros and recompile the shader.&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vsAsset&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;shaderStage&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// unmodified shader&lt;/span&gt;
+&lt;span class="n"&gt;vs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vsAsset&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;builder&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;RENDER_PICKER&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// shader with #define RENDER_PICKER&lt;/span&gt;
+&lt;span class="n"&gt;vs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vsAsset&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;builder&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;MAX_CSM_SPLITS&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// shader with #define MAX_CSM_SPLITS 5&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;Unfortunately, the actual ability to toggle render picking didn't make it to this release, but it should make it to the next one!&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="on-the-core"&gt;
+&lt;h3&gt;On the Core&lt;/h3&gt;
+&lt;section id="added-frustum-geometry-and-intersection-utilities-mkuritsu"&gt;
+&lt;h4&gt;Added Frustum geometry and intersection utilities &lt;span class="m-text m-dim"&gt;(&amp;#64;mkuritsu)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;A new geometry object was added, the &lt;strong&gt;frustum&lt;/strong&gt;, and additionally, two new intersection functions to check if a &lt;a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html"&gt;box&lt;/a&gt; or a &lt;a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html"&gt;capsule&lt;/a&gt; intersects a frustum.
+This new geometry utility will prove useful to perform &lt;em&gt;frustum culling&lt;/em&gt; in a future release, which could bring a great graphics performance improvement when rendering large scenes with &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="new-demo-sneak-peek"&gt;
+&lt;h2&gt;New Demo Sneak Peek&lt;/h2&gt;
+&lt;p&gt;We have been working on a new game made with &lt;strong&gt;Cubos&lt;/strong&gt;, and we're excited to share a sneak peek with you!&lt;/p&gt;
+&lt;p&gt;The game is a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
+We're planning to implement networked multiplayer, so that you can play with your friends online - this will be a first for &lt;strong&gt;Cubos&lt;/strong&gt;!&lt;/p&gt;
+&lt;p&gt;Expect to hear more about it after the 0.7 release blog post!&lt;/p&gt;
+&lt;img class="m-image" src="images/0.6/airships_sneak_peek.png" /&gt;
+&lt;/section&gt;
+&lt;section id="next-steps"&gt;
+&lt;h2&gt;Next Steps&lt;/h2&gt;
+&lt;p&gt;In the next release, which should be out by the end of April, we're planning to work on the following features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Very cool feature 1.&lt;/li&gt;
+&lt;li&gt;Very cool feature 2.&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Until then, we'll also participate in the &lt;a href="https://azulgamejam.com/"&gt;Azul Jam&lt;/a&gt;, a game jam that will take place over the weekend of March 22nd.
+We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published some time after the jam.&lt;/p&gt;
+&lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/30"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
+&lt;/section&gt;
+</content><category term="Release"></category></entry><entry><title>0.5 is out!</title><link href="https://cubosengine.org/05-is-out.html" rel="alternate"></link><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-27T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-01-27:/05-is-out.html</id><summary type="html">&lt;p&gt;Cubos 0.5 Release!&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-5-features"&gt;
 &lt;h2&gt;New 0.5 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes in the 0.5 release - we've added a lot of new features, such point light shadows, audio support, MSDF text rendering and more!

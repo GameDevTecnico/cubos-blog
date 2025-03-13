@@ -41,6 +41,94 @@
     <div class="m-col-m-10">
       <article>
         <header>
+          <h1><a href="https://cubosengine.org/06-is-out.html" rel="bookmark" title="Permalink to 0.6 is out!">
+            <time class="m-date" datetime="2025-03-12T00:00:00+00:00">
+              Mar <span class="m-date-day">12</span> 2025
+            </time>
+            0.6 is out!
+          </a></h1>
+          <p>Cubos 0.6 Release!</p>
+        </header>
+        <div class="m-clearfix-l"></div>
+<!-- content -->
+<section id="new-0-6-features">
+<h2>New 0.6 Features</h2>
+<p>This blog post covers the most important changes, but you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>.</p>
+<section id="on-the-engine">
+<h3>On the Engine</h3>
+<section id="physics-with-warm-starting-fallenatlas">
+<h4>Physics with Warm-Starting <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
+<p>Continuing the work from the previous release, we finished <strong>warm-starting</strong> for our physics simulation. Warm-starting takes the information stored in the contact manifold between the two contacting bodies, particularly, the total impulses applied on each point on the previous frame, and applies it before any solving is performed.
+It works based on the assumption that the impulses applied on the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should be already nearer it's ideal position. Over time, these impulses will stablize (since our solver is a &quot;dirty&quot; solver), leading to less jitter.
+This works especially well for stacks of bodies, since in this case bodies will be pushing each other away, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting we can both stack more bodies, and when the stack isn't fully stable it stays together for longer.</p>
+<p>Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.</p>
+<img class="m-image" src="images/complex_physics_sample_warm_starting.gif" />
+<p>However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.</p>
+<img class="m-image" src="images/complex_physics_sample_1_stack.gif" />
+<p>Unfortunatly, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!</p>
+</section>
+<section id="toggleable-ssao-and-resolution-scale-tomas7770">
+<h4>Toggleable SSAO and resolution scale <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<p>Some time ago, we profiled <strong>Cubos</strong>'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
+graphics plugin that took the most frametime. However, due to the way the rendering pipeline was implemented, disabling it to get
+better performance wasn't possible without breaking rendering altogether.
+Starting with this release, the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html">SSAO</a> component can be removed
+from a render target to disable this feature.</p>
+<p>In addition, we found that other game engines often default to rendering SSAO textures at half the width/height of the screen resolution,
+which greatly improves performance without major loss in quality.
+To implement this, we added a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html#ab4c8760eb1582559172373476ff04508">resolution scale</a> option to the SSAO component,
+which defaults to 0.5, but can be set to any value up to 2.0.</p>
+</section>
+<section id="conditional-shader-compilation-tomas7770">
+<h4>Conditional shader compilation <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<p>Another major bottleneck in the graphics renderer is the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html">render picker</a>, which
+allows finding out which entity is visible at a given pixel. As explained in the <strong>Modular Renderer</strong> section of the <a href="https://cubosengine.org/coffeen-jam-and-02.html">0.2 blog post</a>,
+we attempted to mitigate performance loss with Pixel Buffers and double-buffering. But despite this, it remains a demanding feature.</p>
+<p>Just like what happened with SSAO, disabling the render picker wasn't possible. Unlike the former, though, this one required the ability
+to change shaders' source code at runtime. To solve this, we added new methods to the <a href="https://docs.cubosengine.org/classcubos_1_1engine_1_1Shader.html">Shader</a>
+class to prepend <code>#define</code> macros and recompile the shader.</p>
+<pre class="m-code"><span class="k">auto</span><span class="w"> </span><span class="n">vs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsAsset</span><span class="o">-&gt;</span><span class="n">shaderStage</span><span class="p">();</span><span class="w"> </span><span class="c1">// unmodified shader</span>
+<span class="n">vs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsAsset</span><span class="o">-&gt;</span><span class="n">builder</span><span class="p">().</span><span class="n">with</span><span class="p">(</span><span class="s">&quot;RENDER_PICKER&quot;</span><span class="p">).</span><span class="n">build</span><span class="p">();</span><span class="w"> </span><span class="c1">// shader with #define RENDER_PICKER</span>
+<span class="n">vs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsAsset</span><span class="o">-&gt;</span><span class="n">builder</span><span class="p">().</span><span class="n">with</span><span class="p">(</span><span class="s">&quot;MAX_CSM_SPLITS&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p">).</span><span class="n">build</span><span class="p">();</span><span class="w"> </span><span class="c1">// shader with #define MAX_CSM_SPLITS 5</span></pre>
+<p>Unfortunately, the actual ability to toggle render picking didn't make it to this release, but it should make it to the next one!</p>
+</section>
+</section>
+<section id="on-the-core">
+<h3>On the Core</h3>
+<section id="added-frustum-geometry-and-intersection-utilities-mkuritsu">
+<h4>Added Frustum geometry and intersection utilities <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
+<p>A new geometry object was added, the <strong>frustum</strong>, and additionally, two new intersection functions to check if a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html">box</a> or a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html">capsule</a> intersects a frustum.
+This new geometry utility will prove useful to perform <em>frustum culling</em> in a future release, which could bring a great graphics performance improvement when rendering large scenes with <strong>Cubos</strong>.</p>
+</section>
+</section>
+</section>
+<section id="new-demo-sneak-peek">
+<h2>New Demo Sneak Peek</h2>
+<p>We have been working on a new game made with <strong>Cubos</strong>, and we're excited to share a sneak peek with you!</p>
+<p>The game is a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
+We're planning to implement networked multiplayer, so that you can play with your friends online - this will be a first for <strong>Cubos</strong>!</p>
+<p>Expect to hear more about it after the 0.7 release blog post!</p>
+<img class="m-image" src="images/0.6/airships_sneak_peek.png" />
+</section>
+<section id="next-steps">
+<h2>Next Steps</h2>
+<p>In the next release, which should be out by the end of April, we're planning to work on the following features:</p>
+<ul>
+<li>Very cool feature 1.</li>
+<li>Very cool feature 2.</li>
+<li>...</li>
+</ul>
+<p>Until then, we'll also participate in the <a href="https://azulgamejam.com/">Azul Jam</a>, a game jam that will take place over the weekend of March 22nd.
+We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published some time after the jam.</p>
+<p>You can check out the full list of stuff we want to get done in the <a href="https://github.com/GameDevTecnico/cubos/milestone/30">milestone</a> for the next release.</p>
+</section>
+<!-- /content -->
+        <footer>
+          <p>Posted by <a href="https://cubosengine.org/author/cubos-team.html">Cubos Team</a> on <time datetime="2025-03-12T00:00:00+00:00">Wed 12 March 2025</time> in <a href="https://cubosengine.org/category/release.html">Release</a>.</p>
+        </footer>
+      </article>
+      <article>
+        <header>
           <h1><a href="https://cubosengine.org/05-is-out.html" rel="bookmark" title="Permalink to 0.5 is out!">
             <time class="m-date" datetime="2025-01-27T00:00:00+00:00">
               Jan <span class="m-date-day">27</span> 2025
@@ -49,164 +137,10 @@
           </a></h1>
           <p>Cubos 0.5 Release!</p>
         </header>
-        <div class="m-clearfix-l"></div>
-<!-- content -->
-<section id="new-0-5-features">
-<h2>New 0.5 Features</h2>
-<p>This blog post covers the most important changes in the 0.5 release - we've added a lot of new features, such point light shadows, audio support, MSDF text rendering and more!
-We've released 0.5 some time ago, but with the exam season and the holidays, we only got around to writing this blog post now.
-As usual, you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>.</p>
-<section id="on-the-editor">
-<h3>On the Editor</h3>
-<section id="hold-mode-for-debug-camera-jdbaracho">
-<h4>Hold mode for Debug Camera <span class="m-text m-dim">(&#64;jdbaracho)</span></h4>
-<p>For debugging purposes, we have a debug camera which allows the user to move around the scene and inspect it.
-Previous this camera could only be controlled by locking the camera to the mouse with a toggle.
-This was inconvenient when also using the mouse to interact with the editor UI, so we added a new mode where the camera can be rotated by holding a key or mouse button (e.g. the middle mouse button).</p>
-</section>
-</section>
-<section id="on-the-engine">
-<h3>On the Engine</h3>
-<section id="point-light-shadows-tomas7770">
-<h4>Point Light Shadows <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
-<p>Over the past couple of releases, <strong>shadows</strong> have been gradually introduced to the engine's graphics
-renderer, starting with spotlight shadows, and then directional ones. Naturally, the next step was to
-implement shadows for point lights, finally completing support for the most common types of lights.</p>
-<p>Point shadows are enabled by adding a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1PointShadowCaster.html">PointShadowCaster</a>
-component to the light entity.
-They behave similarly to spot shadows, lacking all the configurable values of the more complex directional shadows.
-You can read the previous blog posts for more detailed information (<a href="https://cubosengine.org/03-is-here.html">0.3</a>, <a href="https://cubosengine.org/04-is-out.html">0.4</a>).</p>
-<p>In terms of implementation, point shadows are also very similar to spot shadows, using a shared atlas texture
-that stores shadow maps for every point light in a quadtree structure. However, because point lights cast light in
-all directions, there are 6 atlas textures, one for each direction of a cube.</p>
-<p>The final result of our shadows engine can be seen in the <a href="https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows">Shadows sample</a>.
-Below is a screenshot of the sample with all light types casting shadows. Some tweaks have been done to better highlight the shadows.</p>
-<img class="m-image" src="images/0.5/shadows_sample.png" />
-</section>
-<section id="audio-support-through-the-audio-plugin-dageus-diogomsmiranda">
-<h4>Audio Support through the Audio Plugin  <span class="m-text m-dim">(&#64;Dageus, &#64;diogomsmiranda)</span></h4>
-<p>This release is a significant milestone for the Cubos engine, as it finally introduces Audio functionality!</p>
-<p>The new <code>audioPlugin</code> leverages the previously implemented <code>Audio Context</code> to manage audio playback. It introduces two new components:</p>
-<ul>
-<li><code>AudioSource</code>: Attach this component to entities to play audio files in supported formats such as FLAC, MP3 and WAV.</li>
-<li><code>AudioListener</code>: Attach this component to an entity to capture audio from the scene.</li>
-</ul>
-<p>With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the <code>AudioSource</code> properties for each entity, adjusting settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
-Due to restrictions in our audio backend, you can only have up to <strong>three active listeners</strong> at a time. For practical examples of how to use these new audio components (<code>AudioPlay</code>, <code>AudioPause</code>, <code>AudioStop</code>), check out our <a href="https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp">Audio Sample</a>.</p>
-</section>
-<section id="method-to-save-settings-to-files-srgesus">
-<h4>Method to save settings to files <span class="m-text m-dim">(&#64;SrGesus)</span></h4>
-<p>The <code>Settings</code> resource was missing some way to interact with its corresponding file,
-as it was limited to a startup system that would load the file from a command line
-argument with no way for posterior changes to persist which was inconvenient.</p>
-<p>Now there are two new simple methods - <code>save(path, indentation)</code> and
-<code>load(path)</code> - to save and load the <code>Settings</code> to and from
-<code>cubos::core::data::FileSystem</code> paths. E.g:</p>
-<pre class="m-code"><span class="p">[](</span><span class="n">Settings</span><span class="o">&amp;</span><span class="w"> </span><span class="n">settings</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">settings</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="n">settings</span><span class="o">::</span><span class="n">load</span><span class="p">(</span><span class="s">&quot;/file.json&quot;</span><span class="p">))</span>
-<span class="w">        </span><span class="n">settings</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">&quot;/file_backup.json&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span></pre>
-</section>
-<section id="collision-detection-between-voxelcollisionshapes-joaomanita">
-<h4>Collision detection between VoxelCollisionShapes <span class="m-text m-dim">(&#64;joaomanita)</span></h4>
-<p>The engine was only able to able to detect collisons between boxes, now we can add a <a href="https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html">VoxelCollisionShape</a>
-to decompose a voxel shape into multiple box collision shapes.</p>
-</section>
-<section id="anti-aliasing-using-the-fxaa-technique-kuukitenshi">
-<h4>Anti-aliasing using the FXAA technique <span class="m-text m-dim">(&#64;kuukitenshi)</span></h4>
-<p>We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagged edges in the rendered images.
-As you can see in the images below, FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.</p>
-<img-comparison-slider>
-<img slot="before" src="./images/0.5/cars_before.png" style="width: 100%" />
-<img slot="after" src="./images/0.5/cars_after.png" style="width: 100%" />
-</img-comparison-slider>
-</section>
-<section id="ui-text-element-using-msdf-for-text-rendering-mkuritsu">
-<h4>UI text element using MSDF for text rendering <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
-<p>A significant addition to the Cubos engine was the support for text rendering in the UI, which will greatly improve the capabilities
-for communicating with the player in future games developed with the engine.</p>
-<p>This new features comes in the <cite>uiTextPlugin</cite>, which includes the <cite>UIText</cite> component, containing all the data needed
-to draw text on the screen. The plugin also adds two new asset types:</p>
-<ul>
-<li><strong>Font</strong>: holds the raw font data to be used to create font atlases (.ttf and .otf files supported).</li>
-<li><strong>FontAtlas</strong>: maps characters to their glyph on a given font, with different configurable properties.</li>
-</ul>
-<p>In order to draw the text on the screen this plugins uses Multi Signed Distante Fields (MSDFs) with the help from <a href="https://github.com/Chlumsky/msdfgen">msdfgen</a>
-and <a href="https://github.com/Chlumsky/msdf-atlas-gen">msdf-atlas-gen</a>, and <a href="https://freetype.org/">FreeType</a> to load different font formats. Below is a screenshot
-taken from the UI sample available in the engine showcasing the text rendering in action.</p>
-<img class="m-image" src="images/0.5/ui-text.png" />
-<p><strong>Note:</strong> Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.</p>
-</section>
-<section id="enable-assets-to-be-identified-in-the-code-by-their-file-path-galaxycrush">
-<h4>Enable assets to be identified in the code by their file path <span class="m-text m-dim">(&#64;GalaxyCrush)</span></h4>
-<p>Assets could only be identified by their UUID, which can be hard to keep track of for human developers.
-Now, they are able to be identified by their path, thus making them easier to handle when developing projects with Cubos.
-E.g., you can now do:</p>
-<pre class="m-code"><span class="n">Asset</span><span class="o">&lt;</span><span class="n">Scene</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SceneAsset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnyAsset</span><span class="p">(</span><span class="s">&quot;/path/to/asset&quot;</span><span class="p">);</span></pre>
-<p>instead of:</p>
-<pre class="m-code"><span class="n">Asset</span><span class="o">&lt;</span><span class="n">Scene</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SceneAsset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnyAsset</span><span class="p">(</span><span class="s">&quot;uuid&quot;</span><span class="p">);</span></pre>
-</section>
-<section id="option-to-use-shadow-normal-offset-bias-algorithm-galaxycrush">
-<h4>Option to use Shadow Normal Offset Bias algorithm <span class="m-text m-dim">(&#64;GalaxyCrush)</span></h4>
-<p>We noticed that the shadows had some <a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#Acne">shadow acne</a> and/or <a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#PeterPanning">peter panning</a> artifacts in some samples. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html">ShadowCaster</a>.</p>
-</section>
-<section id="resource-to-easily-configure-constants-in-the-physics-solver-gcesilva">
-<h4>Resource to easily configure constants in the physics solver <span class="m-text m-dim">(&#64;GCeSilva)</span></h4>
-<p>The physics solver previously included hardcoded constants, which were not easily accessible or modifiable.
-A new resource has been added which allows the user to configure these constants, making it easier to tune and debug, even at runtime.</p>
-</section>
-<section id="contact-caching-for-collision-between-box-shapes-fallenatlas">
-<h4>Contact caching for collision between box shapes <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
-<p>We added contact caching as a first step towards implementing warm-starting. Contact caching consists of keeping information about collisions that were happening in the previous physics update
-so that in the next update we can trace them back. This information includes identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of
-collisions between entities, this is currently only supported for box shapes.</p>
-</section>
-</section>
-<section id="on-the-core">
-<h3>On the Core</h3>
-<section id="a-proper-cmake-configuration-riscadoa">
-<h4>A Proper CMake Configuration <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
-<p>While functional, our <a href="https://cmake.org/">CMake</a> build configuration was incomplete in terms of features and poorly organized.
-As the engine evolved, we recognized the need to install it as a system-wide library for use in other projects.
-Before, we always simply added the engine repository as a <code>git</code> submodule in our projects, which required maintaining a local copy of the entire codebase for each project - an inneficient approach.
-To address this, we decided to clean up the CMake configuration, and add installation and <code>find_package</code> support. As a result, you can now install the whole Cubos project, and to use it in another project, you only need to include the following lines in your <code>CMakeLists.txt</code>:</p>
-<pre class="m-code"><span class="nb">find_package</span><span class="p">(</span><span class="s">cubos</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">your_game</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">cubos::engine</span><span class="p">)</span></pre>
-<p>One big advantage of this is that we can now also install Quadrados and Tesseratos, the tools we use for making games with Cubos, system-wide, as you would with any other application.
-As of now, Cubos has only been packaged for NixOS, but we haven't contributed it to the Nixpkgs repository yet. We plan to do so in the future, and also to package it for other distributions.</p>
-</section>
-<section id="web-support-with-emscripten-riscadoa-luishfonseca">
-<h4>Web Support with Emscripten <span class="m-text m-dim">(&#64;RiscadoA, &#64;luishfonseca)</span></h4>
-<p>We've had a pull request open since 0.2 for porting Cubos to the web with <a href="https://emscripten.org/">Emscripten</a>, but it was constantly postponed due to some blocking issues being present, and us being focused on other features.
-Now, we finally made the final push to get it working, and now Cubos can be compiled to WebAssembly and ran in the browser!</p>
-<p>This is an important feature, as for game jams, for example, it's handy to be able to share your game with others without them having to download anything, and also to be able to play it on any device.
-It's a good way to showcase the engine to people who might be interested in using it, but are reluctant to download it.
-We plan on embedding each sample on their respective documentation page, but that will be left for a future release.</p>
-<p>One of the major challenges was guaranteeing compatibility with WebGL2. Fortunately, the rendering code is built on top of a rendering API abstraction layer.
-We had to make some changes to this layer to guarantee we cover strictly the intersection between the features of OpenGL 3.3 and WebGL2, but we managed to do it without much hassle.
-As of now, this means we're making some performance sacrifices, as we're not using advanced features even when they're available. We plan to address this in the future.</p>
-</section>
-</section>
-</section>
-<section id="next-steps">
-<h2>Next Steps</h2>
-<p>In the next release, which should be out by February 6th, we're planning to work on the following features:</p>
-<ul>
-<li>Toggleable gravity on the physics plugin.</li>
-<li>Warm starting in physics solver.</li>
-<li>Graphics performance improvements.</li>
-<li>Transparent voxel rendering.</li>
-<li>Particle system.</li>
-<li>Editor UX improvements, making it very useful.</li>
-<li>New scene editor.</li>
-</ul>
-<p>We also developed a demo showcasing the new features of this release, which you will be able to check out pretty soon here.</p>
-<p>You can check out the full list of stuff we want to get done in the <a href="https://github.com/GameDevTecnico/cubos/milestone/29">milestone</a> for the next release.</p>
-</section>
-<!-- /content -->
         <footer>
           <p>Posted by <a href="https://cubosengine.org/author/cubos-team.html">Cubos Team</a> on <time datetime="2025-01-27T00:00:00+00:00">Mon 27 January 2025</time> in <a href="https://cubosengine.org/category/release.html">Release</a>.</p>
         </footer>
+        <div class="m-clearfix-l"></div>
       </article>
       <article>
         <header>

@@ -72,7 +72,7 @@ This works especially well for stacks of bodies, since in this case bodies will 
 </section>
 <section id="toggleable-ssao-and-resolution-scale-tomas7770">
 <h4>Toggleable SSAO and resolution scale <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
-<p>Some time ago, we profiled Cubos's graphics engine to determine the main performance bottlenecks. SSAO stood out as the
+<p>Some time ago, we profiled <strong>Cubos</strong>'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
 graphics plugin that took the most frametime. However, due to the way the rendering pipeline was implemented, disabling it to get
 better performance wasn't possible without breaking rendering altogether.
 Starting with this release, the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html">SSAO</a> component can be removed
@@ -100,8 +100,8 @@ class to prepend <code>#define</code> macros and recompile the shader.</p>
 <h3>On the Core</h3>
 <section id="added-frustum-geometry-and-intersection-utilities-mkuritsu">
 <h4>Added Frustum geometry and intersection utilities <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
-<p>A new geometry object was added, the <strong>Frustum</strong>, and with that it was also added two new intersection functions to check if a <cite>Box &lt;https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html&gt;</cite> or a <cite>Capsule &lt;https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html&gt;</cite> is inside the Frustum.
-This new geometry and functions will prove useful to perform Frustum culling in a future release that could bring a great performance improvement to the graphics rendering in Cubos.</p>
+<p>A new geometry object was added, the <strong>frustum</strong>, and additionally, two new intersection functions to check if a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html">box</a> or a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html">capsule</a> intersects a frustum.
+This new geometry utility will prove useful to perform <em>frustum culling</em> in a future release, which could bring a great graphics performance improvement when rendering large scenes with <strong>Cubos</strong>.</p>
 </section>
 </section>
 </section>
