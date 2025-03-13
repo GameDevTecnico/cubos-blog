@@ -2,7 +2,6 @@
 ###########
 
 :date: 2025-03-12 00:00:00
-:status: hidden
 :category: Release
 :summary: Cubos 0.6 Release!
 
@@ -37,7 +36,7 @@ Unfortunatly, our collisions are not optimized to the point where we can have 60
 Toggleable SSAO and resolution scale :dim:`(@tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some time ago, we profiled Cubos's graphics engine to determine the main performance bottlenecks. SSAO stood out as the
+Some time ago, we profiled **Cubos**'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
 graphics plugin that took the most frametime. However, due to the way the rendering pipeline was implemented, disabling it to get
 better performance wasn't possible without breaking rendering altogether.
 Starting with this release, the `SSAO <https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html>`_ component can be removed
@@ -73,8 +72,8 @@ On the Core
 Added Frustum geometry and intersection utilities :dim:`(@mkuritsu)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A new geometry object was added, the **Frustum**, and with that it was also added two new intersection functions to check if a `Box <https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html>` or a `Capsule <https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html>` is inside the Frustum.
-This new geometry and functions will prove useful to perform Frustum culling in a future release that could bring a great performance improvement to the graphics rendering in Cubos.
+A new geometry object was added, the **frustum**, and additionally, two new intersection functions to check if a `box <https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html>`_ or a `capsule <https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html>`_ intersects a frustum.
+This new geometry utility will prove useful to perform *frustum culling* in a future release, which could bring a great graphics performance improvement when rendering large scenes with **Cubos**.
 
 New Demo Sneak Peek
 ===================
