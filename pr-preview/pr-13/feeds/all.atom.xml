@@ -53,10 +53,10 @@ This new geometry utility will prove useful to perform &lt;em&gt;frustum culling
 &lt;/section&gt;
 &lt;section id="new-demo-sneak-peek"&gt;
 &lt;h2&gt;New Demo Sneak Peek&lt;/h2&gt;
-&lt;p&gt;We have been working on a new game made with &lt;strong&gt;Cubos&lt;/strong&gt;, and we're excited to share a sneak peek with you!&lt;/p&gt;
-&lt;p&gt;The game is a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
-We're planning to implement networked multiplayer, so that you can play with your friends online - this will be a first for &lt;strong&gt;Cubos&lt;/strong&gt;!&lt;/p&gt;
-&lt;p&gt;Expect to hear more about it after the 0.7 release blog post!&lt;/p&gt;
+&lt;p&gt;We have been working on a new game made with &lt;strong&gt;Cubos&lt;/strong&gt;, and we're excited to share a sneak peek with you!
+It's a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
+We're planning to implement networked multiplayer, so that you can play with your friends online - this will be a first for &lt;strong&gt;Cubos&lt;/strong&gt;!
+Expect to hear more about it after the 0.7 release blog post!&lt;/p&gt;
 &lt;img class="m-image" src="images/0.6/airships_sneak_peek.png" /&gt;
 &lt;/section&gt;
 &lt;section id="next-steps"&gt;
