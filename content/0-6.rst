@@ -79,10 +79,8 @@ New Demo Sneak Peek
 ===================
 
 We have been working on a new game made with **Cubos**, and we're excited to share a sneak peek with you!
-
-The game is a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
+It's a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
 We're planning to implement networked multiplayer, so that you can play with your friends online - this will be a first for **Cubos**!
-
 Expect to hear more about it after the 0.7 release blog post!
 
 .. image:: images/0.6/airships_sneak_peek.png
