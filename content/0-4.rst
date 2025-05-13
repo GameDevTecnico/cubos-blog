@@ -3,6 +3,7 @@
 
 :date: 2024-11-05 00:00:00
 :category: Release
+:tags: Release
 :summary: Cubos 0.4 Release!
 
 .. role:: dim

@@ -1,17 +1,18 @@
-Coffee'n Jam and... 0.2!
-########################
+Coffee N' Jam and... 0.2!
+#########################
 
 :date: 2024-05-21 10:00:00
 :category: Release
-:summary: Cubos 0.2 Release and Coffee'n Jam!
+:tags: Release, Demo
+:summary: Cubos 0.2 Release and Coffee N' Jam!
 
 .. role:: dim
     :class: m-text m-dim
 
-Coffee'n Jam
-============
+Coffee N' Jam 2024
+==================
 
-From 26th of April to 3rd of May, @RiscadoA and @joaomanita participated in the Coffee'n Jam, a game jam organized by GameDev Técnico, with our engine, **Cubos**.
+From 26th of April to 3rd of May, @RiscadoA and @joaomanita participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, **Cubos**.
 The goal was to create a game in a week, with the theme "Apocalypse" - and we had a blast!
 
 The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
