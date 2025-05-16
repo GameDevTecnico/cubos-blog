@@ -4,7 +4,7 @@ Hello World
 :date: 2023-11-10 10:06:00
 :category: Meta
 :summary: This is Cubos!
-:cover: /images/blog/first-post/cover.png
+:cover: /images/blog/meta/first-post/cover.png
 
 Hello everyone, and welcome to the very first post of the Cubos engine blog. This is where we'll be posting updates and information about Cubos
 Let's start today by talking about what Cubos is!

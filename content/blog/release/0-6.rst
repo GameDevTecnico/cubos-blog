@@ -5,7 +5,7 @@ Release 0.6
 :category: Release
 :tags: Release
 :summary: A smaller update focused on performance, physics stability and better options for lower end machines.
-:cover: /images/blog/0.6/cover.png
+:cover: /images/blog/release/0-6/cover.png
 
 .. role:: dim
     :class: m-text m-dim
@@ -27,11 +27,11 @@ This is particularly effective for stacks of bodies, where the bodies push again
 
 Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.
 
-.. image:: /images/blog/0-6/complex_physics_sample_warm_starting.gif
+.. image:: /images/blog/release/0-6/complex_physics_sample_warm_starting.gif
 
 However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.
 
-.. image:: /images/blog/0-6/complex_physics_sample_1_stack.gif
+.. image:: /images/blog/release/0-6/complex_physics_sample_1_stack.gif
 
 Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!
 

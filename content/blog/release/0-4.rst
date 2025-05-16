@@ -5,7 +5,7 @@ Release 0.4
 :category: Release
 :tags: Release
 :summary: Rotating rigid bodies, cascading shadow maps, a standalone editor application, better telemetry and much more!
-:cover: /images/blog/0-4/cover.png
+:cover: /images/blog/release/0-4/cover.png
 
 .. role:: dim
     :class: m-text m-dim
@@ -69,7 +69,7 @@ Physics with Rotation :dim:`(@fallenatlas)`
 
 We have **rotation**!
 
-.. image:: /images/blog/0-4/complex_physics_sample_rotations.gif
+.. image:: /images/blog/release/0-4/complex_physics_sample_rotations.gif
 
 Since the start of the physics plugin, we always treated rigid bodies as simple particles.
 This is because it made the calculations more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging - of penetration solving for example - easier.
@@ -113,7 +113,7 @@ With this change, our narrow phase firstly checks for collision with SAT, since 
 
 The collisions sample was also enhanced so we could visualize this information.
 
-.. image:: /images/blog/0-4/collision_sample_manifold_demo.gif
+.. image:: /images/blog/release/0-4/collision_sample_manifold_demo.gif
 
 New Components
 **************
@@ -207,21 +207,21 @@ Here are some comparison screenshots showing the difference directional shadows 
 Try dragging the slider in the middle to compare the before and after!
 
 .. image-comparison::
-    :before: {static}/images/blog/0-4/scraps_vs_zombies_csm_before.png
+    :before: {static}/images/blog/release/0-4/scraps_vs_zombies_csm_before.png
     :before-label: Before
-    :after: {static}/images/blog/0-4/scraps_vs_zombies_csm_after.png
+    :after: {static}/images/blog/release/0-4/scraps_vs_zombies_csm_after.png
     :after-label: After
 
 .. image-comparison::
-    :before: {static}/images/blog/0-4/cars_csm_before.png
+    :before: {static}/images/blog/release/0-4/cars_csm_before.png
     :before-label: Before
-    :after: {static}/images/blog/0-4/cars_csm_after.png
+    :after: {static}/images/blog/release/0-4/cars_csm_after.png
     :after-label: After
 
 .. image-comparison::
-    :before: {static}/images/blog/0-4/surfers_csm_before.png
+    :before: {static}/images/blog/release/0-4/surfers_csm_before.png
     :before-label: Before
-    :after: {static}/images/blog/0-4/surfers_csm_after.png
+    :after: {static}/images/blog/release/0-4/surfers_csm_after.png
     :after-label: After
 
 As you can see, this adds a whole new level of depth to the engine's graphics.
@@ -251,15 +251,15 @@ Below are screenshots of the directional shadow map used to draw shadows in *Scr
 
     .. container:: m-col-m-4
 
-        .. image:: /images/blog/0-4/cascaded_shadow_map_1.png
+        .. image:: /images/blog/release/0-4/cascaded_shadow_map_1.png
 
     .. container:: m-col-m-4
 
-        .. image:: /images/blog/0-4/cascaded_shadow_map_2.png
+        .. image:: /images/blog/release/0-4/cascaded_shadow_map_2.png
 
     .. container:: m-col-m-4
 
-        .. image:: /images/blog/0-4/cascaded_shadow_map_3.png
+        .. image:: /images/blog/release/0-4/cascaded_shadow_map_3.png
 
 Input Axis Deadzones :dim:`(@kuukitenshi)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

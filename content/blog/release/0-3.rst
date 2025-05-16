@@ -5,7 +5,7 @@ Release 0.3
 :category: Release
 :tags: Release
 :summary: Raycasting, shadows, profiling tools, networking utilities, and more!
-:cover: /images/blog/0-3/cover.png
+:cover: /images/blog/release/0-3/cover.png
 
 .. role:: dim
     :class: m-text m-dim
@@ -58,7 +58,7 @@ Since these changes were mostly in internal systems, from a user stand point, ev
 
 Additionally, we added Friction and Bounciness. For now, these are a predefined value for every body, but will be customizable in the next release with a ``PhysicsMaterial``.
 
-.. image:: /images/blog/0-3/complex_physics_sample_tgs_soft.gif
+.. image:: /images/blog/release/0-3/complex_physics_sample_tgs_soft.gif
 
 Raycasting :dim:`(@diogomsmiranda)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -206,7 +206,7 @@ Spot Light Shadows :dim:`(@tomas7770)`
 
 Our graphics renderer has received a new major feature in this release: shadows!
 
-.. image:: /images/blog/0-3/cover.png
+.. image:: /images/blog/release/0-3/cover.png
 
 It should go without saying that this feature has a big impact on the visuals of games
 developed with Cubos. We've tried it on *Scraps vs Zombies* and the result is stunning!
@@ -224,7 +224,7 @@ as a post-processing step that effectively blurs out the shadows.
 Below is a screenshot of the shadow atlas with 5 spot lights. Lines have been drawn separating
 the areas of the atlas reserved for each light.
 
-.. image:: /images/blog/0-3/shadow_atlas.png
+.. image:: /images/blog/release/0-3/shadow_atlas.png
 
 Initial UI Plugin :dim:`(@DiogoMendonc-a)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

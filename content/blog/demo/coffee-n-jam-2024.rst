@@ -5,7 +5,7 @@ Coffee N' Jam 2024
 :category: Demo
 :tags: Demo, Game Jam
 :summary: We made a game in a week with Cubos, and managed to win two awards!
-:cover: /images/blog/coffee-n-jam-2024/cover.png
+:cover: /images/blog/demo/coffee-n-jam-2024/cover.png
 
 .. role:: dim
     :class: m-text m-dim
@@ -19,7 +19,7 @@ You can also check out its source code in our `demo repository <https://github.c
 
 We managed to win the "Best Gameplay" and "People's Choice" awards, which we're very proud of!
 
-.. image:: /images/blog/coffee-n-jam-2024/cover.png
+.. image:: /images/blog/demo/coffee-n-jam-2024/cover.png
     :target: https://riscadoa.itch.io/scraps-vs-zombies
 
 We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.

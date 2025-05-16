@@ -5,7 +5,7 @@
 :status: hidden
 :category: Release
 :summary: Cubos 0.X Release!
-:cover: /images/blog/first-post/cover.png
+:cover: /images/blog/meta/first-post/cover.png
 
 .. role:: dim
     :class: m-text m-dim
