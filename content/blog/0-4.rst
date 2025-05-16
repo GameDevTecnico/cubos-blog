@@ -1,10 +1,10 @@
-0.4 is out! 
+Release 0.4 
 ###########
 
 :date: 2024-11-05 00:00:00
 :category: Release
 :tags: Release
-:summary: Cubos 0.4 Release!
+:summary: Rotating rigid bodies, cascading shadow maps, a standalone editor application, better telemetry and much more!
 :cover: /images/blog/0-4/cover.png
 
 .. role:: dim

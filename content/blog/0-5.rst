@@ -1,10 +1,10 @@
-0.5 is out!
+Release 0.5
 ###########
 
 :date: 2025-01-27 00:00:00
 :category: Release
 :tags: Release
-:summary: Cubos 0.5 Release!
+:summary: From Voxel collisions, point light shadows and an audio plugin, to web support, text rendering, and FXAA.
 :cover: /images/blog/0-5/cover.png
 
 .. role:: dim

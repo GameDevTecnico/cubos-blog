@@ -1,10 +1,10 @@
-0.6 is out!
+Release 0.6
 ###########
 
 :date: 2025-03-12 00:00:00
 :category: Release
 :tags: Release
-:summary: Cubos 0.6 Release!
+:summary: A smaller update focused on performance, physics stability and better options for lower end machines.
 :cover: /images/blog/0.6/cover.png
 
 .. role:: dim

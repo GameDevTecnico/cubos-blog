@@ -4,7 +4,7 @@ Release 0.2
 :date: 2024-05-21 10:00:00
 :category: Release
 :tags: Release
-:summary: Cubos 0.2 Release
+:summary: From ECS observers and fixed-time step support to better editing tools, a new modular rendering pipeline, and the first physics constraints solvers.
 :cover: /images/blog/0-2/cover.png
 
 .. role:: dim
