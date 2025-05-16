@@ -6,7 +6,7 @@ M_BLOG_NAME = 'Cubos Blog'
 M_BLOG_URL = "/blog"
 M_BLOG_DESCRIPTION = "Cubos is an open-source student-developed game engine built in modern C++ where everything is made of voxels."
 
-M_SOCIAL_IMAGE = 'https://cubosengine.org/images/logo.png'
+M_SOCIAL_IMAGE = 'https://cubosengine.org/images/social.png'
 M_SOCIAL_BLOG_SUMMARY = "An open-source student-developed game engine built in modern C++ where everything is made of voxels."
 
 TIMEZONE = 'Europe/Lisbon'
