@@ -18,8 +18,8 @@
   <meta property="og:url" content="https://cubosengine.org/blog/release-05/" />
   <meta property="og:description" content="From Voxel collisions, point light shadows and an audio plugin, to web support, text rendering, and FXAA." />
   <meta name="twitter:description" content="From Voxel collisions, point light shadows and an audio plugin, to web support, text rendering, and FXAA." />
-  <meta property="og:image" content="/images/blog/0-5/cover.png" />
-  <meta name="twitter:image" content="/images/blog/0-5/cover.png" />
+  <meta property="og:image" content="/images/blog/release/0-5/cover.png" />
+  <meta name="twitter:image" content="/images/blog/release/0-5/cover.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:type" content="article" />
 </head>
@@ -47,7 +47,7 @@
 <main>
   <article id="m-jumbo">
     <header>
-      <div id="m-jumbo-image" style="background-image: url('/images/blog/0-5/cover.png');">
+      <div id="m-jumbo-image" style="background-image: url('/images/blog/release/0-5/cover.png');">
         <div id="m-jumbo-cover">
           <div class="m-container">
             <div class="m-row">
@@ -104,7 +104,7 @@ that stores shadow maps for every point light in a quadtree structure. However, 
 all directions, there are 6 atlas textures, one for each direction of a cube.</p>
 <p>The final result of our shadows engine can be seen in the <a href="https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows">Shadows sample</a>.
 Below is a screenshot of the sample with all light types casting shadows. Some tweaks have been done to better highlight the shadows.</p>
-<img class="m-image" src="/images/blog/0-5/shadows_sample.png" />
+<img class="m-image" src="/images/blog/release/0-5/shadows_sample.png" />
 </section>
 <section id="audio-support-through-the-audio-plugin-dageus-diogomsmiranda">
 <h4>Audio Support through the Audio Plugin  <span class="m-text m-dim">(&#64;Dageus, &#64;diogomsmiranda)</span></h4>
@@ -139,11 +139,11 @@ to decompose a voxel shape into multiple box collision shapes.</p>
 As you can see in the images below, FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.</p>
 <img-comparison-slider>
 <figure class="before" slot="first">
-<img src="../../images/blog/0-5/cars_before.png" style="width: 100%" />
+<img src="../../images/blog/release/0-5/cars_before.png" style="width: 100%" />
 <figcaption>FXAA Off</figcaption>
 </figure>
 <figure class="after" slot="second">
-<img src="../../images/blog/0-5/cars_after.png" style="width: 100%" />
+<img src="../../images/blog/release/0-5/cars_after.png" style="width: 100%" />
 <figcaption>FXAA On</figcaption>
 </figure>
 </img-comparison-slider>
@@ -161,7 +161,7 @@ to draw text on the screen. The plugin also adds two new asset types:</p>
 <p>In order to draw the text on the screen this plugins uses Multi Signed Distante Fields (MSDFs) with the help from <a href="https://github.com/Chlumsky/msdfgen">msdfgen</a>
 and <a href="https://github.com/Chlumsky/msdf-atlas-gen">msdf-atlas-gen</a>, and <a href="https://freetype.org/">FreeType</a> to load different font formats. Below is a screenshot
 taken from the UI sample available in the engine showcasing the text rendering in action.</p>
-<img class="m-image" src="/images/blog/0-5/ui-text.png" />
+<img class="m-image" src="/images/blog/release/0-5/ui-text.png" />
 <p><strong>Note:</strong> Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.</p>
 </section>
 <section id="enable-assets-to-be-identified-in-the-code-by-their-file-path-galaxycrush">
@@ -248,7 +248,7 @@ As of now, this means we're making some performance sacrifices, as we're not usi
         <h3>Categories</h3>
         <ol class="m-block-bar-s">
           <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
-          <li><a href="https://cubosengine.org/blog/features/">Features</a></li>
+          <li><a href="https://cubosengine.org/blog/dev-notes/">Dev Notes</a></li>
           <li><a href="https://cubosengine.org/blog/meta/">Meta</a></li>
           <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
         </ol>
@@ -312,7 +312,7 @@ As of now, this means we're making some performance sacrifices, as we're not usi
         <h3><a href="https://cubosengine.org/blog">Blog</a></h3>
         <ul>
           <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
-          <li><a href="https://cubosengine.org/blog/features/">Features</a></li>
+          <li><a href="https://cubosengine.org/blog/dev-notes/">Dev Notes</a></li>
           <li><a href="https://cubosengine.org/blog/meta/">Meta</a></li>
           <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
         </ul>

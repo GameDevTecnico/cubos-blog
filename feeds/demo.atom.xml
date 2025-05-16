@@ -7,7 +7,7 @@ The game is called &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, and you can download 
 You can also check out its source code in our &lt;a href="https://github.com/GameDevTecnico/cubos-demo"&gt;demo repository&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We managed to win the &amp;quot;Best Gameplay&amp;quot; and &amp;quot;People's Choice&amp;quot; awards, which we're very proud of!&lt;/p&gt;
 &lt;div class="m-image"&gt;
-&lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;&lt;img src="/images/blog/coffee-n-jam-2024/cover.png" /&gt;&lt;/a&gt;
+&lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;&lt;img src="/images/blog/demo/coffee-n-jam-2024/cover.png" /&gt;&lt;/a&gt;
 &lt;/div&gt;
 &lt;p&gt;We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
 One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!

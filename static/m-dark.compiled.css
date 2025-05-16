@@ -24,15 +24,6 @@
     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
     DEALINGS IN THE SOFTWARE.
 */
-:root {
-  --cubos-shade1: #354C61;
-:root {
-  --cubos-shade2: #263645;
-:root {
-  --cubos-shade3: #1C2833;
-:root {
-  --cubos-shade4: #121A21; 
-}
 h1,
 .h1 {
   font-family: 'Russo One', sans-serif;
@@ -84,8 +75,8 @@ img-comparison-slider .after {
 }
 img-comparison-slider .before figcaption,
 img-comparison-slider .after figcaption {
-  background: var(--cubos-shade2);
-  border: 1px solid var(--cubos-shade3);
+  background: #263645;
+  border: 1px solid #1C2833;
   color: #FFFFFF;
   opacity: 0.8;
   padding: 12px;
@@ -416,7 +407,7 @@ body { margin: 0; }
 
 html {
   font-size: 18px;
-  background-color: var(--cubos-shade4);
+  background-color: #121A21;
 }
 body {
   font-family: 'Roboto', sans-serif;
@@ -660,7 +651,7 @@ dl.m-footnote dd span.m-footnote a {
   padding: 1rem;
 }
 .m-frame {
-  background-color: var(--cubos-shade4);
+  background-color: #121A21;
   border-style: solid;
   border-width: 0.125rem;
   border-radius: 0.2rem;
@@ -815,7 +806,7 @@ table.m-table tr.m-info td, table.m-table td.m-info,
 table.m-table tr.m-info th, table.m-table th.m-info,
 table.m-table tr.m-dim td, table.m-table td.m-dim,
 table.m-table tr.m-dim th, table.m-table th.m-dim {
-  border-color: var(--cubos-shade4);
+  border-color: #121A21;
 }
 .m-note pre, .m-note code,
 table.m-table tr.m-default pre, table.m-table tr.m-default code,
@@ -997,7 +988,7 @@ figure.m-figure figcaption .m-figure-description a {
   text-decoration: underline;
 }
 .m-imagegrid > div {
-  background-color: var(--cubos-shade4);
+  background-color: #121A21;
 }
 .m-imagegrid > div > figure {
   display: block;
@@ -1014,7 +1005,7 @@ figure.m-figure figcaption .m-figure-description a {
   left: 0;
   width: 100%;
   height: 100%;
-  border-color: var(--cubos-shade4);
+  border-color: #121A21;
   border-style: solid;
   border-width: 0.25rem;
   padding: 0.5rem;
@@ -1450,7 +1441,7 @@ div.m-button.m-info a:hover, div.m-button.m-info a:focus, div.m-button.m-info a:
 div.m-button.m-dim a:hover, div.m-button.m-dim a:focus, div.m-button.m-dim a:active {
   background-color: #acacac;
 }
-.m-note.m-default { background-color: var(--cubos-shade3); }
+.m-note.m-default { background-color: #1C2833; }
 .m-note.m-default,
 table.m-table tr.m-default td, table.m-table td.m-default,
 table.m-table tr.m-default th, table.m-table th.m-default {
@@ -1561,7 +1552,7 @@ table.m-table tr.m-danger th a:active, table.m-table th.m-danger a:active {
 .m-note.m-info,
 table.m-table tr.m-info td, table.m-table td.m-info,
 table.m-table tr.m-info th, table.m-table th.m-info {
-  background-color: var(--cubos-shade1);
+  background-color: #354C61;
   color: #D9DDDE;
 }
 .m-note.m-info a,
@@ -1602,7 +1593,7 @@ table.m-table tr.m-dim td a:active, table.m-table td.m-dim a:active,
 table.m-table tr.m-dim th a:active, table.m-table th.m-dim a:active {
   color: #747474;
 }
-figure.m-figure.m-default::before { border-color: var(--cubos-shade3); }
+figure.m-figure.m-default::before { border-color: #1C2833; }
 figure.m-figure.m-default figcaption { color: #dcdcdc; }
 figure.m-figure.m-primary::before { border-color: #a5c2db; }
 figure.m-figure.m-primary figcaption { color: #0099CC; }
@@ -1616,7 +1607,7 @@ figure.m-figure.m-warning figcaption .m-figure-description { color: #dcdcdc; }
 figure.m-figure.m-danger::before { border-color: #702b2a; }
 figure.m-figure.m-danger figcaption { color: #cd3431; }
 figure.m-figure.m-danger figcaption .m-figure-description { color: #dcdcdc; }
-figure.m-figure.m-info::before { border-color: var(--cubos-shade1); }
+figure.m-figure.m-info::before { border-color: #354C61; }
 figure.m-figure.m-info figcaption { color: #0099CC; }
 figure.m-figure.m-info figcaption .m-figure-description { color: #dcdcdc; }
 figure.m-figure.m-dim::before { border-color: #2d3236; }
@@ -1941,7 +1932,7 @@ li:last-child > div.m-plot:last-child, li:last-child > div.m-plot.m-nopadb {
 
 body > header > nav {
   width: 100%;
-  background-color: var(--cubos-shade3);
+  background-color: #1C2833;
   min-height: 3rem;
 }
 body > header > nav.m-navbar-landing,
@@ -1953,7 +1944,7 @@ body > header > nav.m-navbar-landing {
   opacity: 1;
 }
 body > header > nav.m-navbar-cover {
-  background-color: var(--cubos-shade3);
+  background-color: #1C2833;
   opacity: 1;
 }
 body > header > nav.m-navbar-landing:hover,
@@ -1963,7 +1954,7 @@ body > header > nav.m-navbar-cover {
 }
 body> header > nav.m-navbar-landing:target,
 body> header > nav.m-navbar-cover:target {
-  background-color: var(--cubos-shade3);
+  background-color: #1C2833;
   opacity: 1;
 }
 body > header > nav.m-navbar-landing #m-navbar-brand.m-navbar-brand-hidden {
@@ -2056,7 +2047,7 @@ body > header > nav #m-navbar-collapse li a:hover,
 body > header > nav #m-navbar-collapse li a:focus,
 body > header > nav #m-navbar-collapse li a:active {
   border-color: #00BFFF;
-  background-color: var(--cubos-shade3);
+  background-color: #1C2833;
 }
 body > header > nav.m-navbar-landing #m-navbar-collapse li a:hover,
 body > header > nav.m-navbar-cover #m-navbar-collapse li a:hover,
@@ -2064,7 +2055,7 @@ body > header > nav.m-navbar-landing #m-navbar-collapse li a:focus,
 body > header > nav.m-navbar-cover #m-navbar-collapse li a:focus,
 body > header > nav.m-navbar-landing #m-navbar-collapse li a:active,
 body > header > nav.m-navbar-cover #m-navbar-collapse li a:active {
-  background-color: var(--cubos-shade3);
+  background-color: #1C2833;
 }
 body > header > nav #m-navbar-hide {
   display: none;
@@ -2096,7 +2087,7 @@ body > header > nav:target #m-navbar-hide {
     padding-bottom: 0;
   }
   body > header > nav #m-navbar-collapse li ol {
-    background-color: var(--cubos-shade3);
+    background-color: #1C2833;
   }
   body > header > nav #m-navbar-collapse ol ol li {
     margin-left: 0;
@@ -2138,7 +2129,7 @@ body > footer > nav {
   font-size: 0.85rem;
   text-align: center;
   color: #c5c5c5;
-  background-color: var(--cubos-shade3);
+  background-color: #1C2833;
 }
 body > footer > nav h3, body > footer > nav h3 a {
   text-transform: none;
@@ -2277,7 +2268,7 @@ article#m-jumbo {
   margin-top: -1rem;
 }
 #m-landing-cover, #m-cover-image > div, article#m-jumbo > header #m-jumbo-cover {
-  background: linear-gradient(transparent 0%, transparent 50%, var(--cubos-shade4) 100%);
+  background: linear-gradient(transparent 0%, transparent 50%, #121A21 100%);
   width: 100%;
   height: 100%;
 }
