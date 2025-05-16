@@ -16,7 +16,7 @@ Around a month ago, @mcanais, @NunoBaptista, @RiscadoA and @rsubtil joined force
 This was the first edition of a Portuguese on-site game jam, where the aim was to join the Portuguese game dev community at the `AI Hub <https://lisboainnovation.com/hubs/aihub/>`_, to make games during 48 hours.
 We were a team of 4 - 3 programmers, 1 artist, and a lot of ideas.
 
-.. figure:: /images/blog/demo/azul-jam-2025/CubosInAzul4.jpg
+.. figure:: {static}/images/blog/demo/azul-jam-2025/CubosInAzul4.jpg
   
   Cubos team participating in the Azul Game Jam - photo by Gonçalo Goulão.
 
@@ -32,7 +32,7 @@ The player's boat slows down when sailing against this wave, or can catch up spe
 The waves are colossal, sometimes sweeping over the islands on the map. 
 With this game mechanic, we'd hoped to add an interesting twist to the genre of Battle Royale.
 
-.. image:: /images/blog/demo/azul-jam-2025/OndisseiaGameplay.gif
+.. image:: {static}/images/blog/demo/azul-jam-2025/OndisseiaGameplay.gif
 
 Voxel Art :dim:`(@NunoBaptista)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,7 +47,7 @@ Plants, houses, and shipwrecks were designed and modeled, but in the end, never 
 Currently, each model has to be imported by hand, and even the meta files and ID have to be manually assigned. 
 The 2-day Jam was a very limited time frame for this level of polish.
 
-.. figure:: /images/blog/demo/azul-jam-2025/Deco.png
+.. figure:: {static}/images/blog/demo/azul-jam-2025/Deco.png
     
   Models to populate the game world.
     
@@ -59,7 +59,7 @@ A real sense of competition sprout in the players, and fierce fights unfold befo
 The game was praised for its engaging gameplay and innovative art style. Some even comment that it locked like pixel art.
 The voxel resolution and the camera perspective might have helped in this regard.
 
-.. figure:: /images/blog/demo/azul-jam-2025/CubosInAzul5.jpg
+.. figure:: {static}/images/blog/demo/azul-jam-2025/CubosInAzul5.jpg
 
   Cubos showcasing its game in Azul Game Jam - photo by Gonçalo Goulão.
 
@@ -70,7 +70,7 @@ it seemed to some to be too complicated. Only when the player is sideways to oth
 It was also suggested to use a free movement instead of the grid base one.
 Maybe the most interesting suggestion was to try and make the game run in mobile (browser).
 
-.. image:: /images/blog/demo/azul-jam-2025/CubosGameBreak9.jpg
+.. image:: {static}/images/blog/demo/azul-jam-2025/CubosGameBreak9.jpg
 
 Android Features
 ================
@@ -82,7 +82,7 @@ There were problems with the way Emscripten controls the canvas. Apart from the 
 
 After this step, we had a functional WebGL build on Itch.io, though no UI and functionalities for mobile devices had yet been included. The game would open, the sound would play, but there wasn't any interactivity.
 
-.. figure:: /images/blog/demo/azul-jam-2025/AzulAndroid1.jpg
+.. figure:: {static}/images/blog/demo/azul-jam-2025/AzulAndroid1.jpg
 
   Screenshot of early test of the game in mobile.
 
@@ -108,7 +108,7 @@ This combined with this HTML button:
 
 Allowed to interact with the game
 
-.. figure:: /images/blog/demo/azul-jam-2025/AzulAndroid2.jpg
+.. figure:: {static}/images/blog/demo/azul-jam-2025/AzulAndroid2.jpg
 
   Screenshot of the game in a mobile browser.
     

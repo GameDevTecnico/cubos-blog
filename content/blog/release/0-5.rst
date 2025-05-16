@@ -49,7 +49,7 @@ all directions, there are 6 atlas textures, one for each direction of a cube.
 The final result of our shadows engine can be seen in the `Shadows sample <https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows>`_.
 Below is a screenshot of the sample with all light types casting shadows. Some tweaks have been done to better highlight the shadows.
 
-.. image:: /images/blog/release/0-5/shadows_sample.png
+.. image:: {static}/images/blog/release/0-5/shadows_sample.png
 
 Audio Support through the Audio Plugin  :dim:`(@Dageus, @diogomsmiranda)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,7 +114,7 @@ In order to draw the text on the screen this plugins uses Multi Signed Distante 
 and `msdf-atlas-gen <https://github.com/Chlumsky/msdf-atlas-gen>`_, and `FreeType <https://freetype.org/>`_ to load different font formats. Below is a screenshot
 taken from the UI sample available in the engine showcasing the text rendering in action.
 
-.. image:: /images/blog/release/0-5/ui-text.png
+.. image:: {static}/images/blog/release/0-5/ui-text.png
 
 **Note:** Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.
 

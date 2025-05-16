@@ -69,7 +69,7 @@ Physics with Rotation :dim:`(@fallenatlas)`
 
 We have **rotation**!
 
-.. image:: /images/blog/release/0-4/complex_physics_sample_rotations.gif
+.. image:: {static}/images/blog/release/0-4/complex_physics_sample_rotations.gif
 
 Since the start of the physics plugin, we always treated rigid bodies as simple particles.
 This is because it made the calculations more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging - of penetration solving for example - easier.
@@ -113,7 +113,7 @@ With this change, our narrow phase firstly checks for collision with SAT, since 
 
 The collisions sample was also enhanced so we could visualize this information.
 
-.. image:: /images/blog/release/0-4/collision_sample_manifold_demo.gif
+.. image:: {static}/images/blog/release/0-4/collision_sample_manifold_demo.gif
 
 New Components
 **************
@@ -251,15 +251,15 @@ Below are screenshots of the directional shadow map used to draw shadows in *Scr
 
     .. container:: m-col-m-4
 
-        .. image:: /images/blog/release/0-4/cascaded_shadow_map_1.png
+        .. image:: {static}/images/blog/release/0-4/cascaded_shadow_map_1.png
 
     .. container:: m-col-m-4
 
-        .. image:: /images/blog/release/0-4/cascaded_shadow_map_2.png
+        .. image:: {static}/images/blog/release/0-4/cascaded_shadow_map_2.png
 
     .. container:: m-col-m-4
 
-        .. image:: /images/blog/release/0-4/cascaded_shadow_map_3.png
+        .. image:: {static}/images/blog/release/0-4/cascaded_shadow_map_3.png
 
 Input Axis Deadzones :dim:`(@kuukitenshi)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
