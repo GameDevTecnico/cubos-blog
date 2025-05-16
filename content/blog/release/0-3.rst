@@ -5,7 +5,7 @@ Release 0.3
 :category: Release
 :tags: Release
 :summary: Raycasting, shadows, profiling tools, networking utilities, and more!
-:cover: /images/blog/release/0-3/cover.png
+:cover: {static}/images/blog/release/0-3/cover.png
 
 .. role:: dim
     :class: m-text m-dim

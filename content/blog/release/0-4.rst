@@ -5,7 +5,7 @@ Release 0.4
 :category: Release
 :tags: Release
 :summary: Rotating rigid bodies, cascading shadow maps, a standalone editor application, better telemetry and much more!
-:cover: /images/blog/release/0-4/cover.png
+:cover: {static}/images/blog/release/0-4/cover.png
 
 .. role:: dim
     :class: m-text m-dim

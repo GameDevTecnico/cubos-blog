@@ -6,7 +6,7 @@ Hello Relations
 :category: Dev Notes
 :summary: Adding entity relations to our ECS
 :author: Ricardo Antunes
-:cover: /images/blog/dev-notes/hello-relations/cover.png
+:cover: {static}/images/blog/dev-notes/hello-relations/cover.png
 
 Hello! This past month I've been tinkering with the *ECS*, which arguably is the core foundation of **Cubos**.
 We structure all of our engine code around it. You can learn more about the concept in our `ECS guide <https://gamedevtecnico.github.io/cubos/docs/features-ecs.html>`_!

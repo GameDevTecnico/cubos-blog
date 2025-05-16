@@ -5,7 +5,7 @@ Release 0.6
 :category: Release
 :tags: Release
 :summary: A smaller update focused on performance, physics stability and better options for lower end machines.
-:cover: /images/blog/release/0-6/cover.png
+:cover: {static}/images/blog/release/0-6/cover.png
 
 .. role:: dim
     :class: m-text m-dim
