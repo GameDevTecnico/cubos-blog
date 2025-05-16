@@ -20,7 +20,9 @@ jobs:
         submodules: recursive
 
     - name: Install Texlive
-      run: sudo apt-get install texlive-base texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended
+      run: |
+        sudo apt-get update
+        sudo apt-get install texlive-base texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended
   
     - name: Set up Python
       uses: actions/setup-python@v2
