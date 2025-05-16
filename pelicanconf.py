@@ -1,5 +1,5 @@
 AUTHOR = 'Cubos Team'
-SITENAME = 'Cubos'
+SITENAME = 'Cubos Engine'
 SITEURL = ''
 
 M_BLOG_NAME = 'Cubos Blog'
