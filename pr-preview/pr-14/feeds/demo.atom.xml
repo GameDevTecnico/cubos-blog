@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Demo</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/demo.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-05-16T10:00:00+01:00</updated><entry><title>The "Ondisseia" of Cubos</title><link href="https://cubosengine.org/blog/the-ondisseia-of-cubos/" rel="alternate"></link><published>2025-05-16T10:00:00+01:00</published><updated>2025-05-16T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-16:/blog/the-ondisseia-of-cubos/</id><summary type="html">&lt;p&gt;Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.&lt;/p&gt;
+</summary><content type="html">&lt;section id="the-jam"&gt;
+&lt;h2&gt;The Jam&lt;/h2&gt;
+&lt;p&gt;Around a month ago, &amp;#64;mcanais, &amp;#64;NunoBaptista, &amp;#64;RiscadoA and &amp;#64;rsubtil joined forces to participate in the &lt;a href="https://www.linkedin.com/company/azulgamejam"&gt;Azul Game Jam&lt;/a&gt;.
+This was the first edition of a Portuguese on-site game jam, where the aim was to join the Portuguese game dev community at the &lt;a href="https://lisboainnovation.com/hubs/aihub/"&gt;AI Hub&lt;/a&gt;, to make games during 48 hours.
+We were a team of 4 - 3 programmers, 1 artist, and a lot of ideas.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="/images/blog/demo/azul-jam-2025/CubosInAzul4.jpg" /&gt;
+&lt;figcaption&gt;Cubos team participating in the Azul Game Jam - photo by Gonçalo Goulão.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;section id="game-development"&gt;
+&lt;h3&gt;Game Development&lt;/h3&gt;
+&lt;p&gt;It is challenging to work with such a barebones engine, but also really satisfying to have so much control over what is made.
+This year's theme was waves, and we decided to make a sea battle game, where up to 4 players fight until the last standing.
+The movement was really inspired on &lt;a href="https://cubosengine.org/blog/coffee-n-jam-2024/"&gt;Scraps vs Zombies&lt;/a&gt; demo, functioning in a grid wise manner,
+where the player moves a tile at the time, in for possible directions.
+To fulfill the jam theme, we've included a cellular automata wave that sweeps across the scene.
+The player's boat slows down when sailing against this wave, or can catch up speed while riding it.
+The waves are colossal, sometimes sweeping over the islands on the map.
+With this game mechanic, we'd hoped to add an interesting twist to the genre of Battle Royale.&lt;/p&gt;
+&lt;img class="m-image" src="/images/blog/demo/azul-jam-2025/OndisseiaGameplay.gif" /&gt;
+&lt;section id="voxel-art-nunobaptista"&gt;
+&lt;h4&gt;Voxel Art &lt;span class="m-text m-dim"&gt;(&amp;#64;NunoBaptista)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;As an artist, I produce the voxel assets, including the animations, the tiles of the map, and the wave.
+Currently, we don't have a voxel editor inside Cubos, so we used &lt;a href="https://ephtracy.github.io/"&gt;MagicaVoxel&lt;/a&gt; for this purpose.
+For the animations, we've used a process very similar to pixel art animation, with a model for each frame.
+Though not strictly necessary, the boat had several animated parts: the sail and the flag, plus the oarsmen and the oars.
+The oarsmen also served as a game design purpose -to indicate the number of lives the player had, each time the player took damage,
+one of the sailors would fly out of the boat. Some decoration was created to bring life to the game's world.
+Plants, houses, and shipwrecks were designed and modeled, but in the end, never made it to the final cut.
+Currently, each model has to be imported by hand, and even the meta files and ID have to be manually assigned.
+The 2-day Jam was a very limited time frame for this level of polish.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="/images/blog/demo/azul-jam-2025/Deco.png" /&gt;
+&lt;figcaption&gt;Models to populate the game world.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/section&gt;
+&lt;section id="playtest"&gt;
+&lt;h4&gt;Playtest&lt;/h4&gt;
+&lt;p&gt;The game was playtested during the jam's showcase, and it was well received by the community present.
+A real sense of competition sprout in the players, and fierce fights unfold before our eyes.
+The game was praised for its engaging gameplay and innovative art style. Some even comment that it locked like pixel art.
+The voxel resolution and the camera perspective might have helped in this regard.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="/images/blog/demo/azul-jam-2025/CubosInAzul5.jpg" /&gt;
+&lt;figcaption&gt;Cubos showcasing its game in Azul Game Jam - photo by Gonçalo Goulão.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Few days later the Cubos team took the opportunity to showcase the game in a &lt;a href="https://www.eventbrite.pt/cc/game-break-3434859"&gt;Game Break&lt;/a&gt; event, at &lt;a href="https://unicornfactorylisboa.com/hubs/"&gt;Gaming Hub&lt;/a&gt;.
+Developers from Portugal and beyond gather at these Game Break events every mouth at Gaming Hub to showcase their latest work, discuss ideas and network.
+Ondisseia was again showcased in this last april edition, and again, the feedback was really positive. Some suggestions were made about the aiming system -
+it seemed to some to be too complicated. Only when the player is sideways to other player, over a minimum of 5 chunks, is it possible to shoot arrows.
+It was also suggested to use a free movement instead of the grid base one.
+Maybe the most interesting suggestion was to try and make the game run in mobile (browser).&lt;/p&gt;
+&lt;img class="m-image" src="/images/blog/demo/azul-jam-2025/CubosGameBreak9.jpg" /&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="android-features"&gt;
+&lt;h2&gt;Android Features&lt;/h2&gt;
+&lt;p&gt;Cubos uses &lt;a href="https://emscripten.org/"&gt;Emscripten&lt;/a&gt; to export to WebGL.
+We already had a build from Emscripten for Azul Game Jam, but the formatting was incompatible with itch.io. This build was made for a single web page and not to be embedded on Itch.io. Therefore, we strived to simplify the HTML and customize the CSS classes to our liking.&lt;/p&gt;
+&lt;p&gt;There were problems with the way Emscripten controls the canvas. Apart from the usual fullscreen bottom, there was a Resize canvas and  Lock/hide mouse pointer, for resizing and hiding the mouse in fullscreen, respectively. We've opted to rewrite these functionalities in a new .JavaScript, but we aim to integrate these better in the future.&lt;/p&gt;
+&lt;p&gt;After this step, we had a functional WebGL build on Itch.io, though no UI and functionalities for mobile devices had yet been included. The game would open, the sound would play, but there wasn't any interactivity.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="/images/blog/demo/azul-jam-2025/AzulAndroid1.jpg" /&gt;
+&lt;figcaption&gt;Screenshot of early test of the game in mobile.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;To support mobile devices better, new UI  elements were created with HTML and CSS. Still, there wasn't any way to connect them with the game code.  For this purpose, this JavaScript Function was created to send the bottom's interaction to the game:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;simulateKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyCode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;isDown&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;KeyboardEvent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isDown&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;keydown&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;keyup&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;keyCode&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;keyCode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;which&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;keyCode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;bubbles&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;cancelable&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dispatchEvent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;This combined with this HTML button:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;shoot&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ontouchstart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;simulateKey(32, true)&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ontouchend&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;simulateKey(32, false)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;space&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;Allowed to interact with the game&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="/images/blog/demo/azul-jam-2025/AzulAndroid2.jpg" /&gt;
+&lt;figcaption&gt;Screenshot of the game in a mobile browser.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Despite this progress, a new problem emerged; now we were stuck with these inputs on the PC.
+To solve this issue, we added a function to hide the mobile control when no longer necessary:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="c1"&gt;// Detect if it&amp;#39;s a touch device (Android or otherwise)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;ontouchstart&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;||&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;navigator&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;maxTouchPoints&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;// Detect Android specifically&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;isAndroid&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Android&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;navigator&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;userAgent&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isAndroid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// If it&amp;#39;s Android, display the touch controls&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;touch&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;controls&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;visibility&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;visible&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;fullscreen&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;btn&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;visibility&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;hidden&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;With this final touch, we were able to hide the extra UI when the game was running on a PC browser and enable the UI in a mobile device browser.
+After the jam, we integrated these changes into the main branch of Cubos, so that all samples can be easily ported to mobile devices.&lt;/p&gt;
+&lt;/section&gt;
+</content><category term="Demo"></category></entry><entry><title>Coffee N' Jam 2024</title><link href="https://cubosengine.org/blog/coffee-n-jam-2024/" rel="alternate"></link><published>2024-05-21T09:00:00+01:00</published><updated>2024-05-21T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/blog/coffee-n-jam-2024/</id><summary type="html">&lt;p&gt;We made a game in a week with Cubos, and managed to win two awards!&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;From 26th of April to 3rd of May, &amp;#64;RiscadoA and &amp;#64;joaomanita participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
+The goal was to create a game in a week, with the theme &amp;quot;Apocalypse&amp;quot; - and we had a blast!&lt;/p&gt;
+&lt;p&gt;The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
+The game is called &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, and you can download it from its &lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;itch.io page&lt;/a&gt;.
+You can also check out its source code in our &lt;a href="https://github.com/GameDevTecnico/cubos-demo"&gt;demo repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We managed to win the &amp;quot;Best Gameplay&amp;quot; and &amp;quot;People's Choice&amp;quot; awards, which we're very proud of!&lt;/p&gt;
+&lt;div class="m-image"&gt;
+&lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;&lt;img src="/images/blog/demo/coffee-n-jam-2024/cover.png" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
+One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
+We'll be working on fixing these issues in the next release, and we'll also be profiling the engine to find out where the bottlenecks are.&lt;/p&gt;
+</content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category></entry></feed>
