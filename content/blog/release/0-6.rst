@@ -27,11 +27,11 @@ This is particularly effective for stacks of bodies, where the bodies push again
 
 Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.
 
-.. image:: /images/blog/release/0-6/complex_physics_sample_warm_starting.gif
+.. image:: {static}/images/blog/release/0-6/complex_physics_sample_warm_starting.gif
 
 However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.
 
-.. image:: /images/blog/release/0-6/complex_physics_sample_1_stack.gif
+.. image:: {static}/images/blog/release/0-6/complex_physics_sample_1_stack.gif
 
 Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!
 
@@ -85,7 +85,7 @@ It's a competitive multiplayer game where you and your team pilot an airship and
 We plan to implement networked multiplayer, allowing you to play with friends online — this will be a first for **Cubos**!
 Stay tuned for more details after the 0.7 release blog post!
 
-.. image:: /images/blog/0.6/airships_sneak_peek.png
+.. image:: {static}/images/blog/release/0-6/airships_sneak_peek.png
 
 Next Steps
 ==========
