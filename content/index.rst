@@ -3,7 +3,7 @@ Cubos Engine
 
 :save_as: index.html
 :url:
-:cover: {static}/images/landing-cover.png
+:cover: {static}/images/landing/cover.png
 :landing:
     .. container:: m-row
 
