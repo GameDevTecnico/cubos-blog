@@ -6,7 +6,7 @@
 This was the first edition of a Portuguese on-site game jam, where the aim was to join the Portuguese game dev community at the &lt;a href="https://lisboainnovation.com/hubs/aihub/"&gt;AI Hub&lt;/a&gt;, to make games during 48 hours.
 We were a team of 4 - 3 programmers, 1 artist, and a lot of ideas.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
-&lt;img src="/images/blog/demo/azul-jam-2025/CubosInAzul4.jpg" /&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/azul-jam-2025/CubosInAzul4.jpg" /&gt;
 &lt;figcaption&gt;Cubos team participating in the Azul Game Jam - photo by Gonçalo Goulão.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;section id="game-development"&gt;
@@ -19,7 +19,7 @@ To fulfill the jam theme, we've included a cellular automata wave that sweeps ac
 The player's boat slows down when sailing against this wave, or can catch up speed while riding it.
 The waves are colossal, sometimes sweeping over the islands on the map.
 With this game mechanic, we'd hoped to add an interesting twist to the genre of Battle Royale.&lt;/p&gt;
-&lt;img class="m-image" src="/images/blog/demo/azul-jam-2025/OndisseiaGameplay.gif" /&gt;
+&lt;img class="m-image" src="https://cubosengine.org/images/blog/demo/azul-jam-2025/OndisseiaGameplay.gif" /&gt;
 &lt;section id="voxel-art-nunobaptista"&gt;
 &lt;h4&gt;Voxel Art &lt;span class="m-text m-dim"&gt;(&amp;#64;NunoBaptista)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;As an artist, I produce the voxel assets, including the animations, the tiles of the map, and the wave.
@@ -32,7 +32,7 @@ Plants, houses, and shipwrecks were designed and modeled, but in the end, never 
 Currently, each model has to be imported by hand, and even the meta files and ID have to be manually assigned.
 The 2-day Jam was a very limited time frame for this level of polish.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
-&lt;img src="/images/blog/demo/azul-jam-2025/Deco.png" /&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/azul-jam-2025/Deco.png" /&gt;
 &lt;figcaption&gt;Models to populate the game world.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/section&gt;
@@ -43,7 +43,7 @@ A real sense of competition sprout in the players, and fierce fights unfold befo
 The game was praised for its engaging gameplay and innovative art style. Some even comment that it locked like pixel art.
 The voxel resolution and the camera perspective might have helped in this regard.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
-&lt;img src="/images/blog/demo/azul-jam-2025/CubosInAzul5.jpg" /&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/azul-jam-2025/CubosInAzul5.jpg" /&gt;
 &lt;figcaption&gt;Cubos showcasing its game in Azul Game Jam - photo by Gonçalo Goulão.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Few days later the Cubos team took the opportunity to showcase the game in a &lt;a href="https://www.eventbrite.pt/cc/game-break-3434859"&gt;Game Break&lt;/a&gt; event, at &lt;a href="https://unicornfactorylisboa.com/hubs/"&gt;Gaming Hub&lt;/a&gt;.
@@ -52,7 +52,7 @@ Ondisseia was again showcased in this last april edition, and again, the feedbac
 it seemed to some to be too complicated. Only when the player is sideways to other player, over a minimum of 5 chunks, is it possible to shoot arrows.
 It was also suggested to use a free movement instead of the grid base one.
 Maybe the most interesting suggestion was to try and make the game run in mobile (browser).&lt;/p&gt;
-&lt;img class="m-image" src="/images/blog/demo/azul-jam-2025/CubosGameBreak9.jpg" /&gt;
+&lt;img class="m-image" src="https://cubosengine.org/images/blog/demo/azul-jam-2025/CubosGameBreak9.jpg" /&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;/section&gt;
@@ -63,7 +63,7 @@ We already had a build from Emscripten for Azul Game Jam, but the formatting was
 &lt;p&gt;There were problems with the way Emscripten controls the canvas. Apart from the usual fullscreen bottom, there was a Resize canvas and  Lock/hide mouse pointer, for resizing and hiding the mouse in fullscreen, respectively. We've opted to rewrite these functionalities in a new .JavaScript, but we aim to integrate these better in the future.&lt;/p&gt;
 &lt;p&gt;After this step, we had a functional WebGL build on Itch.io, though no UI and functionalities for mobile devices had yet been included. The game would open, the sound would play, but there wasn't any interactivity.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
-&lt;img src="/images/blog/demo/azul-jam-2025/AzulAndroid1.jpg" /&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/azul-jam-2025/AzulAndroid1.jpg" /&gt;
 &lt;figcaption&gt;Screenshot of early test of the game in mobile.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;To support mobile devices better, new UI  elements were created with HTML and CSS. Still, there wasn't any way to connect them with the game code.  For this purpose, this JavaScript Function was created to send the bottom's interaction to the game:&lt;/p&gt;
@@ -80,7 +80,7 @@ We already had a build from Emscripten for Azul Game Jam, but the formatting was
 &lt;pre class="m-code"&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;shoot&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ontouchstart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;simulateKey(32, true)&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ontouchend&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;simulateKey(32, false)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;space&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;/pre&gt;
 &lt;p&gt;Allowed to interact with the game&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
-&lt;img src="/images/blog/demo/azul-jam-2025/AzulAndroid2.jpg" /&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/azul-jam-2025/AzulAndroid2.jpg" /&gt;
 &lt;figcaption&gt;Screenshot of the game in a mobile browser.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Despite this progress, a new problem emerged; now we were stuck with these inputs on the PC.
@@ -106,7 +106,7 @@ The game is called &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, and you can download 
 You can also check out its source code in our &lt;a href="https://github.com/GameDevTecnico/cubos-demo"&gt;demo repository&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We managed to win the &amp;quot;Best Gameplay&amp;quot; and &amp;quot;People's Choice&amp;quot; awards, which we're very proud of!&lt;/p&gt;
 &lt;div class="m-image"&gt;
-&lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;&lt;img src="/images/blog/demo/coffee-n-jam-2024/cover.png" /&gt;&lt;/a&gt;
+&lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2024/cover.png" /&gt;&lt;/a&gt;
 &lt;/div&gt;
 &lt;p&gt;We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
 One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
