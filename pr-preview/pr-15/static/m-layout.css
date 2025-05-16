@@ -430,6 +430,9 @@ article#m-jumbo.m-inverted > header a:hover, article#m-jumbo.m-inverted > header
 }
 
 /* News list on landing pages */
+div.m-landing-news {
+  margin-bottom: 4em;
+}
 a.article  {
   color: var(--color);
   text-decoration: none;
