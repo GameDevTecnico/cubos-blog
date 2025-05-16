@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <title>Release 0.6 | Cubos Blog</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&amp;family=Roboto:wght@400&amp;display=swap" />
+  <link rel="stylesheet" href="https://cubosengine.org/static/m-dark.compiled.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+  <link rel="icon" href="https://cubosengine.org/images/favicon.png" type="image/png" />
+  <link rel="canonical" href="https://cubosengine.org/blog/release-06/" />
+  <link href="https://cubosengine.org/feeds/release.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine | Release" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+  <meta property="og:site_name" content="Cubos Blog" />
+  <meta property="og:title" content="Release 0.6" />
+  <meta name="twitter:title" content="Release 0.6" />
+  <meta property="og:url" content="https://cubosengine.org/blog/release-06/" />
+  <meta property="og:description" content="A smaller update focused on performance, physics stability and better options for lower end machines." />
+  <meta name="twitter:description" content="A smaller update focused on performance, physics stability and better options for lower end machines." />
+  <meta property="og:image" content="../../images/blog/release/0-6/cover.png" />
+  <meta name="twitter:image" content="../../images/blog/release/0-6/cover.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:type" content="article" />
+</head>
+<body>
+<header><nav id="navigation" class="m-navbar-cover">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="../../" id="m-navbar-brand" class="m-col-t-9 m-col-m-none m-left-m"><img src="https://cubosengine.org/images/favicon.png" alt="" />Cubos</a>
+      <a id="m-navbar-show" href="#navigation" title="Show navigation" class="m-col-t-3 m-hide-m m-text-right"></a>
+      <a id="m-navbar-hide" href="#" title="Hide navigation" class="m-col-t-3 m-hide-m m-text-right"></a>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li><a href="https://docs.cubosengine.org">Docs</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="2">
+            <li><a href="https://cubosengine.org/blog" id="m-navbar-current">Blog</a></li>
+            <li><a href="https://github.com/GameDevTecnico/cubos">GitHub</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main>
+  <article id="m-jumbo">
+    <header>
+      <div id="m-jumbo-image" style="background-image: url('../../images/blog/release/0-6/cover.png');">
+        <div id="m-jumbo-cover">
+          <div class="m-container">
+            <div class="m-row">
+              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-left">Wed 12 March 2025</div>
+              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-right"><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></div>
+            </div>
+            <div class="m-row">
+              <div class="m-col-t-12 m-col-s-10 m-push-s-1 m-col-m-8 m-push-m-2">
+                <h1><a href="https://cubosengine.org/blog/release-06/" rel="bookmark" title="Permalink to Release 0.6">Release 0.6</a></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="m-container">
+        <div class="m-row">
+          <div class="m-col-m-10 m-push-m-1 m-nopady">
+            <p>A smaller update focused on performance, physics stability and better options for lower end machines.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="m-container m-container-inflatable">
+      <div class="m-row">
+        <div class="m-col-m-10 m-push-m-1 m-nopady">
+<!-- content -->
+<section id="new-0-6-features">
+<h2>New 0.6 Features</h2>
+<p>This blog post covers the most important changes, but you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>.</p>
+<section id="on-the-engine">
+<h3>On the Engine</h3>
+<section id="physics-with-warm-starting-fallenatlas">
+<h4>Physics with Warm-Starting <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
+<p>Continuing the work from the previous release, we finished <strong>warm-starting</strong> for our physics simulation. Warm-starting uses the information stored in the contact manifold between two bodies, especially the total impulses applied to each contact point in the previous frame, and applies it before solving begins.
+It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &quot;dirty&quot; solver), resulting in less jitter.
+This is particularly effective for stacks of bodies, where the bodies push against each other, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable, it stays together for longer.</p>
+<p>Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.</p>
+<img class="m-image" src="../../images/blog/release/0-6/complex_physics_sample_warm_starting.gif" />
+<p>However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.</p>
+<img class="m-image" src="../../images/blog/release/0-6/complex_physics_sample_1_stack.gif" />
+<p>Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!</p>
+</section>
+<section id="toggleable-ssao-and-resolution-scale-tomas7770">
+<h4>Toggleable SSAO and Resolution Scale <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<p>Some time ago, we profiled <strong>Cubos</strong>'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
+graphics plugin that took the most frame time. However, due to the way the rendering pipeline was implemented, disabling it to get
+better performance wasn't possible without breaking rendering altogether.
+Starting with this release, the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html">SSAO</a> component can be removed
+from a render target to disable this feature.</p>
+<p>In addition, we found that other game engines often default to rendering SSAO textures at half the width/height of the screen resolution,
+which greatly improves performance without major loss in quality.
+To implement this, we added a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1SSAO.html#ab4c8760eb1582559172373476ff04508">resolution scale</a> option to the SSAO component,
+which defaults to 0.5, but can be set to any value up to 2.0.</p>
+</section>
+<section id="conditional-shader-compilation-tomas7770">
+<h4>Conditional Shader Compilation <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<p>Another major bottleneck in the graphics renderer is the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html">render picker</a>, which
+allows finding out which entity is visible at a given pixel. As explained in the <strong>Modular Renderer</strong> section of the <a href="https://cubosengine.org/coffeen-jam-and-02.html">0.2 blog post</a>,
+we attempted to mitigate performance loss with Pixel Buffers and double-buffering. But despite this, it remains a demanding feature.</p>
+<p>Just like what happened with SSAO, disabling the render picker wasn't possible. Unlike the former, though, this one required the ability
+to change shaders' source code at runtime. To solve this, we added new methods to the <a href="https://docs.cubosengine.org/classcubos_1_1engine_1_1Shader.html">Shader</a>
+class to prepend <code>#define</code> macros and recompile the shader.</p>
+<pre class="m-code"><span class="k">auto</span><span class="w"> </span><span class="n">vs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsAsset</span><span class="o">-&gt;</span><span class="n">shaderStage</span><span class="p">();</span><span class="w"> </span><span class="c1">// unmodified shader</span>
+<span class="n">vs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsAsset</span><span class="o">-&gt;</span><span class="n">builder</span><span class="p">().</span><span class="n">with</span><span class="p">(</span><span class="s">&quot;RENDER_PICKER&quot;</span><span class="p">).</span><span class="n">build</span><span class="p">();</span><span class="w"> </span><span class="c1">// shader with #define RENDER_PICKER</span>
+<span class="n">vs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsAsset</span><span class="o">-&gt;</span><span class="n">builder</span><span class="p">().</span><span class="n">with</span><span class="p">(</span><span class="s">&quot;MAX_CSM_SPLITS&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p">).</span><span class="n">build</span><span class="p">();</span><span class="w"> </span><span class="c1">// shader with #define MAX_CSM_SPLITS 5</span></pre>
+<p>Unfortunately, the actual ability to toggle render picking didn't make it to this release, but it should make it to the next one!</p>
+</section>
+</section>
+<section id="on-the-core">
+<h3>On the Core</h3>
+<section id="added-frustum-geometry-and-intersection-utilities-mkuritsu">
+<h4>Added Frustum geometry and intersection utilities <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
+<p>A new geometry object was added, the <strong>frustum</strong>, and additionally, two new intersection functions to check if a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html">box</a> or a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html">capsule</a> intersects a frustum.
+This new geometry utility will be useful for <em>frustum culling</em> in a future release, potentially improving graphics performance when rendering large scenes with <strong>Cubos</strong>.</p>
+</section>
+</section>
+</section>
+<section id="new-demo-sneak-peek">
+<h2>New Demo Sneak Peek</h2>
+<p>We have been working on a new game made with <strong>Cubos</strong>, and we're excited to share a sneak peek with you!
+It's a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
+We plan to implement networked multiplayer, allowing you to play with friends online — this will be a first for <strong>Cubos</strong>!
+Stay tuned for more details after the 0.7 release blog post!</p>
+<img class="m-image" src="../../images/blog/release/0-6/airships_sneak_peek.png" />
+</section>
+<section id="next-steps">
+<h2>Next Steps</h2>
+<p>In the next release, which should be out by the end of April, we're planning to work on the following features:</p>
+<ul>
+<li>A menu bar and a sensible default layout for <strong>Tesseratos</strong>.</li>
+<li>A proper scene editor for <strong>Tesseratos</strong>.</li>
+<li>Automated inertia computation for arbitrary voxel shapes.</li>
+<li>Frustum culling when rendering.</li>
+<li>Various other performance improvements in the renderer.</li>
+<li>Better integration of mouse input with the high-level input system.</li>
+<li>And many other new features and bug fixes!</li>
+</ul>
+<p>In the meantime, we'll also be participating in the <a href="https://azulgamejam.com/">Azul Jam</a>, a game jam happening over the weekend of March 28nd.
+We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published sometime after the jam.</p>
+<p>You can check out the full list of things we want to get done in the <a href="https://github.com/GameDevTecnico/cubos/milestone/30">milestone</a> for the next release.</p>
+</section>
+<!-- /content -->
+        </div>
+      </div>
+    </div>
+    <footer class="m-container">
+      <div class="m-row">
+        <div class="m-col-m-10 m-push-m-1 m-nopadb">
+          <p>Posted by <a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a> on <time datetime="2025-03-12T00:00:00+00:00">Wed 12 March 2025</time> in <a href="https://cubosengine.org/blog/release/">Release</a>. Tags: <a href="https://cubosengine.org/blog/tag/release/">Release</a>.</p>
+        </div>
+      </div>
+    </footer>
+  </article>
+  <nav class="m-navpanel m-container">
+    <div class="m-row">
+      <div class="m-col-s-6 m-col-m-3 m-col-l-2 m-push-l-1">
+        <h3>Categories</h3>
+        <ol class="m-block-bar-s">
+          <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
+          <li><a href="https://cubosengine.org/blog/dev-notes/">Dev Notes</a></li>
+          <li><a href="https://cubosengine.org/blog/meta/">Meta</a></li>
+          <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
+        </ol>
+      </div>
+      <div class="m-col-s-6 m-col-m-3 m-push-m-6 m-col-l-2 m-push-l-7">
+        <h3>Authors</h3>
+        <ol class="m-block-bar-s">
+          <li><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></li>
+          <li><a href="https://cubosengine.org/blog/author/nuno-baptista/">Nuno Baptista</a></li>
+          <li><a href="https://cubosengine.org/blog/author/ricardo-antunes/">Ricardo Antunes</a></li>
+        </ol>
+      </div>
+      <div class="m-col-s-12 m-col-m-6 m-col-l-4 m-pull-m-3 m-pull-l-0">
+        <h3>Tag cloud</h3>
+        <ul class="m-tagcloud">
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/core/">Core</a></li>
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/demo/">Demo</a></li>
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/design/">Design</a></li>
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/ecs/">ECS</a></li>
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/game-jam/">Game Jam</a></li>
+          <li class="m-tag-5"><a href="https://cubosengine.org/blog/tag/release/">Release</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</main>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="https://cubosengine.org/">Cubos</a></h3>
+        <ul>
+          <li><a href="https://docs.cubosengine.org/getting-started.html">Getting Started</a></li>
+          <li><a href="https://docs.cubosengine.org/features.html">Feature Guide</a></li>
+          <li><a href="https://docs.cubosengine.org/examples.html">Examples</a></li>
+          <li><a href="https://docs.cubosengine.org/contribution.html">Contribution Guidelines</a></li>
+          <li><a href="https://cubosengine.org/images/brand.pdf">Brand Guidelines</a></li>
+        </ul>
+      </div>
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="https://docs.cubosengine.org">Docs</a></h3>
+        <ul>
+          <li><a href="https://docs.cubosengine.org/pages.html">Pages</a></li>
+          <li><a href="https://docs.cubosengine.org/modules.html">Modules</a></li>
+          <li><a href="https://docs.cubosengine.org/annotated.html">Classes</a></li>
+          <li><a href="https://docs.cubosengine.org/files.html">Files</a></li>
+        </ul>
+      </div>
+      <div class="m-clearfix-t"></div>
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="mailto:team@cubosengine.org">Contact Us</a></h3>
+        <ul>
+          <li><a href="https://cubosengine.org/feeds/all.atom.xml">Blog Feed</a></li>
+          <li><a href="https://github.com/GameDevTecnico/cubos">GitHub</a></li>
+          <li><a href="https://discord.gg/WjTtcNTRqD">Discord</a></li>
+          <li><a href="mailto:team@cubosengine.org">E-mail</a></li>
+          <li><a href="https://cubos-engine.itch.io/">itch.io</a></li>
+        </ul>
+      </div>
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="https://cubosengine.org/blog">Blog</a></h3>
+        <ul>
+          <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
+          <li><a href="https://cubosengine.org/blog/dev-notes/">Dev Notes</a></li>
+          <li><a href="https://cubosengine.org/blog/meta/">Meta</a></li>
+          <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>Cubos Engine. Powered by <a href="https://getpelican.com">Pelican</a> and <a href="https://mcss.mosra.cz">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>
