@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos - Release</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/release.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-03-12T00:00:00+00:00</updated><entry><title>0.6 is out!</title><link href="https://cubosengine.org/06-is-out.html" rel="alternate"></link><published>2025-03-12T00:00:00+00:00</published><updated>2025-03-12T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-03-12:/06-is-out.html</id><summary type="html">&lt;p&gt;Cubos 0.6 Release!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Release</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/release.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-03-12T00:00:00+00:00</updated><entry><title>Release 0.6</title><link href="https://cubosengine.org/blog/release-06/" rel="alternate"></link><published>2025-03-12T00:00:00+00:00</published><updated>2025-03-12T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-03-12:/blog/release-06/</id><summary type="html">&lt;p&gt;A smaller update focused on performance, physics stability and better options for lower end machines.&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-6-features"&gt;
 &lt;h2&gt;New 0.6 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
@@ -11,9 +11,9 @@
 It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &amp;quot;dirty&amp;quot; solver), resulting in less jitter.
 This is particularly effective for stacks of bodies, where the bodies push against each other, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable, it stays together for longer.&lt;/p&gt;
 &lt;p&gt;Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.&lt;/p&gt;
-&lt;img class="m-image" src="images/complex_physics_sample_warm_starting.gif" /&gt;
+&lt;img class="m-image" src="/images/blog/0-6/complex_physics_sample_warm_starting.gif" /&gt;
 &lt;p&gt;However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.&lt;/p&gt;
-&lt;img class="m-image" src="images/complex_physics_sample_1_stack.gif" /&gt;
+&lt;img class="m-image" src="/images/blog/0-6/complex_physics_sample_1_stack.gif" /&gt;
 &lt;p&gt;Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="toggleable-ssao-and-resolution-scale-tomas7770"&gt;
@@ -57,7 +57,7 @@ This new geometry utility will be useful for &lt;em&gt;frustum culling&lt;/em&gt
 It's a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
 We plan to implement networked multiplayer, allowing you to play with friends online — this will be a first for &lt;strong&gt;Cubos&lt;/strong&gt;!
 Stay tuned for more details after the 0.7 release blog post!&lt;/p&gt;
-&lt;img class="m-image" src="images/0.6/airships_sneak_peek.png" /&gt;
+&lt;img class="m-image" src="/images/blog/0.6/airships_sneak_peek.png" /&gt;
 &lt;/section&gt;
 &lt;section id="next-steps"&gt;
 &lt;h2&gt;Next Steps&lt;/h2&gt;
@@ -75,7 +75,7 @@ Stay tuned for more details after the 0.7 release blog post!&lt;/p&gt;
 We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published sometime after the jam.&lt;/p&gt;
 &lt;p&gt;You can check out the full list of things we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/30"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category></entry><entry><title>0.5 is out!</title><link href="https://cubosengine.org/05-is-out.html" rel="alternate"></link><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-27T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-01-27:/05-is-out.html</id><summary type="html">&lt;p&gt;Cubos 0.5 Release!&lt;/p&gt;
+</content><category term="Release"></category><category term="Release"></category></entry><entry><title>Release 0.5</title><link href="https://cubosengine.org/blog/release-05/" rel="alternate"></link><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-27T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-01-27:/blog/release-05/</id><summary type="html">&lt;p&gt;From Voxel collisions, point light shadows and an audio plugin, to web support, text rendering, and FXAA.&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-5-features"&gt;
 &lt;h2&gt;New 0.5 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes in the 0.5 release - we've added a lot of new features, such point light shadows, audio support, MSDF text rendering and more!
@@ -106,7 +106,7 @@ that stores shadow maps for every point light in a quadtree structure. However, 
 all directions, there are 6 atlas textures, one for each direction of a cube.&lt;/p&gt;
 &lt;p&gt;The final result of our shadows engine can be seen in the &lt;a href="https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows"&gt;Shadows sample&lt;/a&gt;.
 Below is a screenshot of the sample with all light types casting shadows. Some tweaks have been done to better highlight the shadows.&lt;/p&gt;
-&lt;img class="m-image" src="images/0.5/shadows_sample.png" /&gt;
+&lt;img class="m-image" src="/images/blog/0-5/shadows_sample.png" /&gt;
 &lt;/section&gt;
 &lt;section id="audio-support-through-the-audio-plugin-dageus-diogomsmiranda"&gt;
 &lt;h4&gt;Audio Support through the Audio Plugin  &lt;span class="m-text m-dim"&gt;(&amp;#64;Dageus, &amp;#64;diogomsmiranda)&lt;/span&gt;&lt;/h4&gt;
@@ -127,10 +127,8 @@ argument with no way for posterior changes to persist which was inconvenient.&lt
 &lt;p&gt;Now there are two new simple methods - &lt;code&gt;save(path, indentation)&lt;/code&gt; and
 &lt;code&gt;load(path)&lt;/code&gt; - to save and load the &lt;code&gt;Settings&lt;/code&gt; to and from
 &lt;code&gt;cubos::core::data::FileSystem&lt;/code&gt; paths. E.g:&lt;/p&gt;
-&lt;pre class="m-code"&gt;&lt;span class="p"&gt;[](&lt;/span&gt;&lt;span class="n"&gt;Settings&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;merge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/file.json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/file_backup.json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
+&lt;pre class="m-code"&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;merge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/file.json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/file_backup.json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/pre&gt;
 &lt;/section&gt;
 &lt;section id="collision-detection-between-voxelcollisionshapes-joaomanita"&gt;
 &lt;h4&gt;Collision detection between VoxelCollisionShapes &lt;span class="m-text m-dim"&gt;(&amp;#64;joaomanita)&lt;/span&gt;&lt;/h4&gt;
@@ -142,8 +140,14 @@ to decompose a voxel shape into multiple box collision shapes.&lt;/p&gt;
 &lt;p&gt;We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagged edges in the rendered images.
 As you can see in the images below, FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.&lt;/p&gt;
 &lt;img-comparison-slider&gt;
-&lt;img slot="before" src="https://cubosengine.org/images/0.5/cars_before.png" style="width: 100%" /&gt;
-&lt;img slot="after" src="https://cubosengine.org/images/0.5/cars_after.png" style="width: 100%" /&gt;
+&lt;figure class="before" slot="first"&gt;
+&lt;img src="https://cubosengine.org/images/blog/0-5/cars_before.png" style="width: 100%" /&gt;
+&lt;figcaption&gt;FXAA Off&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class="after" slot="second"&gt;
+&lt;img src="https://cubosengine.org/images/blog/0-5/cars_after.png" style="width: 100%" /&gt;
+&lt;figcaption&gt;FXAA On&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;/img-comparison-slider&gt;
 &lt;/section&gt;
 &lt;section id="ui-text-element-using-msdf-for-text-rendering-mkuritsu"&gt;
@@ -159,7 +163,7 @@ to draw text on the screen. The plugin also adds two new asset types:&lt;/p&gt;
 &lt;p&gt;In order to draw the text on the screen this plugins uses Multi Signed Distante Fields (MSDFs) with the help from &lt;a href="https://github.com/Chlumsky/msdfgen"&gt;msdfgen&lt;/a&gt;
 and &lt;a href="https://github.com/Chlumsky/msdf-atlas-gen"&gt;msdf-atlas-gen&lt;/a&gt;, and &lt;a href="https://freetype.org/"&gt;FreeType&lt;/a&gt; to load different font formats. Below is a screenshot
 taken from the UI sample available in the engine showcasing the text rendering in action.&lt;/p&gt;
-&lt;img class="m-image" src="images/0.5/ui-text.png" /&gt;
+&lt;img class="m-image" src="/images/blog/0-5/ui-text.png" /&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="enable-assets-to-be-identified-in-the-code-by-their-file-path-galaxycrush"&gt;
@@ -228,7 +232,7 @@ As of now, this means we're making some performance sacrifices, as we're not usi
 &lt;p&gt;We also developed a demo showcasing the new features of this release, which you will be able to check out pretty soon here.&lt;/p&gt;
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/29"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category></entry><entry><title>0.4 is out!</title><link href="https://cubosengine.org/04-is-out.html" rel="alternate"></link><published>2024-11-05T00:00:00+00:00</published><updated>2024-11-05T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-11-05:/04-is-out.html</id><summary type="html">&lt;p&gt;Cubos 0.4 Release!&lt;/p&gt;
+</content><category term="Release"></category><category term="Release"></category></entry><entry><title>Release 0.4</title><link href="https://cubosengine.org/blog/release-04/" rel="alternate"></link><published>2024-11-05T00:00:00+00:00</published><updated>2024-11-05T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-11-05:/blog/release-04/</id><summary type="html">&lt;p&gt;Rotating rigid bodies, cascading shadow maps, a standalone editor application, better telemetry and much more!&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-4-features"&gt;
 &lt;h2&gt;New 0.4 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
@@ -272,7 +276,7 @@ We also make use of this new connection to allow the editor to send debugging co
 &lt;section id="physics-with-rotation-fallenatlas"&gt;
 &lt;h4&gt;Physics with Rotation &lt;span class="m-text m-dim"&gt;(&amp;#64;fallenatlas)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;We have &lt;strong&gt;rotation&lt;/strong&gt;!&lt;/p&gt;
-&lt;img class="m-image" src="images/complex_physics_sample_rotations.gif" /&gt;
+&lt;img class="m-image" src="/images/blog/0-4/complex_physics_sample_rotations.gif" /&gt;
 &lt;p&gt;Since the start of the physics plugin, we always treated rigid bodies as simple particles.
 This is because it made the calculations more intuitive, and it reduced the potential amount of mistakes we could make when first starting out. It also made debugging - of penetration solving for example - easier.
 With the particle behaviour stabilized, we decided it was time to expand the plugin to consider rotation, and for that we had to:&lt;/p&gt;
@@ -307,7 +311,7 @@ This polygon is described by its vertices, in the form of &lt;em&gt;Contact Poin
 &lt;span class="p"&gt;};&lt;/span&gt;&lt;/pre&gt;
 &lt;p&gt;With this change, our narrow phase firstly checks for collision with SAT, since it's cheaper, and only then computes the manifold.&lt;/p&gt;
 &lt;p&gt;The collisions sample was also enhanced so we could visualize this information.&lt;/p&gt;
-&lt;img class="m-image" src="images/collision_sample_manifold_demo.gif" /&gt;
+&lt;img class="m-image" src="/images/blog/0-4/collision_sample_manifold_demo.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="new-components"&gt;
 &lt;h5&gt;New Components&lt;/h5&gt;
@@ -387,16 +391,34 @@ to directional lights, leaving only point light shadows to be implemented.&lt;/p
 &lt;p&gt;Here are some comparison screenshots showing the difference directional shadows can make.
 Try dragging the slider in the middle to compare the before and after!&lt;/p&gt;
 &lt;img-comparison-slider&gt;
-&lt;img slot="before" src="https://cubosengine.org/images/scraps_vs_zombies_csm_before.png" style="width: 100%" /&gt;
-&lt;img slot="after" src="https://cubosengine.org/images/scraps_vs_zombies_csm_after.png" style="width: 100%" /&gt;
+&lt;figure class="before" slot="first"&gt;
+&lt;img src="https://cubosengine.org/images/blog/0-4/scraps_vs_zombies_csm_before.png" style="width: 100%" /&gt;
+&lt;figcaption&gt;Before&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class="after" slot="second"&gt;
+&lt;img src="https://cubosengine.org/images/blog/0-4/scraps_vs_zombies_csm_after.png" style="width: 100%" /&gt;
+&lt;figcaption&gt;After&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;/img-comparison-slider&gt;
 &lt;img-comparison-slider&gt;
-&lt;img slot="before" src="https://cubosengine.org/images/cars_csm_before.png" style="width: 100%" /&gt;
-&lt;img slot="after" src="https://cubosengine.org/images/cars_csm_after.png" style="width: 100%" /&gt;
+&lt;figure class="before" slot="first"&gt;
+&lt;img src="https://cubosengine.org/images/blog/0-4/cars_csm_before.png" style="width: 100%" /&gt;
+&lt;figcaption&gt;Before&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class="after" slot="second"&gt;
+&lt;img src="https://cubosengine.org/images/blog/0-4/cars_csm_after.png" style="width: 100%" /&gt;
+&lt;figcaption&gt;After&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;/img-comparison-slider&gt;
 &lt;img-comparison-slider&gt;
-&lt;img slot="before" src="https://cubosengine.org/images/surfers_csm_before.png" style="width: 100%" /&gt;
-&lt;img slot="after" src="https://cubosengine.org/images/surfers_csm_after.png" style="width: 100%" /&gt;
+&lt;figure class="before" slot="first"&gt;
+&lt;img src="https://cubosengine.org/images/blog/0-4/surfers_csm_before.png" style="width: 100%" /&gt;
+&lt;figcaption&gt;Before&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class="after" slot="second"&gt;
+&lt;img src="https://cubosengine.org/images/blog/0-4/surfers_csm_after.png" style="width: 100%" /&gt;
+&lt;figcaption&gt;After&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;/img-comparison-slider&gt;
 &lt;p&gt;As you can see, this adds a whole new level of depth to the engine's graphics.&lt;/p&gt;
 &lt;p&gt;Similarly to spot shadows, directional shadows can be enabled by adding a component to the respective light,
@@ -418,13 +440,13 @@ It's worth noting that each directional shadow caster has its own textures, inst
 Below are screenshots of the directional shadow map used to draw shadows in &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, as shown earlier.&lt;/p&gt;
 &lt;div class="m-row"&gt;
 &lt;div class="m-col-m-4"&gt;
-&lt;img class="m-image" src="images/cascaded_shadow_map_1.png" /&gt;
+&lt;img class="m-image" src="/images/blog/0-4/cascaded_shadow_map_1.png" /&gt;
 &lt;/div&gt;
 &lt;div class="m-col-m-4"&gt;
-&lt;img class="m-image" src="images/cascaded_shadow_map_2.png" /&gt;
+&lt;img class="m-image" src="/images/blog/0-4/cascaded_shadow_map_2.png" /&gt;
 &lt;/div&gt;
 &lt;div class="m-col-m-4"&gt;
-&lt;img class="m-image" src="images/cascaded_shadow_map_3.png" /&gt;
+&lt;img class="m-image" src="/images/blog/0-4/cascaded_shadow_map_3.png" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
@@ -570,110 +592,9 @@ Of course, with such a large team, these meetings were becoming increasingly lon
 &lt;p&gt;Additionally, we're planning to work on a new game project using our engine - now with online multiplayer support!&lt;/p&gt;
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/28"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category></entry><entry><title>0.3 is here!</title><link href="https://cubosengine.org/03-is-here.html" rel="alternate"></link><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/03-is-here.html</id><summary type="html">&lt;p&gt;Cubos 0.3 Release!&lt;/p&gt;
+</content><category term="Release"></category><category term="Release"></category></entry><entry><title>Release 0.3</title><link href="https://cubosengine.org/blog/release-03/" rel="alternate"></link><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/blog/release-03/</id><summary type="html">&lt;p&gt;Raycasting, shadows, profiling tools, networking utilities, and more!&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This blog post came a bit late due to the summer break, but we're back with a new release!
 Features-wise, this release was a tad smaller than the previous one as we spent a lot of time working on non-code related stuff, such as rebranding and marketing the project.&lt;/p&gt;
-&lt;section id="a-new-brand-identity-nuno-baptista"&gt;
-&lt;h2&gt;A New Brand Identity &lt;span class="m-text m-dim"&gt;(Nuno Baptista)&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;Cubos had grown out of its cocoon and needed new wings to fly out of its embryonic phase.
-The new visual identity aimed at providing a more cohesive and professional look to an increasingly defined and completed game engine.
-A new logo was designed, alongside a set of visual rules and principals that form Cubos new identity.&lt;/p&gt;
-&lt;p&gt;The process started with the logo.
-The team wished to keep the 3D aspect of the former logo, but with a more slick and modern twist.
-Furthermore, as the project was aimed at a software (a game engine), an icon was necessary for the application, the branding the launch screen, etc.
-A stylized wordmark, like the previous version, was insufficient. So we set to design the icon.
-At first, the design followed a more intellectual and less literal approach, adapting an isometric view with 3 sides to establish a deconstructed view of a Cube.
-The concept of this design was to incorporate the movement and change in the symbol, while representing the assembly purpose of a game engine.
-In this case, the assembly of a cube, with is faces at the moment they are sliding into place.&lt;/p&gt;
-&lt;div class="m-imagegrid m-container-inflate"&gt;
-&lt;div&gt;
-&lt;figure style="width: 70.686%"&gt;
-&lt;a href="https://cubosengine.org/images/prototype_logo_1_horizontal.png"&gt;&lt;img src="https://cubosengine.org/images/prototype_logo_1_horizontal.png" /&gt;&lt;figcaption&gt;First design - horizontal layout&lt;/figcaption&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;figure style="width: 29.314%"&gt;
-&lt;a href="https://cubosengine.org/images/prototype_logo_1_vertical.png"&gt;&lt;img src="https://cubosengine.org/images/prototype_logo_1_vertical.png" /&gt;&lt;figcaption&gt;First design - vertical layout&lt;/figcaption&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;The team received this design with mixed feelings.
-The logo had little of the 3D aspect that made their previous logo and that also constitutes the main selling point of the engine - voxel base game engine.
-Therefore, we jumped to a second design, that retained the original while representing a shape made of literal isometric cubes.
-The final shape was a 3-armed spiral, inspired by the Keltic symbol the Trisquel, without copying the Trisquel GNU/Linux software.&lt;/p&gt;
-&lt;div class="m-imagegrid m-container-inflate"&gt;
-&lt;div&gt;
-&lt;figure style="width: 70.684%"&gt;
-&lt;a href="https://cubosengine.org/images/prototype_logo_2_horizontal.png"&gt;&lt;img src="https://cubosengine.org/images/prototype_logo_2_horizontal.png" /&gt;&lt;figcaption&gt;Second design - horizontal layout&lt;/figcaption&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;figure style="width: 29.316%"&gt;
-&lt;a href="https://cubosengine.org/images/prototype_logo_2_vertical.png"&gt;&lt;img src="https://cubosengine.org/images/prototype_logo_2_vertical.png" /&gt;&lt;figcaption&gt;Second design - vertical layout&lt;/figcaption&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Unfortunately, to some members of the team, the new icon reminded them of some unpleasant symbol.
-Consequently, we're back to square one. A brainstorming session ensued.
-Various shapes were tested and debated, but the icons kept getting too complex and unrecognizable.&lt;/p&gt;
-&lt;div class="m-imagegrid m-container-inflate"&gt;
-&lt;div&gt;
-&lt;figure style="width: 100.000%"&gt;
-&lt;a href="https://cubosengine.org/images/prototype_logo_3.png"&gt;&lt;img src="https://cubosengine.org/images/prototype_logo_3.png" /&gt;&lt;figcaption&gt;Logo brainstorming&lt;/figcaption&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Eventually, we arrived at an icon that was composed of cubes, that did not bring any bad connotations and that was relatively simple and memorable.
-As it can be seen in the experiment above, the spiral/movement idea was forsaken in favor of a greater emphasis in the assembly aspect.
-Three cubes merged to form something more complex, suggesting ideas of union and strength.&lt;/p&gt;
-&lt;div class="m-imagegrid m-container-inflate"&gt;
-&lt;div&gt;
-&lt;figure style="width: 71.605%"&gt;
-&lt;a href="https://cubosengine.org/images/prototype_logo_4_horizontal.png"&gt;&lt;img src="https://cubosengine.org/images/prototype_logo_4_horizontal.png" /&gt;&lt;figcaption&gt;Final design - horizontal layout&lt;/figcaption&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;figure style="width: 28.395%"&gt;
-&lt;a href="https://cubosengine.org/images/prototype_logo_4_vertical.png"&gt;&lt;img src="https://cubosengine.org/images/prototype_logo_4_vertical.png" /&gt;&lt;figcaption&gt;Final design - vertical layout&lt;/figcaption&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Parallel to the icon design process was the font selection.
-The goals we set at the start were that the font had to transmit a feel of modernity and a certain degree of formality, since those were the goals of this redesign, while conveying the slickness and dynamism of an innovative product.
-Other concerns that were considered were the versatility and rights of the chosen font.
-To address this last point, we opted for google fonts library, a largely integrated and open-source collection of great fonts, that complements the open-source aspect of the project.
-The fonts selected were Russo One for the logo mark and displays/headers, and Roboto font family for text body.
-Russo One conveys energy and strength while maintaining a dynamic feel to it, while Roboto is a well-established in the space of tech and innovation.&lt;/p&gt;
-&lt;p&gt;About the logo's colors, it can be observed that these remained virtually unchanged thought out the design process.
-The contrast of neutral colors with a cyan blue, that aim to represent knowledge and innovation, was well received.
-Additional colors were added to the pallet for software and marketing purposes.
-Speaking of which, a &lt;a href="/images/brand.pdf"&gt;Brand Guidelines Document&lt;/a&gt; was enacted to specify how the brand and marketing material should be designed and to which principles it should adhere.&lt;/p&gt;
-&lt;div class="m-imagegrid m-container-inflate"&gt;
-&lt;div&gt;
-&lt;figure style="width: 25.011%"&gt;
-&lt;a href="https://cubosengine.org/images/brand_guidelines_1.png"&gt;&lt;img src="https://cubosengine.org/images/brand_guidelines_1.png" /&gt;&lt;div&gt;
-&lt;/div&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;figure style="width: 25.011%"&gt;
-&lt;a href="https://cubosengine.org/images/brand_guidelines_2.png"&gt;&lt;img src="https://cubosengine.org/images/brand_guidelines_2.png" /&gt;&lt;div&gt;
-&lt;/div&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;figure style="width: 25.029%"&gt;
-&lt;a href="https://cubosengine.org/images/brand_guidelines_3.png"&gt;&lt;img src="https://cubosengine.org/images/brand_guidelines_3.png" /&gt;&lt;div&gt;
-&lt;/div&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;figure style="width: 24.948%"&gt;
-&lt;a href="https://cubosengine.org/images/brand_guidelines_4.png"&gt;&lt;img src="https://cubosengine.org/images/brand_guidelines_4.png" /&gt;&lt;div&gt;
-&lt;/div&gt;
-&lt;/a&gt;
-&lt;/figure&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/section&gt;
 &lt;section id="new-0-3-features"&gt;
 &lt;h2&gt;New 0.3 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
@@ -706,7 +627,7 @@ Recently, Erin Catto shared his &lt;a href="https://box2d.org/posts/2024/02/solv
 &lt;p&gt;In simple terms, it differs from XPBD in the sense that it uses impulses instead of changing the position of the bodies directly, however, like XPBD it also uses substeps. On top of this it also uses soft constraints, which is what Soft stands for in it's name.&lt;/p&gt;
 &lt;p&gt;Since these changes were mostly in internal systems, from a user stand point, everything works the same way.&lt;/p&gt;
 &lt;p&gt;Additionally, we added Friction and Bounciness. For now, these are a predefined value for every body, but will be customizable in the next release with a &lt;code&gt;PhysicsMaterial&lt;/code&gt;.&lt;/p&gt;
-&lt;img class="m-image" src="images/complex_physics_sample_tgs_soft.gif" /&gt;
+&lt;img class="m-image" src="/images/blog/0-3/complex_physics_sample_tgs_soft.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="raycasting-diogomsmiranda"&gt;
 &lt;h4&gt;Raycasting &lt;span class="m-text m-dim"&gt;(&amp;#64;diogomsmiranda)&lt;/span&gt;&lt;/h4&gt;
@@ -937,7 +858,7 @@ a cylinder and the two spheres at the ends.&lt;/p&gt;
 &lt;section id="spot-light-shadows-tomas7770"&gt;
 &lt;h4&gt;Spot Light Shadows &lt;span class="m-text m-dim"&gt;(&amp;#64;tomas7770)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;Our graphics renderer has received a new major feature in this release: shadows!&lt;/p&gt;
-&lt;img class="m-image" src="images/scraps_vs_zombies_shadows.png" /&gt;
+&lt;img class="m-image" src="/images/blog/0-3/cover.png" /&gt;
 &lt;p&gt;It should go without saying that this feature has a big impact on the visuals of games
 developed with Cubos. We've tried it on &lt;em&gt;Scraps vs Zombies&lt;/em&gt; and the result is stunning!
 It's an important step towards the kind of appealing graphics that we hope to achieve.&lt;/p&gt;
@@ -951,7 +872,7 @@ every light in a quadtree structure, reducing expensive texture switching. Final
 as a post-processing step that effectively blurs out the shadows.
 Below is a screenshot of the shadow atlas with 5 spot lights. Lines have been drawn separating
 the areas of the atlas reserved for each light.&lt;/p&gt;
-&lt;img class="m-image" src="images/shadow_atlas.png" /&gt;
+&lt;img class="m-image" src="/images/blog/0-3/shadow_atlas.png" /&gt;
 &lt;/section&gt;
 &lt;section id="initial-ui-plugin-diogomendonc-a"&gt;
 &lt;h4&gt;Initial UI Plugin &lt;span class="m-text m-dim"&gt;(&amp;#64;DiogoMendonc-a)&lt;/span&gt;&lt;/h4&gt;
@@ -1024,23 +945,8 @@ In the next release, which should be out by the end of this month, we're plannin
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/27"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;p&gt;We're currently a team of 13 people, and &lt;strong&gt;we're looking to expand&lt;/strong&gt;! If you're interested in joining us, or just want to learn more about the project, join our &lt;a href="https://discord.gg/WjTtcNTRqD"&gt;Discord server&lt;/a&gt;!&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category></entry><entry><title>Coffee'n Jam and... 0.2!</title><link href="https://cubosengine.org/coffeen-jam-and-02.html" rel="alternate"></link><published>2024-05-21T10:00:00+01:00</published><updated>2024-05-21T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/coffeen-jam-and-02.html</id><summary type="html">&lt;p&gt;Cubos 0.2 Release and Coffee'n Jam!&lt;/p&gt;
-</summary><content type="html">&lt;section id="coffee-n-jam"&gt;
-&lt;h2&gt;Coffee'n Jam&lt;/h2&gt;
-&lt;p&gt;From 26th of April to 3rd of May, &amp;#64;RiscadoA and &amp;#64;joaomanita participated in the Coffee'n Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
-The goal was to create a game in a week, with the theme &amp;quot;Apocalypse&amp;quot; - and we had a blast!&lt;/p&gt;
-&lt;p&gt;The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
-The game is called &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, and you can download it from its &lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;itch.io page&lt;/a&gt;.
-You can also check out its source code in our &lt;a href="https://github.com/GameDevTecnico/cubos-demo"&gt;demo repository&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We managed to win the &amp;quot;Best Gameplay&amp;quot; and &amp;quot;People's Choice&amp;quot; awards, which we're very proud of!&lt;/p&gt;
-&lt;div class="m-image"&gt;
-&lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;&lt;img src="images/scraps_vs_zombies.png" /&gt;&lt;/a&gt;
-&lt;/div&gt;
-&lt;p&gt;We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
-One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
-We'll be working on fixing these issues in the next release, and we'll also be profiling the engine to find out where the bottlenecks are.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="new-0-2-features"&gt;
+</content><category term="Release"></category><category term="Release"></category></entry><entry><title>Release 0.2</title><link href="https://cubosengine.org/blog/release-02/" rel="alternate"></link><published>2024-05-21T10:00:00+01:00</published><updated>2024-05-21T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/blog/release-02/</id><summary type="html">&lt;p&gt;From ECS observers and fixed-time step support to better editing tools, a new modular rendering pipeline, and the first physics constraints solvers.&lt;/p&gt;
+</summary><content type="html">&lt;section id="new-0-2-features"&gt;
 &lt;h2&gt;New 0.2 Features&lt;/h2&gt;
 &lt;p&gt;Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
 We've compiled here some of the most important changes (if you're curious, you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;).&lt;/p&gt;
@@ -1053,7 +959,7 @@ We've compiled here some of the most important changes (if you're curious, you c
 and a new type of gizmo, a &lt;code&gt;Rotated Box&lt;/code&gt;, which, unlike the old boz gizmos, does not need to be axis-aligned.&lt;/p&gt;
 &lt;p&gt;Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
 This should hopefully make it easier to use the tool when moving entities either very far away, or very close.&lt;/p&gt;
-&lt;img class="m-image" src="images/transform_gizmo.gif" /&gt;
+&lt;img class="m-image" src="/images/blog/0-2/transform_gizmo.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="world-inspector-overhaul-diogomsmiranda"&gt;
 &lt;h4&gt;World Inspector Overhaul &lt;span class="m-text m-dim"&gt;(&amp;#64;diogomsmiranda)&lt;/span&gt;&lt;/h4&gt;
@@ -1070,14 +976,14 @@ This release we particularly aimed on making it better by focusing on:&lt;/p&gt;
 &lt;li&gt;Searching for &amp;quot;player, Transform&amp;quot; will show all entities that have a &lt;code&gt;Transform&lt;/code&gt; component and contain &amp;quot;player&amp;quot; in their name.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the &lt;code&gt;ChildOf&lt;/code&gt; relation between entities.&lt;/p&gt;
-&lt;img class="m-image" src="images/world_inspector.gif" /&gt;
+&lt;img class="m-image" src="/images/blog/0-2/world_inspector.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="sub-scene-importing-in-scene-editor-teres4"&gt;
 &lt;h4&gt;Sub-scene importing in scene editor &lt;span class="m-text m-dim"&gt;(&amp;#64;teres4)&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
 To save time, we've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.&lt;/p&gt;
-&lt;img class="m-image" src="images/scene_editor.gif" /&gt;
+&lt;img class="m-image" src="/images/blog/0-2/scene_editor.gif" /&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-engine"&gt;
@@ -1090,7 +996,7 @@ As of now, we have one constraint, internal to the engine, the &lt;code&gt;Penet
 &lt;p&gt;With the ability to have repeating systems, it was possible to introduce the physics substeps loop, which
 will perform the physics update in multiple smaller steps. This is important to increase the convergence rate of the solver and preservation of energy, by reducing the errors caused by approximations of the simulation.&lt;/p&gt;
 &lt;p&gt;These changes should lead to more realistic behavior, as well as better consistency between systems with different performance levels.&lt;/p&gt;
-&lt;img class="m-image" src="images/complex_physics_sample.gif" /&gt;
+&lt;img class="m-image" src="/images/blog/0-2/complex_physics_sample.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="modular-renderer-riscadoa-tomas7770"&gt;
 &lt;h4&gt;Modular Renderer &lt;span class="m-text m-dim"&gt;(&amp;#64;RiscadoA, &amp;#64;tomas7770)&lt;/span&gt;&lt;/h4&gt;
@@ -1106,7 +1012,7 @@ and makes the renderer code easier to deal with by engine developers.&lt;/p&gt;
 This way, we can draw all the voxel objects with fewer draw calls, and with way less context switches.
 One other feature we improved greatly was entity picking - finding out which entity is visible at a given pixel. Previously, enabling it cut the framerate by more than half, which was unacceptable.
 By using &lt;a href="https://www.khronos.org/opengl/wiki/Pixel_Buffer_Object"&gt;Pixel Buffers&lt;/a&gt; and double-buffering, we managed to make its performance impact negligible.&lt;/p&gt;
-&lt;img class="m-image" src="images/scraps_vs_zombies_new_renderer.png" /&gt;
+&lt;img class="m-image" src="/images/blog/0-2/scraps_vs_zombies_new_renderer.png" /&gt;
 &lt;p&gt;Additionally, we added a tone-mapping pass to the renderer, which makes better use of the HDR color space. It allows us to tune the exposure of the scene, and also to apply effects like bloom and SSAO in a more realistic way.
 One side-effect of us changing the color-space is that now the colors in the game are a bit more washed out. We'll have to go back and tweak the colors in the game to make them look good again.&lt;/p&gt;
 &lt;/section&gt;
@@ -1210,4 +1116,4 @@ To solve this, we decided to change the serialization system to use the reflecti
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/26"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;p&gt;We're currently a team of 10 people, and &lt;strong&gt;we're looking to expand&lt;/strong&gt;! If you're interested in joining us, or just want to learn more about the project, join our &lt;a href="https://discord.gg/WjTtcNTRqD"&gt;Discord server&lt;/a&gt;!&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category></entry></feed>
+</content><category term="Release"></category><category term="Release"></category></entry></feed>

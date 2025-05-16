@@ -1,7 +1,7 @@
 /*
     This file is part of m.css.
 
-    Copyright © 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024
+    Copyright © 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025
               Vladimír Vondruš <mosra@centrum.cz>
     Copyright © 2021 Josh <dev@jotch.dev>
 
@@ -32,18 +32,18 @@ body > header > nav {
 }
 body > header > nav.m-navbar-landing,
 body > header > nav.m-navbar-cover {
-  background-color: transparent;
+  background-color: var(--header-background-color-landing);
   position: relative;
 }
 body > header > nav.m-navbar-landing {
-  opacity: 0.8;
+  opacity: 1;
 }
 body > header > nav.m-navbar-cover {
   background-color: var(--header-background-color-jumbo);
   opacity: 1;
 }
 body > header > nav.m-navbar-landing:hover,
-body > header > nav.m-navbar-cover:hover {
+body > header > nav.m-navbar-cover {
   background-color: var(--header-background-color-landing);
   opacity: 1;
 }
@@ -355,6 +355,7 @@ article section > h4 a, article section > h5 a, article section > h6 a {
   background-color: var(--cover-image-background-color);
   background-position: center center;
   background-repeat: no-repeat;
+  background-blend-mode: darken;
   margin-top: -4rem;
   padding-top: 5rem;
 }
@@ -429,18 +430,46 @@ article#m-jumbo.m-inverted > header a:hover, article#m-jumbo.m-inverted > header
 }
 
 /* News list on landing pages */
-.m-landing-news h3 a {
+a.article  {
   color: var(--color);
   text-decoration: none;
-  text-transform: var(--nav-heading-case);
 }
-.m-landing-news h3 a:hover, .m-landing-news h3 a:hover, .m-landing-news h3 a:focus, .m-landing-news h3 a:active {
-  color: var(--article-heading-color);
+a.article:hover h3 {
+  color: var(--article-heading-active-color);
 }
-.m-landing-news time {
+a.article:hover h4 {
+  color: var(--article-heading-active-color);
+}
+a.article:hover #thumbnail {
+  filter: brightness(115%);
+}
+
+a.article h3 {
+  color: var(--color);
+  margin-top:  0.75rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+#previous-articles a.article h3 {
+  margin-top: 0.75rem;
+}
+#previous-articles a.article time {
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
+}
+a.article h4 {
+  color: var(--color);
+  text-decoration: none;
+}
+a.article #thumbnail {
+  margin-bottom: 0.5rem;
+  background-size: cover;
+  aspect-ratio: 16/9;
+  border-radius: var(--border-radius);
+}
+a.article time {
+  margin-top: 1rem;
   display: inline-block;
-  margin-left: 1rem;
-  float: right;
 }
 
 /* Article pagination */
