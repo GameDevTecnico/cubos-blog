@@ -5,6 +5,7 @@
 :category: Release
 :tags: Release
 :summary: Cubos 0.3 Release!
+:cover: /images/blog/0-3/cover.png
 
 .. role:: dim
     :class: m-text m-dim
@@ -28,8 +29,8 @@ The concept of this design was to incorporate the movement and change in the sym
 In this case, the assembly of a cube, with is faces at the moment they are sliding into place.
 
 .. image-grid::
-    {static}/images/prototype_logo_1_horizontal.png First design - horizontal layout
-    {static}/images/prototype_logo_1_vertical.png First design - vertical layout
+    {static}/images/blog/0-3/prototype_logo_1_horizontal.png First design - horizontal layout
+    {static}/images/blog/0-3/prototype_logo_1_vertical.png First design - vertical layout
 
 The team received this design with mixed feelings.
 The logo had little of the 3D aspect that made their previous logo and that also constitutes the main selling point of the engine - voxel base game engine.
@@ -37,23 +38,23 @@ Therefore, we jumped to a second design, that retained the original while repres
 The final shape was a 3-armed spiral, inspired by the Keltic symbol the Trisquel, without copying the Trisquel GNU/Linux software.
 
 .. image-grid::
-    {static}/images/prototype_logo_2_horizontal.png Second design - horizontal layout
-    {static}/images/prototype_logo_2_vertical.png Second design - vertical layout
+    {static}/images/blog/0-3/prototype_logo_2_horizontal.png Second design - horizontal layout
+    {static}/images/blog/0-3/prototype_logo_2_vertical.png Second design - vertical layout
 
 Unfortunately, to some members of the team, the new icon reminded them of some unpleasant symbol.
 Consequently, we're back to square one. A brainstorming session ensued.
 Various shapes were tested and debated, but the icons kept getting too complex and unrecognizable.
 
 .. image-grid::
-    {static}/images/prototype_logo_3.png Logo brainstorming
+    {static}/images/blog/0-3/prototype_logo_3.png Logo brainstorming
 
 Eventually, we arrived at an icon that was composed of cubes, that did not bring any bad connotations and that was relatively simple and memorable.
 As it can be seen in the experiment above, the spiral/movement idea was forsaken in favor of a greater emphasis in the assembly aspect.
 Three cubes merged to form something more complex, suggesting ideas of union and strength.
 
 .. image-grid::
-    {static}/images/prototype_logo_4_horizontal.png Final design - horizontal layout
-    {static}/images/prototype_logo_4_vertical.png Final design - vertical layout
+    {static}/images/blog/0-3/prototype_logo_4_horizontal.png Final design - horizontal layout
+    {static}/images/blog/0-3/prototype_logo_4_vertical.png Final design - vertical layout
 
 Parallel to the icon design process was the font selection.
 The goals we set at the start were that the font had to transmit a feel of modernity and a certain degree of formality, since those were the goals of this redesign, while conveying the slickness and dynamism of an innovative product.
@@ -68,10 +69,10 @@ Additional colors were added to the pallet for software and marketing purposes.
 Speaking of which, a `Brand Guidelines Document </images/brand.pdf>`_ was enacted to specify how the brand and marketing material should be designed and to which principles it should adhere.
 
 .. image-grid::
-    {static}/images/brand_guidelines_1.png
-    {static}/images/brand_guidelines_2.png
-    {static}/images/brand_guidelines_3.png
-    {static}/images/brand_guidelines_4.png
+    {static}/images/blog/0-3/brand_guidelines_1.png
+    {static}/images/blog/0-3/brand_guidelines_2.png
+    {static}/images/blog/0-3/brand_guidelines_3.png
+    {static}/images/blog/0-3/brand_guidelines_4.png
 
 New 0.3 Features
 ================
@@ -118,7 +119,7 @@ Since these changes were mostly in internal systems, from a user stand point, ev
 
 Additionally, we added Friction and Bounciness. For now, these are a predefined value for every body, but will be customizable in the next release with a ``PhysicsMaterial``.
 
-.. image:: images/complex_physics_sample_tgs_soft.gif
+.. image:: /images/blog/0-3/complex_physics_sample_tgs_soft.gif
 
 Raycasting :dim:`(@diogomsmiranda)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -266,7 +267,7 @@ Spot Light Shadows :dim:`(@tomas7770)`
 
 Our graphics renderer has received a new major feature in this release: shadows!
 
-.. image:: images/scraps_vs_zombies_shadows.png
+.. image:: /images/blog/0-3/scraps_vs_zombies_shadows.png
 
 It should go without saying that this feature has a big impact on the visuals of games
 developed with Cubos. We've tried it on *Scraps vs Zombies* and the result is stunning!
@@ -284,7 +285,7 @@ as a post-processing step that effectively blurs out the shadows.
 Below is a screenshot of the shadow atlas with 5 spot lights. Lines have been drawn separating
 the areas of the atlas reserved for each light.
 
-.. image:: images/shadow_atlas.png
+.. image:: /images/blog/0-3/shadow_atlas.png
 
 Initial UI Plugin :dim:`(@DiogoMendonc-a)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

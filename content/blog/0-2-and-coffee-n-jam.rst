@@ -5,6 +5,7 @@ Coffee N' Jam and... 0.2!
 :category: Release
 :tags: Release, Demo
 :summary: Cubos 0.2 Release and Coffee N' Jam!
+:cover: /images/blog/0-2/cover.png
 
 .. role:: dim
     :class: m-text m-dim
@@ -21,7 +22,7 @@ You can also check out its source code in our `demo repository <https://github.c
 
 We managed to win the "Best Gameplay" and "People's Choice" awards, which we're very proud of!
 
-.. image:: images/scraps_vs_zombies.png
+.. image:: /images/blog/0-2/cover.png
     :target: https://riscadoa.itch.io/scraps-vs-zombies
 
 We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
@@ -48,7 +49,7 @@ and a new type of gizmo, a ``Rotated Box``, which, unlike the old boz gizmos, do
 Finally, the transform gizmo is now always rendered at the same size, regardless of the selected entity's distance to the camera.
 This should hopefully make it easier to use the tool when moving entities either very far away, or very close.
 
-.. image:: images/transform_gizmo.gif
+.. image:: /images/blog/0-2/transform_gizmo.gif
 
 World Inspector Overhaul :dim:`(@diogomsmiranda)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -67,7 +68,7 @@ To tackle the first point we've added a search bar that allows you to filter the
 
 To tackle the second point on our list we added an hierarchy view that shows the entities in the scene in a tree-like structure representing the ``ChildOf`` relation between entities.
 
-.. image:: images/world_inspector.gif
+.. image:: /images/blog/0-2/world_inspector.gif
 
 Sub-scene importing in scene editor :dim:`(@teres4)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -76,7 +77,7 @@ Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
 To save time, we've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.
 
-.. image:: images/scene_editor.gif
+.. image:: /images/blog/0-2/scene_editor.gif
 
 On the Engine
 -------------
@@ -94,7 +95,7 @@ will perform the physics update in multiple smaller steps. This is important to 
 
 These changes should lead to more realistic behavior, as well as better consistency between systems with different performance levels.
 
-.. image:: images/complex_physics_sample.gif
+.. image:: /images/blog/0-2/complex_physics_sample.gif
 
 Modular Renderer :dim:`(@RiscadoA, @tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,7 +115,7 @@ This way, we can draw all the voxel objects with fewer draw calls, and with way 
 One other feature we improved greatly was entity picking - finding out which entity is visible at a given pixel. Previously, enabling it cut the framerate by more than half, which was unacceptable.
 By using `Pixel Buffers <https://www.khronos.org/opengl/wiki/Pixel_Buffer_Object>`_ and double-buffering, we managed to make its performance impact negligible.
 
-.. image:: images/scraps_vs_zombies_new_renderer.png
+.. image:: /images/blog/0-2/scraps_vs_zombies_new_renderer.png
 
 Additionally, we added a tone-mapping pass to the renderer, which makes better use of the HDR color space. It allows us to tune the exposure of the scene, and also to apply effects like bloom and SSAO in a more realistic way.
 One side-effect of us changing the color-space is that now the colors in the game are a bit more washed out. We'll have to go back and tweak the colors in the game to make them look good again.

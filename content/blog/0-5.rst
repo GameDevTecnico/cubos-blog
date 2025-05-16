@@ -5,6 +5,7 @@
 :category: Release
 :tags: Release
 :summary: Cubos 0.5 Release!
+:cover: /images/blog/0-5/cover.png
 
 .. role:: dim
     :class: m-text m-dim
@@ -48,7 +49,7 @@ all directions, there are 6 atlas textures, one for each direction of a cube.
 The final result of our shadows engine can be seen in the `Shadows sample <https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows>`_.
 Below is a screenshot of the sample with all light types casting shadows. Some tweaks have been done to better highlight the shadows.
 
-.. image:: images/0.5/shadows_sample.png
+.. image:: /images/blog/0-5/shadows_sample.png
 
 Audio Support through the Audio Plugin  :dim:`(@Dageus, @diogomsmiranda)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -76,10 +77,8 @@ Now there are two new simple methods - ``save(path, indentation)`` and
 
 .. code-block:: cpp
 
-    [](Settings& settings) {
-            settings.merge(settings::load("/file.json"))
-            settings.save("/file_backup.json");
-        }
+    settings.merge(settings.load("/file.json"));
+    settings.save("/file_backup.json");
 
 Collision detection between VoxelCollisionShapes :dim:`(@joaomanita)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -94,8 +93,10 @@ We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagg
 As you can see in the images below, FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.
 
 .. image-comparison::
-    :after: {static}/images/0.5/cars_after.png
-    :before: {static}/images/0.5/cars_before.png
+    :after: {static}/images/blog/0-5/cars_after.png
+    :after-label: FXAA On
+    :before: {static}/images/blog/0-5/cars_before.png
+    :before-label: FXAA Off
 
 UI text element using MSDF for text rendering :dim:`(@mkuritsu)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -113,7 +114,7 @@ In order to draw the text on the screen this plugins uses Multi Signed Distante 
 and `msdf-atlas-gen <https://github.com/Chlumsky/msdf-atlas-gen>`_, and `FreeType <https://freetype.org/>`_ to load different font formats. Below is a screenshot
 taken from the UI sample available in the engine showcasing the text rendering in action.
 
-.. image:: images/0.5/ui-text.png
+.. image:: /images/blog/0-5/ui-text.png
 
 **Note:** Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.
 
