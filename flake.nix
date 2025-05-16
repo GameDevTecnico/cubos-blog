@@ -19,6 +19,8 @@
               ps.pelican
               ps.pygments
               ps.pillow
+              ps.livereload
+              ps.invoke
             ]))
             (pkgs.texlive.combine {
               inherit (pkgs.texlive)
