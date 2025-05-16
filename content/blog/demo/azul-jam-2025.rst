@@ -4,7 +4,7 @@ The "Ondisseia" of Cubos
 :date: 2025-05-16 10:00:00
 :category: Demo
 :summary: Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.
-:cover: /images/blog/demo/azul-jam-2025/cover.png
+:cover: {static}/images/blog/demo/azul-jam-2025/cover.png
 
 .. role:: dim
     :class: m-text m-dim

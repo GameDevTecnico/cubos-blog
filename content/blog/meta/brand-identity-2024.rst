@@ -6,7 +6,7 @@ A New Brand Identity
 :tags: Design
 :summary: Introducing a new brand identity for Cubos.
 :author: Nuno Baptista
-:cover: /images/blog/meta/brand-identity-2024/cover.png
+:cover: {static}/images/blog/meta/brand-identity-2024/cover.png
 
 .. role:: dim
     :class: m-text m-dim

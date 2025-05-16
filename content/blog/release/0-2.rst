@@ -5,7 +5,7 @@ Release 0.2
 :category: Release
 :tags: Release
 :summary: From ECS observers and fixed-time step support to better editing tools, a new modular rendering pipeline, and the first physics constraints solvers.
-:cover: /images/blog/release/0-2/cover.png
+:cover: {static}/images/blog/release/0-2/cover.png
 
 .. role:: dim
     :class: m-text m-dim

@@ -5,7 +5,7 @@ Release 0.5
 :category: Release
 :tags: Release
 :summary: From Voxel collisions, point light shadows and an audio plugin, to web support, text rendering, and FXAA.
-:cover: /images/blog/release/0-5/cover.png
+:cover: {static}/images/blog/release/0-5/cover.png
 
 .. role:: dim
     :class: m-text m-dim
