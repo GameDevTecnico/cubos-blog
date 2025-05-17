@@ -45,7 +45,7 @@
   /* *not* rem, so it follows surrounding font size */
   --line-height: normal;
   --paragraph-indent: 1.5rem;
-  --paragraph-align: justify;
+  --paragraph-align: none;
   --link-decoration: underline;
   --link-decoration-nav: none;
   --link-decoration-heading: none;
@@ -54,7 +54,7 @@
   --nav-heading-case: none;
   --nav-categories-case: none;
   --landing-header-case: none;
-  --heading-font-weight: 600;
+  --heading-font-weight: normal;
 
   /* Shapes */
   --border-radius: 0.2rem;
@@ -182,10 +182,19 @@ h1,
   line-height: 1.2;
 }
 
+span.cubos {
+  font-family: 'Russo One', sans-serif;
+  font-weight: normal; 
+}
+
+.m-landing-news h2 {
+  color: var(--cubos-primary);
+}
+
 h2,
 .h2 {
   font-family: 'Russo One', sans-serif;
-  font-weight: 400;
+  font-weight: normal;
   font-size: 36px;
   line-height: 1.3;
 }
@@ -193,7 +202,7 @@ h2,
 h3,
 .h3 {
   font-family: 'Russo One', sans-serif;
-  font-weight: 400;
+  font-weight: normal;
   font-size: 1rem;
   line-height: 1.4;
 }
@@ -201,7 +210,7 @@ h3,
 h4,
 .h4 {
   font-family: 'Russo One', sans-serif;
-  font-weight: 400;
+  font-weight: normal;
   font-size: 0.9rem;
   line-height: 1.4;
 }
@@ -251,4 +260,72 @@ img-comparison-slider .before figcaption {
 
 img-comparison-slider .after figcaption {
   right: 0;
+}
+
+/* Landing page features */
+.landing-features h2 {
+  color: var(--cubos-primary);
+}
+.landing-features p {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.landing-features .feature-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1em;
+}
+.landing-features .feature-image {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.landing-features .feature-image img {
+  align-self: center;
+}
+.landing-features .feature-text {
+  width: 100%;
+  padding: 2rem;
+}
+/* Same as L size class of m.css */
+@media (min-width: 992px) { 
+  .landing-features .feature-image {
+    width: 50%;
+  }
+  .landing-features .feature-text {
+    width: 50%;
+  }
+}
+.landing-features .feature-image img {
+  width: 100%;
+}
+.landing-features .feature-container-reverse {
+  flex-wrap: wrap-reverse;
+}
+.landing-features p {
+  text-indent: 0;
+  text-align: left;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h2#join-us {
+  margin-top: 4rem;
+  color: var(--cubos-primary);
+}
+.join-us p {
+  text-indent: 0;
+  text-align: left;
+  font-size: 1.2rem;
+}
+div.join-us {
+  margin-bottom: 3em;
+}
+
+.m-navpanel h3 {
+  color: var(--cubos-primary);
 }
