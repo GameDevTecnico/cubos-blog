@@ -18,8 +18,8 @@
   <meta property="og:url" content="https://cubosengine.org/blog/release-06/" />
   <meta property="og:description" content="A smaller update focused on performance, physics stability and better options for lower end machines." />
   <meta name="twitter:description" content="A smaller update focused on performance, physics stability and better options for lower end machines." />
-  <meta property="og:image" content="/images/blog/release/0-6/cover.png" />
-  <meta name="twitter:image" content="/images/blog/release/0-6/cover.png" />
+  <meta property="og:image" content="../../images/blog/release/0-6/cover.png" />
+  <meta name="twitter:image" content="../../images/blog/release/0-6/cover.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:type" content="article" />
 </head>
@@ -47,7 +47,7 @@
 <main>
   <article id="m-jumbo">
     <header>
-      <div id="m-jumbo-image" style="background-image: url('/images/blog/release/0-6/cover.png');">
+      <div id="m-jumbo-image" style="background-image: url('../../images/blog/release/0-6/cover.png');">
         <div id="m-jumbo-cover">
           <div class="m-container">
             <div class="m-row">
@@ -85,9 +85,9 @@
 It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &quot;dirty&quot; solver), resulting in less jitter.
 This is particularly effective for stacks of bodies, where the bodies push against each other, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable, it stays together for longer.</p>
 <p>Here you can see how, in our complex physics sample, the stack holds for much longer than before, although it still falls in the end.</p>
-<img class="m-image" src="/images/blog/release/0-6/complex_physics_sample_warm_starting.gif" />
+<img class="m-image" src="../../images/blog/release/0-6/complex_physics_sample_warm_starting.gif" />
 <p>However, if we increase our physics update rate to 60 times per second (rather than our current 30), and the substeps performed in each update to 8 (instead of our current 4), we can see that a stack of 8 blocks holds mostly stable.</p>
-<img class="m-image" src="/images/blog/release/0-6/complex_physics_sample_1_stack.gif" />
+<img class="m-image" src="../../images/blog/release/0-6/complex_physics_sample_1_stack.gif" />
 <p>Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!</p>
 </section>
 <section id="toggleable-ssao-and-resolution-scale-tomas7770">
@@ -131,7 +131,7 @@ This new geometry utility will be useful for <em>frustum culling</em> in a futur
 It's a competitive multiplayer game where you and your team pilot an airship and fight against other teams.
 We plan to implement networked multiplayer, allowing you to play with friends online — this will be a first for <strong>Cubos</strong>!
 Stay tuned for more details after the 0.7 release blog post!</p>
-<img class="m-image" src="/images/blog/0.6/airships_sneak_peek.png" />
+<img class="m-image" src="../../images/blog/release/0-6/airships_sneak_peek.png" />
 </section>
 <section id="next-steps">
 <h2>Next Steps</h2>

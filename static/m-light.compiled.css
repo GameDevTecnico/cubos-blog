@@ -908,7 +908,7 @@ figure.m-figure figcaption, .m-code-figure figcaption, .m-console-figure figcapt
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   font-weight: normal;
-  font-size: 1.17rem;
+  font-size: 1rem;
 }
 figure.m-figure figcaption a, .m-code-figure figcaption a, .m-console-figure figcaption a {
   text-decoration: none;

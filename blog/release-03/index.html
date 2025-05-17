@@ -18,8 +18,8 @@
   <meta property="og:url" content="https://cubosengine.org/blog/release-03/" />
   <meta property="og:description" content="Raycasting, shadows, profiling tools, networking utilities, and more!" />
   <meta name="twitter:description" content="Raycasting, shadows, profiling tools, networking utilities, and more!" />
-  <meta property="og:image" content="/images/blog/release/0-3/cover.png" />
-  <meta name="twitter:image" content="/images/blog/release/0-3/cover.png" />
+  <meta property="og:image" content="../../images/blog/release/0-3/cover.png" />
+  <meta name="twitter:image" content="../../images/blog/release/0-3/cover.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:type" content="article" />
 </head>
@@ -47,7 +47,7 @@
 <main>
   <article id="m-jumbo">
     <header>
-      <div id="m-jumbo-image" style="background-image: url('/images/blog/release/0-3/cover.png');">
+      <div id="m-jumbo-image" style="background-image: url('../../images/blog/release/0-3/cover.png');">
         <div id="m-jumbo-cover">
           <div class="m-container">
             <div class="m-row">
@@ -108,7 +108,7 @@ Recently, Erin Catto shared his <a href="https://box2d.org/posts/2024/02/solver2
 <p>In simple terms, it differs from XPBD in the sense that it uses impulses instead of changing the position of the bodies directly, however, like XPBD it also uses substeps. On top of this it also uses soft constraints, which is what Soft stands for in it's name.</p>
 <p>Since these changes were mostly in internal systems, from a user stand point, everything works the same way.</p>
 <p>Additionally, we added Friction and Bounciness. For now, these are a predefined value for every body, but will be customizable in the next release with a <code>PhysicsMaterial</code>.</p>
-<img class="m-image" src="/images/blog/release/0-3/complex_physics_sample_tgs_soft.gif" />
+<img class="m-image" src="../../images/blog/release/0-3/complex_physics_sample_tgs_soft.gif" />
 </section>
 <section id="raycasting-diogomsmiranda">
 <h4>Raycasting <span class="m-text m-dim">(&#64;diogomsmiranda)</span></h4>
@@ -339,7 +339,7 @@ a cylinder and the two spheres at the ends.</p>
 <section id="spot-light-shadows-tomas7770">
 <h4>Spot Light Shadows <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
 <p>Our graphics renderer has received a new major feature in this release: shadows!</p>
-<img class="m-image" src="/images/blog/release/0-3/cover.png" />
+<img class="m-image" src="../../images/blog/release/0-3/cover.png" />
 <p>It should go without saying that this feature has a big impact on the visuals of games
 developed with Cubos. We've tried it on <em>Scraps vs Zombies</em> and the result is stunning!
 It's an important step towards the kind of appealing graphics that we hope to achieve.</p>
@@ -353,7 +353,7 @@ every light in a quadtree structure, reducing expensive texture switching. Final
 as a post-processing step that effectively blurs out the shadows.
 Below is a screenshot of the shadow atlas with 5 spot lights. Lines have been drawn separating
 the areas of the atlas reserved for each light.</p>
-<img class="m-image" src="/images/blog/release/0-3/shadow_atlas.png" />
+<img class="m-image" src="../../images/blog/release/0-3/shadow_atlas.png" />
 </section>
 <section id="initial-ui-plugin-diogomendonc-a">
 <h4>Initial UI Plugin <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h4>
