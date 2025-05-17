@@ -274,16 +274,20 @@ img-comparison-slider .after figcaption {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 3em;
+  margin-top: 1em;
 }
 .landing-features .feature-image {
   width: 100%;
-  border-radius: var(--border-radius);
   padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.landing-features .feature-image img {
+  align-self: center;
 }
 .landing-features .feature-text {
   width: 100%;
-  padding: 1rem;
+  padding: 2rem;
 }
 /* Same as L size class of m.css */
 @media (min-width: 992px) { 
