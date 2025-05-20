@@ -23,7 +23,7 @@ def author_to_url(author_name):
         author_name = author_aliases[author_name.lower()]
     
     # Replace slug by the author name
-    return ("/" + settings['SITEURL'] + settings['AUTHOR_URL']).replace('{slug}', slugify(
+    return (settings['SITEURL'] + "/" + settings['AUTHOR_URL']).replace('{slug}', slugify(
         author_name,
         regex_subs=settings.get("SLUG_REGEX_SUBSTITUTIONS", []),
         preserve_case=settings.get("SLUGIFY_PRESERVE_CASE", False),
