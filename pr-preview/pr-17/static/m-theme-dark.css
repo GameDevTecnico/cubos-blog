@@ -1,0 +1,331 @@
+/*
+    This file is part of m.css.
+
+    Copyright © 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025
+              Vladimír Vondruš <mosra@centrum.cz>
+    Copyright © 2019 Cris Luengo <cris.l.luengo@gmail.com>
+
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+*/
+
+:root {
+  /* Cubos colors */
+  --cubos-main-text: #FFFFFF; 
+  --cubos-text: #D9DDDE;
+  --cubos-primary: #0099CC;
+  --cubos-shade1: #354C61;
+  --cubos-shade2: #263645;
+  --cubos-shade3: #1C2833;
+  --cubos-shade4: #121A21; 
+  --cubos-background: #0B0C0D;
+  --cubos-hovered: #00ACE6;
+  --cubos-active: #00BFFF;
+
+  /* Text properties */
+  --font: 'Roboto', sans-serif;
+  --code-font: 'Roboto Mono', monospace;
+  --font-size: 18px;
+  --code-font-size: 0.9em;
+  /* *not* rem, so it follows surrounding font size */
+  --line-height: normal;
+  --paragraph-indent: 1.5rem;
+  --paragraph-align: none;
+  --link-decoration: underline;
+  --link-decoration-nav: none;
+  --link-decoration-heading: none;
+  --nav-brand-case: none;
+  --nav-menu-case: none;
+  --nav-heading-case: none;
+  --nav-categories-case: none;
+  --landing-header-case: none;
+  --heading-font-weight: normal;
+
+  /* Shapes */
+  --border-radius: 0.2rem;
+
+  /* Basics */
+  --background-color: var(--cubos-shade4);
+  --color: var(--cubos-text);
+  --line-color: #405363;
+  --link-color: var(--cubos-primary);
+  --link-active-color: var(--cubos-active);
+  --mark-color: #2f83cc;
+  --mark-background-color: #c7cf2f;
+  --code-color: var(--cubos-text);
+  --code-inverted-color: rgba(230, 230, 230, 0.33);
+  --console-color: var(--code-color);
+  --console-inverted-color: var(--code-inverted-color);
+  /* This is simply color-picked --code-note-background-color on top of
+     --background-color */
+  --code-background-color: var(--cubos-background);
+  --code-note-background-color: rgba(34, 39, 46, 0.5);
+  --console-background-color: var(--cubos-background);
+  --button-background-color: var(--cubos-background);
+
+  /* Header */
+  --header-border-width: 0 0 0.25rem 0;
+  --header-color: var(--cubos-main-text);
+  --header-breadcrumb-color: #747474;
+  /* same as --dim-color */
+  --header-background-color: var(--cubos-shade3);
+  --header-background-color-landing: transparent;
+  --header-background-color-jumbo: var(--cubos-shade3);
+  --header-link-color: var(--cubos-main-text);
+  --header-link-active-color: var(--cubos-active);
+  --header-link-current-color: var(--cubos-hovered);
+  --header-link-active-background-color: var(--cubos-shade3);
+  --header-link-active-background-color-semi: var(--cubos-shade3);
+
+  /* Footer */
+  --footer-font-size: 0.85rem;
+  --footer-color: #c5c5c5;
+  --footer-background-color: var(--cubos-shade3);
+  --footer-link-color: var(--cubos-main-text);
+  --footer-link-active-color: var(--cubos-active);
+
+  /* Cover image */
+  --cover-image-background-color: #0b0c0dac;
+
+  /* Search (used only by m-documentation.css) */
+  --search-overlay-color: var(--header-background-color-landing);
+  --search-background-color: var(--header-background-color);
+
+  /* Article */
+  --article-header-color: var(--cubos-main-text);
+  --article-footer-color: #c5c5c5;
+  --article-heading-color: var(--cubos-primary);
+  --article-heading-active-color: var(--cubos-hovered);
+
+  /* Right navigation panel */
+  --navpanel-link-color: #ffffff;
+  --navpanel-link-active-color: var(--cubos-hovered);
+
+  /* Plots */
+  --plot-background-color: #34424d;
+  --plot-error-color: #ffffff;
+
+  /* Colored components */
+  --default-color: #dcdcdc;
+  --default-link-active-color: var(--cubos-hovered);
+  --default-filled-color: var(--cubos-text);
+  --default-filled-background-color: var(--cubos-shade3);
+  --default-filled-link-color: var(--cubos-primary);
+  --default-filled-link-active-color: var(--cubos-hovered);
+
+  --primary-color: var(--cubos-primary);
+  --primary-link-active-color: var(--cubos-hovered);
+  --primary-filled-color: #2f363f;
+  --primary-filled-background-color: #a5c2db;
+  --primary-filled-link-color: var(--cubos-hovered);
+  --primary-filled-link-active-color: var(--cubos-active);
+
+  --success-color: #3bd267;
+  --success-link-active-color: #acecbe;
+  --success-filled-color: #acecbe;
+  --success-filled-background-color: #2a703f;
+  --success-filled-link-color: #3bd267;
+  --success-filled-link-active-color: #acecbe;
+
+  --warning-color: #c7cf2f;
+  --warning-link-active-color: #e9ecae;
+  --warning-filled-color: #e9ecae;
+  --warning-filled-background-color: #6d702a;
+  --warning-filled-link-color: #b8bf2b;
+  --warning-filled-link-active-color: #e9ecae;
+
+  --danger-color: #cd3431;
+  --danger-link-active-color: #ff9391;
+  --danger-filled-color: #ff9391;
+  --danger-filled-background-color: #702b2a;
+  --danger-filled-link-color: #d85c59;
+  --danger-filled-link-active-color: #ff9391;
+
+  --info-color: var(--cubos-primary);
+  --info-link-active-color: var(--cubos-active);
+  --info-filled-color: var(--color);
+  --info-filled-background-color: var(--cubos-shade1);
+  --info-filled-link-color: var(--cubos-hovered);
+  --info-filled-link-active-color: var(--cubos-active);
+
+  --dim-color: #747474;
+  --dim-link-color: #acacac;
+  --dim-link-active-color: #747474;
+  --dim-filled-color: #747474;
+  --dim-filled-background-color: #2d3236;
+  --dim-filled-link-color: #acacac;
+  --dim-filled-link-active-color: #747474;
+  --dim-button-active-color: #acacac;
+}
+
+/* Typography */
+h1,
+.h1 {
+  font-family: 'Russo One', sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.2;
+}
+
+span.cubos {
+  font-family: 'Russo One', sans-serif;
+  font-weight: normal; 
+}
+
+.m-landing-news h2 {
+  color: var(--cubos-primary);
+}
+
+h2,
+.h2 {
+  font-family: 'Russo One', sans-serif;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 1.3;
+}
+
+h3,
+.h3 {
+  font-family: 'Russo One', sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+h4,
+.h4 {
+  font-family: 'Russo One', sans-serif;
+  font-weight: normal;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+#m-navbar-brand {
+  font-family: 'Russo One', sans-serif;
+}
+
+/* Text below the landing page logo */
+.landing-caption {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+}
+
+/* Image comparison sliders */
+img-comparison-slider {
+  --divider-width: 1px;
+  --divider-color: var(--cubos-text);
+  --default-handle-color: var(--cubos-text);
+  --default-handle-width: clamp(40px, 10vw, 200px);
+}
+img-comparison-slider:focus {
+  --default-handle-opacity: 0.0;
+}
+img-comparison-slider .before,
+img-comparison-slider .after {
+  margin: 0;
+}
+
+img-comparison-slider .before figcaption,
+img-comparison-slider .after figcaption {
+  background: var(--cubos-shade2);
+  border: 1px solid var(--cubos-shade3);
+  color: var(--cubos-main-text);
+  opacity: 0.8;
+  padding: 12px;
+  position: absolute;
+  bottom: 0;
+  margin: 0.5em;
+  line-height: 100%;
+}
+
+img-comparison-slider .before figcaption {
+  left: 0;
+}
+
+img-comparison-slider .after figcaption {
+  right: 0;
+}
+
+/* Landing page features */
+.landing-features h2 {
+  color: var(--cubos-primary);
+}
+.landing-features p {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.landing-features .feature-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1em;
+}
+.landing-features .feature-image {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.landing-features .feature-image img {
+  align-self: center;
+}
+.landing-features .feature-text {
+  width: 100%;
+  padding: 2rem;
+}
+/* Same as L size class of m.css */
+@media (min-width: 992px) { 
+  .landing-features .feature-image {
+    width: 50%;
+  }
+  .landing-features .feature-text {
+    width: 50%;
+  }
+}
+.landing-features .feature-image img {
+  width: 100%;
+}
+.landing-features .feature-container-reverse {
+  flex-wrap: wrap-reverse;
+}
+.landing-features p {
+  text-indent: 0;
+  text-align: left;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h2#join-us {
+  margin-top: 4rem;
+  color: var(--cubos-primary);
+}
+.join-us p {
+  text-indent: 0;
+  text-align: left;
+  font-size: 1.2rem;
+}
+div.join-us {
+  margin-bottom: 3em;
+}
+
+.m-navpanel h3 {
+  color: var(--cubos-primary);
+}
