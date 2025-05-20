@@ -9,6 +9,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
   <link rel="icon" href="https://cubosengine.org/images/favicon.png" type="image/png" />
   <link rel="canonical" href="https://cubosengine.org/blog/release-06/" />
+  <link href="https://cubosengine.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine" />
   <link href="https://cubosengine.org/feeds/release.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine | Release" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#22272e" />
@@ -80,7 +81,8 @@
 <section id="on-the-engine">
 <h3>On the Engine</h3>
 <section id="physics-with-warm-starting-fallenatlas">
-<h4>Physics with Warm-Starting <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
+<h4>Physics with Warm-Starting <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+</h4>
 <p>Continuing the work from the previous release, we finished <strong>warm-starting</strong> for our physics simulation. Warm-starting uses the information stored in the contact manifold between two bodies, especially the total impulses applied to each contact point in the previous frame, and applies it before solving begins.
 It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &quot;dirty&quot; solver), resulting in less jitter.
 This is particularly effective for stacks of bodies, where the bodies push against each other, creating instability. However, if they're already closer to their ideal position, this instability will be reduced. With warm-starting, we can stack more bodies, and when the stack isn't fully stable, it stays together for longer.</p>
@@ -91,7 +93,8 @@ This is particularly effective for stacks of bodies, where the bodies push again
 <p>Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!</p>
 </section>
 <section id="toggleable-ssao-and-resolution-scale-tomas7770">
-<h4>Toggleable SSAO and Resolution Scale <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<h4>Toggleable SSAO and Resolution Scale <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
+</h4>
 <p>Some time ago, we profiled <strong>Cubos</strong>'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
 graphics plugin that took the most frame time. However, due to the way the rendering pipeline was implemented, disabling it to get
 better performance wasn't possible without breaking rendering altogether.
@@ -103,7 +106,8 @@ To implement this, we added a <a href="https://docs.cubosengine.org/structcubos_
 which defaults to 0.5, but can be set to any value up to 2.0.</p>
 </section>
 <section id="conditional-shader-compilation-tomas7770">
-<h4>Conditional Shader Compilation <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<h4>Conditional Shader Compilation <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
+</h4>
 <p>Another major bottleneck in the graphics renderer is the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html">render picker</a>, which
 allows finding out which entity is visible at a given pixel. As explained in the <strong>Modular Renderer</strong> section of the <a href="https://cubosengine.org/coffeen-jam-and-02.html">0.2 blog post</a>,
 we attempted to mitigate performance loss with Pixel Buffers and double-buffering. But despite this, it remains a demanding feature.</p>
@@ -119,7 +123,8 @@ class to prepend <code>#define</code> macros and recompile the shader.</p>
 <section id="on-the-core">
 <h3>On the Core</h3>
 <section id="added-frustum-geometry-and-intersection-utilities-mkuritsu">
-<h4>Added Frustum geometry and intersection utilities <span class="m-text m-dim">(&#64;mkuritsu)</span></h4>
+<h4>Added Frustum geometry and intersection utilities <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
+</h4>
 <p>A new geometry object was added, the <strong>frustum</strong>, and additionally, two new intersection functions to check if a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html">box</a> or a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html">capsule</a> intersects a frustum.
 This new geometry utility will be useful for <em>frustum culling</em> in a future release, potentially improving graphics performance when rendering large scenes with <strong>Cubos</strong>.</p>
 </section>
@@ -163,7 +168,7 @@ We're excited to see what we can come up with in just 48 hours! A blog post abou
   </article>
   <nav class="m-navpanel m-container">
     <div class="m-row">
-      <div class="m-col-s-6 m-col-m-3 m-col-l-2 m-push-l-1">
+      <div class="m-col-s-4 m-col-l-2 m-push-s-2 m-push-l-3">
         <h3>Categories</h3>
         <ol class="m-block-bar-s">
           <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
@@ -172,15 +177,7 @@ We're excited to see what we can come up with in just 48 hours! A blog post abou
           <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
         </ol>
       </div>
-      <div class="m-col-s-6 m-col-m-3 m-push-m-6 m-col-l-2 m-push-l-7">
-        <h3>Authors</h3>
-        <ol class="m-block-bar-s">
-          <li><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></li>
-          <li><a href="https://cubosengine.org/blog/author/nuno-baptista/">Nuno Baptista</a></li>
-          <li><a href="https://cubosengine.org/blog/author/ricardo-antunes/">Ricardo Antunes</a></li>
-        </ol>
-      </div>
-      <div class="m-col-s-12 m-col-m-6 m-col-l-4 m-pull-m-3 m-pull-l-0">
+      <div class="m-col-s-4 m-col-l-2 m-push-s-2 m-push-l-5">
         <h3>Tag cloud</h3>
         <ul class="m-tagcloud">
           <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/azul-game-jam/">Azul Game Jam</a></li>

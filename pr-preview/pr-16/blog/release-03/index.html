@@ -9,6 +9,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
   <link rel="icon" href="https://cubosengine.org/images/favicon.png" type="image/png" />
   <link rel="canonical" href="https://cubosengine.org/blog/release-03/" />
+  <link href="https://cubosengine.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine" />
   <link href="https://cubosengine.org/feeds/release.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine | Release" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#22272e" />
@@ -82,7 +83,8 @@ Features-wise, this release was a tad smaller than the previous one as we spent 
 <section id="on-the-editor">
 <h3>On the Editor</h3>
 <section id="groundwork-for-a-standalone-editor-riscadoa">
-<h4>Groundwork for a Standalone Editor <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
+<h4>Groundwork for a Standalone Editor <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+</h4>
 <p>The original main goal for this version was to get a first prototype of our standalone editor working.
 Sadly, we didn't manage to get it done in time, as it was a bigger task than we anticipated.</p>
 <p>The initial approach, to which we dedicated most of the time, was to have two instances of Cubos running at the same time, on the <strong>same process</strong> - one for the editor and one for the game.
@@ -101,7 +103,8 @@ It will allows us to have a stable editor, whose performance is not affected (th
 <section id="on-the-engine">
 <h3>On the Engine</h3>
 <section id="a-new-physics-solver-fallenatlas">
-<h4>A New Physics Solver <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
+<h4>A New Physics Solver <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+</h4>
 <p>Upon discovering some potential issues with regards to NVidia's patent of XPBD, some problems with how XPBD handled friction, and stability,
 we decided that this would be the ideal moment to switch to another solver.
 Recently, Erin Catto shared his <a href="https://box2d.org/posts/2024/02/solver2d/">comparison of multiple solvers</a>, and the results of TGS Soft seemed quite promising, so we decided to give it a try... And at this point, our simulation is already more stable than before!</p>
@@ -111,7 +114,8 @@ Recently, Erin Catto shared his <a href="https://box2d.org/posts/2024/02/solver2
 <img class="m-image" src="../../images/blog/release/0-3/complex_physics_sample_tgs_soft.gif" />
 </section>
 <section id="raycasting-diogomsmiranda">
-<h4>Raycasting <span class="m-text m-dim">(&#64;diogomsmiranda)</span></h4>
+<h4>Raycasting <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/diogo-miranda/">&#64;diogomsmiranda</a>)</span></dt>
+</h4>
 <p>Raycasting is a commonly used tool in game development which Cubos was lacking until now - it is a technique used to determine the intersection of a ray with an object in a scene.
 This allows for a wide range of applications, such as shooting mechanics, object selection, and more.</p>
 <p>This new utility was implemented as a system argument, which means it can be used in any system, by simply adding it as an argument:</p>
@@ -337,7 +341,8 @@ a cylinder and the two spheres at the ends.</p>
 </section>
 </section>
 <section id="spot-light-shadows-tomas7770">
-<h4>Spot Light Shadows <span class="m-text m-dim">(&#64;tomas7770)</span></h4>
+<h4>Spot Light Shadows <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
+</h4>
 <p>Our graphics renderer has received a new major feature in this release: shadows!</p>
 <img class="m-image" src="../../images/blog/release/0-3/cover.png" />
 <p>It should go without saying that this feature has a big impact on the visuals of games
@@ -356,7 +361,8 @@ the areas of the atlas reserved for each light.</p>
 <img class="m-image" src="../../images/blog/release/0-3/shadow_atlas.png" />
 </section>
 <section id="initial-ui-plugin-diogomendonc-a">
-<h4>Initial UI Plugin <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h4>
+<h4>Initial UI Plugin <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/diogo-mendonca/">&#64;DiogoMendonc-a</a>)</span></dt>
+</h4>
 <p>Cubos now has a UI system!</p>
 <p>Add a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UICanvas.html">UICanvas</a> to your Render Target, and set a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIElement.html">UIElement</a> as its child. The UIElement will determine where the entity is drawn, and other UI components you add to the entity, such as a UIImage, will determine what it is that is drawn.
 For this initial version of the plugin, there are only two types of elements: <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIColorRect.html">UIColorRect</a>, which simply fills the element with a solid colour, and <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIImage.html">UIImage</a>, which draws an image asset.</p>
@@ -368,7 +374,8 @@ For this initial version of the plugin, there are only two types of elements: <a
 <section id="on-the-core">
 <h3>On the Core</h3>
 <section id="metrics-roby2014">
-<h4>Metrics <span class="m-text m-dim">(&#64;roby2014)</span></h4>
+<h4>Metrics <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/roberto-carlos/">&#64;roby2014</a>)</span></dt>
+</h4>
 <p>We are excited to introduce the new metrics and profiling utilities!
 This started becoming a priority since we detected lots of performance issues in the last Game Jam we participated.</p>
 <p>These tools are designed to help track performance and gather valuable insights about code execution and data.</p>
@@ -396,7 +403,8 @@ integrate these metrics into our editor for a more streamlined experience.</p>
 <p>Learn more about it on our <a href="https://docs.cubosengine.org/examples-core-metrics.html">metrics documentation</a>.</p>
 </section>
 <section id="networking-utilities-roby2014">
-<h4>Networking Utilities <span class="m-text m-dim">(&#64;roby2014)</span></h4>
+<h4>Networking Utilities <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/roberto-carlos/">&#64;roby2014</a>)</span></dt>
+</h4>
 <p>In the 0.3 release, Cubos finally has networking! This is a big step forward for our engine, bringing
 powerful networking utilities such as <a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html">Address</a>,
 <a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1UdpSocket.html">UdpSocket</a>, <a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpListener.html">TcpListener</a>,
@@ -440,7 +448,7 @@ In the next release, which should be out by the end of this month, we're plannin
   </article>
   <nav class="m-navpanel m-container">
     <div class="m-row">
-      <div class="m-col-s-6 m-col-m-3 m-col-l-2 m-push-l-1">
+      <div class="m-col-s-4 m-col-l-2 m-push-s-2 m-push-l-3">
         <h3>Categories</h3>
         <ol class="m-block-bar-s">
           <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
@@ -449,15 +457,7 @@ In the next release, which should be out by the end of this month, we're plannin
           <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
         </ol>
       </div>
-      <div class="m-col-s-6 m-col-m-3 m-push-m-6 m-col-l-2 m-push-l-7">
-        <h3>Authors</h3>
-        <ol class="m-block-bar-s">
-          <li><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></li>
-          <li><a href="https://cubosengine.org/blog/author/nuno-baptista/">Nuno Baptista</a></li>
-          <li><a href="https://cubosengine.org/blog/author/ricardo-antunes/">Ricardo Antunes</a></li>
-        </ol>
-      </div>
-      <div class="m-col-s-12 m-col-m-6 m-col-l-4 m-pull-m-3 m-pull-l-0">
+      <div class="m-col-s-4 m-col-l-2 m-push-s-2 m-push-l-5">
         <h3>Tag cloud</h3>
         <ul class="m-tagcloud">
           <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/azul-game-jam/">Azul Game Jam</a></li>

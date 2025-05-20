@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Demo</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/demo.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-05-20T09:00:00+01:00</updated><entry><title>Roll Racers</title><link href="https://cubosengine.org/blog/roll-racers/" rel="alternate"></link><published>2025-05-20T09:00:00+01:00</published><updated>2025-05-20T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-20:/blog/roll-racers/</id><summary type="html">&lt;p&gt;We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!&lt;/p&gt;
 </summary><content type="html">&lt;section id="the-theme"&gt;
 &lt;h2&gt;The Theme&lt;/h2&gt;
-&lt;p&gt;From 2nd of May to the 10th of May, &amp;#64;fallenatlas, &amp;#64;tomas7770, &amp;#64;fkatar, &amp;#64;PedroSimoes24, &amp;#64;RiscadoA, &amp;#64;joaomanita and &amp;#64;mcanais participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
+&lt;p&gt;From 2nd of May to the 10th of May, &lt;a href="/https://cubosengine.orgblog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/francisco-catarino/"&gt;&amp;#64;fkatar&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
 The goal was to create a game in a week, this time with theme &amp;quot;Blackout&amp;quot; - the huge power outage in the Iberian Peninsula had happened the prior week, and just like during the Covid lockdown, people rushed to the supermarkets to buy toilet paper.&lt;/p&gt;
 &lt;p&gt;We thought it would be funny to make a game about racing to the supermarket to buy toilet paper - and that's what we ended up doing.
 Our priorities were to test new features of the engine, and to make a fun local multiplayer game.
@@ -25,12 +25,12 @@ Since the jam was a week long, we had some more time to work on the game than in
 &lt;h2&gt;Voxel Modeling&lt;/h2&gt;
 &lt;p&gt;One major problem we had was that we didn't have any artists in the team, only programmers.
 We ended up going full programmer art mode, and we used, as usual, &lt;a href="https://ephtracy.github.io/"&gt;MagicaVoxel&lt;/a&gt; for this purpose.
-&amp;#64;PedroSimoes24 focused on making the buildings and the road models, &amp;#64;RiscadoA focused on the cars and some tiles and &amp;#64;mcanais made a few props.&lt;/p&gt;
+&lt;a href="/https://cubosengine.orgblog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt; focused on making the buildings and the road models, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; focused on the cars and some tiles and &lt;a href="/https://cubosengine.orgblog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; made a few props.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="map-generation"&gt;
 &lt;h2&gt;Map Generation&lt;/h2&gt;
 &lt;p&gt;To make our jobs easier, the map is divided into tiles. Each tile is 68x68 voxels wide. Tiles can be road tiles, building tiles or park tiles.
-&amp;#64;RiscadoA and &amp;#64;mcanais worked on the map generation, which is done procedurally. First, road tiles are placed in a river-like fashion, and then, building tiles are placed around them.&lt;/p&gt;
+&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; worked on the map generation, which is done procedurally. First, road tiles are placed in a river-like fashion, and then, building tiles are placed around them.&lt;/p&gt;
 &lt;p&gt;To make the map prettier we also added some park tiles with trees and bushes, which are randomly placed adjacent to the road tiles.
 For an extra challenge, we added a 'river' tile where the road has a big hole in the middle, and the players have to jump over it by going fast enough on the ramps.&lt;/p&gt;
 &lt;p&gt;We also have special start and end tiles, the end tile being the supermarket, where the toilet paper is placed.
@@ -61,7 +61,7 @@ The map regenerates every time a round ends, i.e., when a player brings the toil
 &lt;/section&gt;
 &lt;section id="ui"&gt;
 &lt;h2&gt;UI&lt;/h2&gt;
-&lt;p&gt;This game was also the first time UI was used on a demo. &amp;#64;tomas7770 picked up this task, and made multiple menus and screens for the game.
+&lt;p&gt;This game was also the first time UI was used on a demo. &lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt; picked up this task, and made multiple menus and screens for the game.
 We wanted to briefly explain the game mechanics to the players, so we added a title screen with some information.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
 &lt;img alt="Title screen" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/title-screen.png" /&gt;
@@ -93,7 +93,7 @@ We decided to add a score indicator to the top of the screen, which shows the sc
 &lt;/section&gt;
 &lt;section id="audio"&gt;
 &lt;h2&gt;Audio&lt;/h2&gt;
-&lt;p&gt;On the last day of the jam &amp;#64;RiscadoA decided to focus on adding audio to the game.
+&lt;p&gt;On the last day of the jam &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; decided to focus on adding audio to the game.
 Previously, when making &lt;a href="https://cubosengine.org/blog/the-ondisseia-of-cubos/"&gt;Ondisseia&lt;/a&gt;, we had a lot of trouble with adding sound effects.
 They didn't play reliably and the audio system was a bit of a mess.&lt;/p&gt;
 &lt;p&gt;To use audio in &lt;em&gt;Roll Racers&lt;/em&gt;, we ended up fixing all of the problems we previously had, which means that we can now rely on it for future projects.
@@ -114,7 +114,7 @@ We added a few sound effects to the game, such as:&lt;/p&gt;
 &lt;p&gt;At the end of the jam, the game's performance was very bad.
 A bit of profiling quickly showed that a lot of time was being spent iterating over tens of thousands of relation tables - the ones introduced in the &lt;a href="https://cubosengine.org/blog/hello-relations/"&gt;relations development note&lt;/a&gt;.
 This was a waste of time, as only less than 15 actually contained entities.&lt;/p&gt;
-&lt;p&gt;&amp;#64;RiscadoA quickly fixed this by adding logic to clean up unused relation tables every frame.
+&lt;p&gt;&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; quickly fixed this by adding logic to clean up unused relation tables every frame.
 This immediately improved performance by a lot - on one machine, the framerate went from 40FPS to stable 240FPS.
 In the future, this logic should probably be improved to only clean up the tables when they're not used for a while, to avoid wasting time recreating tables constantly.&lt;/p&gt;
 &lt;/section&gt;
@@ -127,7 +127,7 @@ One of the biggest problems continues to be the lack of proper tooling for the e
 </content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category><category term="Coffee N' Jam"></category></entry><entry><title>The "Ondisseia" of Cubos</title><link href="https://cubosengine.org/blog/the-ondisseia-of-cubos/" rel="alternate"></link><published>2025-05-16T10:00:00+01:00</published><updated>2025-05-16T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-16:/blog/the-ondisseia-of-cubos/</id><summary type="html">&lt;p&gt;Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.&lt;/p&gt;
 </summary><content type="html">&lt;section id="the-jam"&gt;
 &lt;h2&gt;The Jam&lt;/h2&gt;
-&lt;p&gt;Around a month ago, &amp;#64;mcanais, &amp;#64;NunoBaptista, &amp;#64;RiscadoA and &amp;#64;rsubtil joined forces to participate in the &lt;a href="https://www.linkedin.com/company/azulgamejam"&gt;Azul Game Jam&lt;/a&gt;.
+&lt;p&gt;Around a month ago, &lt;a href="/https://cubosengine.orgblog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/ricardo-subtil/"&gt;&amp;#64;rsubtil&lt;/a&gt; joined forces to participate in the &lt;a href="https://www.linkedin.com/company/azulgamejam"&gt;Azul Game Jam&lt;/a&gt;.
 This was the first edition of a Portuguese on-site game jam, where the aim was to join the Portuguese game dev community at the &lt;a href="https://lisboainnovation.com/hubs/aihub/"&gt;AI Hub&lt;/a&gt;, to make games during 48 hours.
 We were a team of 4 - 3 programmers, 1 artist, and a lot of ideas.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
@@ -146,7 +146,8 @@ The waves are colossal, sometimes sweeping over the islands on the map.
 With this game mechanic, we'd hoped to add an interesting twist to the genre of Battle Royale.&lt;/p&gt;
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/demo/azul-jam-2025/OndisseiaGameplay.gif" /&gt;
 &lt;section id="voxel-art-nunobaptista"&gt;
-&lt;h4&gt;Voxel Art &lt;span class="m-text m-dim"&gt;(&amp;#64;NunoBaptista)&lt;/span&gt;&lt;/h4&gt;
+&lt;h4&gt;Voxel Art &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;/h4&gt;
 &lt;p&gt;As an artist, I produce the voxel assets, including the animations, the tiles of the map, and the wave.
 Currently, we don't have a voxel editor inside Cubos, so we used &lt;a href="https://ephtracy.github.io/"&gt;MagicaVoxel&lt;/a&gt; for this purpose.
 For the animations, we've used a process very similar to pixel art animation, with a model for each frame.
@@ -224,7 +225,7 @@ To solve this issue, we added a function to hide the mobile control when no long
 After the jam, we integrated these changes into the main branch of Cubos, so that all samples can be easily ported to mobile devices.&lt;/p&gt;
 &lt;/section&gt;
 </content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category><category term="Azul Game Jam"></category></entry><entry><title>Coffee N' Jam 2024</title><link href="https://cubosengine.org/blog/coffee-n-jam-2024/" rel="alternate"></link><published>2024-05-21T09:00:00+01:00</published><updated>2024-05-21T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/blog/coffee-n-jam-2024/</id><summary type="html">&lt;p&gt;We made a game in a week with Cubos, and managed to win two awards!&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;From 26th of April to 3rd of May, &amp;#64;RiscadoA and &amp;#64;joaomanita participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
+</summary><content type="html">&lt;p&gt;From 26th of April to 3rd of May, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
 The goal was to create a game in a week, with the theme &amp;quot;Apocalypse&amp;quot; - and we had a blast!&lt;/p&gt;
 &lt;p&gt;The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
 The game is called &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, and you can download it from its &lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;itch.io page&lt;/a&gt;.
