@@ -7,9 +7,6 @@ Release 0.5
 :summary: From Voxel collisions, point light shadows and an audio plugin, to web support, text rendering, and FXAA.
 :cover: {static}/images/blog/release/0-5/cover.png
 
-.. role:: dim
-    :class: m-text m-dim
-
 New 0.5 Features
 ================
 
@@ -20,8 +17,8 @@ As usual, you can check out the full changelog in our `repository <https://githu
 On the Editor
 -------------
 
-Hold mode for Debug Camera :dim:`(@jdbaracho)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Hold mode for Debug Camera :author_dim:`(jdbaracho)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For debugging purposes, we have a debug camera which allows the user to move around the scene and inspect it.
 Previous this camera could only be controlled by locking the camera to the mouse with a toggle.
@@ -30,8 +27,8 @@ This was inconvenient when also using the mouse to interact with the editor UI, 
 On the Engine
 -------------
 
-Point Light Shadows :dim:`(@tomas7770)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Point Light Shadows :author_dim:`(tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Over the past couple of releases, **shadows** have been gradually introduced to the engine's graphics
 renderer, starting with spotlight shadows, and then directional ones. Naturally, the next step was to
@@ -51,8 +48,8 @@ Below is a screenshot of the sample with all light types casting shadows. Some t
 
 .. image:: {static}/images/blog/release/0-5/shadows_sample.png
 
-Audio Support through the Audio Plugin  :dim:`(@Dageus, @diogomsmiranda)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Audio Support through the Audio Plugin  :author_dim:`(Dageus, diogomsmiranda)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This release is a significant milestone for the Cubos engine, as it finally introduces Audio functionality!
 
@@ -64,8 +61,8 @@ The new ``audioPlugin`` leverages the previously implemented ``Audio Context`` t
 With the plugin, you can now register listeners, and control audio sources with play, pause, and stop functionality. You can also customize audio playback by modifying the ``AudioSource`` properties for each entity, adjusting settings such as volume, pitch, and looping behavior to tailor the sound to your needs.
 Due to restrictions in our audio backend, you can only have up to **three active listeners** at a time. For practical examples of how to use these new audio components (``AudioPlay``, ``AudioPause``, ``AudioStop``), check out our `Audio Sample <https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp>`_.
 
-Method to save settings to files :dim:`(@SrGesus)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Method to save settings to files :author_dim:`(SrGesus)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``Settings`` resource was missing some way to interact with its corresponding file,
 as it was limited to a startup system that would load the file from a command line
@@ -80,14 +77,14 @@ Now there are two new simple methods - ``save(path, indentation)`` and
     settings.merge(settings.load("/file.json"));
     settings.save("/file_backup.json");
 
-Collision detection between VoxelCollisionShapes :dim:`(@joaomanita)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Collision detection between VoxelCollisionShapes :author_dim:`(joaomanita)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The engine was only able to able to detect collisons between boxes, now we can add a `VoxelCollisionShape <https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html>`_
 to decompose a voxel shape into multiple box collision shapes.
 
-Anti-aliasing using the FXAA technique :dim:`(@kuukitenshi)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Anti-aliasing using the FXAA technique :author_dim:`(kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagged edges in the rendered images. 
 As you can see in the images below, FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.
@@ -98,8 +95,8 @@ As you can see in the images below, FXAA smooths out the visuals without the per
     :before: {static}/images/blog/release/0-5/cars_before.png
     :before-label: FXAA Off
 
-UI text element using MSDF for text rendering :dim:`(@mkuritsu)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+UI text element using MSDF for text rendering :author_dim:`(mkuritsu)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A significant addition to the Cubos engine was the support for text rendering in the UI, which will greatly improve the capabilities 
 for communicating with the player in future games developed with the engine.
@@ -118,8 +115,8 @@ taken from the UI sample available in the engine showcasing the text rendering i
 
 **Note:** Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.
 
-Enable assets to be identified in the code by their file path :dim:`(@GalaxyCrush)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Enable assets to be identified in the code by their file path :author_dim:`(GalaxyCrush)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Assets could only be identified by their UUID, which can be hard to keep track of for human developers.
 Now, they are able to be identified by their path, thus making them easier to handle when developing projects with Cubos.
@@ -135,19 +132,19 @@ instead of:
 
     Asset<Scene> SceneAsset = AnyAsset("uuid");
 
-Option to use Shadow Normal Offset Bias algorithm :dim:`(@GalaxyCrush)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Option to use Shadow Normal Offset Bias algorithm :author_dim:`(GalaxyCrush)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We noticed that the shadows had some `shadow acne <https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#Acne>`_ and/or `peter panning <https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#PeterPanning>`_ artifacts in some samples. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters `ShadowCaster  <https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html>`_.
 
-Resource to easily configure constants in the physics solver :dim:`(@GCeSilva)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Resource to easily configure constants in the physics solver :author_dim:`(GCeSilva)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The physics solver previously included hardcoded constants, which were not easily accessible or modifiable.
 A new resource has been added which allows the user to configure these constants, making it easier to tune and debug, even at runtime.
 
-Contact caching for collision between box shapes :dim:`(@fallenatlas)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Contact caching for collision between box shapes :author_dim:`(fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We added contact caching as a first step towards implementing warm-starting. Contact caching consists of keeping information about collisions that were happening in the previous physics update
 so that in the next update we can trace them back. This information includes identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of 
@@ -156,8 +153,8 @@ collisions between entities, this is currently only supported for box shapes.
 On the Core
 -----------
 
-A Proper CMake Configuration :dim:`(@RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A Proper CMake Configuration :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 While functional, our `CMake <https://cmake.org/>`_ build configuration was incomplete in terms of features and poorly organized.
 As the engine evolved, we recognized the need to install it as a system-wide library for use in other projects.
@@ -172,8 +169,8 @@ To address this, we decided to clean up the CMake configuration, and add install
 One big advantage of this is that we can now also install Quadrados and Tesseratos, the tools we use for making games with Cubos, system-wide, as you would with any other application.
 As of now, Cubos has only been packaged for NixOS, but we haven't contributed it to the Nixpkgs repository yet. We plan to do so in the future, and also to package it for other distributions.
 
-Web Support with Emscripten :dim:`(@RiscadoA, @luishfonseca)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Web Support with Emscripten :author_dim:`(RiscadoA, luishfonseca)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We've had a pull request open since 0.2 for porting Cubos to the web with `Emscripten <https://emscripten.org/>`_, but it was constantly postponed due to some blocking issues being present, and us being focused on other features.
 Now, we finally made the final push to get it working, and now Cubos can be compiled to WebAssembly and ran in the browser!

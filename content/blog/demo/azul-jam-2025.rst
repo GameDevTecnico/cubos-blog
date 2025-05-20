@@ -7,13 +7,10 @@ The "Ondisseia" of Cubos
 :summary: Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.
 :cover: {static}/images/blog/demo/azul-jam-2025/cover.png
 
-.. role:: dim
-    :class: m-text m-dim
-
 The Jam
 =======
 
-Around a month ago, @mcanais, @NunoBaptista, @RiscadoA and @rsubtil joined forces to participate in the `Azul Game Jam <https://www.linkedin.com/company/azulgamejam>`_. 
+Around a month ago, :author:`mcanais`, :author:`NunoBaptista`, :author:`RiscadoA` and :author:`rsubtil` joined forces to participate in the `Azul Game Jam <https://www.linkedin.com/company/azulgamejam>`_. 
 This was the first edition of a Portuguese on-site game jam, where the aim was to join the Portuguese game dev community at the `AI Hub <https://lisboainnovation.com/hubs/aihub/>`_, to make games during 48 hours.
 We were a team of 4 - 3 programmers, 1 artist, and a lot of ideas.
 
@@ -35,8 +32,8 @@ With this game mechanic, we'd hoped to add an interesting twist to the genre of 
 
 .. image:: {static}/images/blog/demo/azul-jam-2025/OndisseiaGameplay.gif
 
-Voxel Art :dim:`(@NunoBaptista)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Voxel Art :author_dim:`(NunoBaptista)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 As an artist, I produce the voxel assets, including the animations, the tiles of the map, and the wave. 
 Currently, we don't have a voxel editor inside Cubos, so we used `MagicaVoxel <https://ephtracy.github.io/>`_ for this purpose. 

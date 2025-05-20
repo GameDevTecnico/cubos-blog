@@ -7,9 +7,6 @@ Release 0.4
 :summary: Rotating rigid bodies, cascading shadow maps, a standalone editor application, better telemetry and much more!
 :cover: {static}/images/blog/release/0-4/cover.png
 
-.. role:: dim
-    :class: m-text m-dim
-
 New 0.4 Features
 ================
 
@@ -18,8 +15,8 @@ This blog post covers the most important changes, but you can check out the full
 On the Editor
 -------------
 
-Project Management and Debugging :dim:`(@RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Project Management and Debugging :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this release, we were finally able to make our editor, **Tesseratos**, a standalone application!
 Previously, the editor was a part of the engine itself, which meant if you made changes to the game's code, you had to recompile the editor as well, and restart it.
@@ -46,8 +43,8 @@ You can see them in action in the video below:
 
     <iframe width="560" height="340" style="display: block; margin: auto" src="https://www.youtube.com/embed/Pu40BjmmW2U" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen></iframe>
 
-Voxel Model Importing Tool :dim:`(@Scarface1809)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Voxel Model Importing Tool :author_dim:`(Scarface1809)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this release, we've added a highly useful plugin to **Tesseratos**: a **Voxel Model Importing Tool**. With this new tool, you can now import `.qb` files directly within the editor, bypassing the need for the external conversion tool **Quadrados**.
 
@@ -64,8 +61,8 @@ With this tool, importing voxel models into your projects is now faster and easi
 On the Engine
 -------------
 
-Physics with Rotation :dim:`(@fallenatlas)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Physics with Rotation :author_dim:`(fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We have **rotation**!
 
@@ -193,8 +190,8 @@ Our implementation is still far from perfect. As you might have seen in the samp
 
 To wrap up, as we promised in the previous release blog post, we've added the ``PhysicsMaterial`` component, which allows users to fine tune the friction and bounciness behaviour of each body. Check it out in our documentation!
 
-Cascading Shadow Maps :dim:`(@tomas7770)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cascading Shadow Maps :author_dim:`(tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the previous release, we introduced **shadows**.
 As shown in the release blog post, this had a significant impact on the quality of Cubos' graphics.
@@ -261,8 +258,8 @@ Below are screenshots of the directional shadow map used to draw shadows in *Scr
 
         .. image:: {static}/images/blog/release/0-4/cascaded_shadow_map_3.png
 
-Input Axis Deadzones :dim:`(@kuukitenshi)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input Axis Deadzones :author_dim:`(kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously, dealing with input sources that exhibited drift, like older gamepad joysticks, required developers to manually filter out noise from input data. 
 
@@ -270,8 +267,8 @@ In this release, input deadzones can now be configured directly within the bindi
 
 This enhancement significantly simplifies input handling and ensures a smoother and more reliable gameplay experience, especially for games that heavily rely on precise controller input.
 
-Ortographic Cameras :dim:`(@mkuritsu)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ortographic Cameras :author_dim:`(mkuritsu)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously we only had support for perspective cameras in Cubos, and additionally, perspective matrix computations were duplicated all over the code.
 To address this, we've added a new generic ``Camera`` component that holds the projection matrix of the current camera in use.
@@ -282,8 +279,8 @@ With this, we decoupled the camera type from the rest of code, allowing us to ad
 On the Core
 -----------
 
-Spans for Profiling and Tracing :dim:`(@roby2014)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Spans for Profiling and Tracing :author_dim:`(roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing. 
 This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with **Cubos**.
@@ -340,8 +337,8 @@ Looking ahead, we aim to develop a **Tesseratos** plugin that will allow develop
 
 This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.
 
-Swapping OpenAL for Miniaudio :dim:`(@diogomsmiranda, @Dageus)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Swapping OpenAL for Miniaudio :author_dim:`(diogomsmiranda, Dageus)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This release marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
 But before we could start working on the plugin itself, we had to make some changes to the audio backend.
@@ -350,8 +347,8 @@ We implemented a new ``AudioContext`` abstraction on the core library, which hid
 
 In the next release of **Cubos**, we're planning to have a fully functional audio plugin, which will allow you to play sounds and music in your games!
 
-Type Client and Type Server :dim:`(@RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Type Client and Type Server :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To separate **Tesseratos** from the engine into a separate process, we needed a way to share type data across different processes.
 This is because the editor needs to know about the project's data types, such as its components and resources, to be able to do work with them, such as showing them in the editor's UI, or editing scene assets.
@@ -381,8 +378,8 @@ This trait contains a function which determines if a value is null or not, and a
 How can we pass a function through a stream? We can't. One thing we could do would be to communicate again with the server whenever the client needs to know whether a value is null or not.
 For now, we've decided to simply ignore these traits, but we'll eventually need to tackle this issue, as it would allow for better UX in the editor.
 
-Stacktraces on Crashes :dim:`(@RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Stacktraces on Crashes :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously, when the engine crashed, it would simply print an error message to the console, and that was it.
 We would not get a lot of information about the crash's context, other than the previous log messages.

@@ -7,10 +7,7 @@ Coffee N' Jam 2024
 :summary: We made a game in a week with Cubos, and managed to win two awards!
 :cover: {static}/images/blog/demo/coffee-n-jam-2024/cover.png
 
-.. role:: dim
-    :class: m-text m-dim
-
-From 26th of April to 3rd of May, @RiscadoA and @joaomanita participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, **Cubos**.
+From 26th of April to 3rd of May, :author:`RiscadoA` and :author:`joaomanita` participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, **Cubos**.
 The goal was to create a game in a week, with the theme "Apocalypse" - and we had a blast!
 
 The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.

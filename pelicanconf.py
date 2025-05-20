@@ -16,7 +16,7 @@ DEFAULT_LANG = 'en'
 PATH = 'content'
 
 ARTICLE_PATHS = ['blog']
-PAGE_PATHS = ['']
+PAGE_PATHS = ['index.rst']
 
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
@@ -58,7 +58,7 @@ M_LINKS_FOOTER3 = [('Contact Us', 'mailto:team@cubosengine.org'),
                    ('E-mail', 'mailto:team@cubosengine.org'),
                    ('itch.io', 'https://cubos-engine.itch.io/')]
 
-M_SHOW_AUTHOR_LIST = True
+M_SHOW_AUTHOR_LIST = False
 
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -82,9 +82,37 @@ M_FAVICON = ('images/favicon.png', 'image/png')
 M_SITE_LOGO = 'images/favicon.png'
 M_SITE_LOGO_TEXT = 'Cubos'
 
-PLUGIN_PATHS = ['m.css/plugins']
-PLUGINS = ['m.htmlsanity', 'm.code', 'm.images', 'm.math', 'm.components', 'm.metadata']
+PLUGIN_PATHS = ['m.css/plugins', 'plugins']
+PLUGINS = ['m.htmlsanity', 'm.code', 'm.images', 'm.math', 'm.components', 'm.metadata', 'author']
 
 FORMATTED_FIELDS = ['summary', 'landing', 'more_content', 'description', 'badge']
 
 M_NEWS_ON_INDEX = ("Latest news", "More news", 3)
+
+AUTHOR_ALIASES = {
+    "riscadoa": "Ricardo Antunes",
+    "fallenatlas": "Tiago Antunes",
+    "tomas7770": "Tomás Gouveia",
+    "fkatar": "Francisco Catarino",
+    "pedrosimoes24": "Pedro Simões",
+    "joaomanita": "João Manita",
+    "nunobaptista": "Nuno Baptista",
+    "mcanais": "Miguel Canais",
+    "rsubtil": "Ricardo Súbtil",
+    "dacops": "David Pires",
+    "diogomsmiranda": "Diogo Miranda",
+    "srgesus": "Gabriel Ferreira",
+    "gcesilva": "Gonçalo Silva",
+    "jdbaracho": "João Baracho",
+    "dageus": "João Nogueira",
+    "scarface1809": "João Santos",
+    "kuukitenshi": "Laura Cunha",
+    "luishfonseca": "Luís Fonseca",
+    "roby2014": "Roberto Carlos",
+    "mkuritsu": "Rodrigo Correia",
+    "teres4": "Teresa Matos",
+    "jiali-qiu": "Jiali Qiu",
+    "rcamacho": "Rodrigo Camacho",
+    "galaxycrush": "João Pereira",
+    "diogomendonc-a": "Diogo Mendonça"
+}

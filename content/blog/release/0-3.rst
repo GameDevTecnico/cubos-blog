@@ -7,9 +7,6 @@ Release 0.3
 :summary: Raycasting, shadows, profiling tools, networking utilities, and more!
 :cover: {static}/images/blog/release/0-3/cover.png
 
-.. role:: dim
-    :class: m-text m-dim
-
 This blog post came a bit late due to the summer break, but we're back with a new release!
 Features-wise, this release was a tad smaller than the previous one as we spent a lot of time working on non-code related stuff, such as rebranding and marketing the project.
 
@@ -21,8 +18,8 @@ This blog post covers the most important changes, but you can check out the full
 On the Editor
 -------------
 
-Groundwork for a Standalone Editor :dim:`(@RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Groundwork for a Standalone Editor :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The original main goal for this version was to get a first prototype of our standalone editor working.
 Sadly, we didn't manage to get it done in time, as it was a bigger task than we anticipated.
@@ -45,8 +42,8 @@ It will allows us to have a stable editor, whose performance is not affected (th
 On the Engine
 -------------
 
-A New Physics Solver :dim:`(@fallenatlas)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A New Physics Solver :author_dim:`(fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Upon discovering some potential issues with regards to NVidia's patent of XPBD, some problems with how XPBD handled friction, and stability,
 we decided that this would be the ideal moment to switch to another solver. 
@@ -60,8 +57,8 @@ Additionally, we added Friction and Bounciness. For now, these are a predefined 
 
 .. image:: {static}/images/blog/release/0-3/complex_physics_sample_tgs_soft.gif
 
-Raycasting :dim:`(@diogomsmiranda)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Raycasting :author_dim:`(diogomsmiranda)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Raycasting is a commonly used tool in game development which Cubos was lacking until now - it is a technique used to determine the intersection of a ray with an object in a scene.
 This allows for a wide range of applications, such as shooting mechanics, object selection, and more.
@@ -201,8 +198,8 @@ Code excerpt from raycast.cpp for the cylinder intersection:
         return t;
     };
 
-Spot Light Shadows :dim:`(@tomas7770)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Spot Light Shadows :author_dim:`(tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Our graphics renderer has received a new major feature in this release: shadows!
 
@@ -226,8 +223,8 @@ the areas of the atlas reserved for each light.
 
 .. image:: {static}/images/blog/release/0-3/shadow_atlas.png
 
-Initial UI Plugin :dim:`(@DiogoMendonc-a)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Initial UI Plugin :author_dim:`(DiogoMendonc-a)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cubos now has a UI system!
 
@@ -243,8 +240,8 @@ Finally, there is a `UINativeAspectRatio <https://docs.cubosengine.org/structcub
 On the Core
 -----------
 
-Metrics :dim:`(@roby2014)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Metrics :author_dim:`(roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We are excited to introduce the new metrics and profiling utilities! 
 This started becoming a priority since we detected lots of performance issues in the last Game Jam we participated.
@@ -279,8 +276,8 @@ integrate these metrics into our editor for a more streamlined experience.
 
 Learn more about it on our `metrics documentation <https://docs.cubosengine.org/examples-core-metrics.html>`_.
 
-Networking Utilities :dim:`(@roby2014)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Networking Utilities :author_dim:`(roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the 0.3 release, Cubos finally has networking! This is a big step forward for our engine, bringing 
 powerful networking utilities such as `Address <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html>`_, 

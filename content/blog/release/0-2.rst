@@ -7,9 +7,6 @@ Release 0.2
 :summary: From ECS observers and fixed-time step support to better editing tools, a new modular rendering pipeline, and the first physics constraints solvers.
 :cover: {static}/images/blog/release/0-2/cover.png
 
-.. role:: dim
-    :class: m-text m-dim
-
 New 0.2 Features
 ================
 
@@ -19,8 +16,8 @@ We've compiled here some of the most important changes (if you're curious, you c
 On the Editor
 -------------
 
-Transform Gizmo Upgrades :dim:`(@DiogoMendonc-a)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Transform Gizmo Upgrades :author_dim:`(DiogoMendonc-a)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!
 
@@ -32,8 +29,8 @@ This should hopefully make it easier to use the tool when moving entities either
 
 .. image:: {static}/images/blog/release/0-2/transform_gizmo.gif
 
-World Inspector Overhaul :dim:`(@diogomsmiranda)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+World Inspector Overhaul :author_dim:`(diogomsmiranda)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The World inspector has been on our radar for quite some time now, as a tool that could be improved.
 This release we particularly aimed on making it better by focusing on:
@@ -51,8 +48,8 @@ To tackle the second point on our list we added an hierarchy view that shows the
 
 .. image:: {static}/images/blog/release/0-2/world_inspector.gif
 
-Sub-scene importing in scene editor :dim:`(@teres4)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Sub-scene importing in scene editor :author_dim:`(teres4)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
@@ -63,8 +60,8 @@ To save time, we've added a popup that shows all the importable sub-scenes, and 
 On the Engine
 -------------
 
-Physics Improvements :dim:`(@fallenatlas)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Physics Improvements :author_dim:`(fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This update we introduced the ``Solver``, which works to satisfy the physics constraints applied to entities (e.g. Spring, Fixed distance between entities, etc.).
 
@@ -78,8 +75,8 @@ These changes should lead to more realistic behavior, as well as better consiste
 
 .. image:: {static}/images/blog/release/0-2/complex_physics_sample.gif
 
-Modular Renderer :dim:`(@RiscadoA, @tomas7770)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Modular Renderer :author_dim:`(RiscadoA, tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before this update, our graphics renderer was very monolithic, with a lot of the code being held in a single file. This posed some problems,
 namely that if we wanted to implement new rendering methods in the future (e.g. raytracing), we would end up with tons of duplicate code.
@@ -104,8 +101,8 @@ One side-effect of us changing the color-space is that now the colors in the gam
 On the Core
 -----------
 
-Clearer Plugin Dependencies :dim:`(@RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Clearer Plugin Dependencies :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 One of the main features of **Cubos** is its plugin system. We structure all of the engine and editor features as plugins, each with its own set of components, systems, and resources.
 The developer ultimately chooses which plugins to include in their game, and may also create their own plugins.
@@ -140,8 +137,8 @@ One issue with this solution is that you would now have to manually include all 
 Of course, this is not ideal, and thus, we've added a new `defaults plugin <https://gamedevtecnico.github.io/cubos/docs/group__defaults-plugin.html>`_ to the engine that includes all the plugins that are necessary for a basic game to run.
 If the developer wants to configure the engine in a different way, they can simply write their own alternative defaults plugin.
 
-Observers :dim:`(@RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Observers :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Very often while working with **Cubos**, we find the need to react to the addition and removal of components in entities.
 One use case, for example, is setting up the AABB of an entity when we add a collider to it.
@@ -154,8 +151,8 @@ With observers, we instead now add a single component ``PhysicsBundle``. An obse
 
 If you're interested in learning more about this feature and ECS in general on our engine, check out our `ECS feature guide <https://gamedevtecnico.github.io/cubos/docs/features-ecs.html>`_.
 
-Introducing Inheritance in Reflection :dim:`(@roby2014)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Introducing Inheritance in Reflection :author_dim:`(roby2014)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Cubos** has a powerful `reflection system <https://gamedevtecnico.github.io/cubos/docs/group__core-reflection.html>`_ to examine and interact with a structures and types at runtime
 It works by attaching metadata to types, which we call *traits*. These traits can be queried at runtime to get information about the type.
@@ -166,8 +163,8 @@ We've added a new trait, ``InheritsTrait``, which allows you to specify that a t
 
 This will be particularly useful for serialization, as right now we have to manually add the fields of the base class to the derived class. Now, serializers can check if this trait is present and fallback to the base class if necessary.
 
-Repeating Systems and Fixed-Step Updates :dim:`(@joaomanita)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Repeating Systems and Fixed-Step Updates :author_dim:`(joaomanita)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Certain plugins, like the physics plugin, required some of their systems to run multiple times per frame so that they could make more accurate
 aproximations. In addition, some of them need to be executed in ordered groups. For example:
@@ -196,8 +193,8 @@ This way the subgroup's systems will repeat a total of n x m times, where n is t
 With this implemented, it was easy to implement the fixed-step plugin on the engine side. It simply adds a tag that makes systems repeat as needed according to
 the ``DeltaTime`` passed, avoiding variance due to different frame rates and more/less powerful PCs.
 
-Moving Away from the Old Serialization :dim:`(@Dacops)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Moving Away from the Old Serialization :author_dim:`(Dacops)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Serialization <https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html>`_ is a crucial part of the game engine that allows for the saving of any Cubos game components as well as then loading them in.
 Previously, serialization was done through a series of functions, both for reading and writing, that could be overloaded for each type.

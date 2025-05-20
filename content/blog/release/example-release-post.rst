@@ -7,9 +7,6 @@
 :summary: Cubos 0.X Release!
 :cover: {static}/images/blog/meta/first-post/cover.png
 
-.. role:: dim
-    :class: m-text m-dim
-
 New 0.X Features
 ================
 
@@ -18,16 +15,16 @@ This blog post covers the most important changes, but you can check out the full
 On the Editor
 -------------
 
-Editor Feature 1 :dim:`(@Author1)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Editor Feature 1 :author_dim:`(Author1)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 TODO: explain feature and why it is useful
 
 On the Engine
 -------------
 
-Engine Feature 1 :dim:`(@Author2)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Engine Feature 1 :author_dim:`(Author2)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 TODO: explain feature and why it is useful
 
@@ -39,8 +36,8 @@ TODO: more explaining
 On the Core
 -----------
 
-Core Feature 1 :dim:`(@Author3)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Core Feature 1 :author_dim:`(Author3)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 TODO: explain feature and why it is useful
 

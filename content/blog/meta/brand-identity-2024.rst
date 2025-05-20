@@ -8,9 +8,6 @@ A New Brand Identity
 :author: Nuno Baptista
 :cover: {static}/images/blog/meta/brand-identity-2024/cover.png
 
-.. role:: dim
-    :class: m-text m-dim
-
 Cubos had grown out of its cocoon and needed new wings to fly out of its embryonic phase.
 The new visual identity aimed at providing a more cohesive and professional look to an increasingly defined and completed game engine.
 A new logo was designed, alongside a set of visual rules and principals that form Cubos new identity.
