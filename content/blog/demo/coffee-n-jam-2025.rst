@@ -7,13 +7,10 @@ Roll Racers
 :summary: We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!
 :cover: {static}/images/blog/demo/coffee-n-jam-2025/cover.png
 
-.. role:: dim
-    :class: m-text m-dim
-
 The Theme
 =========
 
-From 2nd of May to the 10th of May, @fallenatlas, @tomas7770, @fkatar, @PedroSimoes24, @RiscadoA, @joaomanita and @mcanais participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, **Cubos**.
+From 2nd of May to the 10th of May, :author:`fallenatlas`, :author:`tomas7770`, :author:`fkatar`, :author:`PedroSimoes24`, :author:`RiscadoA`, :author:`joaomanita` and :author:`mcanais` participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, **Cubos**.
 The goal was to create a game in a week, this time with theme "Blackout" - the huge power outage in the Iberian Peninsula had happened the prior week, and just like during the Covid lockdown, people rushed to the supermarkets to buy toilet paper.
 
 We thought it would be funny to make a game about racing to the supermarket to buy toilet paper - and that's what we ended up doing.
@@ -40,13 +37,13 @@ Voxel Modeling
 
 One major problem we had was that we didn't have any artists in the team, only programmers.
 We ended up going full programmer art mode, and we used, as usual, `MagicaVoxel <https://ephtracy.github.io/>`_ for this purpose.
-@PedroSimoes24 focused on making the buildings and the road models, @RiscadoA focused on the cars and some tiles and @mcanais made a few props.
+:author:`PedroSimoes24` focused on making the buildings and the road models, :author:`RiscadoA` focused on the cars and some tiles and :author:`mcanais` made a few props.
 
 Map Generation
 ==============
 
 To make our jobs easier, the map is divided into tiles. Each tile is 68x68 voxels wide. Tiles can be road tiles, building tiles or park tiles.
-@RiscadoA and @mcanais worked on the map generation, which is done procedurally. First, road tiles are placed in a river-like fashion, and then, building tiles are placed around them.
+:author:`RiscadoA` and :author:`mcanais` worked on the map generation, which is done procedurally. First, road tiles are placed in a river-like fashion, and then, building tiles are placed around them.
 
 To make the map prettier we also added some park tiles with trees and bushes, which are randomly placed adjacent to the road tiles.
 For an extra challenge, we added a 'river' tile where the road has a big hole in the middle, and the players have to jump over it by going fast enough on the ramps.
@@ -81,7 +78,7 @@ Physics
 UI
 ===
 
-This game was also the first time UI was used on a demo. @tomas7770 picked up this task, and made multiple menus and screens for the game.
+This game was also the first time UI was used on a demo. :author:`tomas7770` picked up this task, and made multiple menus and screens for the game.
 We wanted to briefly explain the game mechanics to the players, so we added a title screen with some information.
 
 .. figure:: {static}/images/blog/demo/coffee-n-jam-2025/title-screen.png
@@ -121,7 +118,7 @@ The UI ended up working well during the jam. There were only three issues:
 Audio
 =====
 
-On the last day of the jam @RiscadoA decided to focus on adding audio to the game.
+On the last day of the jam :author:`RiscadoA` decided to focus on adding audio to the game.
 Previously, when making `Ondisseia <{filename}./azul-jam-2025.rst>`_, we had a lot of trouble with adding sound effects.
 They didn't play reliably and the audio system was a bit of a mess.
 
@@ -146,7 +143,7 @@ At the end of the jam, the game's performance was very bad.
 A bit of profiling quickly showed that a lot of time was being spent iterating over tens of thousands of relation tables - the ones introduced in the `relations development note <{filename}/blog/dev-notes/hello-relations.rst>`_.
 This was a waste of time, as only less than 15 actually contained entities.
 
-@RiscadoA quickly fixed this by adding logic to clean up unused relation tables every frame.
+:author:`RiscadoA` quickly fixed this by adding logic to clean up unused relation tables every frame.
 This immediately improved performance by a lot - on one machine, the framerate went from 40FPS to stable 240FPS.
 In the future, this logic should probably be improved to only clean up the tables when they're not used for a while, to avoid wasting time recreating tables constantly.
 
