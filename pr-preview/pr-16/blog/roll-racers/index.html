@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <title>Roll Racers | Cubos Blog</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&amp;family=Roboto:wght@400&amp;display=swap" />
+  <link rel="stylesheet" href="https://cubosengine.org/static/m-dark.compiled.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+  <link rel="icon" href="https://cubosengine.org/images/favicon.png" type="image/png" />
+  <link rel="canonical" href="https://cubosengine.org/blog/roll-racers/" />
+  <link href="https://cubosengine.org/feeds/demo.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine | Demo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+  <meta property="og:site_name" content="Cubos Blog" />
+  <meta property="og:title" content="Roll Racers" />
+  <meta name="twitter:title" content="Roll Racers" />
+  <meta property="og:url" content="https://cubosengine.org/blog/roll-racers/" />
+  <meta property="og:description" content="We once again made a game in a week for the Coffee N&#39; Jam with Cubos, and this time, with a lot of physics!" />
+  <meta name="twitter:description" content="We once again made a game in a week for the Coffee N&#39; Jam with Cubos, and this time, with a lot of physics!" />
+  <meta property="og:image" content="../../images/blog/demo/coffee-n-jam-2025/cover.png" />
+  <meta name="twitter:image" content="../../images/blog/demo/coffee-n-jam-2025/cover.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:type" content="article" />
+</head>
+<body>
+<header><nav id="navigation" class="m-navbar-cover">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="../../" id="m-navbar-brand" class="m-col-t-9 m-col-m-none m-left-m"><img src="https://cubosengine.org/images/favicon.png" alt="" />Cubos</a>
+      <a id="m-navbar-show" href="#navigation" title="Show navigation" class="m-col-t-3 m-hide-m m-text-right"></a>
+      <a id="m-navbar-hide" href="#" title="Hide navigation" class="m-col-t-3 m-hide-m m-text-right"></a>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li><a href="https://docs.cubosengine.org">Docs</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="2">
+            <li><a href="https://cubosengine.org/blog" id="m-navbar-current">Blog</a></li>
+            <li><a href="https://github.com/GameDevTecnico/cubos">GitHub</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main>
+  <article id="m-jumbo">
+    <header>
+      <div id="m-jumbo-image" style="background-image: url('../../images/blog/demo/coffee-n-jam-2025/cover.png');">
+        <div id="m-jumbo-cover">
+          <div class="m-container">
+            <div class="m-row">
+              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-left">Tue 20 May 2025</div>
+              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-right"><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></div>
+            </div>
+            <div class="m-row">
+              <div class="m-col-t-12 m-col-s-10 m-push-s-1 m-col-m-8 m-push-m-2">
+                <h1><a href="https://cubosengine.org/blog/roll-racers/" rel="bookmark" title="Permalink to Roll Racers">Roll Racers</a></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="m-container">
+        <div class="m-row">
+          <div class="m-col-m-10 m-push-m-1 m-nopady">
+            <p>We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="m-container m-container-inflatable">
+      <div class="m-row">
+        <div class="m-col-m-10 m-push-m-1 m-nopady">
+<!-- content -->
+<section id="the-theme">
+<h2>The Theme</h2>
+<p>From 2nd of May to the 10th of May, &#64;fallenatlas, &#64;tomas7770, &#64;fkatar, &#64;PedroSimoes24, &#64;RiscadoA, &#64;joaomanita and &#64;mcanais participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, <strong>Cubos</strong>.
+The goal was to create a game in a week, this time with theme &quot;Blackout&quot; - the huge power outage in the Iberian Peninsula had happened the prior week, and just like during the Covid lockdown, people rushed to the supermarkets to buy toilet paper.</p>
+<p>We thought it would be funny to make a game about racing to the supermarket to buy toilet paper - and that's what we ended up doing.
+Our priorities were to test new features of the engine, and to make a fun local multiplayer game.
+This idea was a great opportunity to fully use the physics and collision plugins in a game for the first time.</p>
+<p>The game is called <em>Roll Racers</em>, and you can play it on its <a href="https://riscadoa.itch.io/roll-racers">itch.io page</a>.
+It has a web build and a downloadable version for both Windows and Linux.
+You can also check out its source code in our <a href="https://github.com/GameDevTecnico/cubos-demo">demo repository</a>.</p>
+<figure class="m-figure">
+<img src="../../images/blog/demo/coffee-n-jam-2025/cover.png" />
+<figcaption>The game supports up to 4 players, each having a different car model.</figcaption>
+</figure>
+<figure class="m-figure">
+<img src="../../images/blog/demo/coffee-n-jam-2025/image1.png" />
+<figcaption>A player holding toilet paper, racing back to the start line to score points.</figcaption>
+</figure>
+<p>We had a lot of fun making the game, and we fixed a ton of bugs and missing features in the engine as we went along.
+Since the jam was a week long, we had some more time to work on the game than in the <a href="../../blog/the-ondisseia-of-cubos/">previous jam</a>.</p>
+</section>
+<section id="voxel-modeling">
+<h2>Voxel Modeling</h2>
+<p>One major problem we had was that we didn't have any artists in the team, only programmers.
+We ended up going full programmer art mode, and we used, as usual, <a href="https://ephtracy.github.io/">MagicaVoxel</a> for this purpose.
+&#64;PedroSimoes24 focused on making the buildings and the road models, &#64;RiscadoA focused on the cars and some tiles and &#64;mcanais made a few props.</p>
+</section>
+<section id="map-generation">
+<h2>Map Generation</h2>
+<p>To make our jobs easier, the map is divided into tiles. Each tile is 68x68 voxels wide. Tiles can be road tiles, building tiles or park tiles.
+&#64;RiscadoA and &#64;mcanais worked on the map generation, which is done procedurally. First, road tiles are placed in a river-like fashion, and then, building tiles are placed around them.</p>
+<p>To make the map prettier we also added some park tiles with trees and bushes, which are randomly placed adjacent to the road tiles.
+For an extra challenge, we added a 'river' tile where the road has a big hole in the middle, and the players have to jump over it by going fast enough on the ramps.</p>
+<p>We also have special start and end tiles, the end tile being the supermarket, where the toilet paper is placed.
+The map regenerates every time a round ends, i.e., when a player brings the toilet paper back to the start line.</p>
+<figure class="m-figure">
+<img alt="Supermarket" src="../../images/blog/demo/coffee-n-jam-2025/supermarket.png" />
+<figcaption>Supermarket tile, where the toilet paper can be picked up.</figcaption>
+</figure>
+</section>
+<section id="physics">
+<h2>Physics</h2>
+<p><strong>TODO</strong>: cover these topics</p>
+<ul>
+<li>Voxel collision shapes were used extensively.</li>
+<li>Physics solving bugs were fixed.</li>
+<li>Tried using distance constraint for the toilet paper but ended up dropping it.</li>
+<li>Wheels using raycasts.</li>
+<li>Ramp performance bug?</li>
+</ul>
+<figure class="m-figure">
+<img src="../../images/blog/demo/coffee-n-jam-2025/image2.png" />
+<figcaption>A player can steal another player's toilet paper by hitting them with their car.</figcaption>
+</figure>
+<figure class="m-figure">
+<img src="../../images/blog/demo/coffee-n-jam-2025/going-over-sidewalk.png" />
+<figcaption>Since each wheel is simulated independently, the cars tilts when going over the sidewalk.</figcaption>
+</figure>
+</section>
+<section id="ui">
+<h2>UI</h2>
+<p>This game was also the first time UI was used on a demo. &#64;tomas7770 picked up this task, and made multiple menus and screens for the game.
+We wanted to briefly explain the game mechanics to the players, so we added a title screen with some information.</p>
+<figure class="m-figure">
+<img alt="Title screen" src="../../images/blog/demo/coffee-n-jam-2025/title-screen.png" />
+<figcaption>The &quot;Press Space/A ...&quot; text color is animated, fading in and out.</figcaption>
+</figure>
+<p>Additionally, the players can choose how many players will play the game by pressing the spacebar or the &quot;A&quot; on the gamepad for each of them.
+Instructions were added to the top of the screen.</p>
+<figure class="m-figure">
+<img alt="Start screen" src="../../images/blog/demo/coffee-n-jam-2025/start.png" />
+<figcaption>After advancing, the players must choose the number of players.</figcaption>
+</figure>
+<p>In game, it was important to show the players their score and how it changed over time, to make the game more competitive.
+We decided to add a score indicator to the top of the screen, which shows the score of each player.</p>
+<figure class="m-figure">
+<img alt="Score indicators" src="../../images/blog/demo/coffee-n-jam-2025/mid-game.png" />
+<figcaption>Points are gained by holding the toilet paper.</figcaption>
+</figure>
+<p>Finally, at the end of the game, we wanted to reward the players with a scoreboard, showing the score of each player.</p>
+<figure class="m-figure">
+<img alt="Scoreboard" src="../../images/blog/demo/coffee-n-jam-2025/scoreboard.png" />
+<figcaption>The text color helps associate the players with their scores.</figcaption>
+</figure>
+<p>The UI ended up working well during the jam. There were only three issues:</p>
+<ul>
+<li>Our UI and ImGui were not compatible - this was easily fixed by ensuring they were drawn in the correct order.</li>
+<li>There is no support for text wrapping or newlines, so we had to create a different text element for each line.</li>
+<li>The text contents only updated when its respective component was reinserted - simply modifying it wasn't enough. We're still unsure on how to handle these scenarios, but the most likely solution is to make the component unmodifiable and thus force the user to reinsert it.</li>
+</ul>
+</section>
+<section id="audio">
+<h2>Audio</h2>
+<p>On the last day of the jam &#64;RiscadoA decided to focus on adding audio to the game.
+Previously, when making <a href="../../blog/the-ondisseia-of-cubos/">Ondisseia</a>, we had a lot of trouble with adding sound effects.
+They didn't play reliably and the audio system was a bit of a mess.</p>
+<p>To use audio in <em>Roll Racers</em>, we ended up fixing all of the problems we previously had, which means that we can now rely on it for future projects.
+We added a few sound effects to the game, such as:</p>
+<ul>
+<li>Car engine sound, which changes pitch and gain based on RPM and gear.</li>
+<li>Pickup sound when picking up toilet paper.</li>
+<li>Steal sound when stealing toilet paper from other players.</li>
+<li>Fireworks sound when winning the game.</li>
+<li>Power cut sound when the race starts.</li>
+<li>Honking sound when honking the horn.</li>
+</ul>
+<p>While the audio still sounded a bit janky, it was very satisfying to hear sound being used so extensively in a Cubos game for the first time.</p>
+<p><strong>TODO</strong>: add a video here</p>
+</section>
+<section id="ecs-troubles">
+<h2>ECS Troubles</h2>
+<p>At the end of the jam, the game's performance was very bad.
+A bit of profiling quickly showed that a lot of time was being spent iterating over tens of thousands of relation tables - the ones introduced in the <a href="../../blog/hello-relations/">relations development note</a>.
+This was a waste of time, as only less than 15 actually contained entities.</p>
+<p>&#64;RiscadoA quickly fixed this by adding logic to clean up unused relation tables every frame.
+This immediately improved performance by a lot - on one machine, the framerate went from 40FPS to stable 240FPS.
+In the future, this logic should probably be improved to only clean up the tables when they're not used for a while, to avoid wasting time recreating tables constantly.</p>
+</section>
+<section id="whats-next">
+<h2>Whats Next?</h2>
+<p>We are very happy with the results of this jam - this demo is and will continue to be a great testbed for the engine, as it really pushes it to its limits.
+After the jam ended, we met to discuss what went wrong and what issues we should prioritize fixing.
+One of the biggest problems continues to be the lack of proper tooling for the engine - this will be the focus for the next few months.</p>
+</section>
+<!-- /content -->
+        </div>
+      </div>
+    </div>
+    <footer class="m-container">
+      <div class="m-row">
+        <div class="m-col-m-10 m-push-m-1 m-nopadb">
+          <p>Posted by <a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a> on <time datetime="2025-05-20T09:00:00+01:00">Tue 20 May 2025</time> in <a href="https://cubosengine.org/blog/demo/">Demo</a>. Tags: <a href="https://cubosengine.org/blog/tag/demo/">Demo</a>, <a href="https://cubosengine.org/blog/tag/game-jam/">Game Jam</a>, <a href="https://cubosengine.org/blog/tag/coffee-n-jam/">Coffee N&#39; Jam</a>.</p>
+        </div>
+      </div>
+    </footer>
+  </article>
+  <nav class="m-navpanel m-container">
+    <div class="m-row">
+      <div class="m-col-s-6 m-col-m-3 m-col-l-2 m-push-l-1">
+        <h3>Categories</h3>
+        <ol class="m-block-bar-s">
+          <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
+          <li><a href="https://cubosengine.org/blog/dev-notes/">Dev Notes</a></li>
+          <li><a href="https://cubosengine.org/blog/meta/">Meta</a></li>
+          <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
+        </ol>
+      </div>
+      <div class="m-col-s-6 m-col-m-3 m-push-m-6 m-col-l-2 m-push-l-7">
+        <h3>Authors</h3>
+        <ol class="m-block-bar-s">
+          <li><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></li>
+          <li><a href="https://cubosengine.org/blog/author/nuno-baptista/">Nuno Baptista</a></li>
+          <li><a href="https://cubosengine.org/blog/author/ricardo-antunes/">Ricardo Antunes</a></li>
+        </ol>
+      </div>
+      <div class="m-col-s-12 m-col-m-6 m-col-l-4 m-pull-m-3 m-pull-l-0">
+        <h3>Tag cloud</h3>
+        <ul class="m-tagcloud">
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/azul-game-jam/">Azul Game Jam</a></li>
+          <li class="m-tag-2"><a href="https://cubosengine.org/blog/tag/coffee-n-jam/">Coffee N&#39; Jam</a></li>
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/core/">Core</a></li>
+          <li class="m-tag-3"><a href="https://cubosengine.org/blog/tag/demo/">Demo</a></li>
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/design/">Design</a></li>
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/ecs/">ECS</a></li>
+          <li class="m-tag-3"><a href="https://cubosengine.org/blog/tag/game-jam/">Game Jam</a></li>
+          <li class="m-tag-5"><a href="https://cubosengine.org/blog/tag/release/">Release</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</main>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="https://cubosengine.org/">Cubos</a></h3>
+        <ul>
+          <li><a href="https://docs.cubosengine.org/getting-started.html">Getting Started</a></li>
+          <li><a href="https://docs.cubosengine.org/features.html">Feature Guide</a></li>
+          <li><a href="https://docs.cubosengine.org/examples.html">Examples</a></li>
+          <li><a href="https://docs.cubosengine.org/contribution.html">Contribution Guidelines</a></li>
+          <li><a href="https://cubosengine.org/images/brand.pdf">Brand Guidelines</a></li>
+        </ul>
+      </div>
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="https://docs.cubosengine.org">Docs</a></h3>
+        <ul>
+          <li><a href="https://docs.cubosengine.org/pages.html">Pages</a></li>
+          <li><a href="https://docs.cubosengine.org/modules.html">Modules</a></li>
+          <li><a href="https://docs.cubosengine.org/annotated.html">Classes</a></li>
+          <li><a href="https://docs.cubosengine.org/files.html">Files</a></li>
+        </ul>
+      </div>
+      <div class="m-clearfix-t"></div>
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="mailto:team@cubosengine.org">Contact Us</a></h3>
+        <ul>
+          <li><a href="https://cubosengine.org/feeds/all.atom.xml">Blog Feed</a></li>
+          <li><a href="https://github.com/GameDevTecnico/cubos">GitHub</a></li>
+          <li><a href="https://discord.gg/WjTtcNTRqD">Discord</a></li>
+          <li><a href="mailto:team@cubosengine.org">E-mail</a></li>
+          <li><a href="https://cubos-engine.itch.io/">itch.io</a></li>
+        </ul>
+      </div>
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="https://cubosengine.org/blog">Blog</a></h3>
+        <ul>
+          <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
+          <li><a href="https://cubosengine.org/blog/dev-notes/">Dev Notes</a></li>
+          <li><a href="https://cubosengine.org/blog/meta/">Meta</a></li>
+          <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>Cubos Engine. Powered by <a href="https://getpelican.com">Pelican</a> and <a href="https://mcss.mosra.cz">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>
