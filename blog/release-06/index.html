@@ -81,7 +81,7 @@
 <section id="on-the-engine">
 <h3>On the Engine</h3>
 <section id="physics-with-warm-starting-fallenatlas">
-<h4>Physics with Warm-Starting <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+<h4>Physics with Warm-Starting <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
 </h4>
 <p>Continuing the work from the previous release, we finished <strong>warm-starting</strong> for our physics simulation. Warm-starting uses the information stored in the contact manifold between two bodies, especially the total impulses applied to each contact point in the previous frame, and applies it before solving begins.
 It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &quot;dirty&quot; solver), resulting in less jitter.
@@ -93,7 +93,7 @@ This is particularly effective for stacks of bodies, where the bodies push again
 <p>Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!</p>
 </section>
 <section id="toggleable-ssao-and-resolution-scale-tomas7770">
-<h4>Toggleable SSAO and Resolution Scale <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
+<h4>Toggleable SSAO and Resolution Scale <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
 </h4>
 <p>Some time ago, we profiled <strong>Cubos</strong>'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
 graphics plugin that took the most frame time. However, due to the way the rendering pipeline was implemented, disabling it to get
@@ -106,7 +106,7 @@ To implement this, we added a <a href="https://docs.cubosengine.org/structcubos_
 which defaults to 0.5, but can be set to any value up to 2.0.</p>
 </section>
 <section id="conditional-shader-compilation-tomas7770">
-<h4>Conditional Shader Compilation <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
+<h4>Conditional Shader Compilation <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
 </h4>
 <p>Another major bottleneck in the graphics renderer is the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html">render picker</a>, which
 allows finding out which entity is visible at a given pixel. As explained in the <strong>Modular Renderer</strong> section of the <a href="https://cubosengine.org/coffeen-jam-and-02.html">0.2 blog post</a>,
@@ -123,7 +123,7 @@ class to prepend <code>#define</code> macros and recompile the shader.</p>
 <section id="on-the-core">
 <h3>On the Core</h3>
 <section id="added-frustum-geometry-and-intersection-utilities-mkuritsu">
-<h4>Added Frustum geometry and intersection utilities <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
+<h4>Added Frustum geometry and intersection utilities <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
 </h4>
 <p>A new geometry object was added, the <strong>frustum</strong>, and additionally, two new intersection functions to check if a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html">box</a> or a <a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html">capsule</a> intersects a frustum.
 This new geometry utility will be useful for <em>frustum culling</em> in a future release, potentially improving graphics performance when rendering large scenes with <strong>Cubos</strong>.</p>

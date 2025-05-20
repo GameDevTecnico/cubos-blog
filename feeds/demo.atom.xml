@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Demo</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/demo.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-05-16T10:00:00+01:00</updated><entry><title>The "Ondisseia" of Cubos</title><link href="https://cubosengine.org/blog/the-ondisseia-of-cubos/" rel="alternate"></link><published>2025-05-16T10:00:00+01:00</published><updated>2025-05-16T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-16:/blog/the-ondisseia-of-cubos/</id><summary type="html">&lt;p&gt;Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.&lt;/p&gt;
 </summary><content type="html">&lt;section id="the-jam"&gt;
 &lt;h2&gt;The Jam&lt;/h2&gt;
-&lt;p&gt;Around a month ago, &lt;a href="/https://cubosengine.orgblog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/ricardo-subtil/"&gt;&amp;#64;rsubtil&lt;/a&gt; joined forces to participate in the &lt;a href="https://www.linkedin.com/company/azulgamejam"&gt;Azul Game Jam&lt;/a&gt;.
+&lt;p&gt;Around a month ago, &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/ricardo-subtil/"&gt;&amp;#64;rsubtil&lt;/a&gt; joined forces to participate in the &lt;a href="https://www.linkedin.com/company/azulgamejam"&gt;Azul Game Jam&lt;/a&gt;.
 This was the first edition of a Portuguese on-site game jam, where the aim was to join the Portuguese game dev community at the &lt;a href="https://lisboainnovation.com/hubs/aihub/"&gt;AI Hub&lt;/a&gt;, to make games during 48 hours.
 We were a team of 4 - 3 programmers, 1 artist, and a lot of ideas.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
@@ -21,7 +21,7 @@ The waves are colossal, sometimes sweeping over the islands on the map.
 With this game mechanic, we'd hoped to add an interesting twist to the genre of Battle Royale.&lt;/p&gt;
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/demo/azul-jam-2025/OndisseiaGameplay.gif" /&gt;
 &lt;section id="voxel-art-nunobaptista"&gt;
-&lt;h4&gt;Voxel Art &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Voxel Art &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;As an artist, I produce the voxel assets, including the animations, the tiles of the map, and the wave.
 Currently, we don't have a voxel editor inside Cubos, so we used &lt;a href="https://ephtracy.github.io/"&gt;MagicaVoxel&lt;/a&gt; for this purpose.
@@ -100,7 +100,7 @@ To solve this issue, we added a function to hide the mobile control when no long
 After the jam, we integrated these changes into the main branch of Cubos, so that all samples can be easily ported to mobile devices.&lt;/p&gt;
 &lt;/section&gt;
 </content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category></entry><entry><title>Coffee N' Jam 2024</title><link href="https://cubosengine.org/blog/coffee-n-jam-2024/" rel="alternate"></link><published>2024-05-21T09:00:00+01:00</published><updated>2024-05-21T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/blog/coffee-n-jam-2024/</id><summary type="html">&lt;p&gt;We made a game in a week with Cubos, and managed to win two awards!&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;From 26th of April to 3rd of May, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
+</summary><content type="html">&lt;p&gt;From 26th of April to 3rd of May, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
 The goal was to create a game in a week, with the theme &amp;quot;Apocalypse&amp;quot; - and we had a blast!&lt;/p&gt;
 &lt;p&gt;The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
 The game is called &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, and you can download it from its &lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;itch.io page&lt;/a&gt;.
