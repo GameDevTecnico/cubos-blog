@@ -9,6 +9,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
   <link rel="icon" href="https://cubosengine.org/images/favicon.png" type="image/png" />
   <link rel="canonical" href="https://cubosengine.org/blog/release-02/" />
+  <link href="https://cubosengine.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine" />
   <link href="https://cubosengine.org/feeds/release.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine | Release" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#22272e" />
@@ -81,7 +82,8 @@ We've compiled here some of the most important changes (if you're curious, you c
 <section id="on-the-editor">
 <h3>On the Editor</h3>
 <section id="transform-gizmo-upgrades-diogomendonc-a">
-<h4>Transform Gizmo Upgrades <span class="m-text m-dim">(&#64;DiogoMendonc-a)</span></h4>
+<h4>Transform Gizmo Upgrades <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/diogo-mendonca/">&#64;DiogoMendonc-a</a>)</span></dt>
+</h4>
 <p>The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!</p>
 <p>We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
 and a new type of gizmo, a <code>Rotated Box</code>, which, unlike the old boz gizmos, does not need to be axis-aligned.</p>
@@ -90,7 +92,8 @@ This should hopefully make it easier to use the tool when moving entities either
 <img class="m-image" src="../../images/blog/release/0-2/transform_gizmo.gif" />
 </section>
 <section id="world-inspector-overhaul-diogomsmiranda">
-<h4>World Inspector Overhaul <span class="m-text m-dim">(&#64;diogomsmiranda)</span></h4>
+<h4>World Inspector Overhaul <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/diogo-miranda/">&#64;diogomsmiranda</a>)</span></dt>
+</h4>
 <p>The World inspector has been on our radar for quite some time now, as a tool that could be improved.
 This release we particularly aimed on making it better by focusing on:</p>
 <ul>
@@ -107,7 +110,8 @@ This release we particularly aimed on making it better by focusing on:</p>
 <img class="m-image" src="../../images/blog/release/0-2/world_inspector.gif" />
 </section>
 <section id="sub-scene-importing-in-scene-editor-teres4">
-<h4>Sub-scene importing in scene editor <span class="m-text m-dim">(&#64;teres4)</span></h4>
+<h4>Sub-scene importing in scene editor <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/teresa-matos/">&#64;teres4</a>)</span></dt>
+</h4>
 <p>Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
 To save time, we've added a popup that shows all the importable sub-scenes, and allows the developer to select the one they want to import.</p>
@@ -117,7 +121,8 @@ To save time, we've added a popup that shows all the importable sub-scenes, and 
 <section id="on-the-engine">
 <h3>On the Engine</h3>
 <section id="physics-improvements-fallenatlas">
-<h4>Physics Improvements <span class="m-text m-dim">(&#64;fallenatlas)</span></h4>
+<h4>Physics Improvements <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+</h4>
 <p>This update we introduced the <code>Solver</code>, which works to satisfy the physics constraints applied to entities (e.g. Spring, Fixed distance between entities, etc.).</p>
 <p>This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
 As of now, we have one constraint, internal to the engine, the <code>PenetrationConstraint</code>, which separates bodies that are inside each other, and comes in to replace our previous collision solving system.</p>
@@ -127,7 +132,8 @@ will perform the physics update in multiple smaller steps. This is important to 
 <img class="m-image" src="../../images/blog/release/0-2/complex_physics_sample.gif" />
 </section>
 <section id="modular-renderer-riscadoa-tomas7770">
-<h4>Modular Renderer <span class="m-text m-dim">(&#64;RiscadoA, &#64;tomas7770)</span></h4>
+<h4>Modular Renderer <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/ricardo-antunes/">&#64;RiscadoA</a>, <a href="/https://cubosengine.orgblog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
+</h4>
 <p>Before this update, our graphics renderer was very monolithic, with a lot of the code being held in a single file. This posed some problems,
 namely that if we wanted to implement new rendering methods in the future (e.g. raytracing), we would end up with tons of duplicate code.
 It also didn't fit well with our ECS design, since things such as the renderer and its active cameras were just global resources.</p>
@@ -148,7 +154,8 @@ One side-effect of us changing the color-space is that now the colors in the gam
 <section id="on-the-core">
 <h3>On the Core</h3>
 <section id="clearer-plugin-dependencies-riscadoa">
-<h4>Clearer Plugin Dependencies <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
+<h4>Clearer Plugin Dependencies <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+</h4>
 <p>One of the main features of <strong>Cubos</strong> is its plugin system. We structure all of the engine and editor features as plugins, each with its own set of components, systems, and resources.
 The developer ultimately chooses which plugins to include in their game, and may also create their own plugins.</p>
 <p>Plugins may depend on each other. One example is the <a href="https://gamedevtecnico.github.io/cubos/docs/group__physics-plugin.html">physics plugin</a>, which depends on the <a href="https://gamedevtecnico.github.io/cubos/docs/group__collisions-plugin.html">collisions plugin</a>.
@@ -175,7 +182,8 @@ Of course, this is not ideal, and thus, we've added a new <a href="https://gamed
 If the developer wants to configure the engine in a different way, they can simply write their own alternative defaults plugin.</p>
 </section>
 <section id="observers-riscadoa">
-<h4>Observers <span class="m-text m-dim">(&#64;RiscadoA)</span></h4>
+<h4>Observers <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+</h4>
 <p>Very often while working with <strong>Cubos</strong>, we find the need to react to the addition and removal of components in entities.
 One use case, for example, is setting up the AABB of an entity when we add a collider to it.
 Previously, we had to manually implement this logic, for example, by adding a flag to the collider which was initially <code>false</code>, and having a system initializing all colliders with the flag set to <code>false</code>.</p>
@@ -185,7 +193,8 @@ With observers, we instead now add a single component <code>PhysicsBundle</code>
 <p>If you're interested in learning more about this feature and ECS in general on our engine, check out our <a href="https://gamedevtecnico.github.io/cubos/docs/features-ecs.html">ECS feature guide</a>.</p>
 </section>
 <section id="introducing-inheritance-in-reflection-roby2014">
-<h4>Introducing Inheritance in Reflection <span class="m-text m-dim">(&#64;roby2014)</span></h4>
+<h4>Introducing Inheritance in Reflection <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/roberto-carlos/">&#64;roby2014</a>)</span></dt>
+</h4>
 <p><strong>Cubos</strong> has a powerful <a href="https://gamedevtecnico.github.io/cubos/docs/group__core-reflection.html">reflection system</a> to examine and interact with a structures and types at runtime
 It works by attaching metadata to types, which we call <em>traits</em>. These traits can be queried at runtime to get information about the type.
 For example, we provide a <code>FieldsTrait</code>, which you can add to a type to expose its fields to the reflection system.</p>
@@ -194,7 +203,8 @@ We've added a new trait, <code>InheritsTrait</code>, which allows you to specify
 <p>This will be particularly useful for serialization, as right now we have to manually add the fields of the base class to the derived class. Now, serializers can check if this trait is present and fallback to the base class if necessary.</p>
 </section>
 <section id="repeating-systems-and-fixed-step-updates-joaomanita">
-<h4>Repeating Systems and Fixed-Step Updates <span class="m-text m-dim">(&#64;joaomanita)</span></h4>
+<h4>Repeating Systems and Fixed-Step Updates <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/joao-manita/">&#64;joaomanita</a>)</span></dt>
+</h4>
 <p>Certain plugins, like the physics plugin, required some of their systems to run multiple times per frame so that they could make more accurate
 aproximations. In addition, some of them need to be executed in ordered groups. For example:</p>
 <ul>
@@ -214,7 +224,8 @@ aproximations. In addition, some of them need to be executed in ordered groups. 
 the <code>DeltaTime</code> passed, avoiding variance due to different frame rates and more/less powerful PCs.</p>
 </section>
 <section id="moving-away-from-the-old-serialization-dacops">
-<h4>Moving Away from the Old Serialization <span class="m-text m-dim">(&#64;Dacops)</span></h4>
+<h4>Moving Away from the Old Serialization <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/david-pires/">&#64;Dacops</a>)</span></dt>
+</h4>
 <p><a href="https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html">Serialization</a> is a crucial part of the game engine that allows for the saving of any Cubos game components as well as then loading them in.
 Previously, serialization was done through a series of functions, both for reading and writing, that could be overloaded for each type.
 On the previous (and first) release, we introduced a reflection system, that allowed for the inspection of types at runtime. This was an essential step to make the inspectors on the editor side work.</p>
@@ -258,7 +269,7 @@ To solve this, we decided to change the serialization system to use the reflecti
   </article>
   <nav class="m-navpanel m-container">
     <div class="m-row">
-      <div class="m-col-s-6 m-col-m-3 m-col-l-2 m-push-l-1">
+      <div class="m-col-s-4 m-col-l-2 m-push-s-2 m-push-l-3">
         <h3>Categories</h3>
         <ol class="m-block-bar-s">
           <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
@@ -267,15 +278,7 @@ To solve this, we decided to change the serialization system to use the reflecti
           <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
         </ol>
       </div>
-      <div class="m-col-s-6 m-col-m-3 m-push-m-6 m-col-l-2 m-push-l-7">
-        <h3>Authors</h3>
-        <ol class="m-block-bar-s">
-          <li><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></li>
-          <li><a href="https://cubosengine.org/blog/author/nuno-baptista/">Nuno Baptista</a></li>
-          <li><a href="https://cubosengine.org/blog/author/ricardo-antunes/">Ricardo Antunes</a></li>
-        </ol>
-      </div>
-      <div class="m-col-s-12 m-col-m-6 m-col-l-4 m-pull-m-3 m-pull-l-0">
+      <div class="m-col-s-4 m-col-l-2 m-push-s-2 m-push-l-5">
         <h3>Tag cloud</h3>
         <ul class="m-tagcloud">
           <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/core/">Core</a></li>

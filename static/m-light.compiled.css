@@ -432,6 +432,9 @@ pre, code {
   color: #5b5b5b;
   background-color: #fbf0ec;
 }
+div.m-code, .m-doc-wrap, .m-doc-wrap-bumper {
+  font-family: 'Source Code Pro', monospace, monospace, monospace;
+}
 pre.m-console, code.m-console {
   color: #5b5b5b;
   background-color: #000000;
