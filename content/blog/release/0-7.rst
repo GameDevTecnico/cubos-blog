@@ -1,0 +1,115 @@
+Release 0.7
+###########
+
+:date: 2025-05-20 00:00:00
+:category: Release
+:summary: TODO
+:cover: {static}/images/blog/meta/first-post/cover.png
+
+New 0.7 Features
+================
+
+This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
+
+On the Engine
+-------------
+
+Overhauled ImGui Inspector with Hook Support :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+- general hook support
+- quaternion decomposition into XYZ euler angles
+- matrix decomposition
+- inline math vector support with new trait
+- mask and enum trait support
+
+Distance Physics Constraint :author_dim:`(joaomanita)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Voxel Mesh Frustum Culling :author_dim:`(mkuritsu)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Physics Interface Refactoring (?) :author_dim:`(fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Voxel Mesh Inertia :author_dim:`(fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+New Scene Format :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Custom ImGui Styling :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Optional Render Picker :author_dim:`(tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Mouse State Control through Input :author_dim:`(mcanais)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Center Render Voxel Pivot :author_dim:`(kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+On the Core
+-----------
+
+Math Vector Reflection Trait :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Entity Destruction Observers :author_dim:`(kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Query Match Counting :author_dim:`(GalaxyCrush)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**TODO**
+
+Wrapper Reflection Trait :author_dim:`(SrGesus, @RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**TODO**
+
+On the Tools
+------------
+
+Tesseratos Menu Bar :author_dim:`(jdbaracho)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Auto-scroll Toggle on the Console :author_dim:`(R-Camacho)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Next Steps
+==========
+
+In the next release, which should be out by the end of **TODO**, we're planning to work on the following features:
+
+* Feature 1 **TODO**
+* Feature 2 **TODO**
+* Feature 3 **TODO**
+
+You can check out the full list of things we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/31>`_ for the next release.
