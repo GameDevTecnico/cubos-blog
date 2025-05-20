@@ -1,10 +1,10 @@
-0.X is out!
+Release 0.X
 ###########
 
 :date: 2024-12-02 00:00:00
 :status: hidden
 :category: Release
-:summary: Cubos 0.X Release!
+:summary: An example release post, replace this by an actual summary of the release.
 :cover: {static}/images/blog/meta/first-post/cover.png
 
 New 0.X Features
