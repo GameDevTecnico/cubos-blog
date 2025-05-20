@@ -81,7 +81,7 @@
 <section id="on-the-editor">
 <h3>On the Editor</h3>
 <section id="project-management-and-debugging-riscadoa">
-<h4>Project Management and Debugging <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+<h4>Project Management and Debugging <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
 </h4>
 <p>In this release, we were finally able to make our editor, <strong>Tesseratos</strong>, a standalone application!
 Previously, the editor was a part of the engine itself, which meant if you made changes to the game's code, you had to recompile the editor as well, and restart it.
@@ -102,7 +102,7 @@ We also make use of this new connection to allow the editor to send debugging co
 <p>You can see them in action in the video below:</p>
 <iframe width="560" height="340" style="display: block; margin: auto" src="https://www.youtube.com/embed/Pu40BjmmW2U" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen></iframe></section>
 <section id="voxel-model-importing-tool-scarface1809">
-<h4>Voxel Model Importing Tool <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/joao-santos/">&#64;Scarface1809</a>)</span></dt>
+<h4>Voxel Model Importing Tool <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-santos/">&#64;Scarface1809</a>)</span></dt>
 </h4>
 <p>In this release, we've added a highly useful plugin to <strong>Tesseratos</strong>: a <strong>Voxel Model Importing Tool</strong>. With this new tool, you can now import <cite>.qb</cite> files directly within the editor, bypassing the need for the external conversion tool <strong>Quadrados</strong>.</p>
 <p>Previously, importing voxel models required converting <cite>.qb</cite> files into <cite>.pal</cite> and <cite>.grd</cite> files using <strong>Quadrados</strong>, a CLI tool, before they could be used in the engine. Now, with the <strong>Voxel Model Importer Plugin</strong>, the process has been simplified, acting as an interface to handle the conversion process within the editor.</p>
@@ -118,7 +118,7 @@ We also make use of this new connection to allow the editor to send debugging co
 <section id="on-the-engine">
 <h3>On the Engine</h3>
 <section id="physics-with-rotation-fallenatlas">
-<h4>Physics with Rotation <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+<h4>Physics with Rotation <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
 </h4>
 <p>We have <strong>rotation</strong>!</p>
 <img class="m-image" src="../../images/blog/release/0-4/complex_physics_sample_rotations.gif" />
@@ -226,7 +226,7 @@ Our implementation is still far from perfect. As you might have seen in the samp
 </section>
 </section>
 <section id="cascading-shadow-maps-tomas7770">
-<h4>Cascading Shadow Maps <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
+<h4>Cascading Shadow Maps <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
 </h4>
 <p>In the previous release, we introduced <strong>shadows</strong>.
 As shown in the release blog post, this had a significant impact on the quality of Cubos' graphics.
@@ -297,14 +297,14 @@ Below are screenshots of the directional shadow map used to draw shadows in <em>
 </div>
 </section>
 <section id="input-axis-deadzones-kuukitenshi">
-<h4>Input Axis Deadzones <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/laura-cunha/">&#64;kuukitenshi</a>)</span></dt>
+<h4>Input Axis Deadzones <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/laura-cunha/">&#64;kuukitenshi</a>)</span></dt>
 </h4>
 <p>Previously, dealing with input sources that exhibited drift, like older gamepad joysticks, required developers to manually filter out noise from input data.</p>
 <p>In this release, input deadzones can now be configured directly within the bindings asset, allowing players to adjust it in the settings for their controllers to filter out unwanted noise.</p>
 <p>This enhancement significantly simplifies input handling and ensures a smoother and more reliable gameplay experience, especially for games that heavily rely on precise controller input.</p>
 </section>
 <section id="ortographic-cameras-mkuritsu">
-<h4>Ortographic Cameras <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
+<h4>Ortographic Cameras <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
 </h4>
 <p>Previously we only had support for perspective cameras in Cubos, and additionally, perspective matrix computations were duplicated all over the code.
 To address this, we've added a new generic <code>Camera</code> component that holds the projection matrix of the current camera in use.
@@ -315,7 +315,7 @@ Now, the <code>PerspectiveCamera</code> component is only used to fill in the <c
 <section id="on-the-core">
 <h3>On the Core</h3>
 <section id="spans-for-profiling-and-tracing-roby2014">
-<h4>Spans for Profiling and Tracing <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/roberto-carlos/">&#64;roby2014</a>)</span></dt>
+<h4>Spans for Profiling and Tracing <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/roberto-carlos/">&#64;roby2014</a>)</span></dt>
 </h4>
 <p>In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing.
 This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with <strong>Cubos</strong>.</p>
@@ -361,7 +361,7 @@ We also moved the other components to the <code>tel</code> namespace (metrics an
 <p>This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.</p>
 </section>
 <section id="swapping-openal-for-miniaudio-diogomsmiranda-dageus">
-<h4>Swapping OpenAL for Miniaudio <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/diogo-miranda/">&#64;diogomsmiranda</a>, <a href="/https://cubosengine.orgblog/author/joao-nogueira/">&#64;Dageus</a>)</span></dt>
+<h4>Swapping OpenAL for Miniaudio <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/diogo-miranda/">&#64;diogomsmiranda</a>, <a href="https://cubosengine.org/blog/author/joao-nogueira/">&#64;Dageus</a>)</span></dt>
 </h4>
 <p>This release marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
 But before we could start working on the plugin itself, we had to make some changes to the audio backend.
@@ -370,7 +370,7 @@ We implemented a new <code>AudioContext</code> abstraction on the core library, 
 <p>In the next release of <strong>Cubos</strong>, we're planning to have a fully functional audio plugin, which will allow you to play sounds and music in your games!</p>
 </section>
 <section id="type-client-and-type-server-riscadoa">
-<h4>Type Client and Type Server <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+<h4>Type Client and Type Server <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
 </h4>
 <p>To separate <strong>Tesseratos</strong> from the engine into a separate process, we needed a way to share type data across different processes.
 This is because the editor needs to know about the project's data types, such as its components and resources, to be able to do work with them, such as showing them in the editor's UI, or editing scene assets.</p>
@@ -397,7 +397,7 @@ How can we pass a function through a stream? We can't. One thing we could do wou
 For now, we've decided to simply ignore these traits, but we'll eventually need to tackle this issue, as it would allow for better UX in the editor.</p>
 </section>
 <section id="stacktraces-on-crashes-riscadoa">
-<h4>Stacktraces on Crashes <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+<h4>Stacktraces on Crashes <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
 </h4>
 <p>Previously, when the engine crashed, it would simply print an error message to the console, and that was it.
 We would not get a lot of information about the crash's context, other than the previous log messages.

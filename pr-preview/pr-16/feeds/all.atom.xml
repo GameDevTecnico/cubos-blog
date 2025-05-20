@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-05-20T09:00:00+01:00</updated><entry><title>Roll Racers</title><link href="https://cubosengine.org/blog/roll-racers/" rel="alternate"></link><published>2025-05-20T09:00:00+01:00</published><updated>2025-05-20T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-20:/blog/roll-racers/</id><summary type="html">&lt;p&gt;We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!&lt;/p&gt;
 </summary><content type="html">&lt;section id="the-theme"&gt;
 &lt;h2&gt;The Theme&lt;/h2&gt;
-&lt;p&gt;From 2nd of May to the 10th of May, &lt;a href="/https://cubosengine.orgblog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/francisco-catarino/"&gt;&amp;#64;fkatar&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
+&lt;p&gt;From 2nd of May to the 10th of May, &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/francisco-catarino/"&gt;&amp;#64;fkatar&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
 The goal was to create a game in a week, this time with theme &amp;quot;Blackout&amp;quot; - the huge power outage in the Iberian Peninsula had happened the prior week, and just like during the Covid lockdown, people rushed to the supermarkets to buy toilet paper.&lt;/p&gt;
 &lt;p&gt;We thought it would be funny to make a game about racing to the supermarket to buy toilet paper - and that's what we ended up doing.
 Our priorities were to test new features of the engine, and to make a fun local multiplayer game.
@@ -25,12 +25,12 @@ Since the jam was a week long, we had some more time to work on the game than in
 &lt;h2&gt;Voxel Modeling&lt;/h2&gt;
 &lt;p&gt;One major problem we had was that we didn't have any artists in the team, only programmers.
 We ended up going full programmer art mode, and we used, as usual, &lt;a href="https://ephtracy.github.io/"&gt;MagicaVoxel&lt;/a&gt; for this purpose.
-&lt;a href="/https://cubosengine.orgblog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt; focused on making the buildings and the road models, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; focused on the cars and some tiles and &lt;a href="/https://cubosengine.orgblog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; made a few props.&lt;/p&gt;
+&lt;a href="https://cubosengine.org/blog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt; focused on making the buildings and the road models, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; focused on the cars and some tiles and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; made a few props.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="map-generation"&gt;
 &lt;h2&gt;Map Generation&lt;/h2&gt;
 &lt;p&gt;To make our jobs easier, the map is divided into tiles. Each tile is 68x68 voxels wide. Tiles can be road tiles, building tiles or park tiles.
-&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; worked on the map generation, which is done procedurally. First, road tiles are placed in a river-like fashion, and then, building tiles are placed around them.&lt;/p&gt;
+&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; worked on the map generation, which is done procedurally. First, road tiles are placed in a river-like fashion, and then, building tiles are placed around them.&lt;/p&gt;
 &lt;p&gt;To make the map prettier we also added some park tiles with trees and bushes, which are randomly placed adjacent to the road tiles.
 For an extra challenge, we added a 'river' tile where the road has a big hole in the middle, and the players have to jump over it by going fast enough on the ramps.&lt;/p&gt;
 &lt;p&gt;We also have special start and end tiles, the end tile being the supermarket, where the toilet paper is placed.
@@ -61,7 +61,7 @@ The map regenerates every time a round ends, i.e., when a player brings the toil
 &lt;/section&gt;
 &lt;section id="ui"&gt;
 &lt;h2&gt;UI&lt;/h2&gt;
-&lt;p&gt;This game was also the first time UI was used on a demo. &lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt; picked up this task, and made multiple menus and screens for the game.
+&lt;p&gt;This game was also the first time UI was used on a demo. &lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt; picked up this task, and made multiple menus and screens for the game.
 We wanted to briefly explain the game mechanics to the players, so we added a title screen with some information.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
 &lt;img alt="Title screen" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/title-screen.png" /&gt;
@@ -93,7 +93,7 @@ We decided to add a score indicator to the top of the screen, which shows the sc
 &lt;/section&gt;
 &lt;section id="audio"&gt;
 &lt;h2&gt;Audio&lt;/h2&gt;
-&lt;p&gt;On the last day of the jam &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; decided to focus on adding audio to the game.
+&lt;p&gt;On the last day of the jam &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; decided to focus on adding audio to the game.
 Previously, when making &lt;a href="https://cubosengine.org/blog/the-ondisseia-of-cubos/"&gt;Ondisseia&lt;/a&gt;, we had a lot of trouble with adding sound effects.
 They didn't play reliably and the audio system was a bit of a mess.&lt;/p&gt;
 &lt;p&gt;To use audio in &lt;em&gt;Roll Racers&lt;/em&gt;, we ended up fixing all of the problems we previously had, which means that we can now rely on it for future projects.
@@ -114,7 +114,7 @@ We added a few sound effects to the game, such as:&lt;/p&gt;
 &lt;p&gt;At the end of the jam, the game's performance was very bad.
 A bit of profiling quickly showed that a lot of time was being spent iterating over tens of thousands of relation tables - the ones introduced in the &lt;a href="https://cubosengine.org/blog/hello-relations/"&gt;relations development note&lt;/a&gt;.
 This was a waste of time, as only less than 15 actually contained entities.&lt;/p&gt;
-&lt;p&gt;&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; quickly fixed this by adding logic to clean up unused relation tables every frame.
+&lt;p&gt;&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; quickly fixed this by adding logic to clean up unused relation tables every frame.
 This immediately improved performance by a lot - on one machine, the framerate went from 40FPS to stable 240FPS.
 In the future, this logic should probably be improved to only clean up the tables when they're not used for a while, to avoid wasting time recreating tables constantly.&lt;/p&gt;
 &lt;/section&gt;
@@ -127,7 +127,7 @@ One of the biggest problems continues to be the lack of proper tooling for the e
 </content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category><category term="Coffee N' Jam"></category></entry><entry><title>The "Ondisseia" of Cubos</title><link href="https://cubosengine.org/blog/the-ondisseia-of-cubos/" rel="alternate"></link><published>2025-05-16T10:00:00+01:00</published><updated>2025-05-16T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-16:/blog/the-ondisseia-of-cubos/</id><summary type="html">&lt;p&gt;Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.&lt;/p&gt;
 </summary><content type="html">&lt;section id="the-jam"&gt;
 &lt;h2&gt;The Jam&lt;/h2&gt;
-&lt;p&gt;Around a month ago, &lt;a href="/https://cubosengine.orgblog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/ricardo-subtil/"&gt;&amp;#64;rsubtil&lt;/a&gt; joined forces to participate in the &lt;a href="https://www.linkedin.com/company/azulgamejam"&gt;Azul Game Jam&lt;/a&gt;.
+&lt;p&gt;Around a month ago, &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/ricardo-subtil/"&gt;&amp;#64;rsubtil&lt;/a&gt; joined forces to participate in the &lt;a href="https://www.linkedin.com/company/azulgamejam"&gt;Azul Game Jam&lt;/a&gt;.
 This was the first edition of a Portuguese on-site game jam, where the aim was to join the Portuguese game dev community at the &lt;a href="https://lisboainnovation.com/hubs/aihub/"&gt;AI Hub&lt;/a&gt;, to make games during 48 hours.
 We were a team of 4 - 3 programmers, 1 artist, and a lot of ideas.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
@@ -146,7 +146,7 @@ The waves are colossal, sometimes sweeping over the islands on the map.
 With this game mechanic, we'd hoped to add an interesting twist to the genre of Battle Royale.&lt;/p&gt;
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/demo/azul-jam-2025/OndisseiaGameplay.gif" /&gt;
 &lt;section id="voxel-art-nunobaptista"&gt;
-&lt;h4&gt;Voxel Art &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Voxel Art &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;As an artist, I produce the voxel assets, including the animations, the tiles of the map, and the wave.
 Currently, we don't have a voxel editor inside Cubos, so we used &lt;a href="https://ephtracy.github.io/"&gt;MagicaVoxel&lt;/a&gt; for this purpose.
@@ -231,7 +231,7 @@ After the jam, we integrated these changes into the main branch of Cubos, so tha
 &lt;section id="on-the-engine"&gt;
 &lt;h3&gt;On the Engine&lt;/h3&gt;
 &lt;section id="physics-with-warm-starting-fallenatlas"&gt;
-&lt;h4&gt;Physics with Warm-Starting &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Physics with Warm-Starting &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Continuing the work from the previous release, we finished &lt;strong&gt;warm-starting&lt;/strong&gt; for our physics simulation. Warm-starting uses the information stored in the contact manifold between two bodies, especially the total impulses applied to each contact point in the previous frame, and applies it before solving begins.
 It works based on the assumption that the impulses applied in the previous frame are a good estimate for the impulses that will also be applied in the current frame. Therefore, by applying them to the body before solving the collision constraint, the body should already be closer to its ideal position. Over time, these impulses will stabilize (since our solver is a &amp;quot;dirty&amp;quot; solver), resulting in less jitter.
@@ -243,7 +243,7 @@ This is particularly effective for stacks of bodies, where the bodies push again
 &lt;p&gt;Unfortunately, our collisions are not optimized to the point where we can have 60 updates per second with many bodies, but the door is open for this upgrade in the future!&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="toggleable-ssao-and-resolution-scale-tomas7770"&gt;
-&lt;h4&gt;Toggleable SSAO and Resolution Scale &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Toggleable SSAO and Resolution Scale &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Some time ago, we profiled &lt;strong&gt;Cubos&lt;/strong&gt;'s graphics engine to determine the main performance bottlenecks. SSAO stood out as the
 graphics plugin that took the most frame time. However, due to the way the rendering pipeline was implemented, disabling it to get
@@ -256,7 +256,7 @@ To implement this, we added a &lt;a href="https://docs.cubosengine.org/structcub
 which defaults to 0.5, but can be set to any value up to 2.0.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="conditional-shader-compilation-tomas7770"&gt;
-&lt;h4&gt;Conditional Shader Compilation &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Conditional Shader Compilation &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Another major bottleneck in the graphics renderer is the &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html"&gt;render picker&lt;/a&gt;, which
 allows finding out which entity is visible at a given pixel. As explained in the &lt;strong&gt;Modular Renderer&lt;/strong&gt; section of the &lt;a href="https://cubosengine.org/coffeen-jam-and-02.html"&gt;0.2 blog post&lt;/a&gt;,
@@ -273,7 +273,7 @@ class to prepend &lt;code&gt;#define&lt;/code&gt; macros and recompile the shade
 &lt;section id="on-the-core"&gt;
 &lt;h3&gt;On the Core&lt;/h3&gt;
 &lt;section id="added-frustum-geometry-and-intersection-utilities-mkuritsu"&gt;
-&lt;h4&gt;Added Frustum geometry and intersection utilities &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/rodrigo-correia/"&gt;&amp;#64;mkuritsu&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Added Frustum geometry and intersection utilities &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/rodrigo-correia/"&gt;&amp;#64;mkuritsu&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;A new geometry object was added, the &lt;strong&gt;frustum&lt;/strong&gt;, and additionally, two new intersection functions to check if a &lt;a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Box.html"&gt;box&lt;/a&gt; or a &lt;a href="https://docs.cubosengine.org/structcubos_1_1core_1_1geom_1_1Capsule.html"&gt;capsule&lt;/a&gt; intersects a frustum.
 This new geometry utility will be useful for &lt;em&gt;frustum culling&lt;/em&gt; in a future release, potentially improving graphics performance when rendering large scenes with &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
@@ -313,7 +313,7 @@ As usual, you can check out the full changelog in our &lt;a href="https://github
 &lt;section id="on-the-editor"&gt;
 &lt;h3&gt;On the Editor&lt;/h3&gt;
 &lt;section id="hold-mode-for-debug-camera-jdbaracho"&gt;
-&lt;h4&gt;Hold mode for Debug Camera &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/joao-baracho/"&gt;&amp;#64;jdbaracho&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Hold mode for Debug Camera &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-baracho/"&gt;&amp;#64;jdbaracho&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;For debugging purposes, we have a debug camera which allows the user to move around the scene and inspect it.
 Previous this camera could only be controlled by locking the camera to the mouse with a toggle.
@@ -323,7 +323,7 @@ This was inconvenient when also using the mouse to interact with the editor UI, 
 &lt;section id="on-the-engine"&gt;
 &lt;h3&gt;On the Engine&lt;/h3&gt;
 &lt;section id="point-light-shadows-tomas7770"&gt;
-&lt;h4&gt;Point Light Shadows &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Point Light Shadows &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Over the past couple of releases, &lt;strong&gt;shadows&lt;/strong&gt; have been gradually introduced to the engine's graphics
 renderer, starting with spotlight shadows, and then directional ones. Naturally, the next step was to
@@ -340,7 +340,7 @@ Below is a screenshot of the sample with all light types casting shadows. Some t
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-5/shadows_sample.png" /&gt;
 &lt;/section&gt;
 &lt;section id="audio-support-through-the-audio-plugin-dageus-diogomsmiranda"&gt;
-&lt;h4&gt;Audio Support through the Audio Plugin  &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/joao-nogueira/"&gt;&amp;#64;Dageus&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/diogo-miranda/"&gt;&amp;#64;diogomsmiranda&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Audio Support through the Audio Plugin  &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-nogueira/"&gt;&amp;#64;Dageus&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/diogo-miranda/"&gt;&amp;#64;diogomsmiranda&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;This release is a significant milestone for the Cubos engine, as it finally introduces Audio functionality!&lt;/p&gt;
 &lt;p&gt;The new &lt;code&gt;audioPlugin&lt;/code&gt; leverages the previously implemented &lt;code&gt;Audio Context&lt;/code&gt; to manage audio playback. It introduces two new components:&lt;/p&gt;
@@ -352,7 +352,7 @@ Below is a screenshot of the sample with all light types casting shadows. Some t
 Due to restrictions in our audio backend, you can only have up to &lt;strong&gt;three active listeners&lt;/strong&gt; at a time. For practical examples of how to use these new audio components (&lt;code&gt;AudioPlay&lt;/code&gt;, &lt;code&gt;AudioPause&lt;/code&gt;, &lt;code&gt;AudioStop&lt;/code&gt;), check out our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp"&gt;Audio Sample&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="method-to-save-settings-to-files-srgesus"&gt;
-&lt;h4&gt;Method to save settings to files &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/gabriel-ferreira/"&gt;&amp;#64;SrGesus&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Method to save settings to files &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/gabriel-ferreira/"&gt;&amp;#64;SrGesus&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;The &lt;code&gt;Settings&lt;/code&gt; resource was missing some way to interact with its corresponding file,
 as it was limited to a startup system that would load the file from a command line
@@ -364,13 +364,13 @@ argument with no way for posterior changes to persist which was inconvenient.&lt
 &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/file_backup.json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/pre&gt;
 &lt;/section&gt;
 &lt;section id="collision-detection-between-voxelcollisionshapes-joaomanita"&gt;
-&lt;h4&gt;Collision detection between VoxelCollisionShapes &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Collision detection between VoxelCollisionShapes &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;The engine was only able to able to detect collisons between boxes, now we can add a &lt;a href="https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html"&gt;VoxelCollisionShape&lt;/a&gt;
 to decompose a voxel shape into multiple box collision shapes.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="anti-aliasing-using-the-fxaa-technique-kuukitenshi"&gt;
-&lt;h4&gt;Anti-aliasing using the FXAA technique &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/laura-cunha/"&gt;&amp;#64;kuukitenshi&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Anti-aliasing using the FXAA technique &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/laura-cunha/"&gt;&amp;#64;kuukitenshi&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagged edges in the rendered images.
 As you can see in the images below, FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.&lt;/p&gt;
@@ -386,7 +386,7 @@ As you can see in the images below, FXAA smooths out the visuals without the per
 &lt;/img-comparison-slider&gt;
 &lt;/section&gt;
 &lt;section id="ui-text-element-using-msdf-for-text-rendering-mkuritsu"&gt;
-&lt;h4&gt;UI text element using MSDF for text rendering &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/rodrigo-correia/"&gt;&amp;#64;mkuritsu&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;UI text element using MSDF for text rendering &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/rodrigo-correia/"&gt;&amp;#64;mkuritsu&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;A significant addition to the Cubos engine was the support for text rendering in the UI, which will greatly improve the capabilities
 for communicating with the player in future games developed with the engine.&lt;/p&gt;
@@ -403,7 +403,7 @@ taken from the UI sample available in the engine showcasing the text rendering i
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="enable-assets-to-be-identified-in-the-code-by-their-file-path-galaxycrush"&gt;
-&lt;h4&gt;Enable assets to be identified in the code by their file path &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/joao-pereira/"&gt;&amp;#64;GalaxyCrush&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Enable assets to be identified in the code by their file path &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-pereira/"&gt;&amp;#64;GalaxyCrush&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Assets could only be identified by their UUID, which can be hard to keep track of for human developers.
 Now, they are able to be identified by their path, thus making them easier to handle when developing projects with Cubos.
@@ -413,18 +413,18 @@ E.g., you can now do:&lt;/p&gt;
 &lt;pre class="m-code"&gt;&lt;span class="n"&gt;Asset&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scene&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SceneAsset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;AnyAsset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;uuid&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/pre&gt;
 &lt;/section&gt;
 &lt;section id="option-to-use-shadow-normal-offset-bias-algorithm-galaxycrush"&gt;
-&lt;h4&gt;Option to use Shadow Normal Offset Bias algorithm &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/joao-pereira/"&gt;&amp;#64;GalaxyCrush&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Option to use Shadow Normal Offset Bias algorithm &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-pereira/"&gt;&amp;#64;GalaxyCrush&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;We noticed that the shadows had some &lt;a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#Acne"&gt;shadow acne&lt;/a&gt; and/or &lt;a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#PeterPanning"&gt;peter panning&lt;/a&gt; artifacts in some samples. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html"&gt;ShadowCaster&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="resource-to-easily-configure-constants-in-the-physics-solver-gcesilva"&gt;
-&lt;h4&gt;Resource to easily configure constants in the physics solver &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/goncalo-silva/"&gt;&amp;#64;GCeSilva&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Resource to easily configure constants in the physics solver &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/goncalo-silva/"&gt;&amp;#64;GCeSilva&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;The physics solver previously included hardcoded constants, which were not easily accessible or modifiable.
 A new resource has been added which allows the user to configure these constants, making it easier to tune and debug, even at runtime.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="contact-caching-for-collision-between-box-shapes-fallenatlas"&gt;
-&lt;h4&gt;Contact caching for collision between box shapes &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Contact caching for collision between box shapes &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;We added contact caching as a first step towards implementing warm-starting. Contact caching consists of keeping information about collisions that were happening in the previous physics update
 so that in the next update we can trace them back. This information includes identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of
@@ -434,7 +434,7 @@ collisions between entities, this is currently only supported for box shapes.&lt
 &lt;section id="on-the-core"&gt;
 &lt;h3&gt;On the Core&lt;/h3&gt;
 &lt;section id="a-proper-cmake-configuration-riscadoa"&gt;
-&lt;h4&gt;A Proper CMake Configuration &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;A Proper CMake Configuration &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;While functional, our &lt;a href="https://cmake.org/"&gt;CMake&lt;/a&gt; build configuration was incomplete in terms of features and poorly organized.
 As the engine evolved, we recognized the need to install it as a system-wide library for use in other projects.
@@ -446,7 +446,7 @@ To address this, we decided to clean up the CMake configuration, and add install
 As of now, Cubos has only been packaged for NixOS, but we haven't contributed it to the Nixpkgs repository yet. We plan to do so in the future, and also to package it for other distributions.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="web-support-with-emscripten-riscadoa-luishfonseca"&gt;
-&lt;h4&gt;Web Support with Emscripten &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/luis-fonseca/"&gt;&amp;#64;luishfonseca&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Web Support with Emscripten &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/luis-fonseca/"&gt;&amp;#64;luishfonseca&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;We've had a pull request open since 0.2 for porting Cubos to the web with &lt;a href="https://emscripten.org/"&gt;Emscripten&lt;/a&gt;, but it was constantly postponed due to some blocking issues being present, and us being focused on other features.
 Now, we finally made the final push to get it working, and now Cubos can be compiled to WebAssembly and ran in the browser!&lt;/p&gt;
@@ -481,7 +481,7 @@ As of now, this means we're making some performance sacrifices, as we're not usi
 &lt;section id="on-the-editor"&gt;
 &lt;h3&gt;On the Editor&lt;/h3&gt;
 &lt;section id="project-management-and-debugging-riscadoa"&gt;
-&lt;h4&gt;Project Management and Debugging &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Project Management and Debugging &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;In this release, we were finally able to make our editor, &lt;strong&gt;Tesseratos&lt;/strong&gt;, a standalone application!
 Previously, the editor was a part of the engine itself, which meant if you made changes to the game's code, you had to recompile the editor as well, and restart it.
@@ -502,7 +502,7 @@ We also make use of this new connection to allow the editor to send debugging co
 &lt;p&gt;You can see them in action in the video below:&lt;/p&gt;
 &lt;iframe width="560" height="340" style="display: block; margin: auto" src="https://www.youtube.com/embed/Pu40BjmmW2U" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen&gt;&lt;/iframe&gt;&lt;/section&gt;
 &lt;section id="voxel-model-importing-tool-scarface1809"&gt;
-&lt;h4&gt;Voxel Model Importing Tool &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/joao-santos/"&gt;&amp;#64;Scarface1809&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Voxel Model Importing Tool &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-santos/"&gt;&amp;#64;Scarface1809&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;In this release, we've added a highly useful plugin to &lt;strong&gt;Tesseratos&lt;/strong&gt;: a &lt;strong&gt;Voxel Model Importing Tool&lt;/strong&gt;. With this new tool, you can now import &lt;cite&gt;.qb&lt;/cite&gt; files directly within the editor, bypassing the need for the external conversion tool &lt;strong&gt;Quadrados&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Previously, importing voxel models required converting &lt;cite&gt;.qb&lt;/cite&gt; files into &lt;cite&gt;.pal&lt;/cite&gt; and &lt;cite&gt;.grd&lt;/cite&gt; files using &lt;strong&gt;Quadrados&lt;/strong&gt;, a CLI tool, before they could be used in the engine. Now, with the &lt;strong&gt;Voxel Model Importer Plugin&lt;/strong&gt;, the process has been simplified, acting as an interface to handle the conversion process within the editor.&lt;/p&gt;
@@ -518,7 +518,7 @@ We also make use of this new connection to allow the editor to send debugging co
 &lt;section id="on-the-engine"&gt;
 &lt;h3&gt;On the Engine&lt;/h3&gt;
 &lt;section id="physics-with-rotation-fallenatlas"&gt;
-&lt;h4&gt;Physics with Rotation &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Physics with Rotation &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;We have &lt;strong&gt;rotation&lt;/strong&gt;!&lt;/p&gt;
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-4/complex_physics_sample_rotations.gif" /&gt;
@@ -626,7 +626,7 @@ Our implementation is still far from perfect. As you might have seen in the samp
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="cascading-shadow-maps-tomas7770"&gt;
-&lt;h4&gt;Cascading Shadow Maps &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Cascading Shadow Maps &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;In the previous release, we introduced &lt;strong&gt;shadows&lt;/strong&gt;.
 As shown in the release blog post, this had a significant impact on the quality of Cubos' graphics.
@@ -697,14 +697,14 @@ Below are screenshots of the directional shadow map used to draw shadows in &lt;
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;section id="input-axis-deadzones-kuukitenshi"&gt;
-&lt;h4&gt;Input Axis Deadzones &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/laura-cunha/"&gt;&amp;#64;kuukitenshi&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Input Axis Deadzones &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/laura-cunha/"&gt;&amp;#64;kuukitenshi&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Previously, dealing with input sources that exhibited drift, like older gamepad joysticks, required developers to manually filter out noise from input data.&lt;/p&gt;
 &lt;p&gt;In this release, input deadzones can now be configured directly within the bindings asset, allowing players to adjust it in the settings for their controllers to filter out unwanted noise.&lt;/p&gt;
 &lt;p&gt;This enhancement significantly simplifies input handling and ensures a smoother and more reliable gameplay experience, especially for games that heavily rely on precise controller input.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="ortographic-cameras-mkuritsu"&gt;
-&lt;h4&gt;Ortographic Cameras &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/rodrigo-correia/"&gt;&amp;#64;mkuritsu&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Ortographic Cameras &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/rodrigo-correia/"&gt;&amp;#64;mkuritsu&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Previously we only had support for perspective cameras in Cubos, and additionally, perspective matrix computations were duplicated all over the code.
 To address this, we've added a new generic &lt;code&gt;Camera&lt;/code&gt; component that holds the projection matrix of the current camera in use.
@@ -715,7 +715,7 @@ Now, the &lt;code&gt;PerspectiveCamera&lt;/code&gt; component is only used to fi
 &lt;section id="on-the-core"&gt;
 &lt;h3&gt;On the Core&lt;/h3&gt;
 &lt;section id="spans-for-profiling-and-tracing-roby2014"&gt;
-&lt;h4&gt;Spans for Profiling and Tracing &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/roberto-carlos/"&gt;&amp;#64;roby2014&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Spans for Profiling and Tracing &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/roberto-carlos/"&gt;&amp;#64;roby2014&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;In our ongoing efforts to improve metrics and address performance issues, we are excited to announce the implementation of a new feature for telemetry: Tracing.
 This addition will significantly enhance our ability to monitor and understand the execution flow of applications built with &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
@@ -761,7 +761,7 @@ We also moved the other components to the &lt;code&gt;tel&lt;/code&gt; namespace
 &lt;p&gt;This UI will enable developers to interact with the tracing data, providing a comprehensive view of the entire game flow.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="swapping-openal-for-miniaudio-diogomsmiranda-dageus"&gt;
-&lt;h4&gt;Swapping OpenAL for Miniaudio &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/diogo-miranda/"&gt;&amp;#64;diogomsmiranda&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/joao-nogueira/"&gt;&amp;#64;Dageus&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Swapping OpenAL for Miniaudio &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/diogo-miranda/"&gt;&amp;#64;diogomsmiranda&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/joao-nogueira/"&gt;&amp;#64;Dageus&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;This release marks the beginning of an exciting new chapter for Cubos: the Audio Plugin.
 But before we could start working on the plugin itself, we had to make some changes to the audio backend.
@@ -770,7 +770,7 @@ We implemented a new &lt;code&gt;AudioContext&lt;/code&gt; abstraction on the co
 &lt;p&gt;In the next release of &lt;strong&gt;Cubos&lt;/strong&gt;, we're planning to have a fully functional audio plugin, which will allow you to play sounds and music in your games!&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="type-client-and-type-server-riscadoa"&gt;
-&lt;h4&gt;Type Client and Type Server &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Type Client and Type Server &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;To separate &lt;strong&gt;Tesseratos&lt;/strong&gt; from the engine into a separate process, we needed a way to share type data across different processes.
 This is because the editor needs to know about the project's data types, such as its components and resources, to be able to do work with them, such as showing them in the editor's UI, or editing scene assets.&lt;/p&gt;
@@ -797,7 +797,7 @@ How can we pass a function through a stream? We can't. One thing we could do wou
 For now, we've decided to simply ignore these traits, but we'll eventually need to tackle this issue, as it would allow for better UX in the editor.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="stacktraces-on-crashes-riscadoa"&gt;
-&lt;h4&gt;Stacktraces on Crashes &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Stacktraces on Crashes &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Previously, when the engine crashed, it would simply print an error message to the console, and that was it.
 We would not get a lot of information about the crash's context, other than the previous log messages.
@@ -952,7 +952,7 @@ Features-wise, this release was a tad smaller than the previous one as we spent 
 &lt;section id="on-the-editor"&gt;
 &lt;h3&gt;On the Editor&lt;/h3&gt;
 &lt;section id="groundwork-for-a-standalone-editor-riscadoa"&gt;
-&lt;h4&gt;Groundwork for a Standalone Editor &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Groundwork for a Standalone Editor &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;The original main goal for this version was to get a first prototype of our standalone editor working.
 Sadly, we didn't manage to get it done in time, as it was a bigger task than we anticipated.&lt;/p&gt;
@@ -972,7 +972,7 @@ It will allows us to have a stable editor, whose performance is not affected (th
 &lt;section id="on-the-engine"&gt;
 &lt;h3&gt;On the Engine&lt;/h3&gt;
 &lt;section id="a-new-physics-solver-fallenatlas"&gt;
-&lt;h4&gt;A New Physics Solver &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;A New Physics Solver &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Upon discovering some potential issues with regards to NVidia's patent of XPBD, some problems with how XPBD handled friction, and stability,
 we decided that this would be the ideal moment to switch to another solver.
@@ -983,7 +983,7 @@ Recently, Erin Catto shared his &lt;a href="https://box2d.org/posts/2024/02/solv
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-3/complex_physics_sample_tgs_soft.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="raycasting-diogomsmiranda"&gt;
-&lt;h4&gt;Raycasting &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/diogo-miranda/"&gt;&amp;#64;diogomsmiranda&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Raycasting &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/diogo-miranda/"&gt;&amp;#64;diogomsmiranda&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Raycasting is a commonly used tool in game development which Cubos was lacking until now - it is a technique used to determine the intersection of a ray with an object in a scene.
 This allows for a wide range of applications, such as shooting mechanics, object selection, and more.&lt;/p&gt;
@@ -1210,7 +1210,7 @@ a cylinder and the two spheres at the ends.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="spot-light-shadows-tomas7770"&gt;
-&lt;h4&gt;Spot Light Shadows &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Spot Light Shadows &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Our graphics renderer has received a new major feature in this release: shadows!&lt;/p&gt;
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-3/cover.png" /&gt;
@@ -1230,7 +1230,7 @@ the areas of the atlas reserved for each light.&lt;/p&gt;
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-3/shadow_atlas.png" /&gt;
 &lt;/section&gt;
 &lt;section id="initial-ui-plugin-diogomendonc-a"&gt;
-&lt;h4&gt;Initial UI Plugin &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/diogo-mendonca/"&gt;&amp;#64;DiogoMendonc-a&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Initial UI Plugin &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/diogo-mendonca/"&gt;&amp;#64;DiogoMendonc-a&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Cubos now has a UI system!&lt;/p&gt;
 &lt;p&gt;Add a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UICanvas.html"&gt;UICanvas&lt;/a&gt; to your Render Target, and set a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1UIElement.html"&gt;UIElement&lt;/a&gt; as its child. The UIElement will determine where the entity is drawn, and other UI components you add to the entity, such as a UIImage, will determine what it is that is drawn.
@@ -1243,7 +1243,7 @@ For this initial version of the plugin, there are only two types of elements: &l
 &lt;section id="on-the-core"&gt;
 &lt;h3&gt;On the Core&lt;/h3&gt;
 &lt;section id="metrics-roby2014"&gt;
-&lt;h4&gt;Metrics &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/roberto-carlos/"&gt;&amp;#64;roby2014&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Metrics &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/roberto-carlos/"&gt;&amp;#64;roby2014&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;We are excited to introduce the new metrics and profiling utilities!
 This started becoming a priority since we detected lots of performance issues in the last Game Jam we participated.&lt;/p&gt;
@@ -1272,7 +1272,7 @@ integrate these metrics into our editor for a more streamlined experience.&lt;/p
 &lt;p&gt;Learn more about it on our &lt;a href="https://docs.cubosengine.org/examples-core-metrics.html"&gt;metrics documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="networking-utilities-roby2014"&gt;
-&lt;h4&gt;Networking Utilities &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/roberto-carlos/"&gt;&amp;#64;roby2014&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Networking Utilities &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/roberto-carlos/"&gt;&amp;#64;roby2014&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;In the 0.3 release, Cubos finally has networking! This is a big step forward for our engine, bringing
 powerful networking utilities such as &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html"&gt;Address&lt;/a&gt;,
@@ -1311,7 +1311,7 @@ We've compiled here some of the most important changes (if you're curious, you c
 &lt;section id="on-the-editor"&gt;
 &lt;h3&gt;On the Editor&lt;/h3&gt;
 &lt;section id="transform-gizmo-upgrades-diogomendonc-a"&gt;
-&lt;h4&gt;Transform Gizmo Upgrades &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/diogo-mendonca/"&gt;&amp;#64;DiogoMendonc-a&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Transform Gizmo Upgrades &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/diogo-mendonca/"&gt;&amp;#64;DiogoMendonc-a&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;The biggest change was the addition of a rotation gizmo, so now you can rotate entities using your mouse!&lt;/p&gt;
 &lt;p&gt;We also added a toggle that allows changing between using global or local space with the Transform Gizmo,
@@ -1321,7 +1321,7 @@ This should hopefully make it easier to use the tool when moving entities either
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-2/transform_gizmo.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="world-inspector-overhaul-diogomsmiranda"&gt;
-&lt;h4&gt;World Inspector Overhaul &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/diogo-miranda/"&gt;&amp;#64;diogomsmiranda&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;World Inspector Overhaul &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/diogo-miranda/"&gt;&amp;#64;diogomsmiranda&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;The World inspector has been on our radar for quite some time now, as a tool that could be improved.
 This release we particularly aimed on making it better by focusing on:&lt;/p&gt;
@@ -1339,7 +1339,7 @@ This release we particularly aimed on making it better by focusing on:&lt;/p&gt;
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-2/world_inspector.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="sub-scene-importing-in-scene-editor-teres4"&gt;
-&lt;h4&gt;Sub-scene importing in scene editor &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/teresa-matos/"&gt;&amp;#64;teres4&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Sub-scene importing in scene editor &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/teresa-matos/"&gt;&amp;#64;teres4&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Previously our scene editor was lacking support for importing sub-scenes.
 This meant that developers had to manually open the scene file and paste the sub-scene UUID in its import section.
@@ -1350,7 +1350,7 @@ To save time, we've added a popup that shows all the importable sub-scenes, and 
 &lt;section id="on-the-engine"&gt;
 &lt;h3&gt;On the Engine&lt;/h3&gt;
 &lt;section id="physics-improvements-fallenatlas"&gt;
-&lt;h4&gt;Physics Improvements &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Physics Improvements &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;This update we introduced the &lt;code&gt;Solver&lt;/code&gt;, which works to satisfy the physics constraints applied to entities (e.g. Spring, Fixed distance between entities, etc.).&lt;/p&gt;
 &lt;p&gt;This means that the developers can now give entities any number of constraints, either engine defined or their own, and the solver will handle their expected interaction.
@@ -1361,7 +1361,7 @@ will perform the physics update in multiple smaller steps. This is important to 
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-2/complex_physics_sample.gif" /&gt;
 &lt;/section&gt;
 &lt;section id="modular-renderer-riscadoa-tomas7770"&gt;
-&lt;h4&gt;Modular Renderer &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="/https://cubosengine.orgblog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Modular Renderer &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Before this update, our graphics renderer was very monolithic, with a lot of the code being held in a single file. This posed some problems,
 namely that if we wanted to implement new rendering methods in the future (e.g. raytracing), we would end up with tons of duplicate code.
@@ -1383,7 +1383,7 @@ One side-effect of us changing the color-space is that now the colors in the gam
 &lt;section id="on-the-core"&gt;
 &lt;h3&gt;On the Core&lt;/h3&gt;
 &lt;section id="clearer-plugin-dependencies-riscadoa"&gt;
-&lt;h4&gt;Clearer Plugin Dependencies &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Clearer Plugin Dependencies &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;One of the main features of &lt;strong&gt;Cubos&lt;/strong&gt; is its plugin system. We structure all of the engine and editor features as plugins, each with its own set of components, systems, and resources.
 The developer ultimately chooses which plugins to include in their game, and may also create their own plugins.&lt;/p&gt;
@@ -1411,7 +1411,7 @@ Of course, this is not ideal, and thus, we've added a new &lt;a href="https://ga
 If the developer wants to configure the engine in a different way, they can simply write their own alternative defaults plugin.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="observers-riscadoa"&gt;
-&lt;h4&gt;Observers &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Observers &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Very often while working with &lt;strong&gt;Cubos&lt;/strong&gt;, we find the need to react to the addition and removal of components in entities.
 One use case, for example, is setting up the AABB of an entity when we add a collider to it.
@@ -1422,7 +1422,7 @@ With observers, we instead now add a single component &lt;code&gt;PhysicsBundle&
 &lt;p&gt;If you're interested in learning more about this feature and ECS in general on our engine, check out our &lt;a href="https://gamedevtecnico.github.io/cubos/docs/features-ecs.html"&gt;ECS feature guide&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="introducing-inheritance-in-reflection-roby2014"&gt;
-&lt;h4&gt;Introducing Inheritance in Reflection &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/roberto-carlos/"&gt;&amp;#64;roby2014&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Introducing Inheritance in Reflection &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/roberto-carlos/"&gt;&amp;#64;roby2014&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;Cubos&lt;/strong&gt; has a powerful &lt;a href="https://gamedevtecnico.github.io/cubos/docs/group__core-reflection.html"&gt;reflection system&lt;/a&gt; to examine and interact with a structures and types at runtime
 It works by attaching metadata to types, which we call &lt;em&gt;traits&lt;/em&gt;. These traits can be queried at runtime to get information about the type.
@@ -1432,7 +1432,7 @@ We've added a new trait, &lt;code&gt;InheritsTrait&lt;/code&gt;, which allows yo
 &lt;p&gt;This will be particularly useful for serialization, as right now we have to manually add the fields of the base class to the derived class. Now, serializers can check if this trait is present and fallback to the base class if necessary.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="repeating-systems-and-fixed-step-updates-joaomanita"&gt;
-&lt;h4&gt;Repeating Systems and Fixed-Step Updates &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Repeating Systems and Fixed-Step Updates &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Certain plugins, like the physics plugin, required some of their systems to run multiple times per frame so that they could make more accurate
 aproximations. In addition, some of them need to be executed in ordered groups. For example:&lt;/p&gt;
@@ -1453,7 +1453,7 @@ aproximations. In addition, some of them need to be executed in ordered groups. 
 the &lt;code&gt;DeltaTime&lt;/code&gt; passed, avoiding variance due to different frame rates and more/less powerful PCs.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="moving-away-from-the-old-serialization-dacops"&gt;
-&lt;h4&gt;Moving Away from the Old Serialization &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="/https://cubosengine.orgblog/author/david-pires/"&gt;&amp;#64;Dacops&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;h4&gt;Moving Away from the Old Serialization &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/david-pires/"&gt;&amp;#64;Dacops&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;&lt;a href="https://gamedevtecnico.github.io/cubos/docs/group__core-data-ser.html"&gt;Serialization&lt;/a&gt; is a crucial part of the game engine that allows for the saving of any Cubos game components as well as then loading them in.
 Previously, serialization was done through a series of functions, both for reading and writing, that could be overloaded for each type.
@@ -1485,7 +1485,7 @@ To solve this, we decided to change the serialization system to use the reflecti
 &lt;p&gt;We're currently a team of 10 people, and &lt;strong&gt;we're looking to expand&lt;/strong&gt;! If you're interested in joining us, or just want to learn more about the project, join our &lt;a href="https://discord.gg/WjTtcNTRqD"&gt;Discord server&lt;/a&gt;!&lt;/p&gt;
 &lt;/section&gt;
 </content><category term="Release"></category><category term="Release"></category></entry><entry><title>Coffee N' Jam 2024</title><link href="https://cubosengine.org/blog/coffee-n-jam-2024/" rel="alternate"></link><published>2024-05-21T09:00:00+01:00</published><updated>2024-05-21T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/blog/coffee-n-jam-2024/</id><summary type="html">&lt;p&gt;We made a game in a week with Cubos, and managed to win two awards!&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;From 26th of April to 3rd of May, &lt;a href="/https://cubosengine.orgblog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="/https://cubosengine.orgblog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
+</summary><content type="html">&lt;p&gt;From 26th of April to 3rd of May, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
 The goal was to create a game in a week, with the theme &amp;quot;Apocalypse&amp;quot; - and we had a blast!&lt;/p&gt;
 &lt;p&gt;The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
 The game is called &lt;em&gt;Scraps vs Zombies&lt;/em&gt;, and you can download it from its &lt;a href="https://riscadoa.itch.io/scraps-vs-zombies"&gt;itch.io page&lt;/a&gt;.

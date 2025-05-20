@@ -83,7 +83,7 @@ As usual, you can check out the full changelog in our <a href="https://github.co
 <section id="on-the-editor">
 <h3>On the Editor</h3>
 <section id="hold-mode-for-debug-camera-jdbaracho">
-<h4>Hold mode for Debug Camera <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/joao-baracho/">&#64;jdbaracho</a>)</span></dt>
+<h4>Hold mode for Debug Camera <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-baracho/">&#64;jdbaracho</a>)</span></dt>
 </h4>
 <p>For debugging purposes, we have a debug camera which allows the user to move around the scene and inspect it.
 Previous this camera could only be controlled by locking the camera to the mouse with a toggle.
@@ -93,7 +93,7 @@ This was inconvenient when also using the mouse to interact with the editor UI, 
 <section id="on-the-engine">
 <h3>On the Engine</h3>
 <section id="point-light-shadows-tomas7770">
-<h4>Point Light Shadows <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
+<h4>Point Light Shadows <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
 </h4>
 <p>Over the past couple of releases, <strong>shadows</strong> have been gradually introduced to the engine's graphics
 renderer, starting with spotlight shadows, and then directional ones. Naturally, the next step was to
@@ -110,7 +110,7 @@ Below is a screenshot of the sample with all light types casting shadows. Some t
 <img class="m-image" src="../../images/blog/release/0-5/shadows_sample.png" />
 </section>
 <section id="audio-support-through-the-audio-plugin-dageus-diogomsmiranda">
-<h4>Audio Support through the Audio Plugin  <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/joao-nogueira/">&#64;Dageus</a>, <a href="/https://cubosengine.orgblog/author/diogo-miranda/">&#64;diogomsmiranda</a>)</span></dt>
+<h4>Audio Support through the Audio Plugin  <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-nogueira/">&#64;Dageus</a>, <a href="https://cubosengine.org/blog/author/diogo-miranda/">&#64;diogomsmiranda</a>)</span></dt>
 </h4>
 <p>This release is a significant milestone for the Cubos engine, as it finally introduces Audio functionality!</p>
 <p>The new <code>audioPlugin</code> leverages the previously implemented <code>Audio Context</code> to manage audio playback. It introduces two new components:</p>
@@ -122,7 +122,7 @@ Below is a screenshot of the sample with all light types casting shadows. Some t
 Due to restrictions in our audio backend, you can only have up to <strong>three active listeners</strong> at a time. For practical examples of how to use these new audio components (<code>AudioPlay</code>, <code>AudioPause</code>, <code>AudioStop</code>), check out our <a href="https://github.com/GameDevTecnico/cubos/blob/main/engine/samples/audio/main.cpp">Audio Sample</a>.</p>
 </section>
 <section id="method-to-save-settings-to-files-srgesus">
-<h4>Method to save settings to files <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/gabriel-ferreira/">&#64;SrGesus</a>)</span></dt>
+<h4>Method to save settings to files <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/gabriel-ferreira/">&#64;SrGesus</a>)</span></dt>
 </h4>
 <p>The <code>Settings</code> resource was missing some way to interact with its corresponding file,
 as it was limited to a startup system that would load the file from a command line
@@ -134,13 +134,13 @@ argument with no way for posterior changes to persist which was inconvenient.</p
 <span class="n">settings</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">&quot;/file_backup.json&quot;</span><span class="p">);</span></pre>
 </section>
 <section id="collision-detection-between-voxelcollisionshapes-joaomanita">
-<h4>Collision detection between VoxelCollisionShapes <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/joao-manita/">&#64;joaomanita</a>)</span></dt>
+<h4>Collision detection between VoxelCollisionShapes <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-manita/">&#64;joaomanita</a>)</span></dt>
 </h4>
 <p>The engine was only able to able to detect collisons between boxes, now we can add a <a href="https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html">VoxelCollisionShape</a>
 to decompose a voxel shape into multiple box collision shapes.</p>
 </section>
 <section id="anti-aliasing-using-the-fxaa-technique-kuukitenshi">
-<h4>Anti-aliasing using the FXAA technique <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/laura-cunha/">&#64;kuukitenshi</a>)</span></dt>
+<h4>Anti-aliasing using the FXAA technique <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/laura-cunha/">&#64;kuukitenshi</a>)</span></dt>
 </h4>
 <p>We introduced the FXAA (Fast Approximate Anti-Aliasing) technique to reduce jagged edges in the rendered images.
 As you can see in the images below, FXAA smooths out the visuals without the performance cost of traditional anti-aliasing methods.</p>
@@ -156,7 +156,7 @@ As you can see in the images below, FXAA smooths out the visuals without the per
 </img-comparison-slider>
 </section>
 <section id="ui-text-element-using-msdf-for-text-rendering-mkuritsu">
-<h4>UI text element using MSDF for text rendering <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
+<h4>UI text element using MSDF for text rendering <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
 </h4>
 <p>A significant addition to the Cubos engine was the support for text rendering in the UI, which will greatly improve the capabilities
 for communicating with the player in future games developed with the engine.</p>
@@ -173,7 +173,7 @@ taken from the UI sample available in the engine showcasing the text rendering i
 <p><strong>Note:</strong> Currently only the ASCII charset is supported, UTF-8 support will be added in a future release.</p>
 </section>
 <section id="enable-assets-to-be-identified-in-the-code-by-their-file-path-galaxycrush">
-<h4>Enable assets to be identified in the code by their file path <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/joao-pereira/">&#64;GalaxyCrush</a>)</span></dt>
+<h4>Enable assets to be identified in the code by their file path <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-pereira/">&#64;GalaxyCrush</a>)</span></dt>
 </h4>
 <p>Assets could only be identified by their UUID, which can be hard to keep track of for human developers.
 Now, they are able to be identified by their path, thus making them easier to handle when developing projects with Cubos.
@@ -183,18 +183,18 @@ E.g., you can now do:</p>
 <pre class="m-code"><span class="n">Asset</span><span class="o">&lt;</span><span class="n">Scene</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SceneAsset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnyAsset</span><span class="p">(</span><span class="s">&quot;uuid&quot;</span><span class="p">);</span></pre>
 </section>
 <section id="option-to-use-shadow-normal-offset-bias-algorithm-galaxycrush">
-<h4>Option to use Shadow Normal Offset Bias algorithm <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/joao-pereira/">&#64;GalaxyCrush</a>)</span></dt>
+<h4>Option to use Shadow Normal Offset Bias algorithm <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-pereira/">&#64;GalaxyCrush</a>)</span></dt>
 </h4>
 <p>We noticed that the shadows had some <a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#Acne">shadow acne</a> and/or <a href="https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#PeterPanning">peter panning</a> artifacts in some samples. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html">ShadowCaster</a>.</p>
 </section>
 <section id="resource-to-easily-configure-constants-in-the-physics-solver-gcesilva">
-<h4>Resource to easily configure constants in the physics solver <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/goncalo-silva/">&#64;GCeSilva</a>)</span></dt>
+<h4>Resource to easily configure constants in the physics solver <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/goncalo-silva/">&#64;GCeSilva</a>)</span></dt>
 </h4>
 <p>The physics solver previously included hardcoded constants, which were not easily accessible or modifiable.
 A new resource has been added which allows the user to configure these constants, making it easier to tune and debug, even at runtime.</p>
 </section>
 <section id="contact-caching-for-collision-between-box-shapes-fallenatlas">
-<h4>Contact caching for collision between box shapes <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+<h4>Contact caching for collision between box shapes <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
 </h4>
 <p>We added contact caching as a first step towards implementing warm-starting. Contact caching consists of keeping information about collisions that were happening in the previous physics update
 so that in the next update we can trace them back. This information includes identifiers for each collision manifold and the corrections applied to each contact point. Due to limitations in the current implementation of
@@ -204,7 +204,7 @@ collisions between entities, this is currently only supported for box shapes.</p
 <section id="on-the-core">
 <h3>On the Core</h3>
 <section id="a-proper-cmake-configuration-riscadoa">
-<h4>A Proper CMake Configuration <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+<h4>A Proper CMake Configuration <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
 </h4>
 <p>While functional, our <a href="https://cmake.org/">CMake</a> build configuration was incomplete in terms of features and poorly organized.
 As the engine evolved, we recognized the need to install it as a system-wide library for use in other projects.
@@ -216,7 +216,7 @@ To address this, we decided to clean up the CMake configuration, and add install
 As of now, Cubos has only been packaged for NixOS, but we haven't contributed it to the Nixpkgs repository yet. We plan to do so in the future, and also to package it for other distributions.</p>
 </section>
 <section id="web-support-with-emscripten-riscadoa-luishfonseca">
-<h4>Web Support with Emscripten <span class="m-text m-dim author-dim classifier">(<a href="/https://cubosengine.orgblog/author/ricardo-antunes/">&#64;RiscadoA</a>, <a href="/https://cubosengine.orgblog/author/luis-fonseca/">&#64;luishfonseca</a>)</span></dt>
+<h4>Web Support with Emscripten <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>, <a href="https://cubosengine.org/blog/author/luis-fonseca/">&#64;luishfonseca</a>)</span></dt>
 </h4>
 <p>We've had a pull request open since 0.2 for porting Cubos to the web with <a href="https://emscripten.org/">Emscripten</a>, but it was constantly postponed due to some blocking issues being present, and us being focused on other features.
 Now, we finally made the final push to get it working, and now Cubos can be compiled to WebAssembly and ran in the browser!</p>
