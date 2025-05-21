@@ -44,11 +44,11 @@ Cubos Engine
 
             <div class="feature-container feature-container-reverse">
                 <div class="feature-image">
-                    <img src="/images/landing/puzzle.svg" alt="Plugin" class="m-image" style="filter: invert(1); width: 40%;"/>
+                    <img src="/images/landing/voxels.svg" alt="Voxels" class="m-image" style="filter: invert(1); width: 50%;"/>
                 </div>
                 <div class="feature-text">
-                    <h2>Modular</h2>
-                    <p>In <span class="cubos">Cubos</span>, everything is a plugin: do you prefer to use your own renderer or some other physics framework? Simply swap any of our plugins by your own one.</p>
+                    <h2>Voxels First</h2>
+                    <p>Voxels are a first class citizen in <span class="cubos">Cubos</span>: our engine comes with many plugins built specifically to enable you to create voxel games.</p>
                 </div>
             </div>
 
@@ -62,16 +62,15 @@ Cubos Engine
                 </div>
             </div>
 
-            <div class="feature-container feature-container-reverse">
+             <div class="feature-container feature-container-reverse">
                 <div class="feature-image">
-                    <img src="/images/landing/voxels.svg" alt="Voxels" class="m-image" style="filter: invert(1); width: 50%;"/>
+                    <img src="/images/landing/puzzle.svg" alt="Plugin" class="m-image" style="filter: invert(1); width: 40%;"/>
                 </div>
                 <div class="feature-text">
-                    <h2>Voxels First</h2>
-                    <p>Voxels are a first class citizen in <span class="cubos">Cubos</span>: our engine comes with many plugins built specifically to enable you to create voxel games.</p>
+                    <h2>Modular</h2>
+                    <p>In <span class="cubos">Cubos</span>, everything is a plugin: do you prefer to use your own renderer or some other physics framework? Simply swap any of our plugins by your own one.</p>
                 </div>
             </div>
-
 
             <div class="feature-container feature-container">
                 <div class="feature-text">
