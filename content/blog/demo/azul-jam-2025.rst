@@ -18,6 +18,8 @@ We were a team of 4 - 3 programmers, 1 artist, and a lot of ideas.
   
   Cubos team participating in the Azul Game Jam - photo by Gonçalo Goulão.
 
+The game is playable on the browser, and can be found at `itch.io <https://riscadoa.itch.io/ondisseia>`_.
+
 Game Development
 -------------------------------------------------------
 
