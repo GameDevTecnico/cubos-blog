@@ -25,15 +25,26 @@
 &lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;
 &lt;/section&gt;
-&lt;section id="physics-interface-refactoring-fallenatlas"&gt;
-&lt;h4&gt;Physics Interface Refactoring (?) &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;section id="aabb-and-collider-rework-fallenatlas"&gt;
+&lt;h4&gt;AABB and Collider Rework &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;With this release we started our rework of the Colliders to be more streamlined and easy to understand.
+Previously, we had the &lt;cite&gt;Collider&lt;/cite&gt; component, which contained the AABB of the Collision Shape as well as a transform, to apply an offset to the AABB.
+This component was renamed to &lt;cite&gt;ColliderAABB&lt;/cite&gt;, so it's purpose is clearer, and the transform was removed, since it was only affecting the AABB and not the collision shape itself.&lt;/p&gt;
+&lt;p&gt;A &lt;cite&gt;Collider&lt;/cite&gt; will now represent the owner entity of a collision shape. This is an important distinction, as we have plans to support collision shapes composed of multiple other shapes present in child entities of the owner entity, and we need an easy way to distinguish them in the hierarchy.
+The offset of the collision shapes will be set by its normal transform when the collision is in a child entity, otherwise, its always assumed to be centered. This functionally is not implemented yet, but should start being rolled out in the next releases.&lt;/p&gt;
+&lt;p&gt;Additionally, we now add the &lt;cite&gt;ColliderAABB&lt;/cite&gt; automatically upon adding a Collision Shape.&lt;/p&gt;
 &lt;/section&gt;
-&lt;section id="voxel-mesh-inertia-fallenatlas"&gt;
-&lt;h4&gt;Voxel Mesh Inertia &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;section id="voxel-shape-inertia-fallenatlas"&gt;
+&lt;h4&gt;Voxel Shape Inertia &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Until this point, we had voxel shapes, with collisions between themselves and boxes. However, the inertia matrix for this shape was being calculated from the size of the voxel grid, which means that it wasn't very accurate, especially for shapes that had many empty spaces.
+Now, we have a custom algorithm, which takes each voxel as a point, and sums the inertia for each point, relative to the center of mass, to compute the total inertia matrix.
+Currently, we only support uniform density, meaning all points have the mass corresponding to the total mass divided by the number of occupied voxels of the grid.
+You can check the implementation of the functions defined &lt;a href="https://docs.cubosengine.org/inertia_8hpp.html"&gt;here&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;One important note is that, at this point, although we say we calculate the Inertia tensor for this shape, in reality, we do not guarantee that it is symmetric, which by its definition, it should be.
+The matrix is only guaranteed to be symmetric when the shape is symmetric, but in every case it is always possible to obtain such a matrix by finding the principal axis of inertia.
+This is a slight optimization and makes the inertia more readable, however, it's not a priority.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="new-scene-format-riscadoa"&gt;
 &lt;h4&gt;New Scene Format &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;

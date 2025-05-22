@@ -100,15 +100,26 @@
 </h4>
 <p><strong>TODO</strong></p>
 </section>
-<section id="physics-interface-refactoring-fallenatlas">
-<h4>Physics Interface Refactoring (?) <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+<section id="aabb-and-collider-rework-fallenatlas">
+<h4>AABB and Collider Rework <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
 </h4>
-<p><strong>TODO</strong></p>
+<p>With this release we started our rework of the Colliders to be more streamlined and easy to understand.
+Previously, we had the <cite>Collider</cite> component, which contained the AABB of the Collision Shape as well as a transform, to apply an offset to the AABB.
+This component was renamed to <cite>ColliderAABB</cite>, so it's purpose is clearer, and the transform was removed, since it was only affecting the AABB and not the collision shape itself.</p>
+<p>A <cite>Collider</cite> will now represent the owner entity of a collision shape. This is an important distinction, as we have plans to support collision shapes composed of multiple other shapes present in child entities of the owner entity, and we need an easy way to distinguish them in the hierarchy.
+The offset of the collision shapes will be set by its normal transform when the collision is in a child entity, otherwise, its always assumed to be centered. This functionally is not implemented yet, but should start being rolled out in the next releases.</p>
+<p>Additionally, we now add the <cite>ColliderAABB</cite> automatically upon adding a Collision Shape.</p>
 </section>
-<section id="voxel-mesh-inertia-fallenatlas">
-<h4>Voxel Mesh Inertia <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+<section id="voxel-shape-inertia-fallenatlas">
+<h4>Voxel Shape Inertia <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
 </h4>
-<p><strong>TODO</strong></p>
+<p>Until this point, we had voxel shapes, with collisions between themselves and boxes. However, the inertia matrix for this shape was being calculated from the size of the voxel grid, which means that it wasn't very accurate, especially for shapes that had many empty spaces.
+Now, we have a custom algorithm, which takes each voxel as a point, and sums the inertia for each point, relative to the center of mass, to compute the total inertia matrix.
+Currently, we only support uniform density, meaning all points have the mass corresponding to the total mass divided by the number of occupied voxels of the grid.
+You can check the implementation of the functions defined <a href="https://docs.cubosengine.org/inertia_8hpp.html">here</a> for more details.</p>
+<p>One important note is that, at this point, although we say we calculate the Inertia tensor for this shape, in reality, we do not guarantee that it is symmetric, which by its definition, it should be.
+The matrix is only guaranteed to be symmetric when the shape is symmetric, but in every case it is always possible to obtain such a matrix by finding the principal axis of inertia.
+This is a slight optimization and makes the inertia more readable, however, it's not a priority.</p>
 </section>
 <section id="new-scene-format-riscadoa">
 <h4>New Scene Format <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
