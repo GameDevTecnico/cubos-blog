@@ -40,8 +40,8 @@ The map regenerates every time a round ends, i.e., when a player brings the toil
 &lt;figcaption&gt;Supermarket tile, where the toilet paper can be picked up.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/section&gt;
-&lt;section id="physics"&gt;
-&lt;h2&gt;Physics&lt;/h2&gt;
+&lt;section id="physics-and-collisions"&gt;
+&lt;h2&gt;Physics and Collisions&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;: cover these topics&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Voxel collision shapes were used extensively.&lt;/li&gt;
@@ -50,6 +50,24 @@ The map regenerates every time a round ends, i.e., when a player brings the toil
 &lt;li&gt;Wheels using raycasts.&lt;/li&gt;
 &lt;li&gt;Ramp performance bug?&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;For this game, we decided to go all in on physics. &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; developed physically realistic cars.
+The cars are essentially composed of a box shape, representing the chasis, and then four empty child entities representing each of the wheels, with origin on the point where the suspension connects to the car. When turning, these wheel entities are rotated on the y-axis.
+Then, we forces for each individual wheel are calculated and applied on the connection point with the chasis, for realistic behaviour. These forces include:
+- The suspension force, which lifts the car up and makes it react realistically to the ground bellow.
+- The steering force, which simulates the cars steering with tire friction and splip angle.
+- The acceleration force, which applies acceleration and breaking to the cars. The acceleration forces are applied to different wheels, depending if the car is front wheel drive or rear wheel drive, affecting it's handling.&lt;/p&gt;
+&lt;p&gt;However, if the cars are not on the ground, we do not want to calculate any forces besides gravity. Therefore, we perform a raycast from the wheel origin to the ground.
+In case it hits bellow the max distance, we calculate the forces, and particularly, we use it's hitpoint for determining the strength of the suspension force.&lt;/p&gt;
+&lt;p&gt;As meantioned previously, the map is divided into tiles. As it's much fast and accurate than trying to put collision shapes manually,
+we decided to use voxel collision shapes for every tile. This worked surprisingly well, and the framerate didn't drop as much as we where expecting given how many voxel shapes we had,
+and the little optimization we currently have for collisions. It's worth noting that we were taking advantage of the collision layers and masks to determine which shapes should detect collision between themselves, which lead to better performance in this scenario.&lt;/p&gt;
+&lt;p&gt;But this is where things went a little wrong... As we tried to put the car on the map, we noticed that the car would just completly fall through the tile.
+After finding the root issue, &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt; started working quickly on fixing it. The issue had two parts. The first was related to the component matching on the penetration constraint solving, where we were missing some checks for certain components, leading to the solving being done in the opposite way, effectively pulling bodies to each other, instead of pushing them apart.
+The second issue was related to the local contact points calculation for voxel shapes, in the narrow phase, where the points were always relative to the center of the entity rather than relative to their relative box center (since the voxel shape is composed of multiple boxes). This lead to the penetration distance being miscalculated in the penetration constraint solving, and therefore, the impulses applied to each entity were incorrect.&lt;/p&gt;
+&lt;p&gt;Since, we were at it, we wanted to use as much physics features as we wanted, so &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; experimented with using the new Distance Constraint to attach the paper roll to the car, and having it be dragged along.
+However, the team felt like it was too hard to steal the toilet paper, since it moved around too much, and discarted this idea.&lt;/p&gt;
+&lt;p&gt;On the last day, a comical situation happened when we where putting ramps on the map. We (&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;) tried to rotate one of the ramps, by rotating it, and then putting it as a child entity of another entity with the same rotation applied to it. This lead to a huge framerate drop, which took as a couple of hours to figure out.
+The exact reason for why this happened is still unknown, but we'll be investigating it in the future.&lt;/p&gt;
 &lt;figure class="m-figure"&gt;
 &lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/image2.png" /&gt;
 &lt;figcaption&gt;A player can steal another player's toilet paper by hitting them with their car.&lt;/figcaption&gt;
@@ -134,6 +152,7 @@ We were a team of 4 - 3 programmers, 1 artist, and a lot of ideas.&lt;/p&gt;
 &lt;img src="https://cubosengine.org/images/blog/demo/azul-jam-2025/CubosInAzul4.jpg" /&gt;
 &lt;figcaption&gt;Cubos team participating in the Azul Game Jam - photo by Gonçalo Goulão.&lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;p&gt;The game is playable on the browser, and can be found at &lt;a href="https://riscadoa.itch.io/ondisseia"&gt;itch.io&lt;/a&gt;.&lt;/p&gt;
 &lt;section id="game-development"&gt;
 &lt;h3&gt;Game Development&lt;/h3&gt;
 &lt;p&gt;It is challenging to work with such a barebones engine, but also really satisfying to have so much control over what is made.
