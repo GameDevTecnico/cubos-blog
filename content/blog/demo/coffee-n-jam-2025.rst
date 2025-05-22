@@ -56,8 +56,8 @@ The map regenerates every time a round ends, i.e., when a player brings the toil
 
     Supermarket tile, where the toilet paper can be picked up.
 
-Physics
-=======
+Physics and Collisions
+======================
 
 **TODO**: cover these topics
 
@@ -66,6 +66,30 @@ Physics
 - Tried using distance constraint for the toilet paper but ended up dropping it.
 - Wheels using raycasts.
 - Ramp performance bug?
+
+For this game, we decided to go all in on physics. :author:`fallenatlas` and :author:`RiscadoA` developed physically realistic cars.
+The cars are essentially composed of a box shape, representing the chasis, and then four empty child entities representing each of the wheels, with origin on the point where the suspension connects to the car. When turning, these wheel entities are rotated on the y-axis.
+Then, we forces for each individual wheel are calculated and applied on the connection point with the chasis, for realistic behaviour. These forces include:
+- The suspension force, which lifts the car up and makes it react realistically to the ground bellow.
+- The steering force, which simulates the cars steering with tire friction and splip angle.
+- The acceleration force, which applies acceleration and breaking to the cars. The acceleration forces are applied to different wheels, depending if the car is front wheel drive or rear wheel drive, affecting it's handling.
+
+However, if the cars are not on the ground, we do not want to calculate any forces besides gravity. Therefore, we perform a raycast from the wheel origin to the ground.
+In case it hits bellow the max distance, we calculate the forces, and particularly, we use it's hitpoint for determining the strength of the suspension force.
+
+As meantioned previously, the map is divided into tiles. As it's much fast and accurate than trying to put collision shapes manually,
+we decided to use voxel collision shapes for every tile. This worked surprisingly well, and the framerate didn't drop as much as we where expecting given how many voxel shapes we had,
+and the little optimization we currently have for collisions. It's worth noting that we were taking advantage of the collision layers and masks to determine which shapes should detect collision between themselves, which lead to better performance in this scenario.
+
+But this is where things went a little wrong... As we tried to put the car on the map, we noticed that the car would just completly fall through the tile.
+After finding the root issue, :author:`fallenatlas` started working quickly on fixing it. The issue had two parts. The first was related to the component matching on the penetration constraint solving, where we were missing some checks for certain components, leading to the solving being done in the opposite way, effectively pulling bodies to each other, instead of pushing them apart.
+The second issue was related to the local contact points calculation for voxel shapes, in the narrow phase, where the points were always relative to the center of the entity rather than relative to their relative box center (since the voxel shape is composed of multiple boxes). This lead to the penetration distance being miscalculated in the penetration constraint solving, and therefore, the impulses applied to each entity were incorrect.
+
+Since, we were at it, we wanted to use as much physics features as we wanted, so :author:`joaomanita` experimented with using the new Distance Constraint to attach the paper roll to the car, and having it be dragged along.
+However, the team felt like it was too hard to steal the toilet paper, since it moved around too much, and discarted this idea.
+
+On the last day, a comical situation happened when we where putting ramps on the map. We (:author:`RiscadoA`) tried to rotate one of the ramps, by rotating it, and then putting it as a child entity of another entity with the same rotation applied to it. This lead to a huge framerate drop, which took as a couple of hours to figure out. 
+The exact reason for why this happened is still unknown, but we'll be investigating it in the future.
 
 .. figure:: {static}/images/blog/demo/coffee-n-jam-2025/image2.png
 
