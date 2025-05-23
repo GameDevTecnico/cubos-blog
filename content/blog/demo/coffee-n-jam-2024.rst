@@ -3,7 +3,7 @@ Coffee N' Jam 2024
 
 :date: 2024-05-21 9:00:00
 :category: Demo
-:tags: Demo, Game Jam
+:tags: Demo, Game Jam, Coffee N' Jam
 :summary: We made a game in a week with Cubos, and managed to win two awards!
 :cover: {static}/images/blog/demo/coffee-n-jam-2024/cover.png
 
