@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Demo</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/demo.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-05-20T09:00:00+01:00</updated><entry><title>Roll Racers</title><link href="https://cubosengine.org/blog/roll-racers/" rel="alternate"></link><published>2025-05-20T09:00:00+01:00</published><updated>2025-05-20T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-20:/blog/roll-racers/</id><summary type="html">&lt;p&gt;We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Demo</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/demo.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-05-23T09:00:00+01:00</updated><entry><title>Roll Racers</title><link href="https://cubosengine.org/blog/roll-racers/" rel="alternate"></link><published>2025-05-23T09:00:00+01:00</published><updated>2025-05-23T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-23:/blog/roll-racers/</id><summary type="html">&lt;p&gt;We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!&lt;/p&gt;
 </summary><content type="html">&lt;section id="the-theme"&gt;
 &lt;h2&gt;The Theme&lt;/h2&gt;
 &lt;p&gt;From 2nd of May to the 10th of May, &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/francisco-catarino/"&gt;&amp;#64;fkatar&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
@@ -42,23 +42,21 @@ The map regenerates every time a round ends, i.e., when a player brings the toil
 &lt;/section&gt;
 &lt;section id="physics-and-collisions"&gt;
 &lt;h2&gt;Physics and Collisions&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;: cover these topics&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Voxel collision shapes were used extensively.&lt;/li&gt;
-&lt;li&gt;Physics solving bugs were fixed.&lt;/li&gt;
-&lt;li&gt;Tried using distance constraint for the toilet paper but ended up dropping it.&lt;/li&gt;
-&lt;li&gt;Wheels using raycasts.&lt;/li&gt;
-&lt;li&gt;Ramp performance bug?&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;For this game, we decided to go all in on physics. &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; developed physically realistic cars.
 The cars are essentially composed of a box shape, representing the chasis, and then four empty child entities representing each of the wheels, with origin on the point where the suspension connects to the car. When turning, these wheel entities are rotated on the y-axis.
-Then, we forces for each individual wheel are calculated and applied on the connection point with the chasis, for realistic behaviour. These forces include:
-- The suspension force, which lifts the car up and makes it react realistically to the ground bellow.
-- The steering force, which simulates the cars steering with tire friction and splip angle.
-- The acceleration force, which applies acceleration and breaking to the cars. The acceleration forces are applied to different wheels, depending if the car is front wheel drive or rear wheel drive, affecting it's handling.&lt;/p&gt;
+Then, the forces for each individual wheel are calculated and applied on the connection point with the chasis, for realistic behaviour. These forces include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The suspension force, which lifts the car up and makes it react realistically to the ground bellow.&lt;/li&gt;
+&lt;li&gt;The steering force, which simulates the cars steering with tire friction and splip angle.&lt;/li&gt;
+&lt;li&gt;The acceleration force, which applies acceleration and breaking to the cars. The acceleration forces are applied to different wheels, depending if the car is front wheel drive or rear wheel drive, affecting it's handling.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/going-over-sidewalk.png" /&gt;
+&lt;figcaption&gt;Since each wheel is simulated independently, the cars tilts when going over the sidewalk.&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;However, if the cars are not on the ground, we do not want to calculate any forces besides gravity. Therefore, we perform a raycast from the wheel origin to the ground.
 In case it hits bellow the max distance, we calculate the forces, and particularly, we use it's hitpoint for determining the strength of the suspension force.&lt;/p&gt;
-&lt;p&gt;As meantioned previously, the map is divided into tiles. As it's much fast and accurate than trying to put collision shapes manually,
+&lt;p&gt;As mentioned previously, the map is divided into tiles. As it's much fast and accurate than trying to put collision shapes manually,
 we decided to use voxel collision shapes for every tile. This worked surprisingly well, and the framerate didn't drop as much as we where expecting given how many voxel shapes we had,
 and the little optimization we currently have for collisions. It's worth noting that we were taking advantage of the collision layers and masks to determine which shapes should detect collision between themselves, which lead to better performance in this scenario.&lt;/p&gt;
 &lt;p&gt;But this is where things went a little wrong... As we tried to put the car on the map, we noticed that the car would just completly fall through the tile.
@@ -71,10 +69,6 @@ The exact reason for why this happened is still unknown, but we'll be investigat
 &lt;figure class="m-figure"&gt;
 &lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/image2.png" /&gt;
 &lt;figcaption&gt;A player can steal another player's toilet paper by hitting them with their car.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/going-over-sidewalk.png" /&gt;
-&lt;figcaption&gt;Since each wheel is simulated independently, the cars tilts when going over the sidewalk.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/section&gt;
 &lt;section id="ui"&gt;
@@ -125,7 +119,6 @@ We added a few sound effects to the game, such as:&lt;/p&gt;
 &lt;li&gt;Honking sound when honking the horn.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;While the audio still sounded a bit janky, it was very satisfying to hear sound being used so extensively in a Cubos game for the first time.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;: add a video here&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="ecs-troubles"&gt;
 &lt;h2&gt;ECS Troubles&lt;/h2&gt;

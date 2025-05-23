@@ -52,7 +52,7 @@
         <div id="m-jumbo-cover">
           <div class="m-container">
             <div class="m-row">
-              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-left">Tue 20 May 2025</div>
+              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-left">Fri 23 May 2025</div>
               <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-right"><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></div>
             </div>
             <div class="m-row">
@@ -117,23 +117,21 @@ The map regenerates every time a round ends, i.e., when a player brings the toil
 </section>
 <section id="physics-and-collisions">
 <h2>Physics and Collisions</h2>
-<p><strong>TODO</strong>: cover these topics</p>
-<ul>
-<li>Voxel collision shapes were used extensively.</li>
-<li>Physics solving bugs were fixed.</li>
-<li>Tried using distance constraint for the toilet paper but ended up dropping it.</li>
-<li>Wheels using raycasts.</li>
-<li>Ramp performance bug?</li>
-</ul>
 <p>For this game, we decided to go all in on physics. <a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a> and <a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a> developed physically realistic cars.
 The cars are essentially composed of a box shape, representing the chasis, and then four empty child entities representing each of the wheels, with origin on the point where the suspension connects to the car. When turning, these wheel entities are rotated on the y-axis.
-Then, we forces for each individual wheel are calculated and applied on the connection point with the chasis, for realistic behaviour. These forces include:
-- The suspension force, which lifts the car up and makes it react realistically to the ground bellow.
-- The steering force, which simulates the cars steering with tire friction and splip angle.
-- The acceleration force, which applies acceleration and breaking to the cars. The acceleration forces are applied to different wheels, depending if the car is front wheel drive or rear wheel drive, affecting it's handling.</p>
+Then, the forces for each individual wheel are calculated and applied on the connection point with the chasis, for realistic behaviour. These forces include:</p>
+<ul>
+<li>The suspension force, which lifts the car up and makes it react realistically to the ground bellow.</li>
+<li>The steering force, which simulates the cars steering with tire friction and splip angle.</li>
+<li>The acceleration force, which applies acceleration and breaking to the cars. The acceleration forces are applied to different wheels, depending if the car is front wheel drive or rear wheel drive, affecting it's handling.</li>
+</ul>
+<figure class="m-figure">
+<img src="../../images/blog/demo/coffee-n-jam-2025/going-over-sidewalk.png" />
+<figcaption>Since each wheel is simulated independently, the cars tilts when going over the sidewalk.</figcaption>
+</figure>
 <p>However, if the cars are not on the ground, we do not want to calculate any forces besides gravity. Therefore, we perform a raycast from the wheel origin to the ground.
 In case it hits bellow the max distance, we calculate the forces, and particularly, we use it's hitpoint for determining the strength of the suspension force.</p>
-<p>As meantioned previously, the map is divided into tiles. As it's much fast and accurate than trying to put collision shapes manually,
+<p>As mentioned previously, the map is divided into tiles. As it's much fast and accurate than trying to put collision shapes manually,
 we decided to use voxel collision shapes for every tile. This worked surprisingly well, and the framerate didn't drop as much as we where expecting given how many voxel shapes we had,
 and the little optimization we currently have for collisions. It's worth noting that we were taking advantage of the collision layers and masks to determine which shapes should detect collision between themselves, which lead to better performance in this scenario.</p>
 <p>But this is where things went a little wrong... As we tried to put the car on the map, we noticed that the car would just completly fall through the tile.
@@ -146,10 +144,6 @@ The exact reason for why this happened is still unknown, but we'll be investigat
 <figure class="m-figure">
 <img src="../../images/blog/demo/coffee-n-jam-2025/image2.png" />
 <figcaption>A player can steal another player's toilet paper by hitting them with their car.</figcaption>
-</figure>
-<figure class="m-figure">
-<img src="../../images/blog/demo/coffee-n-jam-2025/going-over-sidewalk.png" />
-<figcaption>Since each wheel is simulated independently, the cars tilts when going over the sidewalk.</figcaption>
 </figure>
 </section>
 <section id="ui">
@@ -200,7 +194,6 @@ We added a few sound effects to the game, such as:</p>
 <li>Honking sound when honking the horn.</li>
 </ul>
 <p>While the audio still sounded a bit janky, it was very satisfying to hear sound being used so extensively in a Cubos game for the first time.</p>
-<p><strong>TODO</strong>: add a video here</p>
 </section>
 <section id="ecs-troubles">
 <h2>ECS Troubles</h2>
@@ -224,7 +217,7 @@ One of the biggest problems continues to be the lack of proper tooling for the e
     <footer class="m-container">
       <div class="m-row">
         <div class="m-col-m-10 m-push-m-1 m-nopadb">
-          <p>Posted by <a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a> on <time datetime="2025-05-20T09:00:00+01:00">Tue 20 May 2025</time> in <a href="https://cubosengine.org/blog/demo/">Demo</a>. Tags: <a href="https://cubosengine.org/blog/tag/demo/">Demo</a>, <a href="https://cubosengine.org/blog/tag/game-jam/">Game Jam</a>, <a href="https://cubosengine.org/blog/tag/coffee-n-jam/">Coffee N&#39; Jam</a>.</p>
+          <p>Posted by <a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a> on <time datetime="2025-05-23T09:00:00+01:00">Fri 23 May 2025</time> in <a href="https://cubosengine.org/blog/demo/">Demo</a>. Tags: <a href="https://cubosengine.org/blog/tag/demo/">Demo</a>, <a href="https://cubosengine.org/blog/tag/game-jam/">Game Jam</a>, <a href="https://cubosengine.org/blog/tag/coffee-n-jam/">Coffee N&#39; Jam</a>.</p>
         </div>
       </div>
     </footer>
