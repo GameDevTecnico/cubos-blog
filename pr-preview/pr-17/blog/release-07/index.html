@@ -134,7 +134,17 @@ This is a slight optimization and makes the inertia more readable, however, it's
 <section id="optional-render-picker-tomas7770">
 <h4>Optional Render Picker <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
 </h4>
-<p><strong>TODO</strong></p>
+<p>In the <a href="https://cubosengine.org/blog/release-06">previous release's blog post</a>, some of the graphics renderer's major
+performance hogs were mentioned. One of them was SSAO, which had been made optional, so that it could be disabled on
+lower end devices. The other was the render picker.</p>
+<p>Though work on making the render picker possible to disable had already begun, it wasn't finished due to deadline constraints
+and some bugs that needed to be ironed out.</p>
+<p>With this release, it's finally possible to remove the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html">RenderPicker</a>
+component from a render target without breaking graphics altogether. While this prevents some features from
+working - such as selecting entities with the mouse cursor - in most cases such features aren't needed,
+and the performance cost of render picking is too significant to neglect.</p>
+<p>On one particular machine, after disabling render picking, our Airships demo running at 1080p on integrated graphics doubled from 30 FPS to nearly 60!
+This shows that this change makes it much more feasible to run Cubos games on weaker hardware.</p>
 </section>
 <section id="mouse-state-control-through-input-mcanais">
 <h4>Mouse State Control through Input <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/miguel-canais/">&#64;mcanais</a>)</span></dt>
