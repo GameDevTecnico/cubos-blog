@@ -71,7 +71,20 @@ Custom ImGui Styling :author_dim:`(RiscadoA)`
 Optional Render Picker :author_dim:`(tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**TODO**
+In the `previous release's blog post <https://cubosengine.org/blog/release-06>`_, some of the graphics renderer's major
+performance hogs were mentioned. One of them was SSAO, which had been made optional, so that it could be disabled on
+lower end devices. The other was the render picker.
+
+Though work on making the render picker possible to disable had already begun, it wasn't finished due to deadline constraints
+and some bugs that needed to be ironed out.
+
+With this release, it's finally possible to remove the `RenderPicker <https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html>`_
+component from a render target without breaking graphics altogether. While this prevents some features from
+working - such as selecting entities with the mouse cursor - in most cases such features aren't needed,
+and the performance cost of render picking is too significant to neglect.
+
+On one particular machine, after disabling render picking, our Airships demo running at 1080p on integrated graphics doubled from 30 FPS to nearly 60!
+This shows that this change makes it much more feasible to run Cubos games on weaker hardware.
 
 Mouse State Control through Input :author_dim:`(mcanais)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
