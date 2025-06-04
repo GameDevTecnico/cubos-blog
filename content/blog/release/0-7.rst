@@ -15,7 +15,28 @@ On the Engine
 -------------
 
 Overhauled ImGui Inspector with Hook Support :author_dim:`(RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before 0.7, to inspect a *Cubos* value in the ImGui inspector, you used the `DataInspector` resource.
+This resource provided methods to show and edit types through ImGui, but had no state whatsoever, which was a bit counterintuitive.
+Additionally, it was not possible to externally override the behavior of the inspector, which made it impossible to customize the way certain types were displayed or edited.
+This meant that, for example, if the game developer wanted to show some special UI on the tools for a component of theirs, it would not be possible.
+
+This previous implementation was replaced by a new `ImGuiInspector` system argument. This can be used in any ImGui system. For example:
+
+.. code-block:: c++
+
+    cubos.system("inspect all velocities")
+         .tagged(imguiTag)
+         .call([](Query<Entity, Velocity&> velocities, ImGuiInspector inspector) {
+            for (auto [ent, velocity] : velocities) {
+                inspector.edit(velocity, "Velocity of " + std::to_string(ent));
+            }
+         });
+
+This new inspector allows overriding 
+
+The ImGui inspector was previously a resource which could be accessed in systems 
 
 **TODO**
 - general hook support
@@ -25,7 +46,7 @@ Overhauled ImGui Inspector with Hook Support :author_dim:`(RiscadoA)`
 - mask and enum trait support
 
 Distance Physics Constraint :author_dim:`(joaomanita)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **TODO**
 
@@ -35,7 +56,7 @@ Voxel Mesh Frustum Culling :author_dim:`(mkuritsu)`
 **TODO**
 
 AABB and Collider Rework :author_dim:`(fallenatlas)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 With this release we started our rework of the Colliders to be more streamlined and easy to understand.
 Previously, we had the `Collider` component, which contained the AABB of the Collision Shape as well as a transform, to apply an offset to the AABB.
@@ -59,12 +80,12 @@ The matrix is only guaranteed to be symmetric when the shape is symmetric, but i
 This is a slight optimization and makes the inertia more readable, however, it's not a priority.
 
 New Scene Format :author_dim:`(RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **TODO**
 
 Custom ImGui Styling :author_dim:`(RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **TODO**
 
