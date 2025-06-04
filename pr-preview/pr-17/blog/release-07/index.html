@@ -83,6 +83,20 @@
 <section id="overhauled-imgui-inspector-with-hook-support-riscadoa">
 <h4>Overhauled ImGui Inspector with Hook Support <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
 </h4>
+<p>Before 0.7, to inspect a <em>Cubos</em> value in the ImGui inspector, you used the <cite>DataInspector</cite> resource.
+This resource provided methods to show and edit types through ImGui, but had no state whatsoever, which was a bit counterintuitive.
+Additionally, it was not possible to externally override the behavior of the inspector, which made it impossible to customize the way certain types were displayed or edited.
+This meant that, for example, if the game developer wanted to show some special UI on the tools for a component of theirs, it would not be possible.</p>
+<p>This previous implementation was replaced by a new <cite>ImGuiInspector</cite> system argument. This can be used in any ImGui system. For example:</p>
+<pre class="m-code"><span class="n">cubos</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;inspect all velocities&quot;</span><span class="p">)</span>
+<span class="w">     </span><span class="p">.</span><span class="n">tagged</span><span class="p">(</span><span class="n">imguiTag</span><span class="p">)</span>
+<span class="w">     </span><span class="p">.</span><span class="n">call</span><span class="p">([](</span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Entity</span><span class="p">,</span><span class="w"> </span><span class="n">Velocity</span><span class="o">&amp;&gt;</span><span class="w"> </span><span class="n">velocities</span><span class="p">,</span><span class="w"> </span><span class="n">ImGuiInspector</span><span class="w"> </span><span class="n">inspector</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">ent</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">velocities</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">inspector</span><span class="p">.</span><span class="n">edit</span><span class="p">(</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Velocity of &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">ent</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">     </span><span class="p">});</span></pre>
+<p>This new inspector allows overriding</p>
+<p>The ImGui inspector was previously a resource which could be accessed in systems</p>
 <p><strong>TODO</strong>
 - general hook support
 - quaternion decomposition into XYZ euler angles
