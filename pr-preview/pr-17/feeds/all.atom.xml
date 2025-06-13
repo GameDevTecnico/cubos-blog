@@ -129,7 +129,9 @@ This shows that this change makes it much more feasible to run Cubos games on we
 &lt;section id="auto-scroll-toggle-on-the-console-r-camacho"&gt;
 &lt;h4&gt;Auto-scroll Toggle on the Console &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/r-camacho/"&gt;&amp;#64;R-Camacho&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Previously, we had to scroll manually to view the latest debug messages in the console.&lt;/p&gt;
+&lt;p&gt;A new checkbox now allows us to toggle auto-scroll. When enabled, the console will automatically scroll to show the most recent messages as they appear.&lt;/p&gt;
+&lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-7/console_auto-scroll.png" /&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;/section&gt;
