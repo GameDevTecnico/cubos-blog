@@ -149,7 +149,11 @@ Tesseratos Menu Bar :author_dim:`(jdbaracho)`
 Auto-scroll Toggle on the Console :author_dim:`(R-Camacho)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**TODO**
+Previously, we had to scroll manually to view the latest debug messages in the console.
+
+A new checkbox now allows us to toggle auto-scroll. When enabled, the console will automatically scroll to show the most recent messages as they appear.
+
+.. image:: {static}/images/blog/release/0-7/console_auto-scroll.png
 
 Next Steps
 ==========
