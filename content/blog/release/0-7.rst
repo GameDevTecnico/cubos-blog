@@ -115,7 +115,9 @@ Mouse State Control through Input :author_dim:`(mcanais)`
 Center Render Voxel Pivot :author_dim:`(kuukitenshi)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**TODO**
+Previously, the pivot point for voxel rendering was at the bottom-left corner of each voxel grid. Now, it is at the center!
+
+This change makes it easier to align voxel meshes with other entities, as there's no longer a need to manually adjust offsets.
 
 On the Core
 -----------
@@ -128,7 +130,11 @@ Math Vector Reflection Trait :author_dim:`(RiscadoA)`
 Entity Destruction Observers :author_dim:`(kuukitenshi)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**TODO**
+Previously, to detect when an entity was being destroyed, we had to manually check its destruction state.
+Now, we have an observable for entity destruction, which triggers automatically when an entity is destroyed.
+
+This makes it easier to handle such events, as we can simply register a callback that will be invoked upon destruction.
+It is especially useful for cleaning up resources or performing actions across systems without repeatedly checking if an entity is being destroyed.
 
 Query Match Counting :author_dim:`(GalaxyCrush)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
