@@ -112,7 +112,11 @@ This meant that, for example, if the game developer wanted to show some special 
 <section id="voxel-mesh-frustum-culling-mkuritsu">
 <h4>Voxel Mesh Frustum Culling <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
 </h4>
-<p><strong>TODO</strong></p>
+<p>This release we used the intersection utilities added in the previous release to perform frustum culling in the rendered voxel meshes.
+Previously, every voxel mesh that was loaded into the engine would have its data sent to the GPU for rendering regardless if they were visible or not leading to wasted use of resources, this is what this feature solves.
+With frustum culling only meshes inside the visible area of the camera are sent for drawing, the others being ignored, potentially increasing performance in scenes with a large amount of objects.</p>
+<p>The frustum culling is performed automatically in any type of camera, <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html">OrthographicCamera</a> or <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html">PerspectiveCamera</a>, so it doesn't require any intervention to use its benefits.
+A useful option to debug as been added to the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html">Camera</a> component to be able to freeze (stop) the updates to the camera's frustum, keeping it in the last calculated state.</p>
 </section>
 <section id="aabb-and-collider-rework-fallenatlas">
 <h4>AABB and Collider Rework <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
