@@ -115,7 +115,8 @@ It is especially useful for cleaning up resources or performing actions across s
 &lt;section id="query-match-counting-galaxycrush"&gt;
 &lt;h4&gt;Query Match Counting &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-pereira/"&gt;&amp;#64;GalaxyCrush&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When we wanted to count matches in queries, we needed to do a for loop to count them after the query was executed.&lt;/p&gt;
+&lt;p&gt;Now we added a new &lt;cite&gt;count&lt;/cite&gt; method to the &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html"&gt;Query&lt;/a&gt; class, which returns the number of matches in the query, without the need for a separate loop outside the class.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="wrapper-reflection-trait-srgesus-riscadoa"&gt;
 &lt;h4&gt;Wrapper Reflection Trait &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/gabriel-ferreira/"&gt;&amp;#64;SrGesus&lt;/a&gt;, &amp;#64;&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
