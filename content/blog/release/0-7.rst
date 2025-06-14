@@ -1,0 +1,182 @@
+Release 0.7
+###########
+
+:date: 2025-05-20 00:00:00
+:category: Release
+:summary: TODO
+:cover: {static}/images/blog/meta/first-post/cover.png
+
+New 0.7 Features
+================
+
+This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
+
+On the Engine
+-------------
+
+Overhauled ImGui Inspector with Hook Support :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before 0.7, to inspect a *Cubos* value in the ImGui inspector, you used the `DataInspector` resource.
+This resource provided methods to show and edit types through ImGui, but had no state whatsoever, which was a bit counterintuitive.
+Additionally, it was not possible to externally override the behavior of the inspector, which made it impossible to customize the way certain types were displayed or edited.
+This meant that, for example, if the game developer wanted to show some special UI on the tools for a component of theirs, it would not be possible.
+
+This previous implementation was replaced by a new `ImGuiInspector` system argument. This can be used in any ImGui system. For example:
+
+.. code-block:: c++
+
+    cubos.system("inspect all velocities")
+         .tagged(imguiTag)
+         .call([](Query<Entity, Velocity&> velocities, ImGuiInspector inspector) {
+            for (auto [ent, velocity] : velocities) {
+                inspector.edit(velocity, "Velocity of " + std::to_string(ent));
+            }
+         });
+
+This new inspector allows overriding 
+
+The ImGui inspector was previously a resource which could be accessed in systems 
+
+**TODO**
+- general hook support
+- quaternion decomposition into XYZ euler angles
+- matrix decomposition
+- inline math vector support with new trait
+- mask and enum trait support
+
+Distance Physics Constraint :author_dim:`(joaomanita)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Voxel Mesh Frustum Culling :author_dim:`(mkuritsu)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This release we used the intersection utilities added in the previous release to perform frustum culling in the rendered voxel meshes.
+Previously, every voxel mesh that was loaded into the engine would have its data sent to the GPU for rendering regardless if they were visible or not leading to wasted use of resources, this is what this feature solves.
+With frustum culling only meshes inside the visible area of the camera are sent for drawing, the others being ignored, potentially increasing performance in scenes with a large amount of objects.
+
+The frustum culling is performed automatically in any type of camera, `OrthographicCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html>`_ or `PerspectiveCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html>`_, so it doesn't require any intervention to use its benefits. 
+A useful option to debug as been added to the `Camera <https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html>`_ component to be able to freeze (stop) the updates to the camera's frustum, keeping it in the last calculated state.
+
+AABB and Collider Rework :author_dim:`(fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With this release we started our rework of the Colliders to be more streamlined and easy to understand.
+Previously, we had the `Collider` component, which contained the AABB of the Collision Shape as well as a transform, to apply an offset to the AABB.
+This component was renamed to `ColliderAABB`, so it's purpose is clearer, and the transform was removed, since it was only affecting the AABB and not the collision shape itself.
+
+A `Collider` will now represent the owner entity of a collision shape. This is an important distinction, as we have plans to support collision shapes composed of multiple other shapes present in child entities of the owner entity, and we need an easy way to distinguish them in the hierarchy. 
+The offset of the collision shapes will be set by its normal transform when the collision is in a child entity, otherwise, its always assumed to be centered. This functionally is not implemented yet, but should start being rolled out in the next releases.
+
+Additionally, we now add the `ColliderAABB` automatically upon adding a Collision Shape.
+
+Voxel Shape Inertia :author_dim:`(fallenatlas)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Until this point, we had voxel shapes, with collisions between themselves and boxes. However, the inertia matrix for this shape was being calculated from the size of the voxel grid, which means that it wasn't very accurate, especially for shapes that had many empty spaces.
+Now, we have a custom algorithm, which takes each voxel as a point, and sums the inertia for each point, relative to the center of mass, to compute the total inertia matrix. 
+Currently, we only support uniform density, meaning all points have the mass corresponding to the total mass divided by the number of occupied voxels of the grid.
+You can check the implementation of the functions defined `here <https://docs.cubosengine.org/inertia_8hpp.html>`_ for more details.
+
+One important note is that, at this point, although we say we calculate the Inertia tensor for this shape, in reality, we do not guarantee that it is symmetric, which by its definition, it should be.
+The matrix is only guaranteed to be symmetric when the shape is symmetric, but in every case it is always possible to obtain such a matrix by finding the principal axis of inertia. 
+This is a slight optimization and makes the inertia more readable, however, it's not a priority.
+
+New Scene Format :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Custom ImGui Styling :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Optional Render Picker :author_dim:`(tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the `previous release's blog post <https://cubosengine.org/blog/release-06>`_, some of the graphics renderer's major
+performance hogs were mentioned. One of them was SSAO, which had been made optional, so that it could be disabled on
+lower end devices. The other was the render picker.
+
+Though work on making the render picker possible to disable had already begun, it wasn't finished due to deadline constraints
+and some bugs that needed to be ironed out.
+
+With this release, it's finally possible to remove the `RenderPicker <https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html>`_
+component from a render target without breaking graphics altogether. While this prevents some features from
+working - such as selecting entities with the mouse cursor - in most cases such features aren't needed,
+and the performance cost of render picking is too significant to neglect.
+
+On one particular machine, after disabling render picking, our Airships demo running at 1080p on integrated graphics doubled from 30 FPS to nearly 60!
+This shows that this change makes it much more feasible to run Cubos games on weaker hardware.
+
+Mouse State Control through Input :author_dim:`(mcanais)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Center Render Voxel Pivot :author_dim:`(kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Previously, the pivot point for voxel rendering was at the bottom-left corner of each voxel grid. Now, it is at the center!
+
+This change makes it easier to align voxel meshes with other entities, as there's no longer a need to manually adjust offsets.
+
+On the Core
+-----------
+
+Math Vector Reflection Trait :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Entity Destruction Observers :author_dim:`(kuukitenshi)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Previously, to detect when an entity was being destroyed, we had to manually check its destruction state.
+Now, we have an observable for entity destruction, which triggers automatically when an entity is destroyed.
+
+This makes it easier to handle such events, as we can simply register a callback that will be invoked upon destruction.
+It is especially useful for cleaning up resources or performing actions across systems without repeatedly checking if an entity is being destroyed.
+
+Query Match Counting :author_dim:`(GalaxyCrush)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When we wanted to count matches in queries, we needed to do a for loop to count them after the query was executed.
+
+
+Now we added a new `count` method to the `Query <https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html>`_ class, which returns the number of matches in the query, without the need for a separate loop outside the class.
+
+Wrapper Reflection Trait :author_dim:`(SrGesus, @RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**TODO**
+
+On the Tools
+------------
+
+Tesseratos Menu Bar :author_dim:`(jdbaracho)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**
+
+Auto-scroll Toggle on the Console :author_dim:`(R-Camacho)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Previously, we had to scroll manually to view the latest debug messages in the console.
+
+A new checkbox now allows us to toggle auto-scroll. When enabled, the console will automatically scroll to show the most recent messages as they appear.
+
+.. image:: {static}/images/blog/release/0-7/console_auto-scroll.png
+
+Next Steps
+==========
+
+In the next release, which should be out by the end of **TODO**, we're planning to work on the following features:
+
+* Feature 1 **TODO**
+* Feature 2 **TODO**
+* Feature 3 **TODO**
+
+You can check out the full list of things we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/31>`_ for the next release.
