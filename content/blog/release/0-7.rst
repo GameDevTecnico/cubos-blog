@@ -53,7 +53,12 @@ Distance Physics Constraint :author_dim:`(joaomanita)`
 Voxel Mesh Frustum Culling :author_dim:`(mkuritsu)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**TODO**
+This release we used the intersection utilities added in the previous release to perform frustum culling in the rendered voxel meshes.
+Previously, every voxel mesh that was loaded into the engine would have its data sent to the GPU for rendering regardless if they were visible or not leading to wasted use of resources, this is what this feature solves.
+With frustum culling only meshes inside the visible area of the camera are sent for drawing, the others being ignored, potentially increasing performance in scenes with a large amount of objects.
+
+The frustum culling is performed automatically in any type of camera, `OrthographicCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html>`_ or `PerspectiveCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html>`_, so it doesn't require any intervention to use its benefits. 
+A useful option to debug as been added to the `Camera <https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html>`_ component to be able to freeze (stop) the updates to the camera's frustum, keeping it in the last calculated state.
 
 AABB and Collider Rework :author_dim:`(fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
