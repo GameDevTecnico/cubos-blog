@@ -138,7 +138,11 @@ It is especially useful for cleaning up resources or performing actions across s
 
 Query Match Counting :author_dim:`(GalaxyCrush)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**TODO**
+
+When we wanted to count matches in queries, we needed to do a for loop to count them after the query was executed.
+
+
+Now we added a new `count` method to the `Query <https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html>`_ class, which returns the number of matches in the query, without the need for a separate loop outside the class.
 
 Wrapper Reflection Trait :author_dim:`(SrGesus, @RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
