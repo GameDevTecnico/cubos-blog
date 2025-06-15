@@ -52,7 +52,7 @@
         <div id="m-jumbo-cover">
           <div class="m-container">
             <div class="m-row">
-              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-left">Tue 20 May 2025</div>
+              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-left">Mon 16 June 2025</div>
               <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-right"><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></div>
             </div>
             <div class="m-row">
@@ -95,19 +95,35 @@ This meant that, for example, if the game developer wanted to show some special 
 <span class="w">            </span><span class="n">inspector</span><span class="p">.</span><span class="n">edit</span><span class="p">(</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Velocity of &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">ent</span><span class="p">));</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">     </span><span class="p">});</span></pre>
-<p>This new inspector allows overriding</p>
-<p>The ImGui inspector was previously a resource which could be accessed in systems</p>
-<p><strong>TODO</strong>
-- general hook support
-- quaternion decomposition into XYZ euler angles
-- matrix decomposition
-- inline math vector support with new trait
-- mask and enum trait support</p>
+<p>This new inspector allows overriding its behavior for specific types by using the <cite>ImGuiInspector::hook</cite> method.
+This paved the way for us enhancing the inspector with new feature such as showing quaternions as Euler Angles, decomposing matrices into translation, rotation and scale, and more.
+Additionally, support was added for mask and enum types using their respective reflection traits.</p>
 </section>
 <section id="distance-physics-constraint-joaomanita">
 <h4>Distance Physics Constraint <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-manita/">&#64;joaomanita</a>)</span></dt>
 </h4>
+<p>In 0.7 we start to add physics constraints that the user can set and customize, whereas before there was only the penetration constraint used for collision solving.
+For now we added only the distance constraint, which enforces a set distance between two physics bodies, or a distance range (rope-like).
+To add this constraint:</p>
+<pre class="m-code"><span class="n">commands</span><span class="p">.</span><span class="n">relate</span><span class="p">(</span><span class="n">ent1</span><span class="p">,</span><span class="w"> </span><span class="n">ent2</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">DistanceConstraint</span><span class="p">{.</span><span class="n">isRigid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">minDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">maxDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0F</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">localAnchor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">},</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">localAnchor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">}});</span>
+
+<span class="n">commands</span><span class="p">.</span><span class="n">relate</span><span class="p">(</span><span class="n">ent1</span><span class="p">,</span><span class="w"> </span><span class="n">ent2</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">DistanceConstraint</span><span class="p">{.</span><span class="n">isRigid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">fixedDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0F</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">localAnchor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">},</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">localAnchor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">}});</span></pre>
+<p>Where isRigid denotes whether it is a fixed distance or range constraint, and the local anchors refer to the point inside each body where
+the constraint is applied.</p>
 <p><strong>TODO</strong></p>
+<ul>
+<li>Add more types of contraints (spring, motor, etc)</li>
+<li>Figure out how to tweak the biases in the distance constraint to control softness</li>
+</ul>
 </section>
 <section id="voxel-mesh-frustum-culling-mkuritsu">
 <h4>Voxel Mesh Frustum Culling <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
@@ -142,7 +158,27 @@ This is a slight optimization and makes the inertia more readable, however, it's
 <section id="new-scene-format-riscadoa">
 <h4>New Scene Format <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
 </h4>
-<p><strong>TODO</strong></p>
+<p>With the introduction of relations in the ECS, and more specifically, the <cite>ChildOf</cite> relation, hierarchies became important in Cubos scenes.
+This became a problem, as the previous scene format did not have any friendly way to represent hierarchies - a scene was just a flat list of entities, with no parent-child relationships.
+To solve this, we designed a new scene format, where each scene is a JSON file describing one entity, its components and relations, and its children, recursively.
+It looks like this:</p>
+<pre class="m-code"><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;inherit&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ba19170e-65a0-47cd-9bd2-b4ea9447fe22&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;game::Player&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="s2">&quot;#camera&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;cubos::engine::PerspectiveCamera&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;fovY&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;#gun&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;inherit&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;6cb09eea-4156-4a75-b0ae-488aac843e05&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span></pre>
+<p>This scene represents an entity which inherits from another scene, with the ID <cite>ba19170e-65a0-47cd-9bd2-b4ea9447fe22</cite>, i.e., we're modifying an existing scene.
+To this base entity, a <cite>game::Player</cite> component and two children entities, <cite>camera</cite> and <cite>gun</cite>, are added.
+The <cite>camera</cite> entity also receives a component <cite>cubos::engine::PerspectiveCamera</cite>, with a field <cite>fovY</cite> set to 90, and the <cite>gun</cite> entity inherits from another scene, with the ID <cite>6cb09eea-4156-4a75-b0ae-488aac843e05</cite>.</p>
+<p>This format is much more flexible than the previous one as it allows us to expand easily upon existing scenes by inheriting from them, while also repreenting the hierarchies in a natural way.
+The inheritance system has been particularly useful in our recent demos, having been used, for example, to set different skins for players, by inheriting from a base player scene and overriding the models being used.</p>
 </section>
 <section id="custom-imgui-styling-riscadoa">
 <h4>Custom ImGui Styling <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
@@ -163,11 +199,6 @@ working - such as selecting entities with the mouse cursor - in most cases such 
 and the performance cost of render picking is too significant to neglect.</p>
 <p>On one particular machine, after disabling render picking, our Airships demo running at 1080p on integrated graphics doubled from 30 FPS to nearly 60!
 This shows that this change makes it much more feasible to run Cubos games on weaker hardware.</p>
-</section>
-<section id="mouse-state-control-through-input-mcanais">
-<h4>Mouse State Control through Input <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/miguel-canais/">&#64;mcanais</a>)</span></dt>
-</h4>
-<p><strong>TODO</strong></p>
 </section>
 <section id="center-render-voxel-pivot-kuukitenshi">
 <h4>Center Render Voxel Pivot <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/laura-cunha/">&#64;kuukitenshi</a>)</span></dt>
@@ -198,7 +229,7 @@ It is especially useful for cleaning up resources or performing actions across s
 <p>Now we added a new <cite>count</cite> method to the <a href="https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html">Query</a> class, which returns the number of matches in the query, without the need for a separate loop outside the class.</p>
 </section>
 <section id="wrapper-reflection-trait-srgesus-riscadoa">
-<h4>Wrapper Reflection Trait <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/gabriel-ferreira/">&#64;SrGesus</a>, &#64;<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+<h4>Wrapper Reflection Trait <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/gabriel-ferreira/">&#64;SrGesus</a>, <a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
 </h4>
 <p><strong>TODO</strong></p>
 </section>
@@ -237,7 +268,7 @@ It is especially useful for cleaning up resources or performing actions across s
     <footer class="m-container">
       <div class="m-row">
         <div class="m-col-m-10 m-push-m-1 m-nopadb">
-          <p>Posted by <a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a> on <time datetime="2025-05-20T00:00:00+01:00">Tue 20 May 2025</time> in <a href="https://cubosengine.org/blog/release/">Release</a>.</p>
+          <p>Posted by <a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a> on <time datetime="2025-06-16T00:00:00+01:00">Mon 16 June 2025</time> in <a href="https://cubosengine.org/blog/release/">Release</a>.</p>
         </div>
       </div>
     </footer>
