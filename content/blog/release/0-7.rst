@@ -166,9 +166,11 @@ On the Core
 -----------
 
 Math Vector Reflection Trait :author_dim:`(RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**TODO**
+One thing that had been bothering us for a while wa the lack for proper support for math types in the reflection system.
+This led to the serialization and inspector systems not being aware of them, and showing them as if they were just structs.
+We've thus added a new reflection trait, `VectorTrait`, which identifies types that represent math vectors, such as all of the `glm` vector types.
 
 Entity Destruction Observers :author_dim:`(kuukitenshi)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
