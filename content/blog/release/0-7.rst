@@ -1,7 +1,7 @@
 Release 0.7
 ###########
 
-:date: 2025-05-20 00:00:00
+:date: 2025-06-16 00:00:00
 :category: Release
 :summary: TODO
 :cover: {static}/images/blog/meta/first-post/cover.png
@@ -34,16 +34,9 @@ This previous implementation was replaced by a new `ImGuiInspector` system argum
             }
          });
 
-This new inspector allows overriding 
-
-The ImGui inspector was previously a resource which could be accessed in systems 
-
-**TODO**
-- general hook support
-- quaternion decomposition into XYZ euler angles
-- matrix decomposition
-- inline math vector support with new trait
-- mask and enum trait support
+This new inspector allows overriding its behavior for specific types by using the `ImGuiInspector::hook` method.
+This paved the way for us enhancing the inspector with new feature such as showing quaternions as Euler Angles, decomposing matrices into translation, rotation and scale, and more.
+Additionally, support was added for mask and enum types using their respective reflection traits.
 
 Distance Physics Constraint :author_dim:`(joaomanita)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,11 +127,6 @@ and the performance cost of render picking is too significant to neglect.
 
 On one particular machine, after disabling render picking, our Airships demo running at 1080p on integrated graphics doubled from 30 FPS to nearly 60!
 This shows that this change makes it much more feasible to run Cubos games on weaker hardware.
-
-Mouse State Control through Input :author_dim:`(mcanais)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**TODO**
 
 Center Render Voxel Pivot :author_dim:`(kuukitenshi)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
