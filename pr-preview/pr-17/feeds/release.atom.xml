@@ -137,7 +137,9 @@ This shows that this change makes it much more feasible to run Cubos games on we
 &lt;section id="math-vector-reflection-trait-riscadoa"&gt;
 &lt;h4&gt;Math Vector Reflection Trait &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;One thing that had been bothering us for a while wa the lack for proper support for math types in the reflection system.
+This led to the serialization and inspector systems not being aware of them, and showing them as if they were just structs.
+We've thus added a new reflection trait, &lt;cite&gt;VectorTrait&lt;/cite&gt;, which identifies types that represent math vectors, such as all of the &lt;cite&gt;glm&lt;/cite&gt; vector types.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="entity-destruction-observers-kuukitenshi"&gt;
 &lt;h4&gt;Entity Destruction Observers &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/laura-cunha/"&gt;&amp;#64;kuukitenshi&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
