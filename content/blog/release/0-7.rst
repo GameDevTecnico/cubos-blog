@@ -159,7 +159,9 @@ On the Tools
 Tesseratos Menu Bar :author_dim:`(jdbaracho)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**TODO**
+Tesseratos now has a menu bar allowing users to enabled/disable each tool.
+
+This change gets Tesseratos a step closer to beeing a usable editor so that more people can build games using **Cubos**.
 
 Auto-scroll Toggle on the Console :author_dim:`(R-Camacho)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
