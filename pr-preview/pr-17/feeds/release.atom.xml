@@ -133,7 +133,8 @@ It is especially useful for cleaning up resources or performing actions across s
 &lt;section id="tesseratos-menu-bar-jdbaracho"&gt;
 &lt;h4&gt;Tesseratos Menu Bar &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-baracho/"&gt;&amp;#64;jdbaracho&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tesseratos now has a menu bar allowing users to enabled/disable each tool.&lt;/p&gt;
+&lt;p&gt;This change gets Tesseratos a step closer to beeing a usable editor so that more people can build games using &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="auto-scroll-toggle-on-the-console-r-camacho"&gt;
 &lt;h4&gt;Auto-scroll Toggle on the Console &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/r-camacho/"&gt;&amp;#64;R-Camacho&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
