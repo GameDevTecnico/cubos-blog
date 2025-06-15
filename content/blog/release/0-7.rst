@@ -44,7 +44,9 @@ Distance Physics Constraint :author_dim:`(joaomanita)`
 In 0.7 we start to add physics constraints that the user can set and customize, whereas before there was only the penetration constraint used for collision solving.
 For now we added only the distance constraint, which enforces a set distance between two physics bodies, or a distance range (rope-like).
 To add this constraint:
+
 .. code-block:: c++
+
     commands.relate(ent1, ent2,
                         DistanceConstraint{.isRigid = false,
                                            .minDistance = 0.0F,
@@ -103,7 +105,32 @@ This is a slight optimization and makes the inertia more readable, however, it's
 New Scene Format :author_dim:`(RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**TODO**
+With the introduction of relations in the ECS, and more specifically, the `ChildOf` relation, hierarchies became important in Cubos scenes.
+This became a problem, as the previous scene format did not have any friendly way to represent hierarchies - a scene was just a flat list of entities, with no parent-child relationships.
+To solve this, we designed a new scene format, where each scene is a JSON file describing one entity, its components and relations, and its children, recursively.
+It looks like this:
+
+.. code-block:: javascript
+
+    {
+        "inherit": "ba19170e-65a0-47cd-9bd2-b4ea9447fe22",
+        "game::Player": {},
+        "#camera": {
+            "cubos::engine::PerspectiveCamera": {
+                "fovY": 90,
+            }
+        },
+        "#gun": {
+            "inherit": "6cb09eea-4156-4a75-b0ae-488aac843e05"
+        }
+    }
+
+This scene represents an entity which inherits from another scene, with the ID `ba19170e-65a0-47cd-9bd2-b4ea9447fe22`, i.e., we're modifying an existing scene.
+To this base entity, a `game::Player` component and two children entities, `camera` and `gun`, are added.
+The `camera` entity also receives a component `cubos::engine::PerspectiveCamera`, with a field `fovY` set to 90, and the `gun` entity inherits from another scene, with the ID `6cb09eea-4156-4a75-b0ae-488aac843e05`.
+
+This format is much more flexible than the previous one as it allows us to expand easily upon existing scenes by inheriting from them, while also repreenting the hierarchies in a natural way.
+The inheritance system has been particularly useful in our recent demos, having been used, for example, to set different skins for players, by inheriting from a base player scene and overriding the models being used.
 
 Custom ImGui Styling :author_dim:`(RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -160,8 +187,8 @@ When we wanted to count matches in queries, we needed to do a for loop to count 
 
 Now we added a new `count` method to the `Query <https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html>`_ class, which returns the number of matches in the query, without the need for a separate loop outside the class.
 
-Wrapper Reflection Trait :author_dim:`(SrGesus, @RiscadoA)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Wrapper Reflection Trait :author_dim:`(SrGesus, RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **TODO**
 
 On the Tools
