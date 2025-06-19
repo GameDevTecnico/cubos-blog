@@ -1,5 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-06-19T00:00:00+01:00</updated><entry><title>Release 0.7</title><link href="https://cubosengine.org/blog/release-07/" rel="alternate"></link><published>2025-06-19T00:00:00+01:00</published><updated>2025-06-19T00:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-06-19:/blog/release-07/</id><summary type="html">&lt;p&gt;A new ImGui theme and inspector, proper support for hierarchies in scenes, distance physics constraints and tons of other improvements.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-06-19T22:00:00+01:00</updated><entry><title>Roll Racers</title><link href="https://cubosengine.org/blog/roll-racers/" rel="alternate"></link><published>2025-06-19T22:00:00+01:00</published><updated>2025-06-19T22:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-06-19:/blog/roll-racers/</id><summary type="html">&lt;p&gt;We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!&lt;/p&gt;
+</summary><content type="html">&lt;section id="the-theme"&gt;
+&lt;h2&gt;The Theme&lt;/h2&gt;
+&lt;p&gt;From 2nd of May to the 10th of May, &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/francisco-catarino/"&gt;&amp;#64;fkatar&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
+The goal was to create a game in a week, this time with theme &amp;quot;Blackout&amp;quot; - the huge power outage in the Iberian Peninsula had happened the prior week, and just like during the Covid lockdown, people rushed to the supermarkets to buy toilet paper.&lt;/p&gt;
+&lt;p&gt;We thought it would be funny to make a game about racing to the supermarket to buy toilet paper - and that's what we ended up doing.
+Our priorities were to test new features of the engine, and to make a fun local multiplayer game.
+This idea was a great opportunity to fully use the physics and collision plugins in a game for the first time.&lt;/p&gt;
+&lt;p&gt;The game is called &lt;em&gt;Roll Racers&lt;/em&gt;, and you can play it on its &lt;a href="https://riscadoa.itch.io/roll-racers"&gt;itch.io page&lt;/a&gt;.
+It has a web build and a downloadable version for both Windows and Linux.
+You can also check out its source code in our &lt;a href="https://github.com/GameDevTecnico/cubos-demo"&gt;demo repository&lt;/a&gt;.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/cover.png" /&gt;
+&lt;figcaption&gt;The game supports up to 4 players, each having a different car model.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/image1.png" /&gt;
+&lt;figcaption&gt;A player holding toilet paper, racing back to the start line to score points.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;We had a lot of fun making the game, and we fixed a ton of bugs and missing features in the engine as we went along.
+Since the jam was a week long, we had some more time to work on the game than in the &lt;a href="https://cubosengine.org/blog/the-ondisseia-of-cubos/"&gt;previous jam&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="voxel-modeling"&gt;
+&lt;h2&gt;Voxel Modeling&lt;/h2&gt;
+&lt;p&gt;One major problem we had was that we didn't have any artists in the team, only programmers.
+We ended up going full programmer art mode, and we used, as usual, &lt;a href="https://ephtracy.github.io/"&gt;MagicaVoxel&lt;/a&gt; for this purpose.
+&lt;a href="https://cubosengine.org/blog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt; focused on making the buildings and the road models, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; focused on the cars and some tiles and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; made a few props.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="map-generation"&gt;
+&lt;h2&gt;Map Generation&lt;/h2&gt;
+&lt;p&gt;To make our jobs easier, the map is divided into tiles. Each tile is 68x68 voxels wide. Tiles can be road tiles, building tiles or park tiles.
+&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; worked on the map generation, which is done procedurally. First, road tiles are placed in a river-like fashion, and then, building tiles are placed around them.&lt;/p&gt;
+&lt;p&gt;To make the map prettier we also added some park tiles with trees and bushes, which are randomly placed adjacent to the road tiles.
+For an extra challenge, we added a 'river' tile where the road has a big hole in the middle, and the players have to jump over it by going fast enough on the ramps.&lt;/p&gt;
+&lt;p&gt;We also have special start and end tiles, the end tile being the supermarket, where the toilet paper is placed.
+The map regenerates every time a round ends, i.e., when a player brings the toilet paper back to the start line.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img alt="Supermarket" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/supermarket.png" /&gt;
+&lt;figcaption&gt;Supermarket tile, where the toilet paper can be picked up.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/section&gt;
+&lt;section id="physics-and-collisions"&gt;
+&lt;h2&gt;Physics and Collisions&lt;/h2&gt;
+&lt;p&gt;For this game, we decided to go all in on physics. &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; developed physically realistic cars.
+The cars are essentially composed of a box shape, representing the chasis, and then four empty child entities representing each of the wheels, with origin on the point where the suspension connects to the car. When turning, these wheel entities are rotated on the y-axis.
+Then, the forces for each individual wheel are calculated and applied on the connection point with the chasis, for realistic behaviour. These forces include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The suspension force, which lifts the car up and makes it react realistically to the ground bellow.&lt;/li&gt;
+&lt;li&gt;The steering force, which simulates the cars steering with tire friction and splip angle.&lt;/li&gt;
+&lt;li&gt;The acceleration force, which applies acceleration and breaking to the cars. The acceleration forces are applied to different wheels, depending if the car is front wheel drive or rear wheel drive, affecting it's handling.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/going-over-sidewalk.png" /&gt;
+&lt;figcaption&gt;Since each wheel is simulated independently, the cars tilts when going over the sidewalk.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;However, if the cars are not on the ground, we do not want to calculate any forces besides gravity. Therefore, we perform a raycast from the wheel origin to the ground.
+In case it hits bellow the max distance, we calculate the forces, and particularly, we use it's hitpoint for determining the strength of the suspension force.&lt;/p&gt;
+&lt;p&gt;As mentioned previously, the map is divided into tiles. As it's much fast and accurate than trying to put collision shapes manually,
+we decided to use voxel collision shapes for every tile. This worked surprisingly well, and the framerate didn't drop as much as we where expecting given how many voxel shapes we had,
+and the little optimization we currently have for collisions. It's worth noting that we were taking advantage of the collision layers and masks to determine which shapes should detect collision between themselves, which lead to better performance in this scenario.&lt;/p&gt;
+&lt;p&gt;But this is where things went a little wrong... As we tried to put the car on the map, we noticed that the car would just completly fall through the tile.
+After finding the root issue, &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt; started working quickly on fixing it. The issue had two parts. The first was related to the component matching on the penetration constraint solving, where we were missing some checks for certain components, leading to the solving being done in the opposite way, effectively pulling bodies to each other, instead of pushing them apart.
+The second issue was related to the local contact points calculation for voxel shapes, in the narrow phase, where the points were always relative to the center of the entity rather than relative to their relative box center (since the voxel shape is composed of multiple boxes). This lead to the penetration distance being miscalculated in the penetration constraint solving, and therefore, the impulses applied to each entity were incorrect.&lt;/p&gt;
+&lt;p&gt;Since, we were at it, we wanted to use as much physics features as we wanted, so &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; experimented with using the new Distance Constraint to attach the paper roll to the car, and having it be dragged along.
+However, the team felt like it was too hard to steal the toilet paper, since it moved around too much, and discarted this idea.&lt;/p&gt;
+&lt;p&gt;On the last day, a comical situation happened when we where putting ramps on the map. We (&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;) tried to rotate one of the ramps, by rotating it, and then putting it as a child entity of another entity with the same rotation applied to it. This lead to a huge framerate drop, which took as a couple of hours to figure out.
+The exact reason for why this happened is still unknown, but we'll be investigating it in the future.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/image2.png" /&gt;
+&lt;figcaption&gt;A player can steal another player's toilet paper by hitting them with their car.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/section&gt;
+&lt;section id="ui"&gt;
+&lt;h2&gt;UI&lt;/h2&gt;
+&lt;p&gt;This game was also the first time UI was used on a demo. &lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt; picked up this task, and made multiple menus and screens for the game.
+We wanted to briefly explain the game mechanics to the players, so we added a title screen with some information.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img alt="Title screen" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/title-screen.png" /&gt;
+&lt;figcaption&gt;The &amp;quot;Press Space/A ...&amp;quot; text color is animated, fading in and out.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Additionally, the players can choose how many players will play the game by pressing the spacebar or the &amp;quot;A&amp;quot; on the gamepad for each of them.
+Instructions were added to the top of the screen.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img alt="Start screen" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/start.png" /&gt;
+&lt;figcaption&gt;After advancing, the players must choose the number of players.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;In game, it was important to show the players their score and how it changed over time, to make the game more competitive.
+We decided to add a score indicator to the top of the screen, which shows the score of each player.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img alt="Score indicators" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/mid-game.png" /&gt;
+&lt;figcaption&gt;Points are gained by holding the toilet paper.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Finally, at the end of the game, we wanted to reward the players with a scoreboard, showing the score of each player.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img alt="Scoreboard" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/scoreboard.png" /&gt;
+&lt;figcaption&gt;The text color helps associate the players with their scores.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The UI ended up working well during the jam. There were only three issues:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Our UI and ImGui were not compatible - this was easily fixed by ensuring they were drawn in the correct order.&lt;/li&gt;
+&lt;li&gt;There is no support for text wrapping or newlines, so we had to create a different text element for each line.&lt;/li&gt;
+&lt;li&gt;The text contents only updated when its respective component was reinserted - simply modifying it wasn't enough. We're still unsure on how to handle these scenarios, but the most likely solution is to make the component unmodifiable and thus force the user to reinsert it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="audio"&gt;
+&lt;h2&gt;Audio&lt;/h2&gt;
+&lt;p&gt;On the last day of the jam &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; decided to focus on adding audio to the game.
+Previously, when making &lt;a href="https://cubosengine.org/blog/the-ondisseia-of-cubos/"&gt;Ondisseia&lt;/a&gt;, we had a lot of trouble with adding sound effects.
+They didn't play reliably and the audio system was a bit of a mess.&lt;/p&gt;
+&lt;p&gt;To use audio in &lt;em&gt;Roll Racers&lt;/em&gt;, we ended up fixing all of the problems we previously had, which means that we can now rely on it for future projects.
+We added a few sound effects to the game, such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Car engine sound, which changes pitch and gain based on RPM and gear.&lt;/li&gt;
+&lt;li&gt;Pickup sound when picking up toilet paper.&lt;/li&gt;
+&lt;li&gt;Steal sound when stealing toilet paper from other players.&lt;/li&gt;
+&lt;li&gt;Fireworks sound when winning the game.&lt;/li&gt;
+&lt;li&gt;Power cut sound when the race starts.&lt;/li&gt;
+&lt;li&gt;Honking sound when honking the horn.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While the audio still sounded a bit janky, it was very satisfying to hear sound being used so extensively in a Cubos game for the first time.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="ecs-troubles"&gt;
+&lt;h2&gt;ECS Troubles&lt;/h2&gt;
+&lt;p&gt;At the end of the jam, the game's performance was very bad.
+A bit of profiling quickly showed that a lot of time was being spent iterating over tens of thousands of relation tables - the ones introduced in the &lt;a href="https://cubosengine.org/blog/hello-relations/"&gt;relations development note&lt;/a&gt;.
+This was a waste of time, as only less than 15 actually contained entities.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; quickly fixed this by adding logic to clean up unused relation tables every frame.
+This immediately improved performance by a lot - on one machine, the framerate went from 40FPS to stable 240FPS.
+In the future, this logic should probably be improved to only clean up the tables when they're not used for a while, to avoid wasting time recreating tables constantly.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="whats-next"&gt;
+&lt;h2&gt;Whats Next?&lt;/h2&gt;
+&lt;p&gt;We are very happy with the results of this jam - this demo is and will continue to be a great testbed for the engine, as it really pushes it to its limits.
+After the jam ended, we met to discuss what went wrong and what issues we should prioritize fixing.
+One of the biggest problems continues to be the lack of proper tooling for the engine - this will be the focus for the next few months.&lt;/p&gt;
+&lt;/section&gt;
+</content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category><category term="Coffee N' Jam"></category></entry><entry><title>Release 0.7</title><link href="https://cubosengine.org/blog/release-07/" rel="alternate"></link><published>2025-06-19T00:00:00+01:00</published><updated>2025-06-19T00:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-06-19:/blog/release-07/</id><summary type="html">&lt;p&gt;A new ImGui theme and inspector, proper support for hierarchies in scenes, distance physics constraints and tons of other improvements.&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-7-features"&gt;
 &lt;h2&gt;New 0.7 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
@@ -197,143 +333,7 @@ Our goal is to be able to host a game jam focused on our engine by October 2025,
 &lt;p&gt;As usual, one of the focus areas of the team is improving the tooling. The tools team has received a great influx of new contributors, and we're excited to see what they will bring to the table.&lt;/p&gt;
 &lt;p&gt;You can check out the full list of things we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/31"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category></entry><entry><title>Roll Racers</title><link href="https://cubosengine.org/blog/roll-racers/" rel="alternate"></link><published>2025-05-23T09:00:00+01:00</published><updated>2025-05-23T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-23:/blog/roll-racers/</id><summary type="html">&lt;p&gt;We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!&lt;/p&gt;
-</summary><content type="html">&lt;section id="the-theme"&gt;
-&lt;h2&gt;The Theme&lt;/h2&gt;
-&lt;p&gt;From 2nd of May to the 10th of May, &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/francisco-catarino/"&gt;&amp;#64;fkatar&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
-The goal was to create a game in a week, this time with theme &amp;quot;Blackout&amp;quot; - the huge power outage in the Iberian Peninsula had happened the prior week, and just like during the Covid lockdown, people rushed to the supermarkets to buy toilet paper.&lt;/p&gt;
-&lt;p&gt;We thought it would be funny to make a game about racing to the supermarket to buy toilet paper - and that's what we ended up doing.
-Our priorities were to test new features of the engine, and to make a fun local multiplayer game.
-This idea was a great opportunity to fully use the physics and collision plugins in a game for the first time.&lt;/p&gt;
-&lt;p&gt;The game is called &lt;em&gt;Roll Racers&lt;/em&gt;, and you can play it on its &lt;a href="https://riscadoa.itch.io/roll-racers"&gt;itch.io page&lt;/a&gt;.
-It has a web build and a downloadable version for both Windows and Linux.
-You can also check out its source code in our &lt;a href="https://github.com/GameDevTecnico/cubos-demo"&gt;demo repository&lt;/a&gt;.&lt;/p&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/cover.png" /&gt;
-&lt;figcaption&gt;The game supports up to 4 players, each having a different car model.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/image1.png" /&gt;
-&lt;figcaption&gt;A player holding toilet paper, racing back to the start line to score points.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;We had a lot of fun making the game, and we fixed a ton of bugs and missing features in the engine as we went along.
-Since the jam was a week long, we had some more time to work on the game than in the &lt;a href="https://cubosengine.org/blog/the-ondisseia-of-cubos/"&gt;previous jam&lt;/a&gt;.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="voxel-modeling"&gt;
-&lt;h2&gt;Voxel Modeling&lt;/h2&gt;
-&lt;p&gt;One major problem we had was that we didn't have any artists in the team, only programmers.
-We ended up going full programmer art mode, and we used, as usual, &lt;a href="https://ephtracy.github.io/"&gt;MagicaVoxel&lt;/a&gt; for this purpose.
-&lt;a href="https://cubosengine.org/blog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt; focused on making the buildings and the road models, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; focused on the cars and some tiles and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; made a few props.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="map-generation"&gt;
-&lt;h2&gt;Map Generation&lt;/h2&gt;
-&lt;p&gt;To make our jobs easier, the map is divided into tiles. Each tile is 68x68 voxels wide. Tiles can be road tiles, building tiles or park tiles.
-&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; worked on the map generation, which is done procedurally. First, road tiles are placed in a river-like fashion, and then, building tiles are placed around them.&lt;/p&gt;
-&lt;p&gt;To make the map prettier we also added some park tiles with trees and bushes, which are randomly placed adjacent to the road tiles.
-For an extra challenge, we added a 'river' tile where the road has a big hole in the middle, and the players have to jump over it by going fast enough on the ramps.&lt;/p&gt;
-&lt;p&gt;We also have special start and end tiles, the end tile being the supermarket, where the toilet paper is placed.
-The map regenerates every time a round ends, i.e., when a player brings the toilet paper back to the start line.&lt;/p&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img alt="Supermarket" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/supermarket.png" /&gt;
-&lt;figcaption&gt;Supermarket tile, where the toilet paper can be picked up.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;/section&gt;
-&lt;section id="physics-and-collisions"&gt;
-&lt;h2&gt;Physics and Collisions&lt;/h2&gt;
-&lt;p&gt;For this game, we decided to go all in on physics. &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; developed physically realistic cars.
-The cars are essentially composed of a box shape, representing the chasis, and then four empty child entities representing each of the wheels, with origin on the point where the suspension connects to the car. When turning, these wheel entities are rotated on the y-axis.
-Then, the forces for each individual wheel are calculated and applied on the connection point with the chasis, for realistic behaviour. These forces include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The suspension force, which lifts the car up and makes it react realistically to the ground bellow.&lt;/li&gt;
-&lt;li&gt;The steering force, which simulates the cars steering with tire friction and splip angle.&lt;/li&gt;
-&lt;li&gt;The acceleration force, which applies acceleration and breaking to the cars. The acceleration forces are applied to different wheels, depending if the car is front wheel drive or rear wheel drive, affecting it's handling.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/going-over-sidewalk.png" /&gt;
-&lt;figcaption&gt;Since each wheel is simulated independently, the cars tilts when going over the sidewalk.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;However, if the cars are not on the ground, we do not want to calculate any forces besides gravity. Therefore, we perform a raycast from the wheel origin to the ground.
-In case it hits bellow the max distance, we calculate the forces, and particularly, we use it's hitpoint for determining the strength of the suspension force.&lt;/p&gt;
-&lt;p&gt;As mentioned previously, the map is divided into tiles. As it's much fast and accurate than trying to put collision shapes manually,
-we decided to use voxel collision shapes for every tile. This worked surprisingly well, and the framerate didn't drop as much as we where expecting given how many voxel shapes we had,
-and the little optimization we currently have for collisions. It's worth noting that we were taking advantage of the collision layers and masks to determine which shapes should detect collision between themselves, which lead to better performance in this scenario.&lt;/p&gt;
-&lt;p&gt;But this is where things went a little wrong... As we tried to put the car on the map, we noticed that the car would just completly fall through the tile.
-After finding the root issue, &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt; started working quickly on fixing it. The issue had two parts. The first was related to the component matching on the penetration constraint solving, where we were missing some checks for certain components, leading to the solving being done in the opposite way, effectively pulling bodies to each other, instead of pushing them apart.
-The second issue was related to the local contact points calculation for voxel shapes, in the narrow phase, where the points were always relative to the center of the entity rather than relative to their relative box center (since the voxel shape is composed of multiple boxes). This lead to the penetration distance being miscalculated in the penetration constraint solving, and therefore, the impulses applied to each entity were incorrect.&lt;/p&gt;
-&lt;p&gt;Since, we were at it, we wanted to use as much physics features as we wanted, so &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; experimented with using the new Distance Constraint to attach the paper roll to the car, and having it be dragged along.
-However, the team felt like it was too hard to steal the toilet paper, since it moved around too much, and discarted this idea.&lt;/p&gt;
-&lt;p&gt;On the last day, a comical situation happened when we where putting ramps on the map. We (&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;) tried to rotate one of the ramps, by rotating it, and then putting it as a child entity of another entity with the same rotation applied to it. This lead to a huge framerate drop, which took as a couple of hours to figure out.
-The exact reason for why this happened is still unknown, but we'll be investigating it in the future.&lt;/p&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/image2.png" /&gt;
-&lt;figcaption&gt;A player can steal another player's toilet paper by hitting them with their car.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;/section&gt;
-&lt;section id="ui"&gt;
-&lt;h2&gt;UI&lt;/h2&gt;
-&lt;p&gt;This game was also the first time UI was used on a demo. &lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt; picked up this task, and made multiple menus and screens for the game.
-We wanted to briefly explain the game mechanics to the players, so we added a title screen with some information.&lt;/p&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img alt="Title screen" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/title-screen.png" /&gt;
-&lt;figcaption&gt;The &amp;quot;Press Space/A ...&amp;quot; text color is animated, fading in and out.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;Additionally, the players can choose how many players will play the game by pressing the spacebar or the &amp;quot;A&amp;quot; on the gamepad for each of them.
-Instructions were added to the top of the screen.&lt;/p&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img alt="Start screen" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/start.png" /&gt;
-&lt;figcaption&gt;After advancing, the players must choose the number of players.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;In game, it was important to show the players their score and how it changed over time, to make the game more competitive.
-We decided to add a score indicator to the top of the screen, which shows the score of each player.&lt;/p&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img alt="Score indicators" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/mid-game.png" /&gt;
-&lt;figcaption&gt;Points are gained by holding the toilet paper.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;Finally, at the end of the game, we wanted to reward the players with a scoreboard, showing the score of each player.&lt;/p&gt;
-&lt;figure class="m-figure"&gt;
-&lt;img alt="Scoreboard" src="https://cubosengine.org/images/blog/demo/coffee-n-jam-2025/scoreboard.png" /&gt;
-&lt;figcaption&gt;The text color helps associate the players with their scores.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;The UI ended up working well during the jam. There were only three issues:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Our UI and ImGui were not compatible - this was easily fixed by ensuring they were drawn in the correct order.&lt;/li&gt;
-&lt;li&gt;There is no support for text wrapping or newlines, so we had to create a different text element for each line.&lt;/li&gt;
-&lt;li&gt;The text contents only updated when its respective component was reinserted - simply modifying it wasn't enough. We're still unsure on how to handle these scenarios, but the most likely solution is to make the component unmodifiable and thus force the user to reinsert it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/section&gt;
-&lt;section id="audio"&gt;
-&lt;h2&gt;Audio&lt;/h2&gt;
-&lt;p&gt;On the last day of the jam &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; decided to focus on adding audio to the game.
-Previously, when making &lt;a href="https://cubosengine.org/blog/the-ondisseia-of-cubos/"&gt;Ondisseia&lt;/a&gt;, we had a lot of trouble with adding sound effects.
-They didn't play reliably and the audio system was a bit of a mess.&lt;/p&gt;
-&lt;p&gt;To use audio in &lt;em&gt;Roll Racers&lt;/em&gt;, we ended up fixing all of the problems we previously had, which means that we can now rely on it for future projects.
-We added a few sound effects to the game, such as:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Car engine sound, which changes pitch and gain based on RPM and gear.&lt;/li&gt;
-&lt;li&gt;Pickup sound when picking up toilet paper.&lt;/li&gt;
-&lt;li&gt;Steal sound when stealing toilet paper from other players.&lt;/li&gt;
-&lt;li&gt;Fireworks sound when winning the game.&lt;/li&gt;
-&lt;li&gt;Power cut sound when the race starts.&lt;/li&gt;
-&lt;li&gt;Honking sound when honking the horn.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;While the audio still sounded a bit janky, it was very satisfying to hear sound being used so extensively in a Cubos game for the first time.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="ecs-troubles"&gt;
-&lt;h2&gt;ECS Troubles&lt;/h2&gt;
-&lt;p&gt;At the end of the jam, the game's performance was very bad.
-A bit of profiling quickly showed that a lot of time was being spent iterating over tens of thousands of relation tables - the ones introduced in the &lt;a href="https://cubosengine.org/blog/hello-relations/"&gt;relations development note&lt;/a&gt;.
-This was a waste of time, as only less than 15 actually contained entities.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; quickly fixed this by adding logic to clean up unused relation tables every frame.
-This immediately improved performance by a lot - on one machine, the framerate went from 40FPS to stable 240FPS.
-In the future, this logic should probably be improved to only clean up the tables when they're not used for a while, to avoid wasting time recreating tables constantly.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="whats-next"&gt;
-&lt;h2&gt;Whats Next?&lt;/h2&gt;
-&lt;p&gt;We are very happy with the results of this jam - this demo is and will continue to be a great testbed for the engine, as it really pushes it to its limits.
-After the jam ended, we met to discuss what went wrong and what issues we should prioritize fixing.
-One of the biggest problems continues to be the lack of proper tooling for the engine - this will be the focus for the next few months.&lt;/p&gt;
-&lt;/section&gt;
-</content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category><category term="Coffee N' Jam"></category></entry><entry><title>The "Ondisseia" of Cubos</title><link href="https://cubosengine.org/blog/the-ondisseia-of-cubos/" rel="alternate"></link><published>2025-05-16T10:00:00+01:00</published><updated>2025-05-16T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-16:/blog/the-ondisseia-of-cubos/</id><summary type="html">&lt;p&gt;Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.&lt;/p&gt;
+</content><category term="Release"></category></entry><entry><title>The "Ondisseia" of Cubos</title><link href="https://cubosengine.org/blog/the-ondisseia-of-cubos/" rel="alternate"></link><published>2025-05-16T10:00:00+01:00</published><updated>2025-05-16T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-16:/blog/the-ondisseia-of-cubos/</id><summary type="html">&lt;p&gt;Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.&lt;/p&gt;
 </summary><content type="html">&lt;section id="the-jam"&gt;
 &lt;h2&gt;The Jam&lt;/h2&gt;
 &lt;p&gt;Around a month ago, &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/ricardo-subtil/"&gt;&amp;#64;rsubtil&lt;/a&gt; joined forces to participate in the &lt;a href="https://www.linkedin.com/company/azulgamejam"&gt;Azul Game Jam&lt;/a&gt;.
