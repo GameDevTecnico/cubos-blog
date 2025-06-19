@@ -1,10 +1,10 @@
 Release 0.7
 ###########
 
-:date: 2025-06-16 00:00:00
+:date: 2025-06-19 00:00:00
 :category: Release
-:summary: TODO
-:cover: {static}/images/blog/meta/first-post/cover.png
+:summary: A new ImGui theme and inspector, proper support for hierarchies in scenes, distance physics constraints and tons of other improvements.
+:cover: {static}/images/blog/release/0-7/imgui-sample-theme.png
 
 New 0.7 Features
 ================
@@ -17,12 +17,12 @@ On the Engine
 Overhauled ImGui Inspector with Hook Support :author_dim:`(RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before 0.7, to inspect a *Cubos* value in the ImGui inspector, you used the `DataInspector` resource.
+Before 0.7, to inspect a *Cubos* value in the ImGui inspector, you used the ``DataInspector`` resource.
 This resource provided methods to show and edit types through ImGui, but had no state whatsoever, which was a bit counterintuitive.
 Additionally, it was not possible to externally override the behavior of the inspector, which made it impossible to customize the way certain types were displayed or edited.
 This meant that, for instance, if the game developer wanted to display a custom UI on the inspector for a component of theirs, it would not be possible.
 
-This previous implementation was replaced by a new `ImGuiInspector` system argument. This can be used in any ImGui system. For example:
+This previous implementation was replaced by a new ``ImGuiInspector`` system argument. This can be used in any ImGui system. For example:
 
 .. code-block:: c++
 
@@ -34,7 +34,7 @@ This previous implementation was replaced by a new `ImGuiInspector` system argum
             }
          });
 
-This new inspector allows overriding its behavior for specific types by using the `ImGuiInspector::hook` method.
+This new inspector allows overriding its behavior for specific types by using the ``ImGuiInspector::hook`` method.
 This paved the way for us to enhance the inspector with new features such as displaying quaternions as Euler angles, breaking down matrices into translation, rotation and scale, and more.
 Additionally, support was added for mask and enum types using their respective reflection traits.
 
@@ -67,7 +67,7 @@ Voxel Mesh Frustum Culling :author_dim:`(mkuritsu)`
 
 In this release we used the intersection utilities from the previous release to perform frustum culling on rendered voxel meshes.
 Previously, every voxel mesh loaded into the engine would have its data sent to the GPU for rendering, regardless of whether they were visible. This resulted in wasted resources, and that's exactly what this feature addresses.
-With frustum culling, only meshes within the camera’s visible area are sent to the GPU for drawing, while others are ignored, potentially improving performance in scenes with a large number of objects.
+With frustum culling, only meshes within the camera's visible area are sent to the GPU for drawing, while others are ignored, potentially improving performance in scenes with a large number of objects.
 
 Frustum culling is performed automatically with any type of camera—whether it's an `OrthographicCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html>`_ or a `PerspectiveCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html>`_. This means no manual intervention is required to benefit from it.
 Additionally, a debug option has been added to the `Camera <https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html>`_ component, allowing you to freeze (stop) updates to the camera's frustum, keeping it in the last calculated state.
@@ -75,14 +75,14 @@ Additionally, a debug option has been added to the `Camera <https://docs.cubosen
 AABB and Collider Rework :author_dim:`(fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-With this release we started our rework of the Colliders to be more streamlined and easy to understand.
-Previously, we had the `Collider` component, which contained the AABB of the Collision Shape as well as a transform to apply an offset to the AABB.
-This component has now been renamed to `ColliderAABB` to clarify its purpose, and the transform has been removed, as it only affected the AABB and not the collision shape itself.
+In this release, we began reworking the Colliders to make them more streamlined and easier to understand.
+Previously, we had the ``Collider`` component, which contained the AABB of the Collision Shape as well as a transform to apply an offset to the AABB.
+This component has now been renamed to ``ColliderAABB`` to clarify its purpose, and the transform has been removed, as it only affected the AABB and not the collision shape itself.
 
-A `Collider` now represents the owner entity of a collision shape. This distinction is important, as we plan to support collision shapes composed of multiple shapes from child entities of the owner entity. We need an easy way to distinguish them in the hierarchy.
+A ``Collider`` now represents the owner entity of a collision shape. This distinction is important, as we plan to support collision shapes composed of multiple shapes from child entities of the owner entity. We need an easy way to distinguish them in the hierarchy.
 The offset of collision shapes will be determined by the entity's transform when the collision shape is part of a child entity. Otherwise, it is assumed to be centered. This functionality has not been implemented yet, but will begin rolling out in future releases.
 
-Additionally, we now automatically add the `ColliderAABB` when a collision shape is added.
+Additionally, we now automatically add the ``ColliderAABB`` when a collision shape is added.
 
 Voxel Shape Inertia :author_dim:`(fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -119,9 +119,9 @@ It looks like this:
         }
     }
 
-This scene represents an entity that inherits from another scene with the ID `ba19170e-65a0-47cd-9bd2-b4ea9447fe22`, meaning we're modifying an existing scene.```
-To this base entity, a `game::Player` component and two child entities, `camera` and `gun`, are added.
-The `camera` entity also receives a `cubos::engine::PerspectiveCamera` component, with a field `fovY` set to 90, and the `gun` entity inherits from another scene, with the ID `6cb09eea-4156-4a75-b0ae-488aac843e05`.
+This scene represents an entity that inherits from another scene with the ID ``ba19170e-65a0-47cd-9bd2-b4ea9447fe22``, meaning we're modifying an existing scene.```
+To this base entity, a ``game::Player`` component and two child entities, ``camera`` and ``gun``, are added.
+The ``camera`` entity also receives a ``cubos::engine::PerspectiveCamera`` component, with a field ``fovY`` set to 90, and the ``gun`` entity inherits from another scene, with the ID ``6cb09eea-4156-4a75-b0ae-488aac843e05``.
 
 This format is much more flexible than the previous one, as it allows us to easily expand upon existing scenes by inheriting from them, while also representing hierarchies in a natural way.
 The inheritance system has been especially useful in our recent demos, such as for setting different player skins by inheriting from a base player scene and overriding the models used.
@@ -129,7 +129,10 @@ The inheritance system has been especially useful in our recent demos, such as f
 Custom ImGui Styling :author_dim:`(RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**TODO**
+In this release we've finally customized the ImGui theme colors and font to match the Cubos brand guidelines.
+This change makes the engine's tools UI look more professional and consistent with the overall look of our website and brand.
+
+.. image:: {static}/images/blog/release/0-7/imgui-sample-theme.png
 
 Optional Render Picker :author_dim:`(tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,7 +160,7 @@ Math Vector Reflection Trait :author_dim:`(RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 One issue that had been bothering us for a while was the lack of proper support for math types in the reflection system. This led to the serialization and inspector systems being unaware of them, treating them as simple structs.
-To address this, we've added a new reflection trait, `VectorTrait`, which identifies types that represent math vectors, such as all the `glm` vector types.
+To address this, we've added a new reflection trait, ``VectorTrait``, which identifies types that represent math vectors, such as all the `glm` vector types.
 
 Entity Destruction Observers :author_dim:`(kuukitenshi)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -171,12 +174,51 @@ Query Match Counting :author_dim:`(GalaxyCrush)`
 
 Previously, to count matches in queries, we had to use a for loop to count them after the query was executed.
 
-
-Now we added a new `count` method to the `Query <https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html>`_ class, which directly returns the number of matches in the query, eliminating the need for a separate loop outside the class.
+Now we added a new ``count`` method to the `Query <https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html>`_ class, which directly returns the number of matches in the query, eliminating the need for a separate loop outside the class.
 
 Wrapper Reflection Trait :author_dim:`(SrGesus, RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**TODO**
+
+A recurring pattern in our codebase are single field wrapper structs, such as ``Position``, ``Rotation`` and ``Scale``.
+We use these types to give meaning to the data they contain (in this case, math vectors and quaternions), and to distinguish them in the *Entity Component System*.
+To reflect these types, we previously relied  the ``FieldsTrait``, as it describes ``struct`` like types.
+
+When reflection consumers such as the `JSON` serializer interacted with these types, they would usually treat ``FieldsTrait`` types with a single field as wrappers.
+In the case of `JSON`, this led to shorter more readable output, e.g., instead of:
+
+.. code-block:: json
+
+    "cubos::engine::Position": {
+        "vec": {
+            "x": 1.0,
+            "y": 2.0,
+            "z": 3.0
+        }
+    }
+
+It would just output:
+
+.. code-block:: json
+
+    "cubos::engine::Position": {
+        "x": 1.0,
+        "y": 2.0,
+        "z": 3.0
+    }
+
+However, this behavior became problematic, as not *all* struct types with a single field should be treated as wrappers.
+For instance, the ``cubos::engine::PerspectiveCamera`` component holds a single field ``fovY``.
+Thus, when serialized to JSON, it would output:
+
+.. code-block:: json
+
+    "cubos::engine::PerspectiveCamera": 90.0
+
+This, of course, is not readable at all. Even worse, if someone were to add a new field to the ``PerspectiveCamera`` component, it would break the serialization format.
+image the component now has a new field called ``farClip``. How would the JSON deserializer know how to deserialize the above JSON?
+
+To prevent issues like these while still allowing the wrapper behavior for single field structs, we introduced a new reflection trait called ``WrapperTrait``.
+``FieldsTrait`` types with single fields are now no longer automatically treated as wrappers, and instead, only types with the ``WrapperTrait`` will be serialized in the shorter format. 
 
 On the Tools
 ------------
@@ -195,7 +237,7 @@ Previously, we had to scroll manually to view the latest debug messages in the c
 
 Now, a new checkbox allows us toggle auto-scroll. When enabled, the console will automatically scroll to display the most recent messages as they appear.
 
-.. image:: {static}/images/blog/release/0-7/console_auto-scroll.png
+.. image:: {static}/images/blog/release/0-7/console-auto-scroll.png
 
 Next Steps
 ==========
