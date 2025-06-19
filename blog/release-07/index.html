@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <title>Release 0.7 | Cubos Blog</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&amp;family=Roboto:wght@400&amp;display=swap" />
+  <link rel="stylesheet" href="https://cubosengine.org/static/m-dark.compiled.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+  <link rel="icon" href="https://cubosengine.org/images/favicon.png" type="image/png" />
+  <link rel="canonical" href="https://cubosengine.org/blog/release-07/" />
+  <link href="https://cubosengine.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine" />
+  <link href="https://cubosengine.org/feeds/release.atom.xml" type="application/atom+xml" rel="alternate" title="Cubos Engine | Release" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+  <meta property="og:site_name" content="Cubos Blog" />
+  <meta property="og:title" content="Release 0.7" />
+  <meta name="twitter:title" content="Release 0.7" />
+  <meta property="og:url" content="https://cubosengine.org/blog/release-07/" />
+  <meta property="og:description" content="A new ImGui theme and inspector, proper support for hierarchies in scenes, distance physics constraints and tons of other improvements." />
+  <meta name="twitter:description" content="A new ImGui theme and inspector, proper support for hierarchies in scenes, distance physics constraints and tons of other improvements." />
+  <meta property="og:image" content="../../images/blog/release/0-7/imgui-sample-theme.png" />
+  <meta name="twitter:image" content="../../images/blog/release/0-7/imgui-sample-theme.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:type" content="article" />
+</head>
+<body>
+<header><nav id="navigation" class="m-navbar-cover">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="../../" id="m-navbar-brand" class="m-col-t-9 m-col-m-none m-left-m"><img src="https://cubosengine.org/images/favicon.png" alt="" />Cubos</a>
+      <a id="m-navbar-show" href="#navigation" title="Show navigation" class="m-col-t-3 m-hide-m m-text-right"></a>
+      <a id="m-navbar-hide" href="#" title="Hide navigation" class="m-col-t-3 m-hide-m m-text-right"></a>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li><a href="https://docs.cubosengine.org">Docs</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="2">
+            <li><a href="https://cubosengine.org/blog" id="m-navbar-current">Blog</a></li>
+            <li><a href="https://github.com/GameDevTecnico/cubos">GitHub</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main>
+  <article id="m-jumbo">
+    <header>
+      <div id="m-jumbo-image" style="background-image: url('../../images/blog/release/0-7/imgui-sample-theme.png');">
+        <div id="m-jumbo-cover">
+          <div class="m-container">
+            <div class="m-row">
+              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-left">Thu 19 June 2025</div>
+              <div class="m-col-t-6 m-col-s-5 m-push-s-1 m-text-right"><a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a></div>
+            </div>
+            <div class="m-row">
+              <div class="m-col-t-12 m-col-s-10 m-push-s-1 m-col-m-8 m-push-m-2">
+                <h1><a href="https://cubosengine.org/blog/release-07/" rel="bookmark" title="Permalink to Release 0.7">Release 0.7</a></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="m-container">
+        <div class="m-row">
+          <div class="m-col-m-10 m-push-m-1 m-nopady">
+            <p>A new ImGui theme and inspector, proper support for hierarchies in scenes, distance physics constraints and tons of other improvements.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="m-container m-container-inflatable">
+      <div class="m-row">
+        <div class="m-col-m-10 m-push-m-1 m-nopady">
+<!-- content -->
+<section id="new-0-7-features">
+<h2>New 0.7 Features</h2>
+<p>This blog post covers the most important changes, but you can check out the full changelog in our <a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md">repository</a>.</p>
+<section id="on-the-engine">
+<h3>On the Engine</h3>
+<section id="overhauled-imgui-inspector-with-hook-support-riscadoa">
+<h4>Overhauled ImGui Inspector with Hook Support <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+</h4>
+<p>Before 0.7, to inspect a <em>Cubos</em> value in the ImGui inspector, you used the <code>DataInspector</code> resource.
+This resource provided methods to show and edit types through ImGui, but had no state whatsoever, which was a bit counterintuitive.
+Additionally, it was not possible to externally override the behavior of the inspector, which made it impossible to customize the way certain types were displayed or edited.
+This meant that, for instance, if the game developer wanted to display a custom UI on the inspector for a component of theirs, it would not be possible.</p>
+<p>This previous implementation was replaced by a new <code>ImGuiInspector</code> system argument. This can be used in any ImGui system. For example:</p>
+<pre class="m-code"><span class="n">cubos</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;inspect all velocities&quot;</span><span class="p">)</span>
+<span class="w">     </span><span class="p">.</span><span class="n">tagged</span><span class="p">(</span><span class="n">imguiTag</span><span class="p">)</span>
+<span class="w">     </span><span class="p">.</span><span class="n">call</span><span class="p">([](</span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Entity</span><span class="p">,</span><span class="w"> </span><span class="n">Velocity</span><span class="o">&amp;&gt;</span><span class="w"> </span><span class="n">velocities</span><span class="p">,</span><span class="w"> </span><span class="n">ImGuiInspector</span><span class="w"> </span><span class="n">inspector</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">ent</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">velocities</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">inspector</span><span class="p">.</span><span class="n">edit</span><span class="p">(</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Velocity of &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">ent</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">     </span><span class="p">});</span></pre>
+<p>This new inspector allows overriding its behavior for specific types by using the <code>ImGuiInspector::hook</code> method.
+This paved the way for us to enhance the inspector with new features such as displaying quaternions as Euler angles, breaking down matrices into translation, rotation and scale, and more.
+Additionally, support was added for mask and enum types using their respective reflection traits.</p>
+</section>
+<section id="distance-physics-constraint-joaomanita">
+<h4>Distance Physics Constraint <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-manita/">&#64;joaomanita</a>)</span></dt>
+</h4>
+<p>In version 0.7, we began adding physics constraints that users can set and customize. Previously, only the penetration constraint was available, which was used exclusively for collision solving.
+For now, we've added the distance constraint, which ensures either a fixed distance between two physics bodies, or a distance range (similar to a rope).
+To add this constraint:</p>
+<pre class="m-code"><span class="n">commands</span><span class="p">.</span><span class="n">relate</span><span class="p">(</span><span class="n">ent1</span><span class="p">,</span><span class="w"> </span><span class="n">ent2</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">DistanceConstraint</span><span class="p">{.</span><span class="n">isRigid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">minDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">maxDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0F</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">localAnchor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">},</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">localAnchor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">}});</span>
+
+<span class="n">commands</span><span class="p">.</span><span class="n">relate</span><span class="p">(</span><span class="n">ent1</span><span class="p">,</span><span class="w"> </span><span class="n">ent2</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">DistanceConstraint</span><span class="p">{.</span><span class="n">isRigid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">fixedDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0F</span><span class="p">,</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">localAnchor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">},</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">localAnchor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0F</span><span class="p">}});</span></pre>
+<p>Where isRigid indicates whether it's a fixed distance or a range constraint, and the local anchor values specify the points on each body where the constraint is applied.</p>
+</section>
+<section id="voxel-mesh-frustum-culling-mkuritsu">
+<h4>Voxel Mesh Frustum Culling <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/rodrigo-correia/">&#64;mkuritsu</a>)</span></dt>
+</h4>
+<p>In this release we used the intersection utilities from the previous release to perform frustum culling on rendered voxel meshes.
+Previously, every voxel mesh loaded into the engine would have its data sent to the GPU for rendering, regardless of whether they were visible. This resulted in wasted resources, and that's exactly what this feature addresses.
+With frustum culling, only meshes within the camera's visible area are sent to the GPU for drawing, while others are ignored, potentially improving performance in scenes with a large number of objects.</p>
+<p>Frustum culling is performed automatically with any type of camera—whether it's an <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html">OrthographicCamera</a> or a <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html">PerspectiveCamera</a>. This means no manual intervention is required to benefit from it.
+Additionally, a debug option has been added to the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html">Camera</a> component, allowing you to freeze (stop) updates to the camera's frustum, keeping it in the last calculated state.</p>
+</section>
+<section id="aabb-and-collider-rework-fallenatlas">
+<h4>AABB and Collider Rework <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+</h4>
+<p>In this release, we began reworking the Colliders to make them more streamlined and easier to understand.
+Previously, we had the <code>Collider</code> component, which contained the AABB of the Collision Shape as well as a transform to apply an offset to the AABB.
+This component has now been renamed to <code>ColliderAABB</code> to clarify its purpose, and the transform has been removed, as it only affected the AABB and not the collision shape itself.</p>
+<p>A <code>Collider</code> now represents the owner entity of a collision shape. This distinction is important, as we plan to support collision shapes composed of multiple shapes from child entities of the owner entity. We need an easy way to distinguish them in the hierarchy.
+The offset of collision shapes will be determined by the entity's transform when the collision shape is part of a child entity. Otherwise, it is assumed to be centered. This functionality has not been implemented yet, but will begin rolling out in future releases.</p>
+<p>Additionally, we now automatically add the <code>ColliderAABB</code> when a collision shape is added.</p>
+</section>
+<section id="voxel-shape-inertia-fallenatlas">
+<h4>Voxel Shape Inertia <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tiago-antunes/">&#64;fallenatlas</a>)</span></dt>
+</h4>
+<p>Up until now, we had voxel shapes that collided with each other and with boxes. However, the inertia matrix for these shapes was calculated based on the size of the voxel grid, which led to inaccuracies, particularly for shapes with many empty spaces.
+Now, we use a custom algorithm that treats each voxel as a point and sums the inertia for each point, relative to the center of mass, to compute the total inertia matrix.
+Currently, we only support uniform density, meaning each point has a mass equal to the total mass divided by the number of occupied voxels in the grid.
+You can check the implementation of the functions defined <a href="https://docs.cubosengine.org/inertia_8hpp.html">here</a> for more details.</p>
+<p>One important note is that, while we calculate the inertia tensor for this shape, we do not guarantee it will be symmetric, even though it should be by definition.
+The matrix is guaranteed to be symmetric only when the shape itself is symmetric. However, in all cases, it’s possible to obtain a symmetric matrix by finding the principal axis of inertia.
+This is a minor optimization that makes the inertia more readable, though it's not a priority.</p>
+</section>
+<section id="new-scene-format-riscadoa">
+<h4>New Scene Format <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+</h4>
+<p>With the introduction of relations in the ECS, particularly the <cite>ChildOf</cite> relation, hierarchies became essential in Cubos scenes.
+This posed a problem, as the previous scene format didn’t have an intuitive way to represent hierarchies—scenes were simply flat lists of entities with no parent-child relationships.
+To address this, we designed a new scene format where each scene is a JSON file describing an entity, its components and relations, as well as its children, recursively.
+It looks like this:</p>
+<pre class="m-code"><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;inherit&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ba19170e-65a0-47cd-9bd2-b4ea9447fe22&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;game::Player&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="s2">&quot;#camera&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;cubos::engine::PerspectiveCamera&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;fovY&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;#gun&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;inherit&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;6cb09eea-4156-4a75-b0ae-488aac843e05&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span></pre>
+<p>This scene represents an entity that inherits from another scene with the ID <code>ba19170e-65a0-47cd-9bd2-b4ea9447fe22</code>, meaning we're modifying an existing scene.```
+To this base entity, a <code>game::Player</code> component and two child entities, <code>camera</code> and <code>gun</code>, are added.
+The <code>camera</code> entity also receives a <code>cubos::engine::PerspectiveCamera</code> component, with a field <code>fovY</code> set to 90, and the <code>gun</code> entity inherits from another scene, with the ID <code>6cb09eea-4156-4a75-b0ae-488aac843e05</code>.</p>
+<p>This format is much more flexible than the previous one, as it allows us to easily expand upon existing scenes by inheriting from them, while also representing hierarchies in a natural way.
+The inheritance system has been especially useful in our recent demos, such as for setting different player skins by inheriting from a base player scene and overriding the models used.</p>
+</section>
+<section id="custom-imgui-styling-riscadoa">
+<h4>Custom ImGui Styling <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+</h4>
+<p>In this release we've finally customized the ImGui theme colors and font to match the Cubos brand guidelines.
+This change makes the engine's tools UI look more professional and consistent with the overall look of our website and brand.</p>
+<img class="m-image" src="../../images/blog/release/0-7/imgui-sample-theme.png" />
+</section>
+<section id="optional-render-picker-tomas7770">
+<h4>Optional Render Picker <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/tomas-gouveia/">&#64;tomas7770</a>)</span></dt>
+</h4>
+<p>In the <a href="https://cubosengine.org/blog/release-06">previous release's blog post</a>, we discussed some of the major performance bottlenecks in the graphics renderer. One of them was SSAO, which was made optional to allow disabling it on lower-end devices. The other was the render picker.</p>
+<p>Although work to make the render picker optional had already started, it wasn’t completed due to deadline constraints and some lingering bugs.</p>
+<p>With this release, it's now possible to remove the <a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html">RenderPicker</a> component from a render target without breaking the graphics system. While this disables certain features, such as selecting entities with the mouse cursor, in most cases, those features aren't crucial, and the performance cost of render picking is too high to ignore.</p>
+<p>On one particular machine, disabling render picking in our Airships demo running at 1080p on integrated graphics resulted in a jump from 30 FPS to nearly 60 FPS!
+This shows how this change makes it much more feasible to run Cubos games on lower-end hardware.</p>
+</section>
+<section id="center-render-voxel-pivot-kuukitenshi">
+<h4>Center Render Voxel Pivot <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/laura-cunha/">&#64;kuukitenshi</a>)</span></dt>
+</h4>
+<p>Previously, the pivot point for voxel rendering was at the bottom-left corner of each voxel grid. Now, it’s at the center!</p>
+<p>This change makes aligning voxel meshes with other entities much easier, as there's no longer a need to manually adjust offsets.</p>
+</section>
+</section>
+<section id="on-the-core">
+<h3>On the Core</h3>
+<section id="math-vector-reflection-trait-riscadoa">
+<h4>Math Vector Reflection Trait <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+</h4>
+<p>One issue that had been bothering us for a while was the lack of proper support for math types in the reflection system. This led to the serialization and inspector systems being unaware of them, treating them as simple structs.
+To address this, we've added a new reflection trait, <code>VectorTrait</code>, which identifies types that represent math vectors, such as all the <cite>glm</cite> vector types.</p>
+</section>
+<section id="entity-destruction-observers-kuukitenshi">
+<h4>Entity Destruction Observers <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/laura-cunha/">&#64;kuukitenshi</a>)</span></dt>
+</h4>
+<p>Previously, detecting when an entity was being destroyed required manually checking its destruction state. Now, we have an observable for entity destruction that triggers automatically when an entity is destroyed.</p>
+<p>This makes handling such events easier, as we can now simply register a callback that’s invoked upon destruction. It’s especially useful for cleaning up resources or performing actions across systems without needing to repeatedly check if an entity is being destroyed.</p>
+</section>
+<section id="query-match-counting-galaxycrush">
+<h4>Query Match Counting <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-pereira/">&#64;GalaxyCrush</a>)</span></dt>
+</h4>
+<p>Previously, to count matches in queries, we had to use a for loop to count them after the query was executed.</p>
+<p>Now we added a new <code>count</code> method to the <a href="https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html">Query</a> class, which directly returns the number of matches in the query, eliminating the need for a separate loop outside the class.</p>
+</section>
+<section id="wrapper-reflection-trait-srgesus-riscadoa">
+<h4>Wrapper Reflection Trait <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/gabriel-ferreira/">&#64;SrGesus</a>, <a href="https://cubosengine.org/blog/author/ricardo-antunes/">&#64;RiscadoA</a>)</span></dt>
+</h4>
+<p>A recurring pattern in our codebase are single field wrapper structs, such as <code>Position</code>, <code>Rotation</code> and <code>Scale</code>.
+We use these types to give meaning to the data they contain (in this case, math vectors and quaternions), and to distinguish them in the <em>Entity Component System</em>.
+To reflect these types, we previously relied  the <code>FieldsTrait</code>, as it describes <code>struct</code> like types.</p>
+<p>When reflection consumers such as the <cite>JSON</cite> serializer interacted with these types, they would usually treat <code>FieldsTrait</code> types with a single field as wrappers.
+In the case of <cite>JSON</cite>, this led to shorter more readable output, e.g., instead of:</p>
+<pre class="m-code"><span class="nt">&quot;cubos::engine::Position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;vec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span></pre>
+<p>It would just output:</p>
+<pre class="m-code"><span class="nt">&quot;cubos::engine::Position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span>
+<span class="p">}</span></pre>
+<p>However, this behavior became problematic, as not <em>all</em> struct types with a single field should be treated as wrappers.
+For instance, the <code>cubos::engine::PerspectiveCamera</code> component holds a single field <code>fovY</code>.
+Thus, when serialized to JSON, it would output:</p>
+<pre class="m-code"><span class="nt">&quot;cubos::engine::PerspectiveCamera&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">90.0</span></pre>
+<p>This, of course, is not readable at all. Even worse, if someone were to add a new field to the <code>PerspectiveCamera</code> component, it would break the serialization format.
+image the component now has a new field called <code>farClip</code>. How would the JSON deserializer know how to deserialize the above JSON?</p>
+<p>To prevent issues like these while still allowing the wrapper behavior for single field structs, we introduced a new reflection trait called <code>WrapperTrait</code>.
+<code>FieldsTrait</code> types with single fields are now no longer automatically treated as wrappers, and instead, only types with the <code>WrapperTrait</code> will be serialized in the shorter format.</p>
+</section>
+</section>
+<section id="on-the-tools">
+<h3>On the Tools</h3>
+<section id="tesseratos-menu-bar-jdbaracho">
+<h4>Tesseratos Menu Bar <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/joao-baracho/">&#64;jdbaracho</a>)</span></dt>
+</h4>
+<p>Tesseratos now features a menu bar that lets users enable or disable each tool.</p>
+<p>This change brings Tesseratos a step closer to being a fully functional editor, making it easier for more people to build games using <strong>Cubos</strong>.</p>
+</section>
+<section id="auto-scroll-toggle-on-the-console-r-camacho">
+<h4>Auto-scroll Toggle on the Console <span class="m-text m-dim author-dim classifier">(<a href="https://cubosengine.org/blog/author/r-camacho/">&#64;R-Camacho</a>)</span></dt>
+</h4>
+<p>Previously, we had to scroll manually to view the latest debug messages in the console.</p>
+<p>Now, a new checkbox allows us toggle auto-scroll. When enabled, the console will automatically scroll to display the most recent messages as they appear.</p>
+<img class="m-image" src="../../images/blog/release/0-7/console-auto-scroll.png" />
+</section>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps</h2>
+<p>On the next release we'll be introducing a <em>Lua</em> scripting plugin, backed by C API bindings to Cubos.
+Our goal is to be able to host a game jam focused on our engine by October 2025, and we believe that having a scripting language will be essential for that.</p>
+<p>As usual, one of the focus areas of the team is improving the tooling. The tools team has received a great influx of new contributors, and we're excited to see what they will bring to the table.</p>
+<p>You can check out the full list of things we want to get done in the <a href="https://github.com/GameDevTecnico/cubos/milestone/31">milestone</a> for the next release.</p>
+</section>
+<!-- /content -->
+        </div>
+      </div>
+    </div>
+    <footer class="m-container">
+      <div class="m-row">
+        <div class="m-col-m-10 m-push-m-1 m-nopadb">
+          <p>Posted by <a href="https://cubosengine.org/blog/author/cubos-team/">Cubos Team</a> on <time datetime="2025-06-19T00:00:00+01:00">Thu 19 June 2025</time> in <a href="https://cubosengine.org/blog/release/">Release</a>.</p>
+        </div>
+      </div>
+    </footer>
+  </article>
+  <nav class="m-navpanel m-container">
+    <div class="m-row">
+      <div class="m-col-s-4 m-col-l-2 m-push-s-2 m-push-l-3">
+        <h3>Categories</h3>
+        <ol class="m-block-bar-s">
+          <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
+          <li><a href="https://cubosengine.org/blog/dev-notes/">Dev Notes</a></li>
+          <li><a href="https://cubosengine.org/blog/meta/">Meta</a></li>
+          <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
+        </ol>
+      </div>
+      <div class="m-col-s-4 m-col-l-2 m-push-s-2 m-push-l-5">
+        <h3>Tag cloud</h3>
+        <ul class="m-tagcloud">
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/core/">Core</a></li>
+          <li class="m-tag-2"><a href="https://cubosengine.org/blog/tag/demo/">Demo</a></li>
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/design/">Design</a></li>
+          <li class="m-tag-1"><a href="https://cubosengine.org/blog/tag/ecs/">ECS</a></li>
+          <li class="m-tag-2"><a href="https://cubosengine.org/blog/tag/game-jam/">Game Jam</a></li>
+          <li class="m-tag-5"><a href="https://cubosengine.org/blog/tag/release/">Release</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</main>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="https://cubosengine.org/">Cubos</a></h3>
+        <ul>
+          <li><a href="https://docs.cubosengine.org/getting-started.html">Getting Started</a></li>
+          <li><a href="https://docs.cubosengine.org/features.html">Feature Guide</a></li>
+          <li><a href="https://docs.cubosengine.org/examples.html">Examples</a></li>
+          <li><a href="https://docs.cubosengine.org/contribution.html">Contribution Guidelines</a></li>
+          <li><a href="https://cubosengine.org/images/brand.pdf">Brand Guidelines</a></li>
+        </ul>
+      </div>
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="https://docs.cubosengine.org">Docs</a></h3>
+        <ul>
+          <li><a href="https://docs.cubosengine.org/pages.html">Pages</a></li>
+          <li><a href="https://docs.cubosengine.org/modules.html">Modules</a></li>
+          <li><a href="https://docs.cubosengine.org/annotated.html">Classes</a></li>
+          <li><a href="https://docs.cubosengine.org/files.html">Files</a></li>
+        </ul>
+      </div>
+      <div class="m-clearfix-t"></div>
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="mailto:team@cubosengine.org">Contact Us</a></h3>
+        <ul>
+          <li><a href="https://cubosengine.org/feeds/all.atom.xml">Blog Feed</a></li>
+          <li><a href="https://github.com/GameDevTecnico/cubos">GitHub</a></li>
+          <li><a href="https://discord.gg/WjTtcNTRqD">Discord</a></li>
+          <li><a href="mailto:team@cubosengine.org">E-mail</a></li>
+          <li><a href="https://cubos-engine.itch.io/">itch.io</a></li>
+        </ul>
+      </div>
+      <div class="m-col-s-3 m-col-t-6">
+        <h3><a href="https://cubosengine.org/blog">Blog</a></h3>
+        <ul>
+          <li><a href="https://cubosengine.org/blog/demo/">Demo</a></li>
+          <li><a href="https://cubosengine.org/blog/dev-notes/">Dev Notes</a></li>
+          <li><a href="https://cubosengine.org/blog/meta/">Meta</a></li>
+          <li><a href="https://cubosengine.org/blog/release/">Release</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>Cubos Engine. Powered by <a href="https://getpelican.com">Pelican</a> and <a href="https://mcss.mosra.cz">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>
