@@ -67,41 +67,41 @@ Voxel Mesh Frustum Culling :author_dim:`(mkuritsu)`
 
 In this release we used the intersection utilities from the previous release to perform frustum culling on rendered voxel meshes.
 Previously, every voxel mesh loaded into the engine would have its data sent to the GPU for rendering, regardless of whether they were visible. This resulted in wasted resources, and that's exactly what this feature addresses.
-With frustum culling only meshes inside the visible area of the camera are sent for drawing, the others being ignored, potentially increasing performance in scenes with a large amount of objects.
+With frustum culling, only meshes within the camera’s visible area are sent to the GPU for drawing, while others are ignored, potentially improving performance in scenes with a large number of objects.
 
-The frustum culling is performed automatically in any type of camera, `OrthographicCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html>`_ or `PerspectiveCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html>`_, so it doesn't require any intervention to use its benefits. 
-A useful option to debug as been added to the `Camera <https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html>`_ component to be able to freeze (stop) the updates to the camera's frustum, keeping it in the last calculated state.
+Frustum culling is performed automatically with any type of camera—whether it's an `OrthographicCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html>`_ or a `PerspectiveCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html>`_. This means no manual intervention is required to benefit from it.
+Additionally, a debug option has been added to the `Camera <https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html>`_ component, allowing you to freeze (stop) updates to the camera's frustum, keeping it in the last calculated state.
 
 AABB and Collider Rework :author_dim:`(fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 With this release we started our rework of the Colliders to be more streamlined and easy to understand.
-Previously, we had the `Collider` component, which contained the AABB of the Collision Shape as well as a transform, to apply an offset to the AABB.
-This component was renamed to `ColliderAABB`, so it's purpose is clearer, and the transform was removed, since it was only affecting the AABB and not the collision shape itself.
+Previously, we had the `Collider` component, which contained the AABB of the Collision Shape as well as a transform to apply an offset to the AABB.
+This component has now been renamed to `ColliderAABB` to clarify its purpose, and the transform has been removed, as it only affected the AABB and not the collision shape itself.
 
-A `Collider` will now represent the owner entity of a collision shape. This is an important distinction, as we have plans to support collision shapes composed of multiple other shapes present in child entities of the owner entity, and we need an easy way to distinguish them in the hierarchy. 
-The offset of the collision shapes will be set by its normal transform when the collision is in a child entity, otherwise, its always assumed to be centered. This functionally is not implemented yet, but should start being rolled out in the next releases.
+A `Collider` now represents the owner entity of a collision shape. This distinction is important, as we plan to support collision shapes composed of multiple shapes from child entities of the owner entity. We need an easy way to distinguish them in the hierarchy.
+The offset of collision shapes will be determined by the entity's transform when the collision shape is part of a child entity. Otherwise, it is assumed to be centered. This functionality has not been implemented yet, but will begin rolling out in future releases.
 
-Additionally, we now add the `ColliderAABB` automatically upon adding a Collision Shape.
+Additionally, we now automatically add the `ColliderAABB` when a collision shape is added.
 
 Voxel Shape Inertia :author_dim:`(fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Until this point, we had voxel shapes, with collisions between themselves and boxes. However, the inertia matrix for this shape was being calculated from the size of the voxel grid, which means that it wasn't very accurate, especially for shapes that had many empty spaces.
-Now, we have a custom algorithm, which takes each voxel as a point, and sums the inertia for each point, relative to the center of mass, to compute the total inertia matrix. 
-Currently, we only support uniform density, meaning all points have the mass corresponding to the total mass divided by the number of occupied voxels of the grid.
+Up until now, we had voxel shapes that collided with each other and with boxes. However, the inertia matrix for these shapes was calculated based on the size of the voxel grid, which led to inaccuracies, particularly for shapes with many empty spaces.
+Now, we use a custom algorithm that treats each voxel as a point and sums the inertia for each point, relative to the center of mass, to compute the total inertia matrix.
+Currently, we only support uniform density, meaning each point has a mass equal to the total mass divided by the number of occupied voxels in the grid.
 You can check the implementation of the functions defined `here <https://docs.cubosengine.org/inertia_8hpp.html>`_ for more details.
 
-One important note is that, at this point, although we say we calculate the Inertia tensor for this shape, in reality, we do not guarantee that it is symmetric, which by its definition, it should be.
-The matrix is only guaranteed to be symmetric when the shape is symmetric, but in every case it is always possible to obtain such a matrix by finding the principal axis of inertia. 
-This is a slight optimization and makes the inertia more readable, however, it's not a priority.
+One important note is that, while we calculate the inertia tensor for this shape, we do not guarantee it will be symmetric, even though it should be by definition.
+The matrix is guaranteed to be symmetric only when the shape itself is symmetric. However, in all cases, it’s possible to obtain a symmetric matrix by finding the principal axis of inertia.
+This is a minor optimization that makes the inertia more readable, though it's not a priority.
 
 New Scene Format :author_dim:`(RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-With the introduction of relations in the ECS, and more specifically, the `ChildOf` relation, hierarchies became important in Cubos scenes.
-This became a problem, as the previous scene format did not have any friendly way to represent hierarchies - a scene was just a flat list of entities, with no parent-child relationships.
-To solve this, we designed a new scene format, where each scene is a JSON file describing one entity, its components and relations, and its children, recursively.
+With the introduction of relations in the ECS, particularly the `ChildOf` relation, hierarchies became essential in Cubos scenes. 
+This posed a problem, as the previous scene format didn’t have an intuitive way to represent hierarchies—scenes were simply flat lists of entities with no parent-child relationships.
+To address this, we designed a new scene format where each scene is a JSON file describing an entity, its components and relations, as well as its children, recursively.
 It looks like this:
 
 .. code-block:: javascript
@@ -119,12 +119,12 @@ It looks like this:
         }
     }
 
-This scene represents an entity which inherits from another scene, with the ID `ba19170e-65a0-47cd-9bd2-b4ea9447fe22`, i.e., we're modifying an existing scene.
-To this base entity, a `game::Player` component and two children entities, `camera` and `gun`, are added.
-The `camera` entity also receives a component `cubos::engine::PerspectiveCamera`, with a field `fovY` set to 90, and the `gun` entity inherits from another scene, with the ID `6cb09eea-4156-4a75-b0ae-488aac843e05`.
+This scene represents an entity that inherits from another scene with the ID `ba19170e-65a0-47cd-9bd2-b4ea9447fe22`, meaning we're modifying an existing scene.```
+To this base entity, a `game::Player` component and two child entities, `camera` and `gun`, are added.
+The `camera` entity also receives a `cubos::engine::PerspectiveCamera` component, with a field `fovY` set to 90, and the `gun` entity inherits from another scene, with the ID `6cb09eea-4156-4a75-b0ae-488aac843e05`.
 
-This format is much more flexible than the previous one as it allows us to expand easily upon existing scenes by inheriting from them, while also repreenting the hierarchies in a natural way.
-The inheritance system has been particularly useful in our recent demos, having been used, for example, to set different skins for players, by inheriting from a base player scene and overriding the models being used.
+This format is much more flexible than the previous one, as it allows us to easily expand upon existing scenes by inheriting from them, while also representing hierarchies in a natural way.
+The inheritance system has been especially useful in our recent demos, such as for setting different player skins by inheriting from a base player scene and overriding the models used.
 
 Custom ImGui Styling :author_dim:`(RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,27 +134,21 @@ Custom ImGui Styling :author_dim:`(RiscadoA)`
 Optional Render Picker :author_dim:`(tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the `previous release's blog post <https://cubosengine.org/blog/release-06>`_, some of the graphics renderer's major
-performance hogs were mentioned. One of them was SSAO, which had been made optional, so that it could be disabled on
-lower end devices. The other was the render picker.
+In the `previous release's blog post <https://cubosengine.org/blog/release-06>`_, we discussed some of the major performance bottlenecks in the graphics renderer. One of them was SSAO, which was made optional to allow disabling it on lower-end devices. The other was the render picker.
 
-Though work on making the render picker possible to disable had already begun, it wasn't finished due to deadline constraints
-and some bugs that needed to be ironed out.
+Although work to make the render picker optional had already started, it wasn’t completed due to deadline constraints and some lingering bugs.
 
-With this release, it's finally possible to remove the `RenderPicker <https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html>`_
-component from a render target without breaking graphics altogether. While this prevents some features from
-working - such as selecting entities with the mouse cursor - in most cases such features aren't needed,
-and the performance cost of render picking is too significant to neglect.
+With this release, it's now possible to remove the `RenderPicker <https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html>`_ component from a render target without breaking the graphics system. While this disables certain features, such as selecting entities with the mouse cursor, in most cases, those features aren't crucial, and the performance cost of render picking is too high to ignore.
 
-On one particular machine, after disabling render picking, our Airships demo running at 1080p on integrated graphics doubled from 30 FPS to nearly 60!
-This shows that this change makes it much more feasible to run Cubos games on weaker hardware.
+On one particular machine, disabling render picking in our Airships demo running at 1080p on integrated graphics resulted in a jump from 30 FPS to nearly 60 FPS!
+This shows how this change makes it much more feasible to run Cubos games on lower-end hardware.
 
 Center Render Voxel Pivot :author_dim:`(kuukitenshi)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Previously, the pivot point for voxel rendering was at the bottom-left corner of each voxel grid. Now, it is at the center!
+Previously, the pivot point for voxel rendering was at the bottom-left corner of each voxel grid. Now, it’s at the center!
 
-This change makes it easier to align voxel meshes with other entities, as there's no longer a need to manually adjust offsets.
+This change makes aligning voxel meshes with other entities much easier, as there's no longer a need to manually adjust offsets.
 
 On the Core
 -----------
@@ -162,26 +156,23 @@ On the Core
 Math Vector Reflection Trait :author_dim:`(RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-One thing that had been bothering us for a while wa the lack for proper support for math types in the reflection system.
-This led to the serialization and inspector systems not being aware of them, and showing them as if they were just structs.
-We've thus added a new reflection trait, `VectorTrait`, which identifies types that represent math vectors, such as all of the `glm` vector types.
+One issue that had been bothering us for a while was the lack of proper support for math types in the reflection system. This led to the serialization and inspector systems being unaware of them, treating them as simple structs.
+To address this, we've added a new reflection trait, `VectorTrait`, which identifies types that represent math vectors, such as all the `glm` vector types.
 
 Entity Destruction Observers :author_dim:`(kuukitenshi)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Previously, to detect when an entity was being destroyed, we had to manually check its destruction state.
-Now, we have an observable for entity destruction, which triggers automatically when an entity is destroyed.
+Previously, detecting when an entity was being destroyed required manually checking its destruction state. Now, we have an observable for entity destruction that triggers automatically when an entity is destroyed.
 
-This makes it easier to handle such events, as we can simply register a callback that will be invoked upon destruction.
-It is especially useful for cleaning up resources or performing actions across systems without repeatedly checking if an entity is being destroyed.
+This makes handling such events easier, as we can now simply register a callback that’s invoked upon destruction. It’s especially useful for cleaning up resources or performing actions across systems without needing to repeatedly check if an entity is being destroyed.
 
 Query Match Counting :author_dim:`(GalaxyCrush)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When we wanted to count matches in queries, we needed to do a for loop to count them after the query was executed.
+Previously, to count matches in queries, we had to use a for loop to count them after the query was executed.
 
 
-Now we added a new `count` method to the `Query <https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html>`_ class, which returns the number of matches in the query, without the need for a separate loop outside the class.
+Now we added a new `count` method to the `Query <https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html>`_ class, which directly returns the number of matches in the query, eliminating the need for a separate loop outside the class.
 
 Wrapper Reflection Trait :author_dim:`(SrGesus, RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -193,16 +184,16 @@ On the Tools
 Tesseratos Menu Bar :author_dim:`(jdbaracho)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tesseratos now has a menu bar allowing users to enabled/disable each tool.
+Tesseratos now features a menu bar that lets users enable or disable each tool.
 
-This change gets Tesseratos a step closer to beeing a usable editor so that more people can build games using **Cubos**.
+This change brings Tesseratos a step closer to being a fully functional editor, making it easier for more people to build games using **Cubos**.
 
 Auto-scroll Toggle on the Console :author_dim:`(R-Camacho)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously, we had to scroll manually to view the latest debug messages in the console.
 
-A new checkbox now allows us to toggle auto-scroll. When enabled, the console will automatically scroll to show the most recent messages as they appear.
+Now, a new checkbox allows us toggle auto-scroll. When enabled, the console will automatically scroll to display the most recent messages as they appear.
 
 .. image:: {static}/images/blog/release/0-7/console_auto-scroll.png
 
