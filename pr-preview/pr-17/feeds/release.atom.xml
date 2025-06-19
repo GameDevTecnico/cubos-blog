@@ -49,37 +49,37 @@ To add this constraint:&lt;/p&gt;
 &lt;/h4&gt;
 &lt;p&gt;In this release we used the intersection utilities from the previous release to perform frustum culling on rendered voxel meshes.
 Previously, every voxel mesh loaded into the engine would have its data sent to the GPU for rendering, regardless of whether they were visible. This resulted in wasted resources, and that's exactly what this feature addresses.
-With frustum culling only meshes inside the visible area of the camera are sent for drawing, the others being ignored, potentially increasing performance in scenes with a large amount of objects.&lt;/p&gt;
-&lt;p&gt;The frustum culling is performed automatically in any type of camera, &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html"&gt;OrthographicCamera&lt;/a&gt; or &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html"&gt;PerspectiveCamera&lt;/a&gt;, so it doesn't require any intervention to use its benefits.
-A useful option to debug as been added to the &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html"&gt;Camera&lt;/a&gt; component to be able to freeze (stop) the updates to the camera's frustum, keeping it in the last calculated state.&lt;/p&gt;
+With frustum culling, only meshes within the camera’s visible area are sent to the GPU for drawing, while others are ignored, potentially improving performance in scenes with a large number of objects.&lt;/p&gt;
+&lt;p&gt;Frustum culling is performed automatically with any type of camera—whether it's an &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html"&gt;OrthographicCamera&lt;/a&gt; or a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html"&gt;PerspectiveCamera&lt;/a&gt;. This means no manual intervention is required to benefit from it.
+Additionally, a debug option has been added to the &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html"&gt;Camera&lt;/a&gt; component, allowing you to freeze (stop) updates to the camera's frustum, keeping it in the last calculated state.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="aabb-and-collider-rework-fallenatlas"&gt;
 &lt;h4&gt;AABB and Collider Rework &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;With this release we started our rework of the Colliders to be more streamlined and easy to understand.
-Previously, we had the &lt;cite&gt;Collider&lt;/cite&gt; component, which contained the AABB of the Collision Shape as well as a transform, to apply an offset to the AABB.
-This component was renamed to &lt;cite&gt;ColliderAABB&lt;/cite&gt;, so it's purpose is clearer, and the transform was removed, since it was only affecting the AABB and not the collision shape itself.&lt;/p&gt;
-&lt;p&gt;A &lt;cite&gt;Collider&lt;/cite&gt; will now represent the owner entity of a collision shape. This is an important distinction, as we have plans to support collision shapes composed of multiple other shapes present in child entities of the owner entity, and we need an easy way to distinguish them in the hierarchy.
-The offset of the collision shapes will be set by its normal transform when the collision is in a child entity, otherwise, its always assumed to be centered. This functionally is not implemented yet, but should start being rolled out in the next releases.&lt;/p&gt;
-&lt;p&gt;Additionally, we now add the &lt;cite&gt;ColliderAABB&lt;/cite&gt; automatically upon adding a Collision Shape.&lt;/p&gt;
+Previously, we had the &lt;cite&gt;Collider&lt;/cite&gt; component, which contained the AABB of the Collision Shape as well as a transform to apply an offset to the AABB.
+This component has now been renamed to &lt;cite&gt;ColliderAABB&lt;/cite&gt; to clarify its purpose, and the transform has been removed, as it only affected the AABB and not the collision shape itself.&lt;/p&gt;
+&lt;p&gt;A &lt;cite&gt;Collider&lt;/cite&gt; now represents the owner entity of a collision shape. This distinction is important, as we plan to support collision shapes composed of multiple shapes from child entities of the owner entity. We need an easy way to distinguish them in the hierarchy.
+The offset of collision shapes will be determined by the entity's transform when the collision shape is part of a child entity. Otherwise, it is assumed to be centered. This functionality has not been implemented yet, but will begin rolling out in future releases.&lt;/p&gt;
+&lt;p&gt;Additionally, we now automatically add the &lt;cite&gt;ColliderAABB&lt;/cite&gt; when a collision shape is added.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="voxel-shape-inertia-fallenatlas"&gt;
 &lt;h4&gt;Voxel Shape Inertia &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;Until this point, we had voxel shapes, with collisions between themselves and boxes. However, the inertia matrix for this shape was being calculated from the size of the voxel grid, which means that it wasn't very accurate, especially for shapes that had many empty spaces.
-Now, we have a custom algorithm, which takes each voxel as a point, and sums the inertia for each point, relative to the center of mass, to compute the total inertia matrix.
-Currently, we only support uniform density, meaning all points have the mass corresponding to the total mass divided by the number of occupied voxels of the grid.
+&lt;p&gt;Up until now, we had voxel shapes that collided with each other and with boxes. However, the inertia matrix for these shapes was calculated based on the size of the voxel grid, which led to inaccuracies, particularly for shapes with many empty spaces.
+Now, we use a custom algorithm that treats each voxel as a point and sums the inertia for each point, relative to the center of mass, to compute the total inertia matrix.
+Currently, we only support uniform density, meaning each point has a mass equal to the total mass divided by the number of occupied voxels in the grid.
 You can check the implementation of the functions defined &lt;a href="https://docs.cubosengine.org/inertia_8hpp.html"&gt;here&lt;/a&gt; for more details.&lt;/p&gt;
-&lt;p&gt;One important note is that, at this point, although we say we calculate the Inertia tensor for this shape, in reality, we do not guarantee that it is symmetric, which by its definition, it should be.
-The matrix is only guaranteed to be symmetric when the shape is symmetric, but in every case it is always possible to obtain such a matrix by finding the principal axis of inertia.
-This is a slight optimization and makes the inertia more readable, however, it's not a priority.&lt;/p&gt;
+&lt;p&gt;One important note is that, while we calculate the inertia tensor for this shape, we do not guarantee it will be symmetric, even though it should be by definition.
+The matrix is guaranteed to be symmetric only when the shape itself is symmetric. However, in all cases, it’s possible to obtain a symmetric matrix by finding the principal axis of inertia.
+This is a minor optimization that makes the inertia more readable, though it's not a priority.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="new-scene-format-riscadoa"&gt;
 &lt;h4&gt;New Scene Format &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;With the introduction of relations in the ECS, and more specifically, the &lt;cite&gt;ChildOf&lt;/cite&gt; relation, hierarchies became important in Cubos scenes.
-This became a problem, as the previous scene format did not have any friendly way to represent hierarchies - a scene was just a flat list of entities, with no parent-child relationships.
-To solve this, we designed a new scene format, where each scene is a JSON file describing one entity, its components and relations, and its children, recursively.
+&lt;p&gt;With the introduction of relations in the ECS, particularly the &lt;cite&gt;ChildOf&lt;/cite&gt; relation, hierarchies became essential in Cubos scenes.
+This posed a problem, as the previous scene format didn’t have an intuitive way to represent hierarchies—scenes were simply flat lists of entities with no parent-child relationships.
+To address this, we designed a new scene format where each scene is a JSON file describing an entity, its components and relations, as well as its children, recursively.
 It looks like this:&lt;/p&gt;
 &lt;pre class="m-code"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;inherit&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ba19170e-65a0-47cd-9bd2-b4ea9447fe22&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -93,11 +93,11 @@ It looks like this:&lt;/p&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;inherit&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;6cb09eea-4156-4a75-b0ae-488aac843e05&amp;quot;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;This scene represents an entity which inherits from another scene, with the ID &lt;cite&gt;ba19170e-65a0-47cd-9bd2-b4ea9447fe22&lt;/cite&gt;, i.e., we're modifying an existing scene.
-To this base entity, a &lt;cite&gt;game::Player&lt;/cite&gt; component and two children entities, &lt;cite&gt;camera&lt;/cite&gt; and &lt;cite&gt;gun&lt;/cite&gt;, are added.
-The &lt;cite&gt;camera&lt;/cite&gt; entity also receives a component &lt;cite&gt;cubos::engine::PerspectiveCamera&lt;/cite&gt;, with a field &lt;cite&gt;fovY&lt;/cite&gt; set to 90, and the &lt;cite&gt;gun&lt;/cite&gt; entity inherits from another scene, with the ID &lt;cite&gt;6cb09eea-4156-4a75-b0ae-488aac843e05&lt;/cite&gt;.&lt;/p&gt;
-&lt;p&gt;This format is much more flexible than the previous one as it allows us to expand easily upon existing scenes by inheriting from them, while also repreenting the hierarchies in a natural way.
-The inheritance system has been particularly useful in our recent demos, having been used, for example, to set different skins for players, by inheriting from a base player scene and overriding the models being used.&lt;/p&gt;
+&lt;p&gt;This scene represents an entity that inherits from another scene with the ID &lt;cite&gt;ba19170e-65a0-47cd-9bd2-b4ea9447fe22&lt;/cite&gt;, meaning we're modifying an existing scene.```
+To this base entity, a &lt;cite&gt;game::Player&lt;/cite&gt; component and two child entities, &lt;cite&gt;camera&lt;/cite&gt; and &lt;cite&gt;gun&lt;/cite&gt;, are added.
+The &lt;cite&gt;camera&lt;/cite&gt; entity also receives a &lt;cite&gt;cubos::engine::PerspectiveCamera&lt;/cite&gt; component, with a field &lt;cite&gt;fovY&lt;/cite&gt; set to 90, and the &lt;cite&gt;gun&lt;/cite&gt; entity inherits from another scene, with the ID &lt;cite&gt;6cb09eea-4156-4a75-b0ae-488aac843e05&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;This format is much more flexible than the previous one, as it allows us to easily expand upon existing scenes by inheriting from them, while also representing hierarchies in a natural way.
+The inheritance system has been especially useful in our recent demos, such as for setting different player skins by inheriting from a base player scene and overriding the models used.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="custom-imgui-styling-riscadoa"&gt;
 &lt;h4&gt;Custom ImGui Styling &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
@@ -107,23 +107,17 @@ The inheritance system has been particularly useful in our recent demos, having 
 &lt;section id="optional-render-picker-tomas7770"&gt;
 &lt;h4&gt;Optional Render Picker &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;In the &lt;a href="https://cubosengine.org/blog/release-06"&gt;previous release's blog post&lt;/a&gt;, some of the graphics renderer's major
-performance hogs were mentioned. One of them was SSAO, which had been made optional, so that it could be disabled on
-lower end devices. The other was the render picker.&lt;/p&gt;
-&lt;p&gt;Though work on making the render picker possible to disable had already begun, it wasn't finished due to deadline constraints
-and some bugs that needed to be ironed out.&lt;/p&gt;
-&lt;p&gt;With this release, it's finally possible to remove the &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html"&gt;RenderPicker&lt;/a&gt;
-component from a render target without breaking graphics altogether. While this prevents some features from
-working - such as selecting entities with the mouse cursor - in most cases such features aren't needed,
-and the performance cost of render picking is too significant to neglect.&lt;/p&gt;
-&lt;p&gt;On one particular machine, after disabling render picking, our Airships demo running at 1080p on integrated graphics doubled from 30 FPS to nearly 60!
-This shows that this change makes it much more feasible to run Cubos games on weaker hardware.&lt;/p&gt;
+&lt;p&gt;In the &lt;a href="https://cubosengine.org/blog/release-06"&gt;previous release's blog post&lt;/a&gt;, we discussed some of the major performance bottlenecks in the graphics renderer. One of them was SSAO, which was made optional to allow disabling it on lower-end devices. The other was the render picker.&lt;/p&gt;
+&lt;p&gt;Although work to make the render picker optional had already started, it wasn’t completed due to deadline constraints and some lingering bugs.&lt;/p&gt;
+&lt;p&gt;With this release, it's now possible to remove the &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html"&gt;RenderPicker&lt;/a&gt; component from a render target without breaking the graphics system. While this disables certain features, such as selecting entities with the mouse cursor, in most cases, those features aren't crucial, and the performance cost of render picking is too high to ignore.&lt;/p&gt;
+&lt;p&gt;On one particular machine, disabling render picking in our Airships demo running at 1080p on integrated graphics resulted in a jump from 30 FPS to nearly 60 FPS!
+This shows how this change makes it much more feasible to run Cubos games on lower-end hardware.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="center-render-voxel-pivot-kuukitenshi"&gt;
 &lt;h4&gt;Center Render Voxel Pivot &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/laura-cunha/"&gt;&amp;#64;kuukitenshi&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;Previously, the pivot point for voxel rendering was at the bottom-left corner of each voxel grid. Now, it is at the center!&lt;/p&gt;
-&lt;p&gt;This change makes it easier to align voxel meshes with other entities, as there's no longer a need to manually adjust offsets.&lt;/p&gt;
+&lt;p&gt;Previously, the pivot point for voxel rendering was at the bottom-left corner of each voxel grid. Now, it’s at the center!&lt;/p&gt;
+&lt;p&gt;This change makes aligning voxel meshes with other entities much easier, as there's no longer a need to manually adjust offsets.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-core"&gt;
@@ -131,23 +125,20 @@ This shows that this change makes it much more feasible to run Cubos games on we
 &lt;section id="math-vector-reflection-trait-riscadoa"&gt;
 &lt;h4&gt;Math Vector Reflection Trait &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;One thing that had been bothering us for a while wa the lack for proper support for math types in the reflection system.
-This led to the serialization and inspector systems not being aware of them, and showing them as if they were just structs.
-We've thus added a new reflection trait, &lt;cite&gt;VectorTrait&lt;/cite&gt;, which identifies types that represent math vectors, such as all of the &lt;cite&gt;glm&lt;/cite&gt; vector types.&lt;/p&gt;
+&lt;p&gt;One issue that had been bothering us for a while was the lack of proper support for math types in the reflection system. This led to the serialization and inspector systems being unaware of them, treating them as simple structs.
+To address this, we've added a new reflection trait, &lt;cite&gt;VectorTrait&lt;/cite&gt;, which identifies types that represent math vectors, such as all the &lt;cite&gt;glm&lt;/cite&gt; vector types.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="entity-destruction-observers-kuukitenshi"&gt;
 &lt;h4&gt;Entity Destruction Observers &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/laura-cunha/"&gt;&amp;#64;kuukitenshi&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;Previously, to detect when an entity was being destroyed, we had to manually check its destruction state.
-Now, we have an observable for entity destruction, which triggers automatically when an entity is destroyed.&lt;/p&gt;
-&lt;p&gt;This makes it easier to handle such events, as we can simply register a callback that will be invoked upon destruction.
-It is especially useful for cleaning up resources or performing actions across systems without repeatedly checking if an entity is being destroyed.&lt;/p&gt;
+&lt;p&gt;Previously, detecting when an entity was being destroyed required manually checking its destruction state. Now, we have an observable for entity destruction that triggers automatically when an entity is destroyed.&lt;/p&gt;
+&lt;p&gt;This makes handling such events easier, as we can now simply register a callback that’s invoked upon destruction. It’s especially useful for cleaning up resources or performing actions across systems without needing to repeatedly check if an entity is being destroyed.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="query-match-counting-galaxycrush"&gt;
 &lt;h4&gt;Query Match Counting &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-pereira/"&gt;&amp;#64;GalaxyCrush&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;When we wanted to count matches in queries, we needed to do a for loop to count them after the query was executed.&lt;/p&gt;
-&lt;p&gt;Now we added a new &lt;cite&gt;count&lt;/cite&gt; method to the &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html"&gt;Query&lt;/a&gt; class, which returns the number of matches in the query, without the need for a separate loop outside the class.&lt;/p&gt;
+&lt;p&gt;Previously, to count matches in queries, we had to use a for loop to count them after the query was executed.&lt;/p&gt;
+&lt;p&gt;Now we added a new &lt;cite&gt;count&lt;/cite&gt; method to the &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html"&gt;Query&lt;/a&gt; class, which directly returns the number of matches in the query, eliminating the need for a separate loop outside the class.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="wrapper-reflection-trait-srgesus-riscadoa"&gt;
 &lt;h4&gt;Wrapper Reflection Trait &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/gabriel-ferreira/"&gt;&amp;#64;SrGesus&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
@@ -160,14 +151,14 @@ It is especially useful for cleaning up resources or performing actions across s
 &lt;section id="tesseratos-menu-bar-jdbaracho"&gt;
 &lt;h4&gt;Tesseratos Menu Bar &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-baracho/"&gt;&amp;#64;jdbaracho&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;Tesseratos now has a menu bar allowing users to enabled/disable each tool.&lt;/p&gt;
-&lt;p&gt;This change gets Tesseratos a step closer to beeing a usable editor so that more people can build games using &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Tesseratos now features a menu bar that lets users enable or disable each tool.&lt;/p&gt;
+&lt;p&gt;This change brings Tesseratos a step closer to being a fully functional editor, making it easier for more people to build games using &lt;strong&gt;Cubos&lt;/strong&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="auto-scroll-toggle-on-the-console-r-camacho"&gt;
 &lt;h4&gt;Auto-scroll Toggle on the Console &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/r-camacho/"&gt;&amp;#64;R-Camacho&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Previously, we had to scroll manually to view the latest debug messages in the console.&lt;/p&gt;
-&lt;p&gt;A new checkbox now allows us to toggle auto-scroll. When enabled, the console will automatically scroll to show the most recent messages as they appear.&lt;/p&gt;
+&lt;p&gt;Now, a new checkbox allows us toggle auto-scroll. When enabled, the console will automatically scroll to display the most recent messages as they appear.&lt;/p&gt;
 &lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-7/console_auto-scroll.png" /&gt;
 &lt;/section&gt;
 &lt;/section&gt;
