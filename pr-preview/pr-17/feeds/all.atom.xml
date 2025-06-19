@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-06-16T00:00:00+01:00</updated><entry><title>Release 0.7</title><link href="https://cubosengine.org/blog/release-07/" rel="alternate"></link><published>2025-06-16T00:00:00+01:00</published><updated>2025-06-16T00:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-06-16:/blog/release-07/</id><summary type="html">&lt;p&gt;TODO&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-06-19T00:00:00+01:00</updated><entry><title>Release 0.7</title><link href="https://cubosengine.org/blog/release-07/" rel="alternate"></link><published>2025-06-19T00:00:00+01:00</published><updated>2025-06-19T00:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-06-19:/blog/release-07/</id><summary type="html">&lt;p&gt;A new ImGui theme and inspector, proper support for hierarchies in scenes, distance physics constraints and tons of other improvements.&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-7-features"&gt;
 &lt;h2&gt;New 0.7 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
@@ -8,11 +8,11 @@
 &lt;section id="overhauled-imgui-inspector-with-hook-support-riscadoa"&gt;
 &lt;h4&gt;Overhauled ImGui Inspector with Hook Support &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;Before 0.7, to inspect a &lt;em&gt;Cubos&lt;/em&gt; value in the ImGui inspector, you used the &lt;cite&gt;DataInspector&lt;/cite&gt; resource.
+&lt;p&gt;Before 0.7, to inspect a &lt;em&gt;Cubos&lt;/em&gt; value in the ImGui inspector, you used the &lt;code&gt;DataInspector&lt;/code&gt; resource.
 This resource provided methods to show and edit types through ImGui, but had no state whatsoever, which was a bit counterintuitive.
 Additionally, it was not possible to externally override the behavior of the inspector, which made it impossible to customize the way certain types were displayed or edited.
 This meant that, for instance, if the game developer wanted to display a custom UI on the inspector for a component of theirs, it would not be possible.&lt;/p&gt;
-&lt;p&gt;This previous implementation was replaced by a new &lt;cite&gt;ImGuiInspector&lt;/cite&gt; system argument. This can be used in any ImGui system. For example:&lt;/p&gt;
+&lt;p&gt;This previous implementation was replaced by a new &lt;code&gt;ImGuiInspector&lt;/code&gt; system argument. This can be used in any ImGui system. For example:&lt;/p&gt;
 &lt;pre class="m-code"&gt;&lt;span class="n"&gt;cubos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;inspect all velocities&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tagged&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;imguiTag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;call&lt;/span&gt;&lt;span class="p"&gt;([](&lt;/span&gt;&lt;span class="n"&gt;Query&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Entity&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Velocity&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;velocities&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ImGuiInspector&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;inspector&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
@@ -20,7 +20,7 @@ This meant that, for instance, if the game developer wanted to display a custom 
 &lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="n"&gt;inspector&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;edit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;velocity&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Velocity of &amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;to_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ent&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;This new inspector allows overriding its behavior for specific types by using the &lt;cite&gt;ImGuiInspector::hook&lt;/cite&gt; method.
+&lt;p&gt;This new inspector allows overriding its behavior for specific types by using the &lt;code&gt;ImGuiInspector::hook&lt;/code&gt; method.
 This paved the way for us to enhance the inspector with new features such as displaying quaternions as Euler angles, breaking down matrices into translation, rotation and scale, and more.
 Additionally, support was added for mask and enum types using their respective reflection traits.&lt;/p&gt;
 &lt;/section&gt;
@@ -49,19 +49,19 @@ To add this constraint:&lt;/p&gt;
 &lt;/h4&gt;
 &lt;p&gt;In this release we used the intersection utilities from the previous release to perform frustum culling on rendered voxel meshes.
 Previously, every voxel mesh loaded into the engine would have its data sent to the GPU for rendering, regardless of whether they were visible. This resulted in wasted resources, and that's exactly what this feature addresses.
-With frustum culling, only meshes within the camera’s visible area are sent to the GPU for drawing, while others are ignored, potentially improving performance in scenes with a large number of objects.&lt;/p&gt;
+With frustum culling, only meshes within the camera's visible area are sent to the GPU for drawing, while others are ignored, potentially improving performance in scenes with a large number of objects.&lt;/p&gt;
 &lt;p&gt;Frustum culling is performed automatically with any type of camera—whether it's an &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html"&gt;OrthographicCamera&lt;/a&gt; or a &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html"&gt;PerspectiveCamera&lt;/a&gt;. This means no manual intervention is required to benefit from it.
 Additionally, a debug option has been added to the &lt;a href="https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html"&gt;Camera&lt;/a&gt; component, allowing you to freeze (stop) updates to the camera's frustum, keeping it in the last calculated state.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="aabb-and-collider-rework-fallenatlas"&gt;
 &lt;h4&gt;AABB and Collider Rework &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;With this release we started our rework of the Colliders to be more streamlined and easy to understand.
-Previously, we had the &lt;cite&gt;Collider&lt;/cite&gt; component, which contained the AABB of the Collision Shape as well as a transform to apply an offset to the AABB.
-This component has now been renamed to &lt;cite&gt;ColliderAABB&lt;/cite&gt; to clarify its purpose, and the transform has been removed, as it only affected the AABB and not the collision shape itself.&lt;/p&gt;
-&lt;p&gt;A &lt;cite&gt;Collider&lt;/cite&gt; now represents the owner entity of a collision shape. This distinction is important, as we plan to support collision shapes composed of multiple shapes from child entities of the owner entity. We need an easy way to distinguish them in the hierarchy.
+&lt;p&gt;In this release, we began reworking the Colliders to make them more streamlined and easier to understand.
+Previously, we had the &lt;code&gt;Collider&lt;/code&gt; component, which contained the AABB of the Collision Shape as well as a transform to apply an offset to the AABB.
+This component has now been renamed to &lt;code&gt;ColliderAABB&lt;/code&gt; to clarify its purpose, and the transform has been removed, as it only affected the AABB and not the collision shape itself.&lt;/p&gt;
+&lt;p&gt;A &lt;code&gt;Collider&lt;/code&gt; now represents the owner entity of a collision shape. This distinction is important, as we plan to support collision shapes composed of multiple shapes from child entities of the owner entity. We need an easy way to distinguish them in the hierarchy.
 The offset of collision shapes will be determined by the entity's transform when the collision shape is part of a child entity. Otherwise, it is assumed to be centered. This functionality has not been implemented yet, but will begin rolling out in future releases.&lt;/p&gt;
-&lt;p&gt;Additionally, we now automatically add the &lt;cite&gt;ColliderAABB&lt;/cite&gt; when a collision shape is added.&lt;/p&gt;
+&lt;p&gt;Additionally, we now automatically add the &lt;code&gt;ColliderAABB&lt;/code&gt; when a collision shape is added.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="voxel-shape-inertia-fallenatlas"&gt;
 &lt;h4&gt;Voxel Shape Inertia &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
@@ -93,16 +93,18 @@ It looks like this:&lt;/p&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;inherit&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;6cb09eea-4156-4a75-b0ae-488aac843e05&amp;quot;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;This scene represents an entity that inherits from another scene with the ID &lt;cite&gt;ba19170e-65a0-47cd-9bd2-b4ea9447fe22&lt;/cite&gt;, meaning we're modifying an existing scene.```
-To this base entity, a &lt;cite&gt;game::Player&lt;/cite&gt; component and two child entities, &lt;cite&gt;camera&lt;/cite&gt; and &lt;cite&gt;gun&lt;/cite&gt;, are added.
-The &lt;cite&gt;camera&lt;/cite&gt; entity also receives a &lt;cite&gt;cubos::engine::PerspectiveCamera&lt;/cite&gt; component, with a field &lt;cite&gt;fovY&lt;/cite&gt; set to 90, and the &lt;cite&gt;gun&lt;/cite&gt; entity inherits from another scene, with the ID &lt;cite&gt;6cb09eea-4156-4a75-b0ae-488aac843e05&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;This scene represents an entity that inherits from another scene with the ID &lt;code&gt;ba19170e-65a0-47cd-9bd2-b4ea9447fe22&lt;/code&gt;, meaning we're modifying an existing scene.```
+To this base entity, a &lt;code&gt;game::Player&lt;/code&gt; component and two child entities, &lt;code&gt;camera&lt;/code&gt; and &lt;code&gt;gun&lt;/code&gt;, are added.
+The &lt;code&gt;camera&lt;/code&gt; entity also receives a &lt;code&gt;cubos::engine::PerspectiveCamera&lt;/code&gt; component, with a field &lt;code&gt;fovY&lt;/code&gt; set to 90, and the &lt;code&gt;gun&lt;/code&gt; entity inherits from another scene, with the ID &lt;code&gt;6cb09eea-4156-4a75-b0ae-488aac843e05&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;This format is much more flexible than the previous one, as it allows us to easily expand upon existing scenes by inheriting from them, while also representing hierarchies in a natural way.
 The inheritance system has been especially useful in our recent demos, such as for setting different player skins by inheriting from a base player scene and overriding the models used.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="custom-imgui-styling-riscadoa"&gt;
 &lt;h4&gt;Custom ImGui Styling &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this release we've finally customized the ImGui theme colors and font to match the Cubos brand guidelines.
+This change makes the engine's tools UI look more professional and consistent with the overall look of our website and brand.&lt;/p&gt;
+&lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-7/imgui-sample-theme.png" /&gt;
 &lt;/section&gt;
 &lt;section id="optional-render-picker-tomas7770"&gt;
 &lt;h4&gt;Optional Render Picker &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
@@ -126,7 +128,7 @@ This shows how this change makes it much more feasible to run Cubos games on low
 &lt;h4&gt;Math Vector Reflection Trait &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;One issue that had been bothering us for a while was the lack of proper support for math types in the reflection system. This led to the serialization and inspector systems being unaware of them, treating them as simple structs.
-To address this, we've added a new reflection trait, &lt;cite&gt;VectorTrait&lt;/cite&gt;, which identifies types that represent math vectors, such as all the &lt;cite&gt;glm&lt;/cite&gt; vector types.&lt;/p&gt;
+To address this, we've added a new reflection trait, &lt;code&gt;VectorTrait&lt;/code&gt;, which identifies types that represent math vectors, such as all the &lt;cite&gt;glm&lt;/cite&gt; vector types.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="entity-destruction-observers-kuukitenshi"&gt;
 &lt;h4&gt;Entity Destruction Observers &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/laura-cunha/"&gt;&amp;#64;kuukitenshi&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
@@ -138,12 +140,37 @@ To address this, we've added a new reflection trait, &lt;cite&gt;VectorTrait&lt;
 &lt;h4&gt;Query Match Counting &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/joao-pereira/"&gt;&amp;#64;GalaxyCrush&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
 &lt;p&gt;Previously, to count matches in queries, we had to use a for loop to count them after the query was executed.&lt;/p&gt;
-&lt;p&gt;Now we added a new &lt;cite&gt;count&lt;/cite&gt; method to the &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html"&gt;Query&lt;/a&gt; class, which directly returns the number of matches in the query, eliminating the need for a separate loop outside the class.&lt;/p&gt;
+&lt;p&gt;Now we added a new &lt;code&gt;count&lt;/code&gt; method to the &lt;a href="https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html"&gt;Query&lt;/a&gt; class, which directly returns the number of matches in the query, eliminating the need for a separate loop outside the class.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="wrapper-reflection-trait-srgesus-riscadoa"&gt;
 &lt;h4&gt;Wrapper Reflection Trait &lt;span class="m-text m-dim author-dim classifier"&gt;(&lt;a href="https://cubosengine.org/blog/author/gabriel-ferreira/"&gt;&amp;#64;SrGesus&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A recurring pattern in our codebase are single field wrapper structs, such as &lt;code&gt;Position&lt;/code&gt;, &lt;code&gt;Rotation&lt;/code&gt; and &lt;code&gt;Scale&lt;/code&gt;.
+We use these types to give meaning to the data they contain (in this case, math vectors and quaternions), and to distinguish them in the &lt;em&gt;Entity Component System&lt;/em&gt;.
+To reflect these types, we previously relied  the &lt;code&gt;FieldsTrait&lt;/code&gt;, as it describes &lt;code&gt;struct&lt;/code&gt; like types.&lt;/p&gt;
+&lt;p&gt;When reflection consumers such as the &lt;cite&gt;JSON&lt;/cite&gt; serializer interacted with these types, they would usually treat &lt;code&gt;FieldsTrait&lt;/code&gt; types with a single field as wrappers.
+In the case of &lt;cite&gt;JSON&lt;/cite&gt;, this led to shorter more readable output, e.g., instead of:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="nt"&gt;&amp;quot;cubos::engine::Position&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;vec&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;x&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;y&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;3.0&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;It would just output:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="nt"&gt;&amp;quot;cubos::engine::Position&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;x&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;y&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;3.0&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;However, this behavior became problematic, as not &lt;em&gt;all&lt;/em&gt; struct types with a single field should be treated as wrappers.
+For instance, the &lt;code&gt;cubos::engine::PerspectiveCamera&lt;/code&gt; component holds a single field &lt;code&gt;fovY&lt;/code&gt;.
+Thus, when serialized to JSON, it would output:&lt;/p&gt;
+&lt;pre class="m-code"&gt;&lt;span class="nt"&gt;&amp;quot;cubos::engine::PerspectiveCamera&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;90.0&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;This, of course, is not readable at all. Even worse, if someone were to add a new field to the &lt;code&gt;PerspectiveCamera&lt;/code&gt; component, it would break the serialization format.
+image the component now has a new field called &lt;code&gt;farClip&lt;/code&gt;. How would the JSON deserializer know how to deserialize the above JSON?&lt;/p&gt;
+&lt;p&gt;To prevent issues like these while still allowing the wrapper behavior for single field structs, we introduced a new reflection trait called &lt;code&gt;WrapperTrait&lt;/code&gt;.
+&lt;code&gt;FieldsTrait&lt;/code&gt; types with single fields are now no longer automatically treated as wrappers, and instead, only types with the &lt;code&gt;WrapperTrait&lt;/code&gt; will be serialized in the shorter format.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="on-the-tools"&gt;
@@ -159,18 +186,15 @@ To address this, we've added a new reflection trait, &lt;cite&gt;VectorTrait&lt;
 &lt;/h4&gt;
 &lt;p&gt;Previously, we had to scroll manually to view the latest debug messages in the console.&lt;/p&gt;
 &lt;p&gt;Now, a new checkbox allows us toggle auto-scroll. When enabled, the console will automatically scroll to display the most recent messages as they appear.&lt;/p&gt;
-&lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-7/console_auto-scroll.png" /&gt;
+&lt;img class="m-image" src="https://cubosengine.org/images/blog/release/0-7/console-auto-scroll.png" /&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="next-steps"&gt;
 &lt;h2&gt;Next Steps&lt;/h2&gt;
-&lt;p&gt;In the next release, which should be out by the end of &lt;strong&gt;TODO&lt;/strong&gt;, we're planning to work on the following features:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Feature 1 &lt;strong&gt;TODO&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Feature 2 &lt;strong&gt;TODO&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Feature 3 &lt;strong&gt;TODO&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;On the next release we'll be introducing a &lt;em&gt;Lua&lt;/em&gt; scripting plugin, backed by C API bindings to Cubos.
+Our goal is to be able to host a game jam focused on our engine by October 2025, and we believe that having a scripting language will be essential for that.&lt;/p&gt;
+&lt;p&gt;As usual, one of the focus areas of the team is improving the tooling. The tools team has received a great influx of new contributors, and we're excited to see what they will bring to the table.&lt;/p&gt;
 &lt;p&gt;You can check out the full list of things we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/31"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
 </content><category term="Release"></category></entry><entry><title>The "Ondisseia" of Cubos</title><link href="https://cubosengine.org/blog/the-ondisseia-of-cubos/" rel="alternate"></link><published>2025-05-16T10:00:00+01:00</published><updated>2025-05-16T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-16:/blog/the-ondisseia-of-cubos/</id><summary type="html">&lt;p&gt;Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.&lt;/p&gt;
