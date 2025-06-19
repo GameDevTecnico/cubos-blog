@@ -242,10 +242,9 @@ Now, a new checkbox allows us toggle auto-scroll. When enabled, the console will
 Next Steps
 ==========
 
-In the next release, which should be out by the end of **TODO**, we're planning to work on the following features:
+On the next release we'll be introducing a *Lua* scripting plugin, backed by C API bindings to Cubos.
+Our goal is to be able to host a game jam focused on our engine by October 2025, and we believe that having a scripting language will be essential for that.
 
-* Feature 1 **TODO**
-* Feature 2 **TODO**
-* Feature 3 **TODO**
+As usual, one of the focus areas of the team is improving the tooling. The tools team has received a great influx of new contributors, and we're excited to see what they will bring to the table.
 
 You can check out the full list of things we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/31>`_ for the next release.
