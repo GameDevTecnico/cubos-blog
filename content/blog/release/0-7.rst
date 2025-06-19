@@ -20,7 +20,7 @@ Overhauled ImGui Inspector with Hook Support :author_dim:`(RiscadoA)`
 Before 0.7, to inspect a *Cubos* value in the ImGui inspector, you used the `DataInspector` resource.
 This resource provided methods to show and edit types through ImGui, but had no state whatsoever, which was a bit counterintuitive.
 Additionally, it was not possible to externally override the behavior of the inspector, which made it impossible to customize the way certain types were displayed or edited.
-This meant that, for example, if the game developer wanted to show some special UI on the tools for a component of theirs, it would not be possible.
+This meant that, for instance, if the game developer wanted to display a custom UI on the inspector for a component of theirs, it would not be possible.
 
 This previous implementation was replaced by a new `ImGuiInspector` system argument. This can be used in any ImGui system. For example:
 
@@ -35,14 +35,14 @@ This previous implementation was replaced by a new `ImGuiInspector` system argum
          });
 
 This new inspector allows overriding its behavior for specific types by using the `ImGuiInspector::hook` method.
-This paved the way for us enhancing the inspector with new feature such as showing quaternions as Euler Angles, decomposing matrices into translation, rotation and scale, and more.
+This paved the way for us to enhance the inspector with new features such as displaying quaternions as Euler angles, breaking down matrices into translation, rotation and scale, and more.
 Additionally, support was added for mask and enum types using their respective reflection traits.
 
 Distance Physics Constraint :author_dim:`(joaomanita)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In 0.7 we start to add physics constraints that the user can set and customize, whereas before there was only the penetration constraint used for collision solving.
-For now we added only the distance constraint, which enforces a set distance between two physics bodies, or a distance range (rope-like).
+In version 0.7, we began adding physics constraints that users can set and customize. Previously, only the penetration constraint was available, which was used exclusively for collision solving.
+For now, we've added the distance constraint, which ensures either a fixed distance between two physics bodies, or a distance range (similar to a rope).
 To add this constraint:
 
 .. code-block:: c++
@@ -60,19 +60,13 @@ To add this constraint:
                                            .localAnchor1 = {0.0F, 0.0F, 0.0F},
                                            .localAnchor2 = {0.0F, 0.0F, 0.0F}});
 
-Where isRigid denotes whether it is a fixed distance or range constraint, and the local anchors refer to the point inside each body where
-the constraint is applied.
-
-**TODO**
-
-- Add more types of contraints (spring, motor, etc)
-- Figure out how to tweak the biases in the distance constraint to control softness
+Where isRigid indicates whether it's a fixed distance or a range constraint, and the local anchor values specify the points on each body where the constraint is applied.
 
 Voxel Mesh Frustum Culling :author_dim:`(mkuritsu)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This release we used the intersection utilities added in the previous release to perform frustum culling in the rendered voxel meshes.
-Previously, every voxel mesh that was loaded into the engine would have its data sent to the GPU for rendering regardless if they were visible or not leading to wasted use of resources, this is what this feature solves.
+In this release we used the intersection utilities from the previous release to perform frustum culling on rendered voxel meshes.
+Previously, every voxel mesh loaded into the engine would have its data sent to the GPU for rendering, regardless of whether they were visible. This resulted in wasted resources, and that's exactly what this feature addresses.
 With frustum culling only meshes inside the visible area of the camera are sent for drawing, the others being ignored, potentially increasing performance in scenes with a large amount of objects.
 
 The frustum culling is performed automatically in any type of camera, `OrthographicCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html>`_ or `PerspectiveCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html>`_, so it doesn't require any intervention to use its benefits. 
@@ -197,7 +191,7 @@ On the Tools
 ------------
 
 Tesseratos Menu Bar :author_dim:`(jdbaracho)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Tesseratos now has a menu bar allowing users to enabled/disable each tool.
 
