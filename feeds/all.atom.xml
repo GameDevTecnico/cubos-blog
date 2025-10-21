@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2025-06-19T22:00:00+01:00</updated><entry><title>Roll Racers</title><link href="https://cubosengine.org/blog/roll-racers/" rel="alternate"></link><published>2025-06-19T22:00:00+01:00</published><updated>2025-06-19T22:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-06-19:/blog/roll-racers/</id><summary type="html">&lt;p&gt;We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine</title><link href="https://cubosengine.org/" rel="alternate"/><link href="https://cubosengine.org/feeds/all.atom.xml" rel="self"/><id>https://cubosengine.org/</id><updated>2025-10-21T17:00:00+01:00</updated><entry><title>The First Cubos Jam</title><link href="https://cubosengine.org/blog/the-first-cubos-jam/" rel="alternate"/><published>2025-10-21T17:00:00+01:00</published><updated>2025-10-21T17:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-10-21:/blog/the-first-cubos-jam/</id><summary type="html">&lt;p&gt;The Cubos Team hosted the first Cubos Jam! This game jam was open to the general public and was focused on our engine.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;From September 12th to September 21st, 2025, the first game jam focused on the Cubos Engine took place, with the theme &amp;quot;Retro&amp;quot;.
+This was a major milestone for the Cubos team, which we had been planning for a long time.
+The idea behind it was to see how people would use the engine to create games, and to gather feedback on the engine and its tools.&lt;/p&gt;
+&lt;p&gt;The engine is still, of course, very hard to use, due to the lack of a proper editor and a scripting language.
+Participants had to code their games in C++, which is, as usual, not the most user friendly language.
+Even so, we still were able to attract 13 participants, which is a great start for a first-time event.
+Four of the five teams were able to submit a game by the end of the event, which you can check out on the &lt;a href="https://itch.io/jam/cubos-jam/entries"&gt;Cubos Jam page&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="m-imagegrid m-container-inflate"&gt;
+&lt;div&gt;
+&lt;figure style="width: 27.752%"&gt;
+&lt;a href="https://cubosengine.org/images/blog/meta/cubos-jam-2025/retrospective-penguin.png"&gt;&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/retrospective-penguin.png" /&gt;&lt;figcaption&gt;Restrospective Penguin&lt;/figcaption&gt;
+&lt;/a&gt;
+&lt;/figure&gt;
+&lt;figure style="width: 24.176%"&gt;
+&lt;a href="https://cubosengine.org/images/blog/meta/cubos-jam-2025/rider-or-block.png"&gt;&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/rider-or-block.png" /&gt;&lt;figcaption&gt;Rider or Block&lt;/figcaption&gt;
+&lt;/a&gt;
+&lt;/figure&gt;
+&lt;figure style="width: 24.894%"&gt;
+&lt;a href="https://cubosengine.org/images/blog/meta/cubos-jam-2025/space-runner.png"&gt;&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/space-runner.png" /&gt;&lt;figcaption&gt;Space Runner&lt;/figcaption&gt;
+&lt;/a&gt;
+&lt;/figure&gt;
+&lt;figure style="width: 23.177%"&gt;
+&lt;a href="https://cubosengine.org/images/blog/meta/cubos-jam-2025/sushi-chef-shuffle.png"&gt;&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/sushi-chef-shuffle.png" /&gt;&lt;figcaption&gt;Sushi Chef Shuffle&lt;/figcaption&gt;
+&lt;/a&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The jam itself was remote, with an in-person opening and closing event. At the opening event, we held a quick workshop to help participants get started with the engine.
+At the closing event, we had a small ceremony to showcase the games made during the jam.&lt;/p&gt;
+&lt;p&gt;The workshop guided the participants through the process of installing the engine and compiling a template project we provided.
+This required setting up CMake and a C++ compiler (Visual Studio on Windows). Installing the engine and compiling the project itself wasn't a very smooth experience.
+In the future we plan to improve this process by providing pre-compiled binaries and installers for the engine, as well as better setup documentation.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/workshop.jpg" /&gt;
+&lt;figcaption&gt;Cubos Jam workshop, at Instituto Superior Técnico, Lisbon.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;After the jam we gathered a lot of useful feedback from the participants. Overall, they saw the potential of the engine, but also highlighted many areas that need improvement. Namely:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tooling&lt;/strong&gt;: the engine is still very hard to use for non-programmers, particularly artists, due to the lack of an editor and proper asset management tools.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Documentation&lt;/strong&gt;: although the features are extensively documented, there are few examples and guides, which makes it hard for new users to get started.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scripting&lt;/strong&gt;: integrating a language such as Lua (which is happening right now) would greatly reduce the barrier to entry for new users.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physics&lt;/strong&gt;: add capsule shape collisions, and expose a nicer interface for handling multiple types of bodies.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We plan to hold more jams in the future, after improving the engine and its tools. We hope the experience will become more accessible and enjoyable for future participants.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/gathering.jpg" /&gt;
+&lt;figcaption&gt;Cubos Jam closing event, at the Gaming Hub, Lisbon.&lt;/figcaption&gt;
+&lt;/figure&gt;
+</content><category term="Meta"/><category term="Game Jam"/></entry><entry><title>Roll Racers</title><link href="https://cubosengine.org/blog/roll-racers/" rel="alternate"/><published>2025-06-19T22:00:00+01:00</published><updated>2025-06-19T22:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-06-19:/blog/roll-racers/</id><summary type="html">&lt;p&gt;We once again made a game in a week for the Coffee N' Jam with Cubos, and this time, with a lot of physics!&lt;/p&gt;
 </summary><content type="html">&lt;section id="the-theme"&gt;
 &lt;h2&gt;The Theme&lt;/h2&gt;
 &lt;p&gt;From 2nd of May to the 10th of May, &lt;a href="https://cubosengine.org/blog/author/tiago-antunes/"&gt;&amp;#64;fallenatlas&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/tomas-gouveia/"&gt;&amp;#64;tomas7770&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/francisco-catarino/"&gt;&amp;#64;fkatar&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/pedro-simoes/"&gt;&amp;#64;PedroSimoes24&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
@@ -135,7 +184,7 @@ In the future, this logic should probably be improved to only clean up the table
 After the jam ended, we met to discuss what went wrong and what issues we should prioritize fixing.
 One of the biggest problems continues to be the lack of proper tooling for the engine - this will be the focus for the next few months.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category><category term="Coffee N' Jam"></category></entry><entry><title>Release 0.7</title><link href="https://cubosengine.org/blog/release-07/" rel="alternate"></link><published>2025-06-19T00:00:00+01:00</published><updated>2025-06-19T00:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-06-19:/blog/release-07/</id><summary type="html">&lt;p&gt;A new ImGui theme and inspector, proper support for hierarchies in scenes, distance physics constraints and tons of other improvements.&lt;/p&gt;
+</content><category term="Demo"/><category term="Demo"/><category term="Game Jam"/><category term="Coffee N' Jam"/></entry><entry><title>Release 0.7</title><link href="https://cubosengine.org/blog/release-07/" rel="alternate"/><published>2025-06-19T00:00:00+01:00</published><updated>2025-06-19T00:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-06-19:/blog/release-07/</id><summary type="html">&lt;p&gt;A new ImGui theme and inspector, proper support for hierarchies in scenes, distance physics constraints and tons of other improvements.&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-7-features"&gt;
 &lt;h2&gt;New 0.7 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
@@ -333,7 +382,7 @@ Our goal is to be able to host a game jam focused on our engine by October 2025,
 &lt;p&gt;As usual, one of the focus areas of the team is improving the tooling. The tools team has received a great influx of new contributors, and we're excited to see what they will bring to the table.&lt;/p&gt;
 &lt;p&gt;You can check out the full list of things we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/31"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category></entry><entry><title>The "Ondisseia" of Cubos</title><link href="https://cubosengine.org/blog/the-ondisseia-of-cubos/" rel="alternate"></link><published>2025-05-16T10:00:00+01:00</published><updated>2025-05-16T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-16:/blog/the-ondisseia-of-cubos/</id><summary type="html">&lt;p&gt;Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.&lt;/p&gt;
+</content><category term="Release"/></entry><entry><title>The "Ondisseia" of Cubos</title><link href="https://cubosengine.org/blog/the-ondisseia-of-cubos/" rel="alternate"/><published>2025-05-16T10:00:00+01:00</published><updated>2025-05-16T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-05-16:/blog/the-ondisseia-of-cubos/</id><summary type="html">&lt;p&gt;Cubos participation in the Azul Game Jam - the achievements, lessons taken, and much more.&lt;/p&gt;
 </summary><content type="html">&lt;section id="the-jam"&gt;
 &lt;h2&gt;The Jam&lt;/h2&gt;
 &lt;p&gt;Around a month ago, &lt;a href="https://cubosengine.org/blog/author/miguel-canais/"&gt;&amp;#64;mcanais&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/nuno-baptista/"&gt;&amp;#64;NunoBaptista&lt;/a&gt;, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/ricardo-subtil/"&gt;&amp;#64;rsubtil&lt;/a&gt; joined forces to participate in the &lt;a href="https://www.linkedin.com/company/azulgamejam"&gt;Azul Game Jam&lt;/a&gt;.
@@ -434,7 +483,7 @@ To solve this issue, we added a function to hide the mobile control when no long
 &lt;p&gt;With this final touch, we were able to hide the extra UI when the game was running on a PC browser and enable the UI in a mobile device browser.
 After the jam, we integrated these changes into the main branch of Cubos, so that all samples can be easily ported to mobile devices.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category><category term="Azul Game Jam"></category></entry><entry><title>Release 0.6</title><link href="https://cubosengine.org/blog/release-06/" rel="alternate"></link><published>2025-03-12T00:00:00+00:00</published><updated>2025-03-12T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-03-12:/blog/release-06/</id><summary type="html">&lt;p&gt;A smaller update focused on performance, physics stability and better options for lower end machines.&lt;/p&gt;
+</content><category term="Demo"/><category term="Demo"/><category term="Game Jam"/><category term="Azul Game Jam"/></entry><entry><title>Release 0.6</title><link href="https://cubosengine.org/blog/release-06/" rel="alternate"/><published>2025-03-12T00:00:00+00:00</published><updated>2025-03-12T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-03-12:/blog/release-06/</id><summary type="html">&lt;p&gt;A smaller update focused on performance, physics stability and better options for lower end machines.&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-6-features"&gt;
 &lt;h2&gt;New 0.6 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
@@ -514,7 +563,7 @@ Stay tuned for more details after the 0.7 release blog post!&lt;/p&gt;
 We're excited to see what we can come up with in just 48 hours! A blog post about our experience will be published sometime after the jam.&lt;/p&gt;
 &lt;p&gt;You can check out the full list of things we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/30"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category><category term="Release"></category></entry><entry><title>Release 0.5</title><link href="https://cubosengine.org/blog/release-05/" rel="alternate"></link><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-27T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-01-27:/blog/release-05/</id><summary type="html">&lt;p&gt;From Voxel collisions, point light shadows and an audio plugin, to web support, text rendering, and FXAA.&lt;/p&gt;
+</content><category term="Release"/><category term="Release"/></entry><entry><title>Release 0.5</title><link href="https://cubosengine.org/blog/release-05/" rel="alternate"/><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-27T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-01-27:/blog/release-05/</id><summary type="html">&lt;p&gt;From Voxel collisions, point light shadows and an audio plugin, to web support, text rendering, and FXAA.&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-5-features"&gt;
 &lt;h2&gt;New 0.5 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes in the 0.5 release - we've added a lot of new features, such point light shadows, audio support, MSDF text rendering and more!
@@ -684,7 +733,7 @@ As of now, this means we're making some performance sacrifices, as we're not usi
 &lt;p&gt;We also developed a demo showcasing the new features of this release, which you will be able to check out pretty soon here.&lt;/p&gt;
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/29"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category><category term="Release"></category></entry><entry><title>Release 0.4</title><link href="https://cubosengine.org/blog/release-04/" rel="alternate"></link><published>2024-11-05T00:00:00+00:00</published><updated>2024-11-05T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-11-05:/blog/release-04/</id><summary type="html">&lt;p&gt;Rotating rigid bodies, cascading shadow maps, a standalone editor application, better telemetry and much more!&lt;/p&gt;
+</content><category term="Release"/><category term="Release"/></entry><entry><title>Release 0.4</title><link href="https://cubosengine.org/blog/release-04/" rel="alternate"/><published>2024-11-05T00:00:00+00:00</published><updated>2024-11-05T00:00:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-11-05:/blog/release-04/</id><summary type="html">&lt;p&gt;Rotating rigid bodies, cascading shadow maps, a standalone editor application, better telemetry and much more!&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-4-features"&gt;
 &lt;h2&gt;New 0.4 Features&lt;/h2&gt;
 &lt;p&gt;This blog post covers the most important changes, but you can check out the full changelog in our &lt;a href="https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md"&gt;repository&lt;/a&gt;.&lt;/p&gt;
@@ -1054,7 +1103,7 @@ Of course, with such a large team, these meetings were becoming increasingly lon
 &lt;p&gt;Additionally, we're planning to work on a new game project using our engine - now with online multiplayer support!&lt;/p&gt;
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/28"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category><category term="Release"></category></entry><entry><title>A New Brand Identity</title><link href="https://cubosengine.org/blog/a-new-brand-identity/" rel="alternate"></link><published>2024-09-09T17:00:00+01:00</published><updated>2024-09-09T17:00:00+01:00</updated><author><name>Nuno Baptista</name></author><id>tag:cubosengine.org,2024-09-09:/blog/a-new-brand-identity/</id><summary type="html">&lt;p&gt;Introducing a new brand identity for Cubos.&lt;/p&gt;
+</content><category term="Release"/><category term="Release"/></entry><entry><title>A New Brand Identity</title><link href="https://cubosengine.org/blog/a-new-brand-identity/" rel="alternate"/><published>2024-09-09T17:00:00+01:00</published><updated>2024-09-09T17:00:00+01:00</updated><author><name>Nuno Baptista</name></author><id>tag:cubosengine.org,2024-09-09:/blog/a-new-brand-identity/</id><summary type="html">&lt;p&gt;Introducing a new brand identity for Cubos.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Cubos had grown out of its cocoon and needed new wings to fly out of its embryonic phase.
 The new visual identity aimed at providing a more cohesive and professional look to an increasingly defined and completed game engine.
 A new logo was designed, alongside a set of visual rules and principals that form Cubos new identity.&lt;/p&gt;
@@ -1153,7 +1202,7 @@ Speaking of which, a &lt;a href="/images/brand.pdf"&gt;Brand Guidelines Document
 &lt;/figure&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Meta"></category><category term="Design"></category></entry><entry><title>Release 0.3</title><link href="https://cubosengine.org/blog/release-03/" rel="alternate"></link><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/blog/release-03/</id><summary type="html">&lt;p&gt;Raycasting, shadows, profiling tools, networking utilities, and more!&lt;/p&gt;
+</content><category term="Meta"/><category term="Design"/></entry><entry><title>Release 0.3</title><link href="https://cubosengine.org/blog/release-03/" rel="alternate"/><published>2024-09-09T16:00:00+01:00</published><updated>2024-09-09T16:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-09-09:/blog/release-03/</id><summary type="html">&lt;p&gt;Raycasting, shadows, profiling tools, networking utilities, and more!&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This blog post came a bit late due to the summer break, but we're back with a new release!
 Features-wise, this release was a tad smaller than the previous one as we spent a lot of time working on non-code related stuff, such as rebranding and marketing the project.&lt;/p&gt;
 &lt;section id="new-0-3-features"&gt;
@@ -1513,7 +1562,7 @@ In the next release, which should be out by the end of this month, we're plannin
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/27"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;p&gt;We're currently a team of 13 people, and &lt;strong&gt;we're looking to expand&lt;/strong&gt;! If you're interested in joining us, or just want to learn more about the project, join our &lt;a href="https://discord.gg/WjTtcNTRqD"&gt;Discord server&lt;/a&gt;!&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category><category term="Release"></category></entry><entry><title>Release 0.2</title><link href="https://cubosengine.org/blog/release-02/" rel="alternate"></link><published>2024-05-21T10:00:00+01:00</published><updated>2024-05-21T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/blog/release-02/</id><summary type="html">&lt;p&gt;From ECS observers and fixed-time step support to better editing tools, a new modular rendering pipeline, and the first physics constraints solvers.&lt;/p&gt;
+</content><category term="Release"/><category term="Release"/></entry><entry><title>Release 0.2</title><link href="https://cubosengine.org/blog/release-02/" rel="alternate"/><published>2024-05-21T10:00:00+01:00</published><updated>2024-05-21T10:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/blog/release-02/</id><summary type="html">&lt;p&gt;From ECS observers and fixed-time step support to better editing tools, a new modular rendering pipeline, and the first physics constraints solvers.&lt;/p&gt;
 </summary><content type="html">&lt;section id="new-0-2-features"&gt;
 &lt;h2&gt;New 0.2 Features&lt;/h2&gt;
 &lt;p&gt;Our focus on this release was to continue working on improving and implementing base functionality, such as rendering and physics, and also to improve on the tools available to the developer.
@@ -1694,7 +1743,7 @@ To solve this, we decided to change the serialization system to use the reflecti
 &lt;p&gt;You can check out the full list of stuff we want to get done in the &lt;a href="https://github.com/GameDevTecnico/cubos/milestone/26"&gt;milestone&lt;/a&gt; for the next release.&lt;/p&gt;
 &lt;p&gt;We're currently a team of 10 people, and &lt;strong&gt;we're looking to expand&lt;/strong&gt;! If you're interested in joining us, or just want to learn more about the project, join our &lt;a href="https://discord.gg/WjTtcNTRqD"&gt;Discord server&lt;/a&gt;!&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Release"></category><category term="Release"></category></entry><entry><title>Coffee N' Jam 2024</title><link href="https://cubosengine.org/blog/coffee-n-jam-2024/" rel="alternate"></link><published>2024-05-21T09:00:00+01:00</published><updated>2024-05-21T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/blog/coffee-n-jam-2024/</id><summary type="html">&lt;p&gt;We made a game in a week with Cubos, and managed to win two awards!&lt;/p&gt;
+</content><category term="Release"/><category term="Release"/></entry><entry><title>Coffee N' Jam 2024</title><link href="https://cubosengine.org/blog/coffee-n-jam-2024/" rel="alternate"/><published>2024-05-21T09:00:00+01:00</published><updated>2024-05-21T09:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2024-05-21:/blog/coffee-n-jam-2024/</id><summary type="html">&lt;p&gt;We made a game in a week with Cubos, and managed to win two awards!&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;From 26th of April to 3rd of May, &lt;a href="https://cubosengine.org/blog/author/ricardo-antunes/"&gt;&amp;#64;RiscadoA&lt;/a&gt; and &lt;a href="https://cubosengine.org/blog/author/joao-manita/"&gt;&amp;#64;joaomanita&lt;/a&gt; participated in the Coffee N' Jam, a game jam organized by GameDev Técnico, with our engine, &lt;strong&gt;Cubos&lt;/strong&gt;.
 The goal was to create a game in a week, with the theme &amp;quot;Apocalypse&amp;quot; - and we had a blast!&lt;/p&gt;
 &lt;p&gt;The game jam was a great opportunity to test the engine in a real game development scenario, and we learned a lot from it.
@@ -1707,7 +1756,7 @@ You can also check out its source code in our &lt;a href="https://github.com/Gam
 &lt;p&gt;We found a lot of bugs and missing features during the jam. Additionally, we had performance become a problem for the first time.
 One particular area that is in dire need of development is Audio, which we've been ignoring so far - people expect to hear something when they play a game!
 We'll be working on fixing these issues in the next release, and we'll also be profiling the engine to find out where the bottlenecks are.&lt;/p&gt;
-</content><category term="Demo"></category><category term="Demo"></category><category term="Game Jam"></category><category term="Coffee N' Jam"></category></entry><entry><title>Hello Relations</title><link href="https://cubosengine.org/blog/hello-relations/" rel="alternate"></link><published>2024-01-31T16:30:00+00:00</published><updated>2024-01-31T16:30:00+00:00</updated><author><name>Ricardo Antunes</name></author><id>tag:cubosengine.org,2024-01-31:/blog/hello-relations/</id><summary type="html">&lt;p&gt;Adding entity relations to our ECS&lt;/p&gt;
+</content><category term="Demo"/><category term="Demo"/><category term="Game Jam"/><category term="Coffee N' Jam"/></entry><entry><title>Hello Relations</title><link href="https://cubosengine.org/blog/hello-relations/" rel="alternate"/><published>2024-01-31T16:30:00+00:00</published><updated>2024-01-31T16:30:00+00:00</updated><author><name>Ricardo Antunes</name></author><id>tag:cubosengine.org,2024-01-31:/blog/hello-relations/</id><summary type="html">&lt;p&gt;Adding entity relations to our ECS&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Hello! This past month I've been tinkering with the &lt;em&gt;ECS&lt;/em&gt;, which arguably is the core foundation of &lt;strong&gt;Cubos&lt;/strong&gt;.
 We structure all of our engine code around it. You can learn more about the concept in our &lt;a href="https://gamedevtecnico.github.io/cubos/docs/features-ecs.html"&gt;ECS guide&lt;/a&gt;!&lt;/p&gt;
 &lt;section id="the-problem"&gt;
@@ -1962,7 +2011,7 @@ But these are not essential features, and can be added later on.&lt;/p&gt;
 &lt;p&gt;With this out of the way, my focus will now shift to the renderer plugin. I've been wanting to tackle ray tracing for a while now, and I think it's time to give it a shot.
 We'll also be working on a new demo soon, so stay tuned for that!&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Dev Notes"></category><category term="Core"></category><category term="ECS"></category></entry><entry><title>Hello World</title><link href="https://cubosengine.org/blog/hello-world/" rel="alternate"></link><published>2023-11-10T10:06:00+00:00</published><updated>2023-11-10T10:06:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2023-11-10:/blog/hello-world/</id><summary type="html">&lt;p&gt;This is Cubos!&lt;/p&gt;
+</content><category term="Dev Notes"/><category term="Core"/><category term="ECS"/></entry><entry><title>Hello World</title><link href="https://cubosengine.org/blog/hello-world/" rel="alternate"/><published>2023-11-10T10:06:00+00:00</published><updated>2023-11-10T10:06:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2023-11-10:/blog/hello-world/</id><summary type="html">&lt;p&gt;This is Cubos!&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Hello everyone, and welcome to the very first post of the Cubos engine blog. This is where we'll be posting updates and information about Cubos
 Let's start today by talking about what Cubos is!&lt;/p&gt;
 &lt;p&gt;Cubos is an open-source game engine with two core features: everything is made out of voxels, and the engine is built on an entity component system.
@@ -1976,4 +2025,4 @@ This means building some important engine plugins that we are missing, such as t
 &lt;p&gt;Thank you for your interest in our engine.
 Come with us, as we keep you updated on the developments, adventures and trials Cubos goes through.&lt;/p&gt;
 &lt;p&gt;See you soon!&lt;/p&gt;
-</content><category term="Meta"></category></entry></feed>
+</content><category term="Meta"/></entry></feed>

@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Meta</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/meta.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2024-09-09T17:00:00+01:00</updated><entry><title>A New Brand Identity</title><link href="https://cubosengine.org/blog/a-new-brand-identity/" rel="alternate"></link><published>2024-09-09T17:00:00+01:00</published><updated>2024-09-09T17:00:00+01:00</updated><author><name>Nuno Baptista</name></author><id>tag:cubosengine.org,2024-09-09:/blog/a-new-brand-identity/</id><summary type="html">&lt;p&gt;Introducing a new brand identity for Cubos.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Meta</title><link href="https://cubosengine.org/" rel="alternate"/><link href="https://cubosengine.org/feeds/meta.atom.xml" rel="self"/><id>https://cubosengine.org/</id><updated>2025-10-21T17:00:00+01:00</updated><entry><title>The First Cubos Jam</title><link href="https://cubosengine.org/blog/the-first-cubos-jam/" rel="alternate"/><published>2025-10-21T17:00:00+01:00</published><updated>2025-10-21T17:00:00+01:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2025-10-21:/blog/the-first-cubos-jam/</id><summary type="html">&lt;p&gt;The Cubos Team hosted the first Cubos Jam! This game jam was open to the general public and was focused on our engine.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;From September 12th to September 21st, 2025, the first game jam focused on the Cubos Engine took place, with the theme &amp;quot;Retro&amp;quot;.
+This was a major milestone for the Cubos team, which we had been planning for a long time.
+The idea behind it was to see how people would use the engine to create games, and to gather feedback on the engine and its tools.&lt;/p&gt;
+&lt;p&gt;The engine is still, of course, very hard to use, due to the lack of a proper editor and a scripting language.
+Participants had to code their games in C++, which is, as usual, not the most user friendly language.
+Even so, we still were able to attract 13 participants, which is a great start for a first-time event.
+Four of the five teams were able to submit a game by the end of the event, which you can check out on the &lt;a href="https://itch.io/jam/cubos-jam/entries"&gt;Cubos Jam page&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="m-imagegrid m-container-inflate"&gt;
+&lt;div&gt;
+&lt;figure style="width: 27.752%"&gt;
+&lt;a href="https://cubosengine.org/images/blog/meta/cubos-jam-2025/retrospective-penguin.png"&gt;&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/retrospective-penguin.png" /&gt;&lt;figcaption&gt;Restrospective Penguin&lt;/figcaption&gt;
+&lt;/a&gt;
+&lt;/figure&gt;
+&lt;figure style="width: 24.176%"&gt;
+&lt;a href="https://cubosengine.org/images/blog/meta/cubos-jam-2025/rider-or-block.png"&gt;&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/rider-or-block.png" /&gt;&lt;figcaption&gt;Rider or Block&lt;/figcaption&gt;
+&lt;/a&gt;
+&lt;/figure&gt;
+&lt;figure style="width: 24.894%"&gt;
+&lt;a href="https://cubosengine.org/images/blog/meta/cubos-jam-2025/space-runner.png"&gt;&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/space-runner.png" /&gt;&lt;figcaption&gt;Space Runner&lt;/figcaption&gt;
+&lt;/a&gt;
+&lt;/figure&gt;
+&lt;figure style="width: 23.177%"&gt;
+&lt;a href="https://cubosengine.org/images/blog/meta/cubos-jam-2025/sushi-chef-shuffle.png"&gt;&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/sushi-chef-shuffle.png" /&gt;&lt;figcaption&gt;Sushi Chef Shuffle&lt;/figcaption&gt;
+&lt;/a&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The jam itself was remote, with an in-person opening and closing event. At the opening event, we held a quick workshop to help participants get started with the engine.
+At the closing event, we had a small ceremony to showcase the games made during the jam.&lt;/p&gt;
+&lt;p&gt;The workshop guided the participants through the process of installing the engine and compiling a template project we provided.
+This required setting up CMake and a C++ compiler (Visual Studio on Windows). Installing the engine and compiling the project itself wasn't a very smooth experience.
+In the future we plan to improve this process by providing pre-compiled binaries and installers for the engine, as well as better setup documentation.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/workshop.jpg" /&gt;
+&lt;figcaption&gt;Cubos Jam workshop, at Instituto Superior Técnico, Lisbon.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;After the jam we gathered a lot of useful feedback from the participants. Overall, they saw the potential of the engine, but also highlighted many areas that need improvement. Namely:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tooling&lt;/strong&gt;: the engine is still very hard to use for non-programmers, particularly artists, due to the lack of an editor and proper asset management tools.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Documentation&lt;/strong&gt;: although the features are extensively documented, there are few examples and guides, which makes it hard for new users to get started.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scripting&lt;/strong&gt;: integrating a language such as Lua (which is happening right now) would greatly reduce the barrier to entry for new users.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physics&lt;/strong&gt;: add capsule shape collisions, and expose a nicer interface for handling multiple types of bodies.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We plan to hold more jams in the future, after improving the engine and its tools. We hope the experience will become more accessible and enjoyable for future participants.&lt;/p&gt;
+&lt;figure class="m-figure"&gt;
+&lt;img src="https://cubosengine.org/images/blog/meta/cubos-jam-2025/gathering.jpg" /&gt;
+&lt;figcaption&gt;Cubos Jam closing event, at the Gaming Hub, Lisbon.&lt;/figcaption&gt;
+&lt;/figure&gt;
+</content><category term="Meta"/><category term="Game Jam"/></entry><entry><title>A New Brand Identity</title><link href="https://cubosengine.org/blog/a-new-brand-identity/" rel="alternate"/><published>2024-09-09T17:00:00+01:00</published><updated>2024-09-09T17:00:00+01:00</updated><author><name>Nuno Baptista</name></author><id>tag:cubosengine.org,2024-09-09:/blog/a-new-brand-identity/</id><summary type="html">&lt;p&gt;Introducing a new brand identity for Cubos.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Cubos had grown out of its cocoon and needed new wings to fly out of its embryonic phase.
 The new visual identity aimed at providing a more cohesive and professional look to an increasingly defined and completed game engine.
 A new logo was designed, alongside a set of visual rules and principals that form Cubos new identity.&lt;/p&gt;
@@ -98,7 +147,7 @@ Speaking of which, a &lt;a href="/images/brand.pdf"&gt;Brand Guidelines Document
 &lt;/figure&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Meta"></category><category term="Design"></category></entry><entry><title>Hello World</title><link href="https://cubosengine.org/blog/hello-world/" rel="alternate"></link><published>2023-11-10T10:06:00+00:00</published><updated>2023-11-10T10:06:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2023-11-10:/blog/hello-world/</id><summary type="html">&lt;p&gt;This is Cubos!&lt;/p&gt;
+</content><category term="Meta"/><category term="Design"/></entry><entry><title>Hello World</title><link href="https://cubosengine.org/blog/hello-world/" rel="alternate"/><published>2023-11-10T10:06:00+00:00</published><updated>2023-11-10T10:06:00+00:00</updated><author><name>Cubos Team</name></author><id>tag:cubosengine.org,2023-11-10:/blog/hello-world/</id><summary type="html">&lt;p&gt;This is Cubos!&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Hello everyone, and welcome to the very first post of the Cubos engine blog. This is where we'll be posting updates and information about Cubos
 Let's start today by talking about what Cubos is!&lt;/p&gt;
 &lt;p&gt;Cubos is an open-source game engine with two core features: everything is made out of voxels, and the engine is built on an entity component system.
@@ -112,4 +161,4 @@ This means building some important engine plugins that we are missing, such as t
 &lt;p&gt;Thank you for your interest in our engine.
 Come with us, as we keep you updated on the developments, adventures and trials Cubos goes through.&lt;/p&gt;
 &lt;p&gt;See you soon!&lt;/p&gt;
-</content><category term="Meta"></category></entry></feed>
+</content><category term="Meta"/></entry></feed>

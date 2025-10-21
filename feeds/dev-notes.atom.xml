@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Dev Notes</title><link href="https://cubosengine.org/" rel="alternate"></link><link href="https://cubosengine.org/feeds/dev-notes.atom.xml" rel="self"></link><id>https://cubosengine.org/</id><updated>2024-01-31T16:30:00+00:00</updated><entry><title>Hello Relations</title><link href="https://cubosengine.org/blog/hello-relations/" rel="alternate"></link><published>2024-01-31T16:30:00+00:00</published><updated>2024-01-31T16:30:00+00:00</updated><author><name>Ricardo Antunes</name></author><id>tag:cubosengine.org,2024-01-31:/blog/hello-relations/</id><summary type="html">&lt;p&gt;Adding entity relations to our ECS&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cubos Engine - Dev Notes</title><link href="https://cubosengine.org/" rel="alternate"/><link href="https://cubosengine.org/feeds/dev-notes.atom.xml" rel="self"/><id>https://cubosengine.org/</id><updated>2024-01-31T16:30:00+00:00</updated><entry><title>Hello Relations</title><link href="https://cubosengine.org/blog/hello-relations/" rel="alternate"/><published>2024-01-31T16:30:00+00:00</published><updated>2024-01-31T16:30:00+00:00</updated><author><name>Ricardo Antunes</name></author><id>tag:cubosengine.org,2024-01-31:/blog/hello-relations/</id><summary type="html">&lt;p&gt;Adding entity relations to our ECS&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Hello! This past month I've been tinkering with the &lt;em&gt;ECS&lt;/em&gt;, which arguably is the core foundation of &lt;strong&gt;Cubos&lt;/strong&gt;.
 We structure all of our engine code around it. You can learn more about the concept in our &lt;a href="https://gamedevtecnico.github.io/cubos/docs/features-ecs.html"&gt;ECS guide&lt;/a&gt;!&lt;/p&gt;
 &lt;section id="the-problem"&gt;
@@ -254,4 +254,4 @@ But these are not essential features, and can be added later on.&lt;/p&gt;
 &lt;p&gt;With this out of the way, my focus will now shift to the renderer plugin. I've been wanting to tackle ray tracing for a while now, and I think it's time to give it a shot.
 We'll also be working on a new demo soon, so stay tuned for that!&lt;/p&gt;
 &lt;/section&gt;
-</content><category term="Dev Notes"></category><category term="Core"></category><category term="ECS"></category></entry></feed>
+</content><category term="Dev Notes"/><category term="Core"/><category term="ECS"/></entry></feed>
