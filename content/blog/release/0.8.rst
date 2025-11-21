@@ -1,0 +1,114 @@
+Release 0.8
+###########
+
+:date: 2025-08-15 00:00:00
+:category: Release
+:summary: An example release post, replace this by an actual summary of the release.
+:cover: {static}/images/blog/meta/first-post/cover.png
+
+New 0.8 Features
+================
+
+This blog post covers the most important changes, but you can check out the full changelog in our `repository <https://github.com/GameDevTecnico/cubos/blob/main/CHANGELOG.md>`_.
+
+On the Editor
+-------------
+
+Editor Layout Structure with default placement of tools :author_dim:`(jdbaracho)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Quaternion representation switch and matrix decomposition in editor :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Render timers in metrics panel :author_dim:`(tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Generating metas with random UUIDs through Quadrados :author_dim:`(Fkatar)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Quadrados command to create assets based on templates :author_dim:`(R-Camacho)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+On the Engine
+-------------
+
+Lua Scripting Plugin :author_dim:`(mkuritsu)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Sub-title for this feature
+**************************
+
+**TODO**: more explaining
+
+Method for attributing a name to a plugin :author_dim:`(mcanais)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Emscripten HTML template with mobile support :author_dim:`(RiscadoA, NunoBaptista57)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Configurable directional shadow range for objects outside the frustum :author_dim:`(tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Allow gizmos to be drawn for specific cameras :author_dim:`(tomas7770)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Reflection for RenderEnvironment :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Debug collider gizmos of Voxel Collision shapes :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Raycasting support to the voxel collision shapes :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+On the Core
+-----------
+
+Constant type and C arrays reflection support :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Support for MaskTrait types JSON (de)serialization :author_dim:`(RiscadoA)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**TODO**: explain feature and why it is useful
+
+Next Steps
+==========
+
+In the next release, which should be out by **TODO WHEN**, we're planning to work on the following features:
+
+* Very cool feature 1.
+* Very cool feature 2.
+* ...
+
+TODO: maybe some more stuff here if needed
+
+You can check out the full list of stuff we want to get done in the `milestone <https://github.com/GameDevTecnico/cubos/milestone/29>`_ for the next release.
