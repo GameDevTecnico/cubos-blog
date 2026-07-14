@@ -69,8 +69,8 @@ In this release we used the intersection utilities from the previous release to 
 Previously, every voxel mesh loaded into the engine would have its data sent to the GPU for rendering, regardless of whether they were visible. This resulted in wasted resources, and that's exactly what this feature addresses.
 With frustum culling, only meshes within the camera's visible area are sent to the GPU for drawing, while others are ignored, potentially improving performance in scenes with a large number of objects.
 
-Frustum culling is performed automatically with any type of camera—whether it's an `OrthographicCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1OrthographicCamera.html>`_ or a `PerspectiveCamera <https://docs.cubosengine.org/structcubos_1_1engine_1_1PerspectiveCamera.html>`_. This means no manual intervention is required to benefit from it.
-Additionally, a debug option has been added to the `Camera <https://docs.cubosengine.org/structcubos_1_1engine_1_1Camera.html>`_ component, allowing you to freeze (stop) updates to the camera's frustum, keeping it in the last calculated state.
+Frustum culling is performed automatically with any type of camera—whether it's an `OrthographicCamera <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1OrthographicCamera.html>`_ or a `PerspectiveCamera <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1PerspectiveCamera.html>`_. This means no manual intervention is required to benefit from it.
+Additionally, a debug option has been added to the `Camera <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1Camera.html>`_ component, allowing you to freeze (stop) updates to the camera's frustum, keeping it in the last calculated state.
 
 AABB and Collider Rework :author_dim:`(fallenatlas)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -90,7 +90,7 @@ Voxel Shape Inertia :author_dim:`(fallenatlas)`
 Up until now, we had voxel shapes that collided with each other and with boxes. However, the inertia matrix for these shapes was calculated based on the size of the voxel grid, which led to inaccuracies, particularly for shapes with many empty spaces.
 Now, we use a custom algorithm that treats each voxel as a point and sums the inertia for each point, relative to the center of mass, to compute the total inertia matrix.
 Currently, we only support uniform density, meaning each point has a mass equal to the total mass divided by the number of occupied voxels in the grid.
-You can check the implementation of the functions defined `here <https://docs.cubosengine.org/inertia_8hpp.html>`_ for more details.
+You can check the implementation of the functions defined `here <https://docs.cubos.riscadoa.com/inertia_8hpp.html>`_ for more details.
 
 One important note is that, while we calculate the inertia tensor for this shape, we do not guarantee it will be symmetric, even though it should be by definition.
 The matrix is guaranteed to be symmetric only when the shape itself is symmetric. However, in all cases, it’s possible to obtain a symmetric matrix by finding the principal axis of inertia.
@@ -137,11 +137,11 @@ This change makes the engine's tools UI look more professional and consistent wi
 Optional Render Picker :author_dim:`(tomas7770)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the `previous release's blog post <https://cubosengine.org/blog/release-06>`_, we discussed some of the major performance bottlenecks in the graphics renderer. One of them was SSAO, which was made optional to allow disabling it on lower-end devices. The other was the render picker.
+In the `previous release's blog post <https://cubos.riscadoa.com/blog/release-06>`_, we discussed some of the major performance bottlenecks in the graphics renderer. One of them was SSAO, which was made optional to allow disabling it on lower-end devices. The other was the render picker.
 
 Although work to make the render picker optional had already started, it wasn’t completed due to deadline constraints and some lingering bugs.
 
-With this release, it's now possible to remove the `RenderPicker <https://docs.cubosengine.org/structcubos_1_1engine_1_1RenderPicker.html>`_ component from a render target without breaking the graphics system. While this disables certain features, such as selecting entities with the mouse cursor, in most cases, those features aren't crucial, and the performance cost of render picking is too high to ignore.
+With this release, it's now possible to remove the `RenderPicker <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1RenderPicker.html>`_ component from a render target without breaking the graphics system. While this disables certain features, such as selecting entities with the mouse cursor, in most cases, those features aren't crucial, and the performance cost of render picking is too high to ignore.
 
 On one particular machine, disabling render picking in our Airships demo running at 1080p on integrated graphics resulted in a jump from 30 FPS to nearly 60 FPS!
 This shows how this change makes it much more feasible to run Cubos games on lower-end hardware.
@@ -174,7 +174,7 @@ Query Match Counting :author_dim:`(GalaxyCrush)`
 
 Previously, to count matches in queries, we had to use a for loop to count them after the query was executed.
 
-Now we added a new ``count`` method to the `Query <https://docs.cubosengine.org/classcubos_1_1core_1_1ecs_1_1Query.html>`_ class, which directly returns the number of matches in the query, eliminating the need for a separate loop outside the class.
+Now we added a new ``count`` method to the `Query <https://docs.cubos.riscadoa.com/classcubos_1_1core_1_1ecs_1_1Query.html>`_ class, which directly returns the number of matches in the query, eliminating the need for a separate loop outside the class.
 
 Wrapper Reflection Trait :author_dim:`(SrGesus, RiscadoA)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
