@@ -224,7 +224,7 @@ Try dragging the slider in the middle to compare the before and after!
 As you can see, this adds a whole new level of depth to the engine's graphics.
 
 Similarly to spot shadows, directional shadows can be enabled by adding a component to the respective light,
-in this case a `DirectionalShadowCaster <https://docs.cubosengine.org/structcubos_1_1engine_1_1DirectionalShadowCaster.html>`_.
+in this case a `DirectionalShadowCaster <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1DirectionalShadowCaster.html>`_.
 The `Shadows sample <https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows>`_ has been updated to show this.
 
 Because directional shadows are more complex than spot shadows, there are more options that can be configured,

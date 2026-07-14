@@ -25,7 +25,7 @@ Cubos Engine
 
         .. container:: m-col-m-4 m-push-m-2 m-col-t-6
 
-            .. button-primary:: https://docs.cubosengine.org/getting-started.html
+            .. button-primary:: https://docs.cubos.riscadoa.com/getting-started.html
                 :class: m-fullwidth
 
                 Get Started

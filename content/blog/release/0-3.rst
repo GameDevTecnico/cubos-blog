@@ -210,9 +210,9 @@ developed with Cubos. We've tried it on *Scraps vs Zombies* and the result is st
 It's an important step towards the kind of appealing graphics that we hope to achieve.
 
 For the time being, shadows support is limited to spot lights. To enable them, all you need
-to do is add a `SpotShadowCaster <https://docs.cubosengine.org/structcubos_1_1engine_1_1SpotShadowCaster.html>`_ component to the spot lights for which you want shadows to be cast,
+to do is add a `SpotShadowCaster <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1SpotShadowCaster.html>`_ component to the spot lights for which you want shadows to be cast,
 as shown in the `Shadows sample <https://github.com/GameDevTecnico/cubos/tree/main/engine/samples/render/shadows>`_.
-Both hard and soft shadows are supported, with a configurable `blurRadius <https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html#a450e1d2c732f1c38403a428eb0536660>`_.
+Both hard and soft shadows are supported, with a configurable `blurRadius <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1ShadowCaster.html#a450e1d2c732f1c38403a428eb0536660>`_.
 
 Behind the scenes, this works by rendering the world from each light's perspective to determine which parts
 are occluded, and making these parts unlit. A large texture known as the "shadow atlas" holds this information for
@@ -228,14 +228,14 @@ Initial UI Plugin :author_dim:`(DiogoMendonc-a)`
 
 Cubos now has a UI system!
 
-Add a `UICanvas <https://docs.cubosengine.org/structcubos_1_1engine_1_1UICanvas.html>`_ to your Render Target, and set a `UIElement <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIElement.html>`_ as its child. The UIElement will determine where the entity is drawn, and other UI components you add to the entity, such as a UIImage, will determine what it is that is drawn.
-For this initial version of the plugin, there are only two types of elements: `UIColorRect <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIColorRect.html>`_, which simply fills the element with a solid colour, and `UIImage <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIImage.html>`_, which draws an image asset.
+Add a `UICanvas <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1UICanvas.html>`_ to your Render Target, and set a `UIElement <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1UIElement.html>`_ as its child. The UIElement will determine where the entity is drawn, and other UI components you add to the entity, such as a UIImage, will determine what it is that is drawn.
+For this initial version of the plugin, there are only two types of elements: `UIColorRect <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1UIColorRect.html>`_, which simply fills the element with a solid colour, and `UIImage <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1UIImage.html>`_, which draws an image asset.
 
-To make using the UIElement easier, there are also a number of components meant to dynamically change its size: `UIHorizontalStretch <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIHorizontalStretch.html>`_ and `UIVerticalStretch <https://docs.cubosengine.org/structcubos_1_1engine_1_1UIVerticalStretch.html>`_ will make the element expand to its parent's size. 
+To make using the UIElement easier, there are also a number of components meant to dynamically change its size: `UIHorizontalStretch <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1UIHorizontalStretch.html>`_ and `UIVerticalStretch <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1UIVerticalStretch.html>`_ will make the element expand to its parent's size. 
 
-One more problem that was tackled was the question of how to handle different aspect ratios. As it stands, Cubos now has five different settings for how to handle that, that can be read in detail on `the sample page <https://docs.cubosengine.org/examples-engine-ui.html>`_.
+One more problem that was tackled was the question of how to handle different aspect ratios. As it stands, Cubos now has five different settings for how to handle that, that can be read in detail on `the sample page <https://docs.cubos.riscadoa.com/examples-engine-ui.html>`_.
 
-Finally, there is a `UINativeAspectRatio <https://docs.cubosengine.org/structcubos_1_1engine_1_1UINativeAspectRatio.html>`_ that, when paired with an UIImage, will ensure that the UIElement will retain the proportions of the original source file.
+Finally, there is a `UINativeAspectRatio <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1UINativeAspectRatio.html>`_ that, when paired with an UIImage, will ensure that the UIElement will retain the proportions of the original source file.
 
 On the Core
 -----------
@@ -274,15 +274,15 @@ How it looks:
 Currently, metrics can be accessed manually through the singleton class. However, we plan to 
 integrate these metrics into our editor for a more streamlined experience.
 
-Learn more about it on our `metrics documentation <https://docs.cubosengine.org/examples-core-metrics.html>`_.
+Learn more about it on our `metrics documentation <https://docs.cubos.riscadoa.com/examples-core-metrics.html>`_.
 
 Networking Utilities :author_dim:`(roby2014)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the 0.3 release, Cubos finally has networking! This is a big step forward for our engine, bringing 
-powerful networking utilities such as `Address <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1Address.html>`_, 
-`UdpSocket <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1UdpSocket.html>`_, `TcpListener <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpListener.html>`_, 
-and `TcpStream <https://docs.cubosengine.org/classcubos_1_1core_1_1net_1_1TcpStream.html>`_. 
+powerful networking utilities such as `Address <https://docs.cubos.riscadoa.com/classcubos_1_1core_1_1net_1_1Address.html>`_, 
+`UdpSocket <https://docs.cubos.riscadoa.com/classcubos_1_1core_1_1net_1_1UdpSocket.html>`_, `TcpListener <https://docs.cubos.riscadoa.com/classcubos_1_1core_1_1net_1_1TcpListener.html>`_, 
+and `TcpStream <https://docs.cubos.riscadoa.com/classcubos_1_1core_1_1net_1_1TcpStream.html>`_. 
 
 Creating an UDP client and sending a message is as simple as:
 
@@ -294,7 +294,7 @@ Creating an UDP client and sending a message is as simple as:
     const char* msg = "Hello, I'm a Cubos UDP client!";
     client.send(msg, std::strlen(msg), Address::from("server.com"), 8081);
 
-Learn more about it on our `networking documentation <https://docs.cubosengine.org/examples-core-networking.html>`_.
+Learn more about it on our `networking documentation <https://docs.cubos.riscadoa.com/examples-core-networking.html>`_.
 
 Next Steps
 ==========

@@ -34,10 +34,10 @@ Over the past couple of releases, **shadows** have been gradually introduced to 
 renderer, starting with spotlight shadows, and then directional ones. Naturally, the next step was to
 implement shadows for point lights, finally completing support for the most common types of lights.
 
-Point shadows are enabled by adding a `PointShadowCaster <https://docs.cubosengine.org/structcubos_1_1engine_1_1PointShadowCaster.html>`_
+Point shadows are enabled by adding a `PointShadowCaster <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1PointShadowCaster.html>`_
 component to the light entity.
 They behave similarly to spot shadows, lacking all the configurable values of the more complex directional shadows.
-You can read the previous blog posts for more detailed information (`0.3 <https://cubosengine.org/03-is-here.html>`_, `0.4 <https://cubosengine.org/04-is-out.html>`_).
+You can read the previous blog posts for more detailed information (`0.3 <https://cubos.riscadoa.com/03-is-here.html>`_, `0.4 <https://cubos.riscadoa.com/04-is-out.html>`_).
 
 In terms of implementation, point shadows are also very similar to spot shadows, using a shared atlas texture
 that stores shadow maps for every point light in a quadtree structure. However, because point lights cast light in
@@ -80,7 +80,7 @@ Now there are two new simple methods - ``save(path, indentation)`` and
 Collision detection between VoxelCollisionShapes :author_dim:`(joaomanita)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The engine was only able to able to detect collisons between boxes, now we can add a `VoxelCollisionShape <https://docs.cubosengine.org/classcubos_1_1engine_1_1VoxelCollisionShape.html>`_
+The engine was only able to able to detect collisons between boxes, now we can add a `VoxelCollisionShape <https://docs.cubos.riscadoa.com/classcubos_1_1engine_1_1VoxelCollisionShape.html>`_
 to decompose a voxel shape into multiple box collision shapes.
 
 Anti-aliasing using the FXAA technique :author_dim:`(kuukitenshi)`
@@ -135,7 +135,7 @@ instead of:
 Option to use Shadow Normal Offset Bias algorithm :author_dim:`(GalaxyCrush)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We noticed that the shadows had some `shadow acne <https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#Acne>`_ and/or `peter panning <https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#PeterPanning>`_ artifacts in some samples. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters `ShadowCaster  <https://docs.cubosengine.org/structcubos_1_1engine_1_1ShadowCaster.html>`_.
+We noticed that the shadows had some `shadow acne <https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#Acne>`_ and/or `peter panning <https://digitalrune.github.io/DigitalRune-Documentation/html/3f4d959e-9c98-4a97-8d85-7a73c26145d7.htm#PeterPanning>`_ artifacts in some samples. So, to improve it, we implemented the option of using the Shadow Normal Offset Bias algorithm, which improved the quality of the shadows and reduced these artifacts. To use the algorithm, the user simply has to assign a value to the normalOffsetScale field in the light casters `ShadowCaster  <https://docs.cubos.riscadoa.com/structcubos_1_1engine_1_1ShadowCaster.html>`_.
 
 Resource to easily configure constants in the physics solver :author_dim:`(GCeSilva)`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
