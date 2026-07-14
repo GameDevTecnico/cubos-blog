@@ -6,7 +6,7 @@ M_BLOG_NAME = 'Cubos Blog'
 M_BLOG_URL = "/blog"
 M_BLOG_DESCRIPTION = "Cubos is an open-source student-developed game engine built in modern C++ where everything is made of voxels."
 
-M_SOCIAL_IMAGE = 'https://cubosengine.org/images/social.png'
+M_SOCIAL_IMAGE = 'https://cubos.riscadoa.com/images/social.png'
 M_SOCIAL_BLOG_SUMMARY = "An open-source student-developed game engine built in modern C++ where everything is made of voxels."
 
 TIMEZONE = 'Europe/Lisbon'
@@ -33,29 +33,29 @@ CATEGORY_SAVE_AS = 'blog/{slug}/index.html'
 TAG_URL = 'blog/tag/{slug}/'
 TAG_SAVE_AS = 'blog/tag/{slug}/index.html'
 
-M_LINKS_NAVBAR1 = [('Docs', 'https://docs.cubosengine.org', 'docs', [])]
+M_LINKS_NAVBAR1 = [('Docs', 'https://docs.cubos.riscadoa.com', 'docs', [])]
 
 M_LINKS_NAVBAR2 = [('Blog', M_BLOG_URL, '[blog]', []),
                    ('GitHub', 'https://github.com/GameDevTecnico/cubos', '', [])]
 
 M_LINKS_FOOTER1 = [('Cubos', '.'),
-                   ('Getting Started', 'https://docs.cubosengine.org/getting-started.html'),
-                   ('Feature Guide', 'https://docs.cubosengine.org/features.html'),
-                   ('Examples', 'https://docs.cubosengine.org/examples.html'),
-                   ('Contribution Guidelines', 'https://docs.cubosengine.org/contribution.html'),
+                   ('Getting Started', 'https://docs.cubos.riscadoa.com/getting-started.html'),
+                   ('Feature Guide', 'https://docs.cubos.riscadoa.com/features.html'),
+                   ('Examples', 'https://docs.cubos.riscadoa.com/examples.html'),
+                   ('Contribution Guidelines', 'https://docs.cubos.riscadoa.com/contribution.html'),
                    ('Brand Guidelines', '/images/brand.pdf')]
 
-M_LINKS_FOOTER2 = [('Docs', 'https://docs.cubosengine.org'),
-                   ('Pages', 'https://docs.cubosengine.org/pages.html'),
-                   ('Modules', 'https://docs.cubosengine.org/modules.html'),
-                   ('Classes', 'https://docs.cubosengine.org/annotated.html'),
-                   ('Files', 'https://docs.cubosengine.org/files.html')]
+M_LINKS_FOOTER2 = [('Docs', 'https://docs.cubos.riscadoa.com'),
+                   ('Pages', 'https://docs.cubos.riscadoa.com/pages.html'),
+                   ('Modules', 'https://docs.cubos.riscadoa.com/modules.html'),
+                   ('Classes', 'https://docs.cubos.riscadoa.com/annotated.html'),
+                   ('Files', 'https://docs.cubos.riscadoa.com/files.html')]
 
-M_LINKS_FOOTER3 = [('Contact Us', 'mailto:team@cubosengine.org'),
+M_LINKS_FOOTER3 = [('Contact Us', 'mailto:me@riscadoa.com'),
                    ('Blog Feed', 'feeds/all.atom.xml'),
                    ('GitHub', 'https://github.com/GameDevTecnico/cubos'),
                    ('Discord', 'https://discord.gg/WjTtcNTRqD'),
-                   ('E-mail', 'mailto:team@cubosengine.org'),
+                   ('E-mail', 'mailto:me@riscadoa.com'),
                    ('itch.io', 'https://cubos-engine.itch.io/')]
 
 M_SHOW_AUTHOR_LIST = False
